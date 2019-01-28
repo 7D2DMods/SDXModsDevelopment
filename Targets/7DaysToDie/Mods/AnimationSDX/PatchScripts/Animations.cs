@@ -32,10 +32,10 @@ public class AnimationChange : IPatcherMod
         Log("Linking");
         var myClass = gameModule.Types.First(d => d.Name == "EModelBase");
         var myMethod = myClass.Methods.First(d => d.Name == "Init");
-        UpdateEmodelBase(myClass, myMethod);
+       // UpdateEmodelBase(myClass, myMethod);
 
         myMethod = myClass.Methods.First(d => d.Name == "InitFromPrefab");
-        UpdateEmodelBase(myClass, myMethod);
+        //UpdateEmodelBase(myClass, myMethod);
 
         return true;
     }

@@ -1,0 +1,15 @@
+﻿<configs>
+  <append xpath="/buffs">
+    <!-- This is the buff to make the farm animals know that this is home-->
+  <buff name="buffFoodTrough" hidden="true">
+    <stack_type value="ignore"/>
+    <duration value="1"/>
+    <effect_group>
+      <triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="not Animal">
+        <requirement name="EntityTagCompare" tags="Farmanimal"/>
+      </triggered_effect>
+      <passive_effect name="WaterChangeOT" operation="base_add" value="1,1" duration="0,8"/>
+    </effect_group>
+  </buff>
+  </append>
+</configs>

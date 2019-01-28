@@ -1,0 +1,40 @@
+<configs>
+  <!-- <property name='Class' value='EntityWanderingTrader, Mods' />-->
+  <append xpath="/entity_classes">
+    <entity_class name="animalFarmCow" extends="animalStag">
+      <property name="Tags" value="animal, Farmanimal"/>
+      <property name="Class" value="EntityFarmingAnimal, Mods" />
+      <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
+      <property name="Mass" value="90"/>
+
+      <!-- Gameplay -->
+      <drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+      <drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="20"/>
+      <!-- animalStag -->
+      <drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="6"/>
+      <drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="3"/>
+      <drop event="Harvest" name="resourceFemur" tag="butcherHarvest" count="3"/>
+      <drop event="Harvest" name="resourceFemur" tag="allToolsHarvest" count="1"/>
+
+      <effect_group name="Base Effects">
+        <passive_effect name="HealthMax" operation="base_set" value="40"/>
+        <passive_effect name="HealthMax" operation="perc_add" value="0"/>
+        <!-- Animal HP scale -->
+      </effect_group>
+
+      <property name="AITask-1" value="Swim"/>
+      <property name="AITask-2" value="RunawayWhenHurt"/>
+      <property name="AITask-3" value="Territorial"/>
+      <property name="AITask-4" value="RunawayFromEntity" param1="EntityZombie"/>
+      <property name="AITask-5" value="Look"/>
+      <property name="AITask-6" value="Wander"/>
+
+
+      <property name="Food" value="resourceYuccaFibers"/>
+      <property name="Product" value="water"/>
+      <property name="HarvestItem" value="drinkJarEmptyMilk"/>
+    </entity_class>
+
+
+  </append>
+</configs>

@@ -1,0 +1,35 @@
+﻿<configs>
+  <append xpath="/items">
+    <item name="drinkJarEmptyMilk">
+      <property name="HoldType" value="3"/>
+      <property name="Meshfile" value="Items/Food/emptyJarPrefab"/>
+      <property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab"/>
+      <property name="Material" value="Mglass"/>
+      <property name="Stacknumber" value="10"/>
+      <!-- STK resource -->
+      <property name="Weight" value="10"/>
+      <property name="EconomicValue" value="6"/>
+      <property name="CraftingIngredientTime" value="9"/>
+       <property name="Group" value="Resources"/>
+    </item>
+    <item name="drinkJarMilk">
+      <property name="HoldType" value="3"/>
+      <property name="Meshfile" value="Items/Food/emptyJarPrefab"/>
+      <property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab"/>
+      <property name="Material" value="Mglass"/>
+      <property name="Stacknumber" value="10"/>
+      <!-- STK resource -->
+      <property name="Weight" value="10"/>
+      <property name="EconomicValue" value="6"/>
+      <property name="CraftingIngredientTime" value="9"/>
+      <property class="Action0">
+        <property name="Class" value="Eat"/>
+        <property name="Delay" value="0"/>
+        <property name="Sound_start" value="player_drinking"/>
+        <property name="Create_item" value="drinkJarEmptyMilk"/>
+      </property>
+      <property name="Group" value="Food/Cooking"/>
+    </item>
+
+  </append>
+</configs>

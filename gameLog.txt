@@ -2,111 +2,433 @@ Initialize engine version: 2018.2.0f2 (787658998520)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
+    Renderer: AMD Radeon (TM) R7 M360 (ID=0x6900)
     Vendor:   
-    VRAM:     2988 MB
-    Driver:   24.21.14.1170
+    VRAM:     2039 MB
+    Driver:   24.20.11016.4
 Begin MonoManager ReloadAssembly
-- Completed reload, in  0.135 seconds
+- Completed reload, in  0.120 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 3.692800 ms
-2019-01-24T16:52:29 0.003 INF [Steamworks.NET] SteamAPI_Init() ok
-2019-01-24T16:52:29 0.044 INF NET: InitCallbacks
-2019-01-24T16:52:29 0.060 INF Texture quality is set to 1
-2019-01-24T16:52:29 0.061 INF Precaching...
-2019-01-24T16:52:29 0.063 INF Precaching file: 7DaysToDie_Data/resources.assets
-2019-01-24T16:52:29 0.156 INF [EAC] Not loading, not started from launcher
-2019-01-24T16:52:31 2.602 INF Precaching file: 7DaysToDie_Data/sharedassets1.assets
-2019-01-24T16:52:31 2.616 INF Precaching file: Data/Bundles/blocktextureatlases
-2019-01-24T16:52:34 4.731 INF Precaching file: Data/Bundles/terraintextures
-2019-01-24T16:52:34 4.946 INF Precaching done
-2019-01-24T16:52:36 6.983 INF Loading main scene
+UnloadTime: 0.576182 ms
+2019-01-28T15:08:32 0.005 INF [Steamworks.NET] SteamAPI_Init() ok
+2019-01-28T15:08:32 0.061 INF NET: InitCallbacks
+2019-01-28T15:08:32 0.089 INF Texture quality is set to 1
+2019-01-28T15:08:32 0.090 INF Precaching...
+2019-01-28T15:08:32 0.092 INF Precaching file: 7DaysToDie_Data/resources.assets
+2019-01-28T15:08:32 0.160 INF [EAC] Not loading, not started from launcher
+2019-01-28T15:08:33 0.978 INF Precaching file: 7DaysToDie_Data/sharedassets1.assets
+2019-01-28T15:08:33 0.981 INF Precaching file: Data/Bundles/blocktextureatlases
+2019-01-28T15:08:34 1.699 INF Precaching file: Data/Bundles/terraintextures
+2019-01-28T15:08:34 1.764 INF Precaching done
+2019-01-28T15:08:38 6.089 INF Loading main scene
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 10.315600 ms
+UnloadTime: 2.542129 ms
 SDX:  SDX detected base game directory as: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\
 SDX:  Could not find sdx config file: ''. Using default settings
 SDX: Mod Engine Started.
 SDX: Finding type refs...
 SDX: Loading mods assembly
-SDX: Loaded!1
-SDX: BlankClassForSdxToPreventBug
+SDX: Loaded!8
+SDX: MecanimSDX
+SDX: NewMecanimSDX
+SDX: EAIFollowTarget
+SDX: EntityFarmingAnimal
+SDX: EntityAnimalHal
+SDX: EntityAnimalHalRanged
+SDX: HalHelperEvents
+SDX: <PrivateImplementationDetails>{3A173EC6-E12D-43AB-9E09-D5A721756D43}
 SDX:  SDX is no longer loading bundles
 SDX: Begin Load mod script...
-2019-01-24T16:52:36 7.320 INF Awake
-2019-01-24T16:52:36 7.359 WRN Setting global culture failed!
+2019-01-28T15:08:38 6.280 INF Awake
+2019-01-28T15:08:38 6.328 WRN Setting global culture failed!
 Localization language: English
-2019-01-24T16:52:36 7.415 INF Version: Alpha 17.1 (b9) Compatibility Version: Alpha 17.1, Build: Windows 64 Bit
-2019-01-24T16:52:36 7.415 INF System information:
-2019-01-24T16:52:36 7.416 INF    OS: Windows 10  (10.0.0) 64bit
-2019-01-24T16:52:36 7.416 INF    CPU: Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz (cores: 8)
-2019-01-24T16:52:36 7.416 INF    RAM: 12223 MB
-2019-01-24T16:52:36 7.416 INF    GPU: NVIDIA GeForce GTX 1060 3GB (2988 MB)
-2019-01-24T16:52:36 7.416 INF    Graphics API: Direct3D 11.0 [level 11.1] (shader level 5.0)
-2019-01-24T16:52:36 7.416 INF Last played version: Alpha 17.1
-2019-01-24T16:52:36 7.416 INF Local UTC offset: -4 hours
-2019-01-24T16:52:36 7.416 WRN Setting global culture failed!
-2019-01-24T16:52:36 7.422 INF Command line arguments: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie.exe
-2019-01-24T16:52:36 7.424 INF Not running in Big Picture Mode, no on-screen keyboard available
-2019-01-24T16:52:36 7.425 INF Starting PlayerInputManager...
-2019-01-24T16:52:36 7.442 INF InControl (version 1.6.17 build 9143, native module = False, XInput = True)
+2019-01-28T15:08:38 6.384 INF Version: Alpha 17.1 (b9) Compatibility Version: Alpha 17.1, Build: Windows 64 Bit
+2019-01-28T15:08:38 6.385 INF System information:
+2019-01-28T15:08:38 6.385 INF    OS: Windows 10  (10.0.0) 64bit
+2019-01-28T15:08:38 6.386 INF    CPU: Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz (cores: 4)
+2019-01-28T15:08:38 6.386 INF    RAM: 16210 MB
+2019-01-28T15:08:38 6.386 INF    GPU: AMD Radeon (TM) R7 M360 (2039 MB)
+2019-01-28T15:08:38 6.386 INF    Graphics API: Direct3D 11.0 [level 11.1] (shader level 5.0)
+2019-01-28T15:08:38 6.386 INF Last played version: Alpha 17.1
+2019-01-28T15:08:38 6.387 INF Local UTC offset: -4 hours
+2019-01-28T15:08:38 6.387 WRN Setting global culture failed!
+2019-01-28T15:08:38 6.398 INF Command line arguments: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie.exe
+2019-01-28T15:08:38 6.401 INF Not running in Big Picture Mode, no on-screen keyboard available
+2019-01-28T15:08:38 6.401 INF Starting PlayerInputManager...
+2019-01-28T15:08:38 6.419 INF InControl (version 1.6.17 build 9143, native module = False, XInput = True)
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libXInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\libXInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libXInputInterface32
-2019-01-24T16:52:36 7.522 INF Starting UserProfileManager...
-2019-01-24T16:52:36 7.630 INF [MODS] Start loading
-2019-01-24T16:52:36 7.631 INF [MODS] Trying to load from Animation_SDX
-2019-01-24T16:52:36 7.665 INF [MODS] Loaded Mod: Animation SDX (2.0)
-2019-01-24T16:52:36 7.665 INF [MODS] Trying to load from Hal's_DLL_Fixes
-2019-01-24T16:52:36 7.667 INF [MODS] Loaded Mod: Hal's DLL Fixes (1)
-2019-01-24T16:52:36 7.667 INF [MODS] Trying to load from SphereII_Entity_Player
-2019-01-24T16:52:36 7.670 INF [MODS] Loaded Mod: SphereII Entity Player (1.0.0.0)
-2019-01-24T16:52:36 7.670 INF [MODS] Trying to load from SphereII_Mod_Localization_Hook
-2019-01-24T16:52:36 7.671 INF [MODS] Loaded Mod: SphereII Mod Localization Hook (1.0.0.0)
-2019-01-24T16:52:36 7.671 INF [MODS] Trying to load from SphereII_Music_Boxes
-2019-01-24T16:52:36 7.672 INF [MODS] Loaded Mod: SphereII Music Boxes (1.0.0.0)
-2019-01-24T16:52:36 7.673 INF [MODS] Trying to load from SphereII_Take_And_Replace
-2019-01-24T16:52:36 7.674 INF [MODS] Loaded Mod: SphereII_Take_And_Replace (1.0.0.0)
-2019-01-24T16:52:36 7.674 INF [MODS] Trying to load from SphereII_Unlock_Health_Bar
-2019-01-24T16:52:36 7.676 INF [MODS] Loaded Mod: SphereII Unlock Health Bar (1)
-2019-01-24T16:52:36 7.676 INF [MODS] Trying to load from Zombie_Transmogrifier
-2019-01-24T16:52:36 7.679 INF [MODS] Loaded Mod: Zombie Transmogrifier (1)
-2019-01-24T16:52:36 7.679 INF [MODS] Initializing mod code
-2019-01-24T16:52:36 7.679 INF [MODS] Loading done
-2019-01-24T16:52:37 7.729 INF Loading permissions file at 'C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
-2019-01-24T16:52:37 7.758 INF Loading permissions file done.
-2019-01-24T16:52:37 7.782 WRN Old savegame folder (C:\Users\Jeff\Documents/7 Days To Die) exists but new one (C:\Users\Jeff\AppData\Roaming/7DaysToDie) also exists, not moving
-2019-01-24T16:52:37 7.783 INF Awake done in 463 ms
-2019-01-24T16:52:37 8.378 INF Atlas reset took 581 ms
-2019-01-24T16:52:37 8.378 INF Atlas load took 594 ms
+2019-01-28T15:08:39 6.601 INF Starting UserProfileManager...
+2019-01-28T15:08:39 6.706 INF [MODS] Start loading
+2019-01-28T15:08:39 6.708 INF [MODS] Trying to load from AnimationSDX
+2019-01-28T15:08:39 6.752 INF [MODS] Loaded Mod: Animation SDX (2.0)
+2019-01-28T15:08:39 6.752 INF [MODS] Trying to load from Bloom's Animal Husbandry
+2019-01-28T15:08:39 6.753 INF [MODS] Loaded Mod: Bloom's Animal Husbandry (1.0.0)
+2019-01-28T15:08:39 6.753 INF [MODS] Trying to load from Hal's DLL Fixes
+2019-01-28T15:08:39 6.754 INF [MODS] Loaded Mod: Hal's DLL Fixes (1)
+2019-01-28T15:08:39 6.754 INF [MODS] Initializing mod code
+2019-01-28T15:08:39 6.754 INF [MODS] Loading done
+2019-01-28T15:08:39 6.767 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
+2019-01-28T15:08:39 6.800 INF Loading permissions file done.
+2019-01-28T15:08:39 6.835 WRN Old savegame folder (C:\Users\jkilpatrick\Documents/7 Days To Die) exists but new one (C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie) also exists, not moving
+2019-01-28T15:08:39 6.837 INF Awake done in 556 ms
+2019-01-28T15:08:39 7.266 INF Atlas reset took 418 ms
+2019-01-28T15:08:39 7.266 INF Atlas load took 428 ms
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libc
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\libc
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libc
-2019-01-24T16:52:37 8.498 INF Reloading serveradmin.xml
-2019-01-24T16:52:37 8.498 INF Loading permissions file at 'C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
-2019-01-24T16:52:37 8.499 INF Loading permissions file done.
 Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 3915.
-Total: 10.271700 ms (FindLiveObjects: 0.931200 ms CreateObjectMapping: 0.297900 ms MarkObjects: 8.737400 ms  DeleteObjects: 0.304100 ms)
+Total: 16.335854 ms (FindLiveObjects: 1.741309 ms CreateObjectMapping: 0.614107 ms MarkObjects: 13.861188 ms  DeleteObjects: 0.115601 ms)
 Unloading 1 Unused Serialized files (Serialized files now loaded: 1)
+2019-01-28T15:08:40 7.527 INF Reloading serveradmin.xml
+2019-01-28T15:08:40 7.527 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
+2019-01-28T15:08:40 7.529 INF Loading permissions file done.
 Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3915.
-Total: 6.807300 ms (FindLiveObjects: 0.824400 ms CreateObjectMapping: 0.156800 ms MarkObjects: 5.773500 ms  DeleteObjects: 0.052000 ms)
+Total: 8.055243 ms (FindLiveObjects: 0.951794 ms CreateObjectMapping: 0.262199 ms MarkObjects: 6.803688 ms  DeleteObjects: 0.036831 ms)
 Unloading 0 Unused Serialized files (Serialized files now loaded: 1)
 Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 3915.
-Total: 5.967500 ms (FindLiveObjects: 0.622300 ms CreateObjectMapping: 0.119300 ms MarkObjects: 5.221600 ms  DeleteObjects: 0.003800 ms)
-2019-01-24T16:52:38 9.609 INF User joined: sphereii
-UMA Overlay loading took 1597 ms
+Total: 7.157420 ms (FindLiveObjects: 0.847498 ms CreateObjectMapping: 0.154620 ms MarkObjects: 6.149102 ms  DeleteObjects: 0.005105 ms)
+2019-01-28T15:08:40 7.676 INF User joined: sphereii
+UMA Overlay loading took 410 ms
 UMA Slot loading took 1 ms
-2019-01-24T16:52:48 18.967 INF WorldStaticData.Init() needed 3.789s
-2019-01-24T16:52:48 19.168 INF [Steamworks.NET] Login ok.
-2019-01-24T16:52:48 19.476 INF AchievementManager: Received stats and achievements from Steam
-2019-01-24T16:53:24 55.493 INF OnApplicationQuit
-2019-01-24T16:53:24 55.495 INF OnApplicationQuit
-Setting up 4 worker threads for Enlighten.
-  Thread -> id: 56b80 -> priority: 1 
-  Thread -> id: 6a468 -> priority: 1 
-  Thread -> id: 6eea0 -> priority: 1 
-  Thread -> id: 6ecc4 -> priority: 1 
+2019-01-28T15:08:43 11.104 INF WorldStaticData.Init() needed 2.312s
+2019-01-28T15:08:44 12.124 INF [Steamworks.NET] Login ok.
+2019-01-28T15:08:44 12.456 INF AchievementManager: Received stats and achievements from Steam
+2019-01-28T15:08:49 17.096 INF NET: Starting server protocols
+2019-01-28T15:08:49 17.118 INF NET: LiteNetLib server started
+2019-01-28T15:08:49 17.119 INF [Steamworks.NET] NET: Server started
+SDX: SDX ModEngine::StartModScripts
+2019-01-28T15:08:49 17.120 INF StartGame
+2019-01-28T15:08:50 17.547 INF Atlas reset took 408 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 4)
+Unloading 731 unused Assets to reduce memory usage. Loaded Objects now: 23988.
+Total: 59.592537 ms (FindLiveObjects: 3.744089 ms CreateObjectMapping: 1.296044 ms MarkObjects: 52.631674 ms  DeleteObjects: 1.919998 ms)
+2019-01-28T15:08:50 18.436 INF Persistent GamePrefs saved
+GamePref.AdminFileName = serveradmin.xml
+GamePref.AirDropFrequency = 72
+GamePref.AirDropMarker = False
+GamePref.AutopilotMode = 0
+GamePref.BedrollDeadZoneSize = 15
+GamePref.BlockDurabilityModifier = 100
+GamePref.BloodMoonEnemyCount = 8
+GamePref.BuildCreate = False
+GamePref.ConnectToServerIP = 127.0.0.1
+GamePref.ConnectToServerPort = 26900
+GamePref.ControlPanelEnabled = False
+GamePref.ControlPanelPort = 8080
+GamePref.CraftTimer = 
+GamePref.CreateLevelDim = 8
+GamePref.CreateLevelName = My Level
+GamePref.CreativeMenuEnabled = False
+GamePref.DayCount = 3
+GamePref.DayLightLength = 18
+GamePref.DayNightLength = 60
+GamePref.DebugMenuEnabled = False
+GamePref.DebugMenuShowTasks = False
+GamePref.DebugStopEnemiesMoving = False
+GamePref.DropOnDeath = 0
+GamePref.DropOnQuit = 0
+GamePref.DynamicSpawner = 
+GamePref.EACEnabled = False
+GamePref.EnemyDifficulty = 0
+GamePref.EnemySpawnMode = True
+GamePref.FavoriteServersList = 
+GamePref.FragLimit = 20
+GamePref.GameDifficulty = 2
+GamePref.GameGuidClient = 
+GamePref.GameMode = GameModeSurvival
+GamePref.GameName = cow
+GamePref.GameNameClient = My Game
+GamePref.GameVersion = Alpha 17.1
+GamePref.GameWorld = Navezgane
+GamePref.HideCommandExecutionLog = 0
+GamePref.JoiningOptions = True
+GamePref.LandClaimDeadZone = 30
+GamePref.LandClaimDecayMode = 0
+GamePref.LandClaimExpiryTime = 3
+GamePref.LandClaimOfflineDurabilityModifier = 4
+GamePref.LandClaimOnlineDurabilityModifier = 4
+GamePref.LandClaimSize = 41
+GamePref.LastGameResetRevision = 13
+GamePref.LastLoadedPrefab = 
+GamePref.LastLoadedPrefabSize = 
+GamePref.LootAbundance = 100
+GamePref.LootRespawnDays = 30
+GamePref.LootTimer = 
+GamePref.MatchLength = 10
+GamePref.MaxSpawnedAnimals = 50
+GamePref.MaxSpawnedZombies = 60
+GamePref.MaxUncoveredMapChunksPerPlayer = 524288
+GamePref.NoGraphicsMode = False
+GamePref.OptionsAA = 1
+GamePref.OptionsAllowController = True
+GamePref.OptionsAmbientVolumeLevel = 0
+GamePref.OptionsAudioOcclusion = False
+GamePref.OptionsBackgroundGlobalOpacity = 0.75
+GamePref.OptionsBloom = True
+GamePref.OptionsControllerVibration = True
+GamePref.OptionsDeferredLighting = True
+GamePref.OptionsDOF = False
+GamePref.OptionsDynamicMusicEnabled = False
+GamePref.OptionsDynamicMusicVolume = 0
+GamePref.OptionsFieldOfView = 65
+GamePref.OptionsFieldOfViewNew = 65
+GamePref.OptionsForegroundGlobalOpacity = 1
+GamePref.OptionsGamma = 1.551724
+GamePref.OptionsGraphicsQuality = 1
+GamePref.OptionsGrassDistance = 1
+GamePref.OptionsHudOpacity = 1
+GamePref.OptionsHudSize = 2
+GamePref.OptionsImageEffects = True
+GamePref.OptionsInterfaceSensitivity = 0.75
+GamePref.OptionsInvertMouse = False
+GamePref.OptionsJournalPopup = True
+GamePref.OptionsLODDistance = 0.5
+GamePref.OptionsMicVolumeLevel = 0.75
+GamePref.OptionsMotionBlur = 1
+GamePref.OptionsMouseSensitivity = 0.5
+GamePref.OptionsMusicVolumeLevel = 0
+GamePref.OptionsObjectBlur = False
+GamePref.OptionsOverallAudioVolumeLevel = 1
+GamePref.OptionsPlayerModel = playerMale
+GamePref.OptionsPlayerModelTexture = Player/Male/Player_male
+GamePref.OptionsPOICulling = 0
+GamePref.OptionsReflectedShadows = False
+GamePref.OptionsReflectionBounces = 1
+GamePref.OptionsReflectionCullList = Default
+GamePref.OptionsReflectionFarClip = 100
+GamePref.OptionsReflectionQuality = 2
+GamePref.OptionsReflectionRefreshMode = ViaScripting
+GamePref.OptionsReflectionRefreshRate = 0
+GamePref.OptionsReflectionShadowDistance = 0
+GamePref.OptionsReflectionTimeSlicingMode = 
+GamePref.OptionsResolution = 0
+GamePref.OptionsScreenBoundsValue = 1
+GamePref.OptionsShadowDistance = 1
+GamePref.OptionsShowCompass = True
+GamePref.OptionsShowCrosshair = True
+GamePref.OptionsSSAO = True
+GamePref.OptionsStabSpawnBlocksOnGround = True
+GamePref.OptionsSunShafts = True
+GamePref.OptionsTempCelsius = False
+GamePref.OptionsTextureQuality = 1
+GamePref.OptionsTreeDistance = 4
+GamePref.OptionsTreeQuality = 2
+GamePref.OptionsUMATextureQuality = 1
+GamePref.OptionsViewDistance = 6
+GamePref.OptionsVoiceChatEnabled = True
+GamePref.OptionsVoiceVolumeLevel = 0.75
+GamePref.OptionsVsync = 1
+GamePref.OptionsWaterParticleLimiter = 0.5
+GamePref.OptionsWaterQuality = 1
+GamePref.OptionsZoomMouseSensitivity = 0.5
+GamePref.PartySharedKillRange = 100
+GamePref.PersistentPlayerProfiles = True
+GamePref.PlayerAutologin = False
+GamePref.PlayerId = 76561198020090072
+GamePref.PlayerKillingMode = 2
+GamePref.PlayerName = sphereii
+GamePref.PlayerSafeZoneHours = 7
+GamePref.PlayerSafeZoneLevel = 5
+GamePref.PlayerToken = 
+GamePref.RebuildMap = False
+GamePref.SaveGameFolder = C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves
+GamePref.SelectionContextMode = 0
+GamePref.SelectionOperationMode = 0
+GamePref.ServerAdminSlots = 0
+GamePref.ServerAdminSlotsPermission = 0
+GamePref.ServerDescription = 
+GamePref.ServerDisabledNetworkProtocols = 
+GamePref.ServerIP = 
+GamePref.ServerIsPublic = True
+GamePref.ServerLoginConfirmationText = 
+GamePref.ServerMaxPlayerCount = 1
+GamePref.ServerName = Default Server
+GamePref.ServerPort = 26900
+GamePref.ServerReservedSlots = 0
+GamePref.ServerReservedSlotsPermission = 100
+GamePref.ServerVisibility = 2
+GamePref.ServerWebsiteURL = 
+GamePref.ShowFriendPlayerOnMap = True
+GamePref.TelnetEnabled = False
+GamePref.TelnetFailedLoginLimit = 10
+GamePref.TelnetFailedLoginsBlocktime = 10
+GamePref.TelnetPort = 25003
+GamePref.TerminalWindowEnabled = True
+GamePref.WorldGenSeed = 
+GamePref.WorldGenSize = 8192
+GamePref.ZombieBMMove = 3
+GamePref.ZombieFeralMove = 3
+GamePref.ZombieMove = 0
+GamePref.ZombieMoveNight = 3
+GamePref.ZombiePlayers = True
+GamePref.ZombiesRun = 0
+GameStat.AirDropFrequency = 0
+GameStat.AirDropMarker = False
+GameStat.AnimalCount = 0
+GameStat.AutoParty = False
+GameStat.BlockDurabilityModifier = 1
+GameStat.BloodMoonEnemyCount = 8
+GameStat.ChunkStabilityEnabled = True
+GameStat.CraftTimer = 
+GameStat.CurrentRoundIx = 0
+GameStat.DayLightLength = 18
+GameStat.DayLimitActive = False
+GameStat.DayLimitThisRound = 0
+GameStat.DropOnDeath = 1
+GameStat.DropOnQuit = 0
+GameStat.EnemyCount = 0
+GameStat.EnemyDifficulty = Normal
+GameStat.EnemySpawnMode = True
+GameStat.FragLimitActive = False
+GameStat.FragLimitThisRound = 0
+GameStat.GameDifficulty = 2
+GameStat.GameDifficultyBonus = 1
+GameStat.GameModeId = 0
+GameStat.GameState = 0
+GameStat.GlobalMessageToShow = 
+GameStat.IsCreativeMenuEnabled = False
+GameStat.IsFlyingEnabled = False
+GameStat.IsPlayerCollisionEnabled = True
+GameStat.IsPlayerDamageEnabled = True
+GameStat.IsResetMapOnRestart = False
+GameStat.IsSaveSupplyCrates = True
+GameStat.IsSpawnEnemies = True
+GameStat.IsSpawnNearOtherPlayer = False
+GameStat.IsTeleportEnabled = False
+GameStat.IsVersionCheckDone = True
+GameStat.LandClaimDeadZone = 30
+GameStat.LandClaimDecayMode = 0
+GameStat.LandClaimExpiryTime = 3
+GameStat.LandClaimOfflineDurabilityModifier = 32
+GameStat.LandClaimOnlineDurabilityModifier = 32
+GameStat.LandClaimSize = 41
+GameStat.LoadScene = 
+GameStat.LootTimer = 
+GameStat.OptionsPOICulling = 0
+GameStat.PartySharedKillRange = 100
+GameStat.PlayerKillingMode = KillStrangersOnly
+GameStat.ScoreDiedMultiplier = -5
+GameStat.ScorePlayerKillMultiplier = 1
+GameStat.ScoreZombieKillMultiplier = 1
+GameStat.ShowAllPlayersOnMap = False
+GameStat.ShowFriendPlayerOnMap = True
+GameStat.ShowSpawnWindow = False
+GameStat.ShowWindow = 
+GameStat.ShowZombieCounter = False
+GameStat.TimeLimitActive = False
+GameStat.TimeLimitThisRound = 0
+GameStat.TimeOfDayIncPerSec = 20
+GameStat.ZombieHordeMeter = False
+2019-01-28T15:08:50 18.476 INF StartAsServer
+2019-01-28T15:08:56 23.659 INF Block IDs with mapping
+2019-01-28T15:08:56 23.660 INF BlockIDs from Mapping
+2019-01-28T15:08:56 24.358 INF Item IDs with mapping
+2019-01-28T15:08:56 24.359 INF ItemIDs from Mapping
+2019-01-28T15:08:59 27.097 INF createWorld: Navezgane, cow, GameModeSurvival
+2019-01-28T15:08:59 27.168 INF Started thread ChunkRegeneration
+2019-01-28T15:08:59 27.168 INF Started thread ChunkCalc
+2019-01-28T15:09:00 27.654 INF World.Load: Navezgane
+2019-01-28T15:09:06 34.177 INF Started thread GenerateChunks
+2019-01-28T15:09:07 35.165 INF Loading dtm raw file took 720ms
+2019-01-28T15:09:07 35.430 INF Biomes image size w= 3072, h = 3072
+2019-01-28T15:09:08 35.766 INF Loading and creating biomes took 600ms
+2019-01-28T15:09:10 37.853 INF Loading and parsing of generator took 2086ms
+2019-01-28T15:09:10 37.986 INF Started thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow\Region
+2019-01-28T15:09:12 40.321 INF AstarManager Init
+2019-01-28T15:09:17 45.388 INF Weather Packages Created FROM BIOMES
+2019-01-28T15:09:18 45.735 INF createWorld() done
+2019-01-28T15:09:18 45.736 INF Loading players.xml
+2019-01-28T15:09:18 45.931 INF Created player with id=171
+2019-01-28T15:09:18 45.974 INF Loaded player
+2019-01-28T15:09:19 46.971 INF OpenSpawnWindow
+2019-01-28T15:09:19 46.977 INF StartGame done
+animalFarmCow: OnUpdateLive() Checking Bounds
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Block has a Radius Effect
+animalFarmCow:  Close Enough To Feed Trough
+animalFarmCow:  Feeding Trough has food
+animalFarmCow: Decrementing Food by 1
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+2019-01-28T15:09:20 48.158 INF found
+2019-01-28T15:09:22 50.407 INF [Steamworks.NET] GameServer.Init successful
+2019-01-28T15:09:22 50.419 INF [Steamworks.NET] Making server public
+2019-01-28T15:09:31 58.704 INF Respawn almost done
+2019-01-28T15:09:31 58.715 INF PlayerSpawnedInWorld (reason: LoadedGame, position: -1712, 76, 1063): localplayer
+2019-01-28T15:09:32 59.759 INF [Steamworks.NET] GameServer.LogOn successful, SteamID=90123029243808779
+2019-01-28T15:09:32 59.774 INF [Steamworks.NET] Trying to create Lobby (visibility: k_ELobbyTypePublic)
+2019-01-28T15:09:32 60.123 INF [Steamworks.NET] Lobby creation succeeded
+2019-01-28T15:09:32 60.131 INF [Steamworks.NET] Lobby entered: 109775241000733153
+2019-01-28T15:09:39 66.860 INF Executing command 'dm'
+2019-01-28T15:09:39 67.278 INF Executing command 'cm'
+animalFarmCow: OnUpdateLive() Checking Bounds
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Block has a Radius Effect
+animalFarmCow:  Close Enough To Feed Trough
+animalFarmCow:  Feeding Trough has food
+animalFarmCow: Decrementing Food by 1
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: medicalFirstAidBandage
+animalFarmCow: OnUpdateLive() Checking Bounds
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Block has a Radius Effect
+animalFarmCow:  Close Enough To Feed Trough
+animalFarmCow:  Feeding Trough has food
+animalFarmCow: Decrementing Food by 1
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: medicalFirstAidBandage
+2019-01-28T15:09:49 77.044 INF Time: 0.87m FPS: 12.20 Heap: 1164.7MB Max: 1164.7MB Chunks: 225 CGO: 115 Ply: 1 Zom: 0 Ent: 4 (5) Items: 0 CO: 1 RSS: 3161.6MB
+2019-01-28T15:09:54 81.848 INF Saving 73 of chunks took 80ms
+2019-01-28T15:09:55 83.161 INF Disconnect
+2019-01-28T15:09:55 83.168 INF NET: Stopping server protocols
+2019-01-28T15:09:55 83.182 INF NET: LiteNetLib server stopped
+2019-01-28T15:09:55 83.182 INF [Steamworks.NET] NET: Server stopped
+2019-01-28T15:09:55 83.183 INF [NET] ServerShutdown
+2019-01-28T15:09:55 83.184 INF SaveAndCleanupWorld
+2019-01-28T15:09:55 83.311 INF Saving 71 of chunks took 101ms
+2019-01-28T15:09:55 83.314 INF [Steamworks.NET] Stopping server
+2019-01-28T15:09:55 83.333 INF [Steamworks.NET] Exiting Lobby
+2019-01-28T15:09:55 83.347 INF AstarManager Cleanup
+2019-01-28T15:09:55 83.353 INF World.Unload
+2019-01-28T15:09:55 83.387 INF Exited thread GenerateChunks
+2019-01-28T15:09:55 83.433 INF Exited thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow\Region
+2019-01-28T15:09:56 83.608 INF World.Cleanup
+2019-01-28T15:09:56 83.614 INF Exited thread ChunkRegeneration
+2019-01-28T15:09:56 83.619 INF Exited thread ChunkCalc
+2019-01-28T15:09:56 83.621 INF VehicleManager Save
+2019-01-28T15:09:56 83.660 INF Persistent GamePrefs saved
+2019-01-28T15:09:58 85.695 INF Preparing quit
+2019-01-28T15:09:58 85.725 INF Persistent GamePrefs saved
+2019-01-28T15:09:58 85.730 INF Cleanup
+2019-01-28T15:09:58 85.763 INF AchievementManager.Cleanup
+2019-01-28T15:09:58 86.093 INF OnApplicationQuit
+2019-01-28T15:09:58 86.106 INF OnApplicationQuit
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1670 -> priority: 1 
+  Thread -> id: 4a9c -> priority: 1 
