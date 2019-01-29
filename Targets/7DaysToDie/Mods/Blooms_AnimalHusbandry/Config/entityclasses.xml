@@ -10,16 +10,29 @@
       <property name="Mass" value="90"/>
       
       <!-- Main Animal Statuc Check-->
-      <triggered_effect trigger="onSelfEnteredGame" action="AddBuff" target="self" buff="buffAnimalStatusCheck"/>
 
       <effect_group name="Base Effects">
-        <passive_effect name="HealthMax" operation="base_set" value="250"/>
+        <passive_effect name="HealthMax" operation="base_set" value="110"/>
+        <passive_effect name="StaminaMax" operation="base_set" value="110"/>
+        <passive_effect name="WaterMax" operation="base_set" value="100"/>
+        <passive_effect name="HealthChangeOT" operation="base_set" value="0.017" />
+        <passive_effect name="HealthMaxModifierOT" operation="base_add" value=".00028"/>
+
+        <passive_effect name="WaterLossPerHealthPointGained" operation="base_set" value="0.06"/>
+        <passive_effect name="WaterLossPerStaminaPointGained" operation="base_set" value="0.0075"/>
+        <passive_effect name="HealthLossMaxMult" operation="base_set" value="0.144"/>
+        <passive_effect name="StaminaLossMaxMult" operation="base_set" value="0.0068"/>
+        <passive_effect name="StaminaChangeOT" operation="base_set" value="10" />
         <passive_effect name="StaminaChangeOT" operation="perc_subtract" value="1.5" tags="running"/>
         <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".75" tags="swimming" />
-        <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".3" match_all_tags="true" tags="crouching,walking"/>
-        <passive_effect name="HealthChangeOT" operation="base_set" value="0.017" />
-      </effect_group>
+        <passive_effect name="StaminaChangeOT" operation="perc_subtract" value="1.5" tags="walking" />
 
+        <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".3" match_all_tags="true" tags="crouching,walking"/>
+        	<passive_effect name="StaminaLoss" operation="base_set" value="20" tags="jumping"/>
+
+        <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffAnimalStatusCheck"/>
+      </effect_group>
+    
       <property name="AITask-1" value="Swim"/>
       <property name="AITask-2" value="RunawayWhenHurt"/>
       <property name="AITask-3" value="Territorial"/> <!-- Territorial lets them stay close to their home block -->

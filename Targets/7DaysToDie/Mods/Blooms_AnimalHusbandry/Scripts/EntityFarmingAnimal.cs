@@ -15,7 +15,7 @@ using UnityEngine;
 using System;
 using System.IO;
 
-class EntityFarmingAnimal : EntityAnimalStag
+class EntityFarmingAnimal : EntityAlive
 {
     public String strFoodItem = "";
     public String strProductItem = "";
@@ -42,6 +42,8 @@ class EntityFarmingAnimal : EntityAnimalStag
         if (blDisplayLog)
             Debug.Log(this.entityName + ": " + strMessage);
     }
+
+    
     public override void CopyPropertiesFromEntityClass()
     {
         
@@ -57,10 +59,35 @@ class EntityFarmingAnimal : EntityAnimalStag
             this.strHomeBlock = entityClass.Properties.Values["HomeBlock"];
 
     }
+
+    public void DisplayEntityStats()
+    {
+        String strMessage = "Entity ID: " + this.entityId;
+        strMessage += " Current Health: " + this.Stats.Health.ValuePercent * 100;
+        strMessage += " Current Stamina: " + this.Stats.Stamina.ValuePercent * 100;
+        strMessage += " Health Stats: " + this.Health.ToString();
+        strMessage += " Stamina Stats: " + this.Stamina.ToString();
+        DisplayLog(strMessage);
+
+        if (this.Buffs.ActiveBuffs.Count == 0)
+        {
+            DisplayLog("Adding Buff");
+            this.Buffs.AddBuff("buffAnimalStatusCheck", -1, true);
+        }
+
+        foreach( var buff in this.Buffs.ActiveBuffs)
+        {
+            DisplayLog("Active Buff: " + buff.BuffName);
+        }
+    }
+
+
     public override void OnUpdateLive()
     {
         base.OnUpdateLive();
 
+        this.Stats.Water.Tick(0.05f, this.world.worldTime, false);
+        
         // We only want to do this check periodically to avoid unnecessary overhad.
         if (nextLongerCheck < Time.time)
         {
@@ -71,7 +98,9 @@ class EntityFarmingAnimal : EntityAnimalStag
         // Quicker update to check if there's any entities around
         if (CheckDelay < Time.time)
         {
-            DisplayLog(" EntityID: " + this.entityId + " Health: " + base.Stats.Health + " Stamina: " + base.Stats.Stamina + " Hunger: " + " Thirsty: ");
+            
+            
+            DisplayEntityStats();
             // If the entity can see a player, and the player is holding its food item, start moving towards the player.
             List<Entity> entitiesInBounds = GameManager.Instance.World.GetEntitiesInBounds(this, new Bounds(this.position, Vector3.one * MaxDistanceToSeePlayer));
             if (entitiesInBounds.Count > 0)

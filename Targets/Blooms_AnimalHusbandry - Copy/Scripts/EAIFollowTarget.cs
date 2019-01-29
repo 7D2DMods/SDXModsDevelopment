@@ -1,0 +1,8 @@
+﻿
+
+
+    class EAIFollowTarget : EAIApproachAndAttackTarget
+    {
+
+    }
+

@@ -7,24 +7,24 @@ Direct3D:
     VRAM:     2039 MB
     Driver:   24.20.11016.4
 Begin MonoManager ReloadAssembly
-- Completed reload, in  0.120 seconds
+- Completed reload, in  0.148 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.576182 ms
-2019-01-28T15:08:32 0.005 INF [Steamworks.NET] SteamAPI_Init() ok
-2019-01-28T15:08:32 0.061 INF NET: InitCallbacks
-2019-01-28T15:08:32 0.089 INF Texture quality is set to 1
-2019-01-28T15:08:32 0.090 INF Precaching...
-2019-01-28T15:08:32 0.092 INF Precaching file: 7DaysToDie_Data/resources.assets
-2019-01-28T15:08:32 0.160 INF [EAC] Not loading, not started from launcher
-2019-01-28T15:08:33 0.978 INF Precaching file: 7DaysToDie_Data/sharedassets1.assets
-2019-01-28T15:08:33 0.981 INF Precaching file: Data/Bundles/blocktextureatlases
-2019-01-28T15:08:34 1.699 INF Precaching file: Data/Bundles/terraintextures
-2019-01-28T15:08:34 1.764 INF Precaching done
-2019-01-28T15:08:38 6.089 INF Loading main scene
+UnloadTime: 0.652763 ms
+2019-01-29T16:54:06 0.004 INF [Steamworks.NET] SteamAPI_Init() ok
+2019-01-29T16:54:06 0.055 INF NET: InitCallbacks
+2019-01-29T16:54:06 0.077 INF Texture quality is set to 1
+2019-01-29T16:54:06 0.078 INF Precaching...
+2019-01-29T16:54:06 0.080 INF Precaching file: 7DaysToDie_Data/resources.assets
+2019-01-29T16:54:06 0.149 INF [EAC] Not loading, not started from launcher
+2019-01-29T16:54:08 1.855 INF Precaching file: 7DaysToDie_Data/sharedassets1.assets
+2019-01-29T16:54:08 1.859 INF Precaching file: Data/Bundles/blocktextureatlases
+2019-01-29T16:54:09 2.706 INF Precaching file: Data/Bundles/terraintextures
+2019-01-29T16:54:09 2.809 INF Precaching done
+2019-01-29T16:54:13 6.982 INF Loading main scene
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 2.542129 ms
+UnloadTime: 3.294083 ms
 SDX:  SDX detected base game directory as: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\
 SDX:  Could not find sdx config file: ''. Using default settings
 SDX: Mod Engine Started.
@@ -38,78 +38,80 @@ SDX: EntityFarmingAnimal
 SDX: EntityAnimalHal
 SDX: EntityAnimalHalRanged
 SDX: HalHelperEvents
-SDX: <PrivateImplementationDetails>{3A173EC6-E12D-43AB-9E09-D5A721756D43}
+SDX: <PrivateImplementationDetails>{8749A6D6-8DF9-4919-A420-D82A320D0797}
 SDX:  SDX is no longer loading bundles
 SDX: Begin Load mod script...
-2019-01-28T15:08:38 6.280 INF Awake
-2019-01-28T15:08:38 6.328 WRN Setting global culture failed!
+2019-01-29T16:54:13 7.265 INF Awake
+2019-01-29T16:54:13 7.346 WRN Setting global culture failed!
 Localization language: English
-2019-01-28T15:08:38 6.384 INF Version: Alpha 17.1 (b9) Compatibility Version: Alpha 17.1, Build: Windows 64 Bit
-2019-01-28T15:08:38 6.385 INF System information:
-2019-01-28T15:08:38 6.385 INF    OS: Windows 10  (10.0.0) 64bit
-2019-01-28T15:08:38 6.386 INF    CPU: Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz (cores: 4)
-2019-01-28T15:08:38 6.386 INF    RAM: 16210 MB
-2019-01-28T15:08:38 6.386 INF    GPU: AMD Radeon (TM) R7 M360 (2039 MB)
-2019-01-28T15:08:38 6.386 INF    Graphics API: Direct3D 11.0 [level 11.1] (shader level 5.0)
-2019-01-28T15:08:38 6.386 INF Last played version: Alpha 17.1
-2019-01-28T15:08:38 6.387 INF Local UTC offset: -4 hours
-2019-01-28T15:08:38 6.387 WRN Setting global culture failed!
-2019-01-28T15:08:38 6.398 INF Command line arguments: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie.exe
-2019-01-28T15:08:38 6.401 INF Not running in Big Picture Mode, no on-screen keyboard available
-2019-01-28T15:08:38 6.401 INF Starting PlayerInputManager...
-2019-01-28T15:08:38 6.419 INF InControl (version 1.6.17 build 9143, native module = False, XInput = True)
+2019-01-29T16:54:13 7.421 INF Version: Alpha 17.1 (b9) Compatibility Version: Alpha 17.1, Build: Windows 64 Bit
+2019-01-29T16:54:13 7.421 INF System information:
+2019-01-29T16:54:13 7.422 INF    OS: Windows 10  (10.0.0) 64bit
+2019-01-29T16:54:13 7.423 INF    CPU: Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz (cores: 4)
+2019-01-29T16:54:13 7.423 INF    RAM: 16210 MB
+2019-01-29T16:54:13 7.423 INF    GPU: AMD Radeon (TM) R7 M360 (2039 MB)
+2019-01-29T16:54:13 7.423 INF    Graphics API: Direct3D 11.0 [level 11.1] (shader level 5.0)
+2019-01-29T16:54:13 7.424 INF Last played version: Alpha 17.1
+2019-01-29T16:54:13 7.424 INF Local UTC offset: -4 hours
+2019-01-29T16:54:13 7.424 WRN Setting global culture failed!
+2019-01-29T16:54:13 7.432 INF Command line arguments: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie.exe
+2019-01-29T16:54:13 7.435 INF Not running in Big Picture Mode, no on-screen keyboard available
+2019-01-29T16:54:13 7.435 INF Starting PlayerInputManager...
+2019-01-29T16:54:13 7.459 INF InControl (version 1.6.17 build 9143, native module = False, XInput = True)
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libXInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\libXInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libXInputInterface32
-2019-01-28T15:08:39 6.601 INF Starting UserProfileManager...
-2019-01-28T15:08:39 6.706 INF [MODS] Start loading
-2019-01-28T15:08:39 6.708 INF [MODS] Trying to load from AnimationSDX
-2019-01-28T15:08:39 6.752 INF [MODS] Loaded Mod: Animation SDX (2.0)
-2019-01-28T15:08:39 6.752 INF [MODS] Trying to load from Bloom's Animal Husbandry
-2019-01-28T15:08:39 6.753 INF [MODS] Loaded Mod: Bloom's Animal Husbandry (1.0.0)
-2019-01-28T15:08:39 6.753 INF [MODS] Trying to load from Hal's DLL Fixes
-2019-01-28T15:08:39 6.754 INF [MODS] Loaded Mod: Hal's DLL Fixes (1)
-2019-01-28T15:08:39 6.754 INF [MODS] Initializing mod code
-2019-01-28T15:08:39 6.754 INF [MODS] Loading done
-2019-01-28T15:08:39 6.767 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
-2019-01-28T15:08:39 6.800 INF Loading permissions file done.
-2019-01-28T15:08:39 6.835 WRN Old savegame folder (C:\Users\jkilpatrick\Documents/7 Days To Die) exists but new one (C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie) also exists, not moving
-2019-01-28T15:08:39 6.837 INF Awake done in 556 ms
-2019-01-28T15:08:39 7.266 INF Atlas reset took 418 ms
-2019-01-28T15:08:39 7.266 INF Atlas load took 428 ms
+2019-01-29T16:54:14 7.661 INF Starting UserProfileManager...
+2019-01-29T16:54:14 7.787 INF [MODS] Start loading
+2019-01-29T16:54:14 7.790 INF [MODS] Trying to load from AnimationSDX
+2019-01-29T16:54:14 7.856 INF [MODS] Loaded Mod: Animation SDX (2.0)
+2019-01-29T16:54:14 7.856 INF [MODS] Trying to load from Bloom's Animal Husbandry
+2019-01-29T16:54:14 7.857 INF [MODS] Loaded Mod: Bloom's Animal Husbandry (1.0.0)
+2019-01-29T16:54:14 7.858 INF [MODS] Trying to load from Hal's DLL Fixes
+2019-01-29T16:54:14 7.859 INF [MODS] Loaded Mod: Hal's DLL Fixes (1)
+2019-01-29T16:54:14 7.859 INF [MODS] Trying to load from SphereII Unlock Health Bar
+2019-01-29T16:54:14 7.862 INF [MODS] Loaded Mod: SphereII Unlock Health Bar (1)
+2019-01-29T16:54:14 7.862 INF [MODS] Initializing mod code
+2019-01-29T16:54:14 7.862 INF [MODS] Loading done
+2019-01-29T16:54:14 7.875 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
+2019-01-29T16:54:14 7.938 INF Loading permissions file done.
+2019-01-29T16:54:14 7.991 WRN Old savegame folder (C:\Users\jkilpatrick\Documents/7 Days To Die) exists but new one (C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie) also exists, not moving
+2019-01-29T16:54:14 7.993 INF Awake done in 727 ms
+2019-01-29T16:54:15 8.523 INF Atlas reset took 517 ms
+2019-01-29T16:54:15 8.523 INF Atlas load took 529 ms
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libc
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\libc
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libc
+2019-01-29T16:54:15 8.624 INF Reloading serveradmin.xml
+2019-01-29T16:54:15 8.624 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
+2019-01-29T16:54:15 8.626 INF Loading permissions file done.
 Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 3915.
-Total: 16.335854 ms (FindLiveObjects: 1.741309 ms CreateObjectMapping: 0.614107 ms MarkObjects: 13.861188 ms  DeleteObjects: 0.115601 ms)
+Total: 18.009699 ms (FindLiveObjects: 1.762825 ms CreateObjectMapping: 0.228284 ms MarkObjects: 15.919034 ms  DeleteObjects: 0.098826 ms)
 Unloading 1 Unused Serialized files (Serialized files now loaded: 1)
-2019-01-28T15:08:40 7.527 INF Reloading serveradmin.xml
-2019-01-28T15:08:40 7.527 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
-2019-01-28T15:08:40 7.529 INF Loading permissions file done.
 Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3915.
-Total: 8.055243 ms (FindLiveObjects: 0.951794 ms CreateObjectMapping: 0.262199 ms MarkObjects: 6.803688 ms  DeleteObjects: 0.036831 ms)
+Total: 8.390741 ms (FindLiveObjects: 0.832181 ms CreateObjectMapping: 0.156444 ms MarkObjects: 7.304383 ms  DeleteObjects: 0.096273 ms)
 Unloading 0 Unused Serialized files (Serialized files now loaded: 1)
 Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 3915.
-Total: 7.157420 ms (FindLiveObjects: 0.847498 ms CreateObjectMapping: 0.154620 ms MarkObjects: 6.149102 ms  DeleteObjects: 0.005105 ms)
-2019-01-28T15:08:40 7.676 INF User joined: sphereii
-UMA Overlay loading took 410 ms
+Total: 8.109214 ms (FindLiveObjects: 0.844216 ms CreateObjectMapping: 0.212968 ms MarkObjects: 7.045101 ms  DeleteObjects: 0.005834 ms)
+2019-01-29T16:54:15 8.970 INF User joined: sphereii
+UMA Overlay loading took 433 ms
 UMA Slot loading took 1 ms
-2019-01-28T15:08:43 11.104 INF WorldStaticData.Init() needed 2.312s
-2019-01-28T15:08:44 12.124 INF [Steamworks.NET] Login ok.
-2019-01-28T15:08:44 12.456 INF AchievementManager: Received stats and achievements from Steam
-2019-01-28T15:08:49 17.096 INF NET: Starting server protocols
-2019-01-28T15:08:49 17.118 INF NET: LiteNetLib server started
-2019-01-28T15:08:49 17.119 INF [Steamworks.NET] NET: Server started
+2019-01-29T16:54:19 12.779 INF WorldStaticData.Init() needed 2.632s
+2019-01-29T16:54:20 14.125 INF [Steamworks.NET] Login ok.
+2019-01-29T16:54:20 14.483 INF AchievementManager: Received stats and achievements from Steam
+2019-01-29T16:54:25 18.756 INF NET: Starting server protocols
+2019-01-29T16:54:25 18.782 INF NET: LiteNetLib server started
+2019-01-29T16:54:25 18.782 INF [Steamworks.NET] NET: Server started
 SDX: SDX ModEngine::StartModScripts
-2019-01-28T15:08:49 17.120 INF StartGame
-2019-01-28T15:08:50 17.547 INF Atlas reset took 408 ms
+2019-01-29T16:54:25 18.783 INF StartGame
+2019-01-29T16:54:25 19.290 INF Atlas reset took 485 ms
 Unloading 3 Unused Serialized files (Serialized files now loaded: 4)
 Unloading 731 unused Assets to reduce memory usage. Loaded Objects now: 23988.
-Total: 59.592537 ms (FindLiveObjects: 3.744089 ms CreateObjectMapping: 1.296044 ms MarkObjects: 52.631674 ms  DeleteObjects: 1.919998 ms)
-2019-01-28T15:08:50 18.436 INF Persistent GamePrefs saved
+Total: 82.132559 ms (FindLiveObjects: 4.635712 ms CreateObjectMapping: 2.864135 ms MarkObjects: 72.329441 ms  DeleteObjects: 2.301810 ms)
+2019-01-29T16:54:26 20.436 INF Persistent GamePrefs saved
 GamePref.AdminFileName = serveradmin.xml
 GamePref.AirDropFrequency = 72
 GamePref.AirDropMarker = False
@@ -326,109 +328,535 @@ GameStat.TimeLimitActive = False
 GameStat.TimeLimitThisRound = 0
 GameStat.TimeOfDayIncPerSec = 20
 GameStat.ZombieHordeMeter = False
-2019-01-28T15:08:50 18.476 INF StartAsServer
-2019-01-28T15:08:56 23.659 INF Block IDs with mapping
-2019-01-28T15:08:56 23.660 INF BlockIDs from Mapping
-2019-01-28T15:08:56 24.358 INF Item IDs with mapping
-2019-01-28T15:08:56 24.359 INF ItemIDs from Mapping
-2019-01-28T15:08:59 27.097 INF createWorld: Navezgane, cow, GameModeSurvival
-2019-01-28T15:08:59 27.168 INF Started thread ChunkRegeneration
-2019-01-28T15:08:59 27.168 INF Started thread ChunkCalc
-2019-01-28T15:09:00 27.654 INF World.Load: Navezgane
-2019-01-28T15:09:06 34.177 INF Started thread GenerateChunks
-2019-01-28T15:09:07 35.165 INF Loading dtm raw file took 720ms
-2019-01-28T15:09:07 35.430 INF Biomes image size w= 3072, h = 3072
-2019-01-28T15:09:08 35.766 INF Loading and creating biomes took 600ms
-2019-01-28T15:09:10 37.853 INF Loading and parsing of generator took 2086ms
-2019-01-28T15:09:10 37.986 INF Started thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow\Region
-2019-01-28T15:09:12 40.321 INF AstarManager Init
-2019-01-28T15:09:17 45.388 INF Weather Packages Created FROM BIOMES
-2019-01-28T15:09:18 45.735 INF createWorld() done
-2019-01-28T15:09:18 45.736 INF Loading players.xml
-2019-01-28T15:09:18 45.931 INF Created player with id=171
-2019-01-28T15:09:18 45.974 INF Loaded player
-2019-01-28T15:09:19 46.971 INF OpenSpawnWindow
-2019-01-28T15:09:19 46.977 INF StartGame done
-animalFarmCow: OnUpdateLive() Checking Bounds
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Block has a Radius Effect
-animalFarmCow:  Close Enough To Feed Trough
-animalFarmCow:  Feeding Trough has food
-animalFarmCow: Decrementing Food by 1
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-2019-01-28T15:09:20 48.158 INF found
-2019-01-28T15:09:22 50.407 INF [Steamworks.NET] GameServer.Init successful
-2019-01-28T15:09:22 50.419 INF [Steamworks.NET] Making server public
-2019-01-28T15:09:31 58.704 INF Respawn almost done
-2019-01-28T15:09:31 58.715 INF PlayerSpawnedInWorld (reason: LoadedGame, position: -1712, 76, 1063): localplayer
-2019-01-28T15:09:32 59.759 INF [Steamworks.NET] GameServer.LogOn successful, SteamID=90123029243808779
-2019-01-28T15:09:32 59.774 INF [Steamworks.NET] Trying to create Lobby (visibility: k_ELobbyTypePublic)
-2019-01-28T15:09:32 60.123 INF [Steamworks.NET] Lobby creation succeeded
-2019-01-28T15:09:32 60.131 INF [Steamworks.NET] Lobby entered: 109775241000733153
-2019-01-28T15:09:39 66.860 INF Executing command 'dm'
-2019-01-28T15:09:39 67.278 INF Executing command 'cm'
-animalFarmCow: OnUpdateLive() Checking Bounds
-animalFarmCow: Tile Entity is a Loot Container
+2019-01-29T16:54:26 20.481 INF StartAsServer
+2019-01-29T16:54:33 26.653 INF Block IDs with mapping
+2019-01-29T16:54:33 26.653 INF BlockIDs from Mapping
+2019-01-29T16:54:33 27.455 INF Item IDs with mapping
+2019-01-29T16:54:33 27.455 INF ItemIDs from Mapping
+2019-01-29T16:54:36 30.482 INF createWorld: Navezgane, cow, GameModeSurvival
+2019-01-29T16:54:37 30.561 INF Started thread ChunkCalc
+2019-01-29T16:54:37 30.561 INF Started thread ChunkRegeneration
+2019-01-29T16:54:37 31.113 INF World.Load: Navezgane
+2019-01-29T16:54:44 38.022 INF Started thread GenerateChunks
+2019-01-29T16:54:45 39.202 INF Loading dtm raw file took 855ms
+2019-01-29T16:54:45 39.477 INF Biomes image size w= 3072, h = 3072
+2019-01-29T16:54:46 39.932 INF Loading and creating biomes took 730ms
+2019-01-29T16:54:49 42.615 INF Loading and parsing of generator took 2682ms
+2019-01-29T16:54:49 42.755 INF Started thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow\Region
+2019-01-29T16:54:52 45.568 INF AstarManager Init
+2019-01-29T16:54:59 52.735 INF Weather Packages Created FROM BIOMES
+2019-01-29T16:54:59 53.077 INF createWorld() done
+2019-01-29T16:54:59 53.078 INF Loading players.xml
+2019-01-29T16:54:59 53.316 INF Created player with id=171
+2019-01-29T16:54:59 53.364 INF Loaded player
+2019-01-29T16:55:00 54.438 INF OpenSpawnWindow
+2019-01-29T16:55:00 54.445 INF StartGame done
+2019-01-29T16:55:01 54.774 INF [Steamworks.NET] GameServer.Init successful
+2019-01-29T16:55:01 54.791 INF [Steamworks.NET] Making server public
 animalFarmCow: Tile Entity is a Loot Container
 animalFarmCow: Tile Entity is a Loot Container
 animalFarmCow: Tile Entity is a Loot Container
 animalFarmCow: Tile Entity is a Loot Container
 animalFarmCow: Tile Entity is a Loot Container
 animalFarmCow: Block has a Radius Effect
-animalFarmCow:  Close Enough To Feed Trough
-animalFarmCow:  Feeding Trough has food
-animalFarmCow: Decrementing Food by 1
+animalFarmCow: Setting Home Position: ChunkCoordinates
 animalFarmCow: Tile Entity is a Loot Container
 animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Adding Buff
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Block has a Radius Effect
+animalFarmCow: Setting Home Position: ChunkCoordinates
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Adding Buff
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Block has a Radius Effect
+animalFarmCow: Setting Home Position: ChunkCoordinates
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Entity ID: 247 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Adding Buff
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 247 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 247 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 247 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 247 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 247 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 247 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 247 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 246 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 245 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Entity ID: 247 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+2019-01-29T16:55:02 56.176 INF found
+2019-01-29T16:55:10 64.049 INF [Steamworks.NET] GameServer.LogOn successful, SteamID=90123072640417795
+2019-01-29T16:55:10 64.084 INF [Steamworks.NET] Trying to create Lobby (visibility: k_ELobbyTypePublic)
+2019-01-29T16:55:10 64.356 INF [Steamworks.NET] Lobby creation succeeded
+2019-01-29T16:55:10 64.368 INF [Steamworks.NET] Lobby entered: 109775240984740551
+2019-01-29T16:55:13 66.596 INF Respawn almost done
+2019-01-29T16:55:13 66.608 INF PlayerSpawnedInWorld (reason: LoadedGame, position: -25, 61, 264): localplayer
+2019-01-29T16:55:23 76.675 INF Executing command 'dm'
+2019-01-29T16:55:23 77.123 INF Executing command 'cm'
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Block has a Radius Effect
+animalFarmCow: Setting Home Position: ChunkCoordinates
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Adding Buff
+animalFarmCow: Active Buff: buffanimalstatuscheck
 animalFarmCow: Close Player: Player_171
-animalFarmCow: Player is holding: medicalFirstAidBandage
-animalFarmCow: OnUpdateLive() Checking Bounds
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Block has a Radius Effect
-animalFarmCow:  Close Enough To Feed Trough
-animalFarmCow:  Feeding Trough has food
-animalFarmCow: Decrementing Food by 1
-animalFarmCow: Tile Entity is a Loot Container
-animalFarmCow: Tile Entity is a Loot Container
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
 animalFarmCow: Close Player: Player_171
-animalFarmCow: Player is holding: medicalFirstAidBandage
-2019-01-28T15:09:49 77.044 INF Time: 0.87m FPS: 12.20 Heap: 1164.7MB Max: 1164.7MB Chunks: 225 CGO: 115 Ply: 1 Zom: 0 Ent: 4 (5) Items: 0 CO: 1 RSS: 3161.6MB
-2019-01-28T15:09:54 81.848 INF Saving 73 of chunks took 80ms
-2019-01-28T15:09:55 83.161 INF Disconnect
-2019-01-28T15:09:55 83.168 INF NET: Stopping server protocols
-2019-01-28T15:09:55 83.182 INF NET: LiteNetLib server stopped
-2019-01-28T15:09:55 83.182 INF [Steamworks.NET] NET: Server stopped
-2019-01-28T15:09:55 83.183 INF [NET] ServerShutdown
-2019-01-28T15:09:55 83.184 INF SaveAndCleanupWorld
-2019-01-28T15:09:55 83.311 INF Saving 71 of chunks took 101ms
-2019-01-28T15:09:55 83.314 INF [Steamworks.NET] Stopping server
-2019-01-28T15:09:55 83.333 INF [Steamworks.NET] Exiting Lobby
-2019-01-28T15:09:55 83.347 INF AstarManager Cleanup
-2019-01-28T15:09:55 83.353 INF World.Unload
-2019-01-28T15:09:55 83.387 INF Exited thread GenerateChunks
-2019-01-28T15:09:55 83.433 INF Exited thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow\Region
-2019-01-28T15:09:56 83.608 INF World.Cleanup
-2019-01-28T15:09:56 83.614 INF Exited thread ChunkRegeneration
-2019-01-28T15:09:56 83.619 INF Exited thread ChunkCalc
-2019-01-28T15:09:56 83.621 INF VehicleManager Save
-2019-01-28T15:09:56 83.660 INF Persistent GamePrefs saved
-2019-01-28T15:09:58 85.695 INF Preparing quit
-2019-01-28T15:09:58 85.725 INF Persistent GamePrefs saved
-2019-01-28T15:09:58 85.730 INF Cleanup
-2019-01-28T15:09:58 85.763 INF AchievementManager.Cleanup
-2019-01-28T15:09:58 86.093 INF OnApplicationQuit
-2019-01-28T15:09:58 86.106 INF OnApplicationQuit
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+2019-01-29T16:55:30 84.403 INF Time: 0.91m FPS: 12.92 Heap: 1154.1MB Max: 1154.1MB Chunks: 225 CGO: 110 Ply: 1 Zom: 0 Ent: 3 (6) Items: 1 CO: 1 RSS: 3261.3MB
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+animalFarmCow: Entity ID: 248 Current Health: 100 Current Stamina: 100 Stamina Stats: Stat Health Stats: Stat
+animalFarmCow: Active Buff: buffanimalstatuscheck
+animalFarmCow: Close Player: Player_171
+animalFarmCow: Player is holding: gunPistol
+2019-01-29T16:55:33 86.702 INF Preparing quit
+2019-01-29T16:55:33 86.703 INF Disconnect
+2019-01-29T16:55:33 86.707 INF NET: Stopping server protocols
+2019-01-29T16:55:33 86.723 INF NET: LiteNetLib server stopped
+2019-01-29T16:55:33 86.723 INF [Steamworks.NET] NET: Server stopped
+2019-01-29T16:55:33 86.724 INF [NET] ServerShutdown
+2019-01-29T16:55:33 86.725 INF SaveAndCleanupWorld
+2019-01-29T16:55:33 86.835 INF Saving 78 of chunks took 81ms
+2019-01-29T16:55:33 86.840 INF [Steamworks.NET] Stopping server
+2019-01-29T16:55:33 86.860 INF [Steamworks.NET] Exiting Lobby
+2019-01-29T16:55:33 86.879 INF AstarManager Cleanup
+2019-01-29T16:55:33 86.886 INF World.Unload
+2019-01-29T16:55:33 86.917 INF Exited thread GenerateChunks
+2019-01-29T16:55:33 86.977 INF Exited thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow\Region
+2019-01-29T16:55:33 87.207 INF World.Cleanup
+2019-01-29T16:55:33 87.210 INF Exited thread ChunkRegeneration
+2019-01-29T16:55:33 87.215 INF Exited thread ChunkCalc
+2019-01-29T16:55:33 87.218 INF VehicleManager Save
+2019-01-29T16:55:33 87.262 INF Persistent GamePrefs saved
+2019-01-29T16:55:33 87.426 INF Persistent GamePrefs saved
+2019-01-29T16:55:33 87.431 INF Cleanup
+2019-01-29T16:55:33 87.465 INF AchievementManager.Cleanup
+2019-01-29T16:55:34 87.895 INF OnApplicationQuit
+2019-01-29T16:55:34 87.900 INF OnApplicationQuit
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1670 -> priority: 1 
-  Thread -> id: 4a9c -> priority: 1 
+  Thread -> id: 5b80 -> priority: 1 
+  Thread -> id: 29f4 -> priority: 1 

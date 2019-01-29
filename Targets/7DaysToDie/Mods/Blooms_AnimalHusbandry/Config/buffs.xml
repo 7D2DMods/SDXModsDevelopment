@@ -36,7 +36,7 @@
       <damage_type value="Starvation"/>
       <stack_type value="ignore"/>
       <effect_group>
-        <passive_effect name="HealthChangeOT" operation="base_subtract" value=".00416" />
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value=".1" />
       </effect_group>
       <effect_group>
         <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="GTE" value="0.52"/>
@@ -58,7 +58,7 @@
       </effect_group>
 
       <effect_group>
-        <passive_effect name="HealthChangeOT" operation="base_subtract" value=".00416" />
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value=".1" />
         <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffAnimalStatusHungry1"/>
       </effect_group>
 
