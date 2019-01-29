@@ -1,5 +1,24 @@
 ﻿<configs>
   <append xpath="/buffs">
+
+    <!-- Primary buff control -->
+    <buff name="buffAnimalStatusCheck" hidden="true" remove_on_death="false">
+      <stack_type value="ignore"/>
+      <update_rate value="2"/>
+      <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusHungry1">
+        <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="LTE" value="0.5"/>
+      </triggered_effect>
+      <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusHungry2">
+        <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="LTE" value="0.3"/>
+      </triggered_effect>
+      <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusThirsty1">
+        <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value="0.75"/>
+      </triggered_effect>
+      <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusThirsty2">
+        <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value="0.3"/>
+      </triggered_effect>
+    </buff>
+    
     <!-- This is the buff to make the farm animals know that this is home-->
   <buff name="buffFoodTrough" hidden="true">
     <stack_type value="ignore"/>
@@ -11,5 +30,76 @@
       <passive_effect name="WaterChangeOT" operation="base_add" value="1,1" duration="0,8"/>
     </effect_group>
   </buff>
+
+    <!-- The animals can get hungry if they aren't fed regularly, and die -->
+    <buff name="buffAnimalStatusHungry1" name_key="" description_key="" tooltip_key="" icon="" icon_color="255,128,0" >
+      <damage_type value="Starvation"/>
+      <stack_type value="ignore"/>
+      <effect_group>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value=".00416" />
+      </effect_group>
+      <effect_group>
+        <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="GTE" value="0.52"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffAnimalStatusHungry1"/>
+      </effect_group>
+    </buff>
+
+    <buff name="buffAnimalStatusHungry2" name_key="" description_key="" tooltip_key="" icon="" icon_color="255,0,0" icon_blink="true">
+      <damage_type value="Starvation"/>
+      <damage_source value="Internal"/>
+      <stack_type value="ignore"/>
+      <update_rate value="2.2"/>
+      <effect_group>
+        <requirement name="NotHasBuff" buff="buffHealStaminaMax"/>
+        <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".1"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="subtract" value=".3">
+          <requirement name="StatComparePercModMaxToMax" stat="stamina" operation="LT" value=".26"/>
+        </triggered_effect>
+      </effect_group>
+
+      <effect_group>
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value=".00416" />
+        <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffAnimalStatusHungry1"/>
+      </effect_group>
+
+      <effect_group>
+        <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="GTE" value="0.32"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffAnimalStatusHungry2"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusHungry1"/>
+      </effect_group>
+    </buff>
+    <!-- The animals can get thirsty if they aren't watered regularly, and die -->
+    <buff name="buffAnimalStatusThirsty1" name_key="" description_key="" tooltip_key="" icon="" icon_color="255,128,0">
+      <damage_type value="Dehydration"/>
+      <stack_type value="ignore"/>
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffAnimalStatusThirsty1">
+          <requirement name="StatComparePercCurrentToMax" stat="Water" operation="GT" value="0.77"/>
+        </triggered_effect>
+      </effect_group>
+    </buff>
+
+    <buff name="buffAnimalStatusThirsty2" name_key="" description_key="" tooltip_key="" icon="" icon_color="255,0,0" icon_blink="true">
+      <damage_type value="Dehydration"/>
+      <damage_source value="Internal"/>
+      <stack_type value="ignore"/>
+      <update_rate value="2.2"/>
+      <effect_group>
+        <requirement name="NotHasBuff" buff="buffHealWaterMax"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="subtract" value=".5">
+          <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value=".26"/>
+        </triggered_effect>
+      </effect_group>
+
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffAnimalStatusThirsty1"/>
+      </effect_group>
+
+      <effect_group>
+        <requirement name="StatComparePercCurrentToMax" stat="Water" operation="GTE" value="0.32"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffAnimalStatusThirsty2"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusThirsty1"/>
+      </effect_group>
+    </buff>
   </append>
 </configs>

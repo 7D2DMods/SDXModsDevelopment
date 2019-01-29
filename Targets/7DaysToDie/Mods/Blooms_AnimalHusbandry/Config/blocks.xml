@@ -1,7 +1,7 @@
 ﻿<configs>
   <append xpath="/blocks" >
     <!-- This block will serve as a home location for the farm animals.-->
-    <block name="cntAnimalFoodBin">
+    <block name="cntCowHomeBlock">
       <property name="Class" value="Loot"/>
       <property name="CreativeMode" value="Player"/>
       <property name="Material" value="Mmetal_weak"/>

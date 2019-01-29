@@ -1,0 +1,4 @@
+﻿Key,Source,Context,Changes,English,French,German,Klingon,Spanish,Polish
+entitycommand_Pet,entities,Radial,New,Pet,,,,,
+entitycommand_Milk,entities,Radial,New,Milk,,,,,
+
