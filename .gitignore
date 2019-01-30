@@ -7,3 +7,6 @@ Targets/7DaysToDie/.vs/ModsDev/v15/Server/sqlite3/storage.ide-shm
 Targets/7DaysToDie/.vs/ModsDev/v15/Server/sqlite3/storage.ide-wal
 Targets/7DaysToDie/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 *.cache
+*.cache
+*.dll
+Backups/7 Days To Die/7DaysToDie_Data/Managed/EntryPatched.dll

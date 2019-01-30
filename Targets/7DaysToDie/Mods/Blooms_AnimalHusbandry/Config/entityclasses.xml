@@ -6,18 +6,15 @@
       <property name="Class" value="EntityFarmingAnimal, Mods" />
       <property name="AvatarController" value="MecanimSDX, Mods" />
       <property name="RootMotion" value="false" />
-
       <property name="Mass" value="90"/>
-      
-      <!-- Main Animal Statuc Check-->
 
+      <!-- Main Animal Statuc Check-->
       <effect_group name="Base Effects">
         <passive_effect name="HealthMax" operation="base_set" value="110"/>
         <passive_effect name="StaminaMax" operation="base_set" value="110"/>
         <passive_effect name="WaterMax" operation="base_set" value="100"/>
         <passive_effect name="HealthChangeOT" operation="base_set" value="0.017" />
         <passive_effect name="HealthMaxModifierOT" operation="base_add" value=".00028"/>
-
         <passive_effect name="WaterLossPerHealthPointGained" operation="base_set" value="0.06"/>
         <passive_effect name="WaterLossPerStaminaPointGained" operation="base_set" value="0.0075"/>
         <passive_effect name="HealthLossMaxMult" operation="base_set" value="0.144"/>
@@ -25,17 +22,15 @@
         <passive_effect name="StaminaChangeOT" operation="base_set" value="10" />
         <passive_effect name="StaminaChangeOT" operation="perc_subtract" value="1.5" tags="running"/>
         <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".75" tags="swimming" />
-        <passive_effect name="StaminaChangeOT" operation="perc_subtract" value="1.5" tags="walking" />
-
         <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".3" match_all_tags="true" tags="crouching,walking"/>
-        	<passive_effect name="StaminaLoss" operation="base_set" value="20" tags="jumping"/>
-
+        <passive_effect name="StaminaLoss" operation="base_set" value="20" tags="jumping"/>
         <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffAnimalStatusCheck"/>
       </effect_group>
-    
+
       <property name="AITask-1" value="Swim"/>
       <property name="AITask-2" value="RunawayWhenHurt"/>
-      <property name="AITask-3" value="Territorial"/> <!-- Territorial lets them stay close to their home block -->
+      <property name="AITask-3" value="Territorial"/>
+      <!-- Territorial lets them stay close to their home block -->
       <property name="AITask-4" value="RunawayFromEntity" param1="EntityZombie"/>
       <property name="AITask-5" value="Look"/>
       <property name="AITask-6" value="Wander"/>
@@ -43,24 +38,24 @@
       <!-- These are the items that the animal will swap back and forth, depending on whether it needs to eat or drink-->
       <property name="EatItem" value="eatAnimalFood" />
       <property name="DrinkItem" value="drinkAnimalWater" />
-      
+
     </entity_class>
 
     <entity_class name="animalFarmCow" extends="animalFarm">
-        <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
-        <drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
-        <drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="20"/>
-        <drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="6"/>
-        <drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="3"/>
-        <drop event="Harvest" name="resourceFemur" tag="butcherHarvest" count="3"/>
-        <drop event="Harvest" name="resourceFemur" tag="allToolsHarvest" count="1"/>
+      <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
+      <drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+      <drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="20"/>
+      <drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="6"/>
+      <drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="3"/>
+      <drop event="Harvest" name="resourceFemur" tag="butcherHarvest" count="3"/>
+      <drop event="Harvest" name="resourceFemur" tag="allToolsHarvest" count="1"/>
 
-        <property name="FoodItem" value="hayBaleBlock"/>
-        <property name="ProductItem" value="drinkJarMilk"/>
-        <property name="HarvestItem" value="drinkJarEmptyMilk"/>
-        <property name="HomeBlock" value="cntCowHomeBlock"/>
+      <property name="FoodItem" value="hayBaleBlock"/>
+      <property name="ProductItem" value="drinkJarMilk"/>
+      <property name="HarvestItem" value="drinkJarEmptyMilk"/>
+      <property name="HomeBlock" value="cntCowHomeBlock"/>
 
-      </entity_class>
+    </entity_class>
 
 
   </append>

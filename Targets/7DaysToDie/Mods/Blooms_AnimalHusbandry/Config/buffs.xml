@@ -17,6 +17,10 @@
       <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusThirsty2">
         <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value="0.3"/>
       </triggered_effect>
+
+      
+      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar="$foodAmount" operation="subtract" value=".01"/>
+
     </buff>
     
     <!-- This is the buff to make the farm animals know that this is home-->

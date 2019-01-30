@@ -64,9 +64,9 @@ class EntityFarmingAnimal : EntityAlive
     {
         String strMessage = "Entity ID: " + this.entityId;
         strMessage += " Current Health: " + this.Stats.Health.ValuePercent * 100;
-        strMessage += " Current Stamina: " + this.Stats.Stamina.ValuePercent * 100;
-        strMessage += " Health Stats: " + this.Health.ToString();
-        strMessage += " Stamina Stats: " + this.Stamina.ToString();
+        strMessage += " Current Stamina: " + this.Stats.Stamina.ModifiedMaxPercent;
+        strMessage += " modifiedMax " + this.Stats.Stamina.ModifiedMax;
+        strMessage += " FoodAmount: " + this.GetCVar("$foodAmount");
         DisplayLog(strMessage);
 
         if (this.Buffs.ActiveBuffs.Count == 0)
@@ -87,7 +87,9 @@ class EntityFarmingAnimal : EntityAlive
         base.OnUpdateLive();
 
         this.Stats.Water.Tick(0.05f, this.world.worldTime, false);
-        
+        this.Stats.Health.Tick(0.05f, this.world.worldTime, false);
+        this.Stats.Stamina.Tick(0.05f, this.world.worldTime, false);
+
         // We only want to do this check periodically to avoid unnecessary overhad.
         if (nextLongerCheck < Time.time)
         {
