@@ -1,0 +1,18 @@
+<!-- The icons and XML are from Clockwork Orange's fishing mod -->
+<!-- https://7daystodie.com/forums/showthread.php?68123-ACP-Fishing -->
+<!-- We removed the fishing rod, since you can just kill the fish yourself.-->
+<configs>
+	<append xpath="/recipes" >
+		<recipe name="Boiled Fish" count="1" craft_time = "8" craft_area="campfire" craft_tool="cookingPot" >
+			<ingredient name="Raw Fish" count="1"/>
+			<ingredient name="bottledWater" count="1"/>
+		</recipe>
+		<recipe name="Grilled Fish" count="1" craft_time = "8" craft_area="campfire" craft_tool="cookingGrill" >
+			<ingredient name="Raw Fish" count="1"/>
+		</recipe>
+		<recipe name="Charred Fish" count="1" craft_time = "8" craft_area="campfire">
+			<ingredient name="Raw Fish" count="1"/>
+		</recipe>
+	</append>
+
+</configs>

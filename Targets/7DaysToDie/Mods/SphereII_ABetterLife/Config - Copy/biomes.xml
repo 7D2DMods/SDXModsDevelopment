@@ -1,0 +1,100 @@
+<configs>
+	<append xpath="/worldgeneration/biomes/biome[@name='forest']/decorations" >
+		<decoration type="block" blockname="Butterflies_00" prob="0.001" rotatemax="4" />
+	</append>
+	<append xpath="/worldgeneration/biomes/biome[@name='plains']/decorations" >
+		<decoration type="block" blockname="Butterflies_01" prob="0.001" rotatemax="4" />
+	</append>
+	<append xpath="/worldgeneration/biomes/biome[@name='pine_forest']/decorations" >
+		<decoration type="block" blockname="Butterflies_02" prob="0.001" rotatemax="4" />
+	</append>
+
+	<!-- Under water scenes look boring and bleak with sand -->
+	<set xpath="/worldgeneration/biomes/biome[@name='water']/subbiome/layers/layer[@blockname='sand']/@blockname">clay</set>
+	<set xpath="/worldgeneration/biomes/biome[@name='water']/layers/layer[@blockname='sand']/@blockname">clay</set>
+
+	<!-- We want to set down terrain decovrations as resources for the water. In order to pull this off, we need to change -->
+	<!-- the layer to 1, and spawn the blocks up -->
+	<set xpath="/worldgeneration/biomes/biome[@name='water']/subbiome/layers//layer[1]/@depth">1</set>
+
+	<!-- main biome layer for water has a fillupto for it's first layer, so we need to go with layer 2 to get it.-->
+	<set xpath="/worldgeneration/biomes/biome[@name='water']/layers/layer[2]/@depth">1</set>
+
+	<!-- If there's too many resource blocks, things further down the list often don't spawn -->
+	<!-- To Get around this, we are using sub-biomes to allow more of a colourful distribution -->
+	<append xpath="/worldgeneration/biomes/biome[@name='water']/subbiome[1]/layers/layer[1]" >
+		<resource blockname="SeaShell" cluster="1" prob="0.01" rwgGenerationType="all" />
+		<resource blockname="SeaWeed01Prefab" cluster="1" prob="0.1" rwgGenerationType="all" />
+		<resource blockname="SeaWeed02Prefab" cluster="2" prob="0.1" rwgGenerationType="all" />
+		<resource blockname="SeaWeed03Prefab" cluster="1" prob="0.1" rwgGenerationType="all" />
+	</append>
+	<!-- Second Sub-biome -->
+	<append xpath="/worldgeneration/biomes/biome[@name='water']/subbiome[2]/layers/layer[1]" >
+		<resource blockname="gravelPlusIron" cluster="1" prob="0.01" rwgGenerationType="all" />
+		<resource blockname="SeaWeed04Prefab" cluster="1" prob="0.8" rwgGenerationType="all" />
+		<resource blockname="SeaWeed05Prefab" cluster="1" prob="0.1" rwgGenerationType="all" />
+		<resource blockname="SeaWeed06Prefab" cluster="2" prob="0.1" rwgGenerationType="all" />
+		<resource blockname="WaterPlant" cluster="1" prob="0.01" rwgGenerationType="all" />
+	</append>
+	<!-- Third sub biome -->
+	<append xpath="/worldgeneration/biomes/biome[@name='water']/subbiome[3]/layers/layer[1]" >
+		<resource blockname="RustyBucket" cluster="2" prob="0.01" rwgGenerationType="all" />
+		<resource blockname="Syringodium" cluster="1" prob="0.08" rwgGenerationType="all" />
+		<resource blockname="Pavonica" cluster="1" prob="0.08" rwgGenerationType="all" />
+	</append>
+	<!-- Fourth sub biome -->
+	<append xpath="/worldgeneration/biomes/biome[@name='water']/subbiome[4]/layers/layer[1]" >
+		<resource blockname="SeaShell" cluster="1" prob="0.08" rwgGenerationType="all" />
+		<resource blockname="Halophila" cluster="1" prob="0.08" rwgGenerationType="all" />
+		<resource blockname="RustyCar01" cluster="2" prob="0.01" rwgGenerationType="all" />
+		<resource blockname="gravelPlusIron" cluster="1" prob="0.071" rwgGenerationType="all" />
+	</append>
+	<!-- Fith sub biome -->
+	<append xpath="/worldgeneration/biomes/biome[@name='water']/subbiome[5]/layers/layer[1]" >
+		<resource blockname="SeaShell" cluster="1" prob="0.01" rwgGenerationType="all" />
+		<resource blockname="SeaWeed01Prefab" cluster="1" prob="0.1" rwgGenerationType="all" />
+		<resource blockname="RustyCar01" cluster="2" prob="0.001" rwgGenerationType="all" />
+	</append>
+
+	<!-- main biome has a filluptoorg for the first layer, so we'll want to do layer 2 for its resource distribution-->
+	<append xpath="/worldgeneration/biomes/biome[@name='water']/layers/layer[2]" >
+		<resource blockname="SeaShell" cluster="1" prob="0.01" rwgGenerationType="all" />
+		<resource blockname="cntSecureTreasureChest" cluster="1" prob="0.001" rwgGenerationType="all" />
+		<resource blockname="shoppingCartEmpty" cluster="2" prob="0.001" rwgGenerationType="all" />
+		<resource blockname="SeaWeed01Prefab" cluster="2" prob="0.2" rwgGenerationType="all" />
+		<resource blockname="SeaWeed02Prefab" cluster="0" prob="0.2" rwgGenerationType="all" />
+		<resource blockname="SeaWeed03Prefab" cluster="1" prob="0.2" rwgGenerationType="all" />
+		<resource blockname="SeaWeed04Prefab" cluster="0" prob="0.2" rwgGenerationType="all" />
+		<resource blockname="SeaWeed05Prefab" cluster="2" prob="0.2" rwgGenerationType="all" />
+		<resource blockname="SeaWeed06Prefab" cluster="1" prob="0.2" rwgGenerationType="all" />
+		<resource blockname="WaterPlant" cluster="1" prob="0.01" rwgGenerationType="all" />
+		<resource blockname="Halophila" cluster="0" prob="0.04" rwgGenerationType="all" />
+		<resource blockname="cntSecureTreasureChest" cluster="2" prob="0.01" rwgGenerationType="all" />
+		<resource blockname="RustyCar01" cluster="2" prob="0.001" rwgGenerationType="all" />
+		<resource blockname="shoppingCartEmpty" cluster="2" prob="0.01" rwgGenerationType="all" />
+	</append>
+
+	<!-- We do want the cat tails to spawn as biome decorations, so they won't appear in the water -->
+	<!-- Not every sub-biome actually has decorations, so we'll just add the ones that are available -->
+	<append xpath="/worldgeneration/biomes/biome[@name='water']/subbiome[1]/decorations" >
+		<decoration type="block" blockname="Cattails" prob="0.01" rotatemax="4" />
+		<decoration type="block" blockname="Thalassia" prob="0.01" rotatemax="4" />
+		<decoration type="block" blockname="Stipa" prob="0.01" rotatemax="4" />
+		<decoration type="block" blockname="Fanplant" prob="0.01" rotatemax="4" />
+	</append>
+	<append xpath="/worldgeneration/biomes/biome[@name='water']/subbiome[2]/decorations" >
+		<decoration type="block" blockname="Cattails" prob="0.01" rotatemax="4" />
+		<decoration type="block" blockname="Thalassia" prob="0.01" rotatemax="4" />
+		<decoration type="block" blockname="Stipa" prob="0.01" rotatemax="4" />
+		<decoration type="block" blockname="Fanplant" prob="0.01" rotatemax="4" />
+	</append>
+	<append xpath="/worldgeneration/biomes/biome[@name='water']/decorations" >
+		<decoration type="block" blockname="Cattails" prob="0.01" rotatemax="4" />
+		<decoration type="block" blockname="Thalassia" prob="0.01" rotatemax="4" />
+		<decoration type="block" blockname="Stipa" prob="0.01" rotatemax="4" />
+		<decoration type="block" blockname="Fanplant" prob="0.01" rotatemax="4" />
+	</append>
+</configs>
+
+
+

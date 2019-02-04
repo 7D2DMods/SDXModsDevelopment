@@ -1,0 +1,111 @@
+<configs>
+	<!-- Add in the sounds -->
+
+	<append xpath="/Sounds">
+		<SoundDataNode name="robinSounds">
+			<AudioSource name="Sounds/AudioSource_Creatures"/>
+			<AudioClip ClipName="#RobinSounds?Robin"/>
+			<Channel name="Mouth"/>
+			<Priority name="3"/>
+			<LocalCrouchVolumeScale name="1.0"/>
+			<CrouchNoiseScale name="0.5"/>
+			<NoiseScale name="1"/>
+			<MaxVoices name="10"/>
+			<MaxRepeatRate name="5"/>
+		</SoundDataNode>
+		<SoundDataNode name="falconSounds">
+			<AudioSource name="Sounds/AudioSource_Creatures"/>
+			<AudioClip ClipName="#FalconSounds?Falcon"/>
+			<Channel name="Mouth"/>
+			<Priority name="3"/>
+			<LocalCrouchVolumeScale name="1.0"/>
+			<CrouchNoiseScale name="0.5"/>
+			<NoiseScale name="1"/>
+			<MaxVoices name="10"/>
+			<MaxRepeatRate name="5"/>
+		</SoundDataNode>
+
+		<SoundDataNode name="AlcatrazSounds">
+			<AudioSource name="Sounds/AudioSource_Creatures"/>
+			<AudioClip ClipName="#BirdBundle?AlcatrazSound"/>
+			<Channel name="Mouth"/>
+			<Priority name="3"/>
+			<LocalCrouchVolumeScale name="1.0"/>
+			<CrouchNoiseScale name="0.5"/>
+			<NoiseScale name="1"/>
+			<MaxVoices name="10"/>
+			<MaxRepeatRate name="5"/>
+		</SoundDataNode>
+		<SoundDataNode name="BennuSounds">
+			<AudioSource name="Sounds/AudioSource_Creatures"/>
+			<AudioClip ClipName="#BirdBundle?AlcatrazSound"/>
+			<Channel name="Mouth"/>
+			<Priority name="3"/>
+			<LocalCrouchVolumeScale name="1.0"/>
+			<CrouchNoiseScale name="0.5"/>
+			<NoiseScale name="1"/>
+			<MaxVoices name="10"/>
+			<MaxRepeatRate name="5"/>
+		</SoundDataNode>
+
+		<SoundDataNode name="EagleSounds">
+			<AudioSource name="Sounds/AudioSource_Creatures"/>
+			<AudioClip ClipName="#BirdBundle?EagleSound"/>
+			<Channel name="Mouth"/>
+			<Priority name="3"/>
+			<LocalCrouchVolumeScale name="1.0"/>
+			<CrouchNoiseScale name="0.5"/>
+			<NoiseScale name="1"/>
+			<MaxVoices name="10"/>
+			<MaxRepeatRate name="5"/>
+		</SoundDataNode>
+		<SoundDataNode name="eFalconSounds">
+			<AudioSource name="Sounds/AudioSource_Creatures"/>
+			<AudioClip ClipName="#BirdBundle?FalconSound"/>
+			<Channel name="Mouth"/>
+			<Priority name="3"/>
+			<LocalCrouchVolumeScale name="1.0"/>
+			<CrouchNoiseScale name="0.5"/>
+			<NoiseScale name="1"/>
+			<MaxVoices name="10"/>
+			<MaxRepeatRate name="5"/>
+		</SoundDataNode>
+		<SoundDataNode name="MagpieSounds">
+			<AudioSource name="Sounds/AudioSource_Creatures"/>
+			<AudioClip ClipName="#BirdBundle?MagpieSound"/>
+			<Channel name="Mouth"/>
+			<Priority name="3"/>
+			<LocalCrouchVolumeScale name="1.0"/>
+			<CrouchNoiseScale name="0.5"/>
+			<NoiseScale name="1"/>
+			<MaxVoices name="10"/>
+			<MaxRepeatRate name="5"/>
+		</SoundDataNode>
+		<SoundDataNode name="RavenSounds">
+			<AudioSource name="Sounds/AudioSource_Creatures"/>
+			<AudioClip ClipName="#BirdBundle?RavenSound"/>
+			<Channel name="Mouth"/>
+			<Priority name="3"/>
+			<LocalCrouchVolumeScale name="1.0"/>
+			<CrouchNoiseScale name="0.5"/>
+			<NoiseScale name="1"/>
+			<MaxVoices name="10"/>
+			<MaxRepeatRate name="5"/>
+		</SoundDataNode>
+		<SoundDataNode name="SeagullSounds">
+			<AudioSource name="Sounds/AudioSource_Creatures"/>
+			<AudioClip ClipName="#BirdBundle?SeagullSound"/>
+			<Channel name="Mouth"/>
+			<Priority name="3"/>
+			<LocalCrouchVolumeScale name="1.0"/>
+			<CrouchNoiseScale name="0.5"/>
+			<NoiseScale name="1"/>
+			<MaxVoices name="10"/>
+			<MaxRepeatRate name="5"/>
+		</SoundDataNode>
+	</append>
+
+</configs>
+
+
+

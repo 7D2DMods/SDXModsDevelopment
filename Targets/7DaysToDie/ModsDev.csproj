@@ -73,6 +73,7 @@
     <Compile Include="Mods\AnimationSDX\Scripts\MecanimSDX.cs" />
     <Compile Include="Mods\AnimationSDX\Scripts\NewMecanimSDX.cs" />
     <Compile Include="Mods\Blooms_AnimalHusbandry\Scripts\EntityFarmingAnimal.cs" />
+    <Compile Include="Mods\Blooms_AnimalHusbandry\Scripts\TileEntityFarmingAnimal.cs" />
     <Compile Include="Mods\HalDllUpdates\PatchScripts\PatcherHalDll.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\EntityAnimalHal.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\HalHelperEvents.cs" />

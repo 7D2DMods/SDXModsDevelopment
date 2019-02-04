@@ -1,2 +1,4 @@
 C:\Users\jkilpatrick\Documents\Gitlab\SDXModsDevelopment\Targets\7DaysToDie\obj\Debug\ModsDev.csprojResolveAssemblyReference.cache
 C:\Users\jkilpatrick\Documents\Gitlab\SDXModsDevelopment\Targets\7DaysToDie\obj\Debug\ModsDev.csproj.CoreCompileInputs.cache
+D:\Github\SDXModsDevelopment\Targets\7DaysToDie\obj\Debug\ModsDev.csprojAssemblyReference.cache
+D:\Github\SDXModsDevelopment\Targets\7DaysToDie\obj\Debug\ModsDev.csproj.CoreCompileInputs.cache

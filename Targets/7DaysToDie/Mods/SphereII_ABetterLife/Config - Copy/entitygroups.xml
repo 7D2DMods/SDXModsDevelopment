@@ -1,0 +1,29 @@
+<configs>
+
+	<append xpath="/entitygroups/entitygroup[@name='ZombiesAll']">
+		<entity name="RobinBird" />
+		<entity name="animalFalcon" />
+		<entity name="birdAlcatraz" />
+		<entity name="Magpie" />
+		<entity name="birdEagle2" />
+		<entity name="Seagull" />
+		<entity name="Goose" />
+	</append>
+
+	<append xpath="/entitygroups">
+		<entitygroup name="AnimalSwiming">
+			<entity name="Sardine" />
+			<entity name="WellWalker" prob="0.05"/>
+			<entity name="aFish" />
+			<entity name="aTurtle" />
+			<entity name="aStingRay" prob="0.5" />
+			<entity name="aBarracuda" />
+			<entity name="Clownfish" />
+		</entitygroup>
+	</append>
+
+
+</configs>
+
+
+

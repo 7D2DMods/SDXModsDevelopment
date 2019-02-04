@@ -5,105 +5,205 @@
     <buff name="buffAnimalStatusCheck" hidden="true" remove_on_death="false">
       <stack_type value="ignore"/>
       <update_rate value="2"/>
-      <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusHungry1">
-        <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="LTE" value="0.5"/>
-      </triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusHungry2">
-        <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="LTE" value="0.3"/>
-      </triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusThirsty1">
-        <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value="0.75"/>
-      </triggered_effect>
-      <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusThirsty2">
-        <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value="0.3"/>
-      </triggered_effect>
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusHungry1">
+          <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="LTE" value="0.5"/>
+          <requirement name="NotHasBuff" buff="buffStatusHungry2"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusHungry2">
+          <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="LTE" value="0.3"/>
+        </triggered_effect>
 
-      
-      <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar="$foodAmount" operation="subtract" value=".01"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusThirsty1">
+          <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value="0.75"/>
+          <requirement name="NotHasBuff" buff="buffStatusThirsty2"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusThirsty2">
+          <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value="0.3"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusWounded">
+          <requirement name="StatComparePercModMaxToMax" stat="Health" operation="LTE" value="0.5"/>
+        </triggered_effect>
 
+        <!-- Remove particle effect if not on fire, this is a backup removal for remote clients -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveParticleEffectFromEntity" particle="p_onFire">
+          <requirement name="NotHasBuff" buff="buffIsOnFire"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" particle="p_onFire">
+          <requirement name="HasBuff" buff="buffIsOnFire"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffPerkPain">
+          <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value="@PainTolerance"/>
+        </triggered_effect>
+
+        <!-- Weather Survival HOT -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementHot">
+          <requirement name="NotHasBuff" buff="god"/>
+          <requirement name="CVarCompare" cvar="_coretemp" operation="GT" value="10"/>
+          <requirement name="CVarCompare" cvar="_coretemp" operation="LT" value="30"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementHot">
+          <requirement name="CVarCompare" cvar="_coretemp" operation="LTE" value="10"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementHot">
+          <requirement name="CVarCompare" cvar="_coretemp" operation="GTE" value="30"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementSweltering">
+          <requirement name="NotHasBuff" buff="god"/>
+          <requirement name="CVarCompare" cvar="_coretemp" operation="GTE" value="30"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementSweltering">
+          <requirement name="CVarCompare" cvar="_coretemp" operation="LT" value="30"/>
+        </triggered_effect>
+
+        <!-- Weather Survival COLD -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementCold">
+          <requirement name="NotHasBuff" buff="god"/>
+          <requirement name="CVarCompare" cvar="_coretemp" operation="GT" value="-30"/>
+          <requirement name="CVarCompare" cvar="_coretemp" operation="LT" value="-10"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementCold">
+          <requirement name="CVarCompare" cvar="_coretemp" operation="GTE" value="-10"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementCold">
+          <requirement name="CVarCompare" cvar="_coretemp" operation="LTE" value="-30"/>
+        </triggered_effect>
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementFreezing">
+          <requirement name="NotHasBuff" buff="god"/>
+          <requirement name="CVarCompare" cvar="_coretemp" operation="LTE" value="-30"/>
+        </triggered_effect>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementFreezing">
+          <requirement name="CVarCompare" cvar="_coretemp" operation="GT" value="-30"/>
+        </triggered_effect>
+
+        <!-- Weather Survival WETNESS -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementWet">
+          <requirement name="NotHasBuff" buff="god"/>
+          <requirement name="CVarCompare" cvar="_wetness" operation="GT" value=".15"/>
+        </triggered_effect>
+
+        <!-- Biome radiation effects (simplified! We only use "3" for now) -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffRadiation3">
+          <requirement name="NotHasBuff" buff="god"/>
+          <requirement name="CVarCompare" cvar="_biomeradiation" operation="GT" value="2.5"/>
+        </triggered_effect>
+
+        <!-- Drowning -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffDrowning1">
+          <requirement name="CVarCompare" cvar="_underwater" operation="Equals" value="1"/>
+          <requirement name="NotHasBuff" buff="buffDrowning1"/>
+          <requirement name="NotHasBuff" buff="buffDrowning2"/>
+          <requirement name="NotHasBuff" buff="buffDrowning3"/>
+        </triggered_effect>
+
+        <!-- Falling -->
+        <triggered_effect trigger="onSelfFallImpact" action="AddBuff" target="self" buff="buffPlayerFallingDamage">
+          <requirement name="CVarCompare" cvar="_fallSpeed" operation="GTE" value=".15"/>
+        </triggered_effect>
+
+      </effect_group>
+    </buff>
+
+    <!-- This is the buff to make the farm animals know that this is home-->
+    <buff name="buffHomePoint" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="1"/>
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="not Animal">
+          <requirement name="EntityTagCompare" tags="Farmanimal"/>
+        </triggered_effect>
+      </effect_group>
+    </buff>
+
+    <!-- Animal Pregnancy Buff only applies to Females -->
+    <buff name="buffCowPregnancy" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="1000"/>
+      <requirement name="IsMale" inverts="true "/>
+      <requirement name="HasBuff" buff="buffAnimalAdult"/> <!-- make sure the animal is adult -->
+      <effect_group>
+        <!-- When the pregnancy buff is over, apply the newmother buff, and the animal harvestable  That's because cows will only produce milk after having a baby -->
+        <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffNewMother"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffAnimalHarvestable"/>
+      </effect_group>
+    </buff>
+    <!-- Example of a pregnancy that does not need to be set to harvestable after pregnancy is over -->
+    <buff name="buffAnimalPregnancy" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="1000"/>
+      <requirement name="IsMale" inverts="true "/>
+      <requirement name="HasBuff" buff="buffAnimalAdult"/>       <!-- make sure the animal is adult -->
+      <effect_group>
+      </effect_group>
+    </buff>
+
+    <!-- New Mother buff is only removeable through code -->
+    <buff name="buffNewMother" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="0"/>
+      <requirement name="IsMale" inverts="true "/>
+      <requirement name="HasBuff" buff="buffAnimalAdult"/>
     </buff>
     
-    <!-- This is the buff to make the farm animals know that this is home-->
-  <buff name="buffFoodTrough" hidden="true">
-    <stack_type value="ignore"/>
-    <duration value="1"/>
-    <effect_group>
-      <triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="not Animal">
-        <requirement name="EntityTagCompare" tags="Farmanimal"/>
-      </triggered_effect>
-      <passive_effect name="WaterChangeOT" operation="base_add" value="1,1" duration="0,8"/>
-    </effect_group>
-  </buff>
-
-    <!-- The animals can get hungry if they aren't fed regularly, and die -->
-    <buff name="buffAnimalStatusHungry1" name_key="" description_key="" tooltip_key="" icon="" icon_color="255,128,0" >
-      <damage_type value="Starvation"/>
+    <buff name="buffAnimalHarvestable" hidden="true">
       <stack_type value="ignore"/>
+      <duration value="0"/>
+      <requirement name="IsMale" inverts="true "/>
+    </buff>
+
+    <!-- Controls the animal's age -->
+    <buff name="buffAnimalBaby" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="90"/>
       <effect_group>
-        <passive_effect name="HealthChangeOT" operation="base_subtract" value=".1" />
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$sizeScale" operation="set" value="0.3"/>
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalJuvenile" />
       </effect_group>
+    </buff>
+    <buff name="buffAnimalJuvenile" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="90"/>
       <effect_group>
-        <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="GTE" value="0.52"/>
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffAnimalStatusHungry1"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$sizeScale" operation="set" value="0.7"/>
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalAdult" />
+      </effect_group>
+    </buff>
+    <buff name="buffAnimalAdult" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="90"/>
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$sizeScale" operation="set" value="1"/>
+
+        <!-- Once the animal reaches adult hood, let it be harvestable.-->
+        <triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="buffAnimalHarvestable" />
+        
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalSenior" />
+        <!-- Remove the harvestable buff once its out of adult hood -->
+        <triggered_effect trigger="onSelfBuffFinish" action="RemoveBuff" target="self" buff="buffAnimalHarvestable" />
+      </effect_group>
+    </buff>
+    <buff name="buffAnimalSenior" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="90"/>
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalDeath" />
+      </effect_group>
+    </buff>  
+    <buff name="buffAnimalDeath" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="0"/>
+      <update_rate value="2"/>
+
+      <effect_group>
+        <passive_effect name="StaminaChangeOT" operation="base_subtract" value="2" />
+        <passive_effect name="HealthMaxModifierOT" operation="base_subtract" value="1" />
+        <passive_effect name="StaminaMaxModifierOT" operation="base_subtract" value="1" />
       </effect_group>
     </buff>
 
-    <buff name="buffAnimalStatusHungry2" name_key="" description_key="" tooltip_key="" icon="" icon_color="255,0,0" icon_blink="true">
-      <damage_type value="Starvation"/>
-      <damage_source value="Internal"/>
-      <stack_type value="ignore"/>
-      <update_rate value="2.2"/>
-      <effect_group>
-        <requirement name="NotHasBuff" buff="buffHealStaminaMax"/>
-        <passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".1"/>
-        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="subtract" value=".3">
-          <requirement name="StatComparePercModMaxToMax" stat="stamina" operation="LT" value=".26"/>
-        </triggered_effect>
-      </effect_group>
-
-      <effect_group>
-        <passive_effect name="HealthChangeOT" operation="base_subtract" value=".1" />
-        <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffAnimalStatusHungry1"/>
-      </effect_group>
-
-      <effect_group>
-        <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="GTE" value="0.32"/>
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffAnimalStatusHungry2"/>
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusHungry1"/>
-      </effect_group>
-    </buff>
-    <!-- The animals can get thirsty if they aren't watered regularly, and die -->
-    <buff name="buffAnimalStatusThirsty1" name_key="" description_key="" tooltip_key="" icon="" icon_color="255,128,0">
-      <damage_type value="Dehydration"/>
-      <stack_type value="ignore"/>
-      <effect_group>
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffAnimalStatusThirsty1">
-          <requirement name="StatComparePercCurrentToMax" stat="Water" operation="GT" value="0.77"/>
-        </triggered_effect>
-      </effect_group>
-    </buff>
-
-    <buff name="buffAnimalStatusThirsty2" name_key="" description_key="" tooltip_key="" icon="" icon_color="255,0,0" icon_blink="true">
-      <damage_type value="Dehydration"/>
-      <damage_source value="Internal"/>
-      <stack_type value="ignore"/>
-      <update_rate value="2.2"/>
-      <effect_group>
-        <requirement name="NotHasBuff" buff="buffHealWaterMax"/>
-        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyStats" stat="Health" operation="subtract" value=".5">
-          <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value=".26"/>
-        </triggered_effect>
-      </effect_group>
-
-      <effect_group>
-        <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffAnimalStatusThirsty1"/>
-      </effect_group>
-
-      <effect_group>
-        <requirement name="StatComparePercCurrentToMax" stat="Water" operation="GTE" value="0.32"/>
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffAnimalStatusThirsty2"/>
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalStatusThirsty1"/>
-      </effect_group>
-    </buff>
   </append>
 </configs>
