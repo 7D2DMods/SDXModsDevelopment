@@ -1,6 +1,12 @@
 ﻿<configs>
   <append xpath="/items">
 
+    <item name="BeastMaster">
+      <property name="Extends" value="armorLeatherHood" />
+      <effect_group name="beastMasterBuff ">
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffProcessConsumables"/>
+      </effect_group>
+    </item>
     <!-- eatAnimalFood and drinkAnimalWater are items that the animals will use to get food and water, if the source is available -->
     <item name="eatAnimalFood">
       <property name="DisplayType" value="foodWaterOnly"/>
@@ -21,6 +27,7 @@
       <property name="Group" value="Food/Cooking"/>
       <effect_group tiered="false">
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="10"/>
+        <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffBeastMaster"/>
       </effect_group>
     </item>
     <item name="drinkAnimalWater">

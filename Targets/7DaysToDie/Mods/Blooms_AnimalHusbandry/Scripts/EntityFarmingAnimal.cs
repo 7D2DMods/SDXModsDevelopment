@@ -17,6 +17,10 @@ using System.IO;
 
 class EntityFarmingAnimal : EntityAlive
 {
+
+    private MemoryStream buffData = new MemoryStream(0);
+
+
     public String strFoodItem = "";
     public String strProductItem = "";
     public String strHarvestItems = "";
@@ -26,6 +30,11 @@ class EntityFarmingAnimal : EntityAlive
     public String strPregnancyBuff = "";
     public String strHarvestableBuff = "";
     public String strAdultBuff = "";
+
+    public String strPregnancyQuest = "";
+    public List<Quest> Quests = new List<Quest>();
+
+    public QuestJournal myQuestJournal = new QuestJournal();
 
     // how far the animal will wander from its Home position.
     private int MaxDistanceFromHome = 15;
@@ -77,92 +86,125 @@ class EntityFarmingAnimal : EntityAlive
         if (entityClass.Properties.Values.ContainsKey("StartingGrowthBuff"))
             this.Buffs.AddBuff(entityClass.Properties.Values["StartingGrowthBuff"], -1, true);
 
+        if (entityClass.Properties.Values.ContainsKey("PregnancyQuest"))
+            this.strPregnancyQuest = entityClass.Properties.Values["PregnancyQuest"];
+
 
     }
 
+    public override void Read(byte _version, BinaryReader _br)
+    {
+        Debug.Log("Read");
+        base.Read(_version, _br);
+      //  int num2 = _br.ReadInt32();
+        this.Buffs.Read(_br);
+        //this.buffData = ((num2 <= 0) ? new MemoryStream() : new MemoryStream(_br.ReadBytes(num2)));
+        //if (this.buffData.Length > 0L)
+        //{
+        //    Debug.Log("No buffs");
+        //    if (this.Buffs == null)
+        //    {
+        //        this.Buffs = new EntityBuffs(this);
+        //    }
+        //    using (PooledBinaryReader pooledBinaryReader2 = MemoryPools.poolBinaryReader.AllocSync(false))
+        //    {
+        //        pooledBinaryReader2.SetBaseStream(this.buffData);
+        //        this.Buffs.Read(pooledBinaryReader2);
+        //    }
+        //}
+        //else
+        //{
+        //    Debug.Log("No Buffs Detected.");
+        //}
+
+        this.myQuestJournal = new QuestJournal();
+        this.myQuestJournal.Read(_br);
+
+    }
+
+    public override void Write(BinaryWriter _bw)
+    {
+        Debug.Log("Write");
+        base.Write(_bw);
+        this.Buffs.Write(_bw, true);
+       // _bw.Write(this.Buffs);
+      
+      //  _bw.Write((int)this.buffData.Length);
+      //  Utils.StreamCopy(this.buffData, _bw.BaseStream, null, true);
+        this.myQuestJournal.Write(_bw);
+
+    }
     public override void PostInit()
     {
         base.PostInit();
-
+   
         String strMessage = "Creating " + this.entityName;
         strMessage += " Food Item: " + this.strFoodItem;
         strMessage += " Product Item: " + this.strProductItem;
         strMessage += " Harvest Items: " + this.strHarvestItems;
         strMessage += " Home Block: " + this.strHomeBlock;
-        strMessage += " Home Buff: " + this.strHomeBuff;
+        //strMessage += " Home Buff: " + this.strHomeBuff;
         DisplayLog(strMessage);
+
+        // trigger 60 seconds after the start, then every 60 seconds afterwards.
+        InvokeRepeating("CheckAnimalEvent", 60f, 60f);
+
+        DisplayLog(ToString());
+        GiveQuest(this.strPregnancyQuest);
 
     }
     public override string ToString()
     {
-        return this.entityName + " : Health: " + this.Health + " Hunger: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value + " Buffs: " + this.Buffs.ActiveBuffs.ToArray().ToString() ;
+        string strOutput = this.entityName + " - ID: " + this.entityId + " Health: " + this.Health + " Hunger: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value;
+        strOutput += "\n Active Buffs: ";
+        foreach (BuffValue buff in this.Buffs.ActiveBuffs)
+        {
+            strOutput += "\n\t" + buff.BuffName + " ( Seconds: " + buff.DurationInSeconds + " Ticks: " + buff.DurationInTicks + " )";
+        }
+
+        strOutput += "\n Active Quests: ";
+        foreach (Quest quest in this.myQuestJournal.quests)
+        {
+            //foreach (ObjectiveBuff buff in quest.Objectives)
+            //    buff.Refresh();
+
+            strOutput += "\n\t" + quest.ID + " Current State: " + quest.CurrentState + " Current Phase: " + quest.CurrentPhase;
+        }
+
+        return strOutput;
     }
-    public void DisplayEntityStats()
+
+
+    public void GiveQuest(String strQuest)
     {
-        //String strMessage = "Entity ID: " + this.entityId;
-        //strMessage += " Base Max " + this.Stats.Stamina.BaseMax;
-        //strMessage += " Loss Passive " + this.Stats.Stamina.LossPassive;
-        //strMessage += " Max: " + this.Stats.Stamina.Max;
-        //strMessage += " Max Passive" + this.Stats.Stamina.MaxPassive;
-        //strMessage += " Modified Max" + this.Stats.Stamina.ModifiedMax;
-        //strMessage += " Modified Max Percent " + this.Stats.Stamina.ModifiedMaxPercent;
-        //strMessage += " Regen Amount " + this.Stats.Stamina.RegenerationAmount;
-        //strMessage += " Value " + this.Stats.Stamina.Value;
-        //strMessage += " Loss Passive " + this.Stats.Stamina.LossPassive;
-
-        //DisplayLog(strMessage);
-
-        //if (this.Stats.Stamina.Value < 50 && this.Stats.Stamina.Value > 30)
-        //    DisplayLog(" Is Hungry");
-        //else if (this.Stats.Stamina.Value <= 30)
-        //    DisplayLog(" Is Starving");
-
-        //if (this.Stats.Water.Value < 50 && this.Stats.Water.Value > 30)
-        //    DisplayLog(" Is Thirsty");
-        //else if (this.Stats.Water.Value <= 30)
-        //    DisplayLog(" Is Really Thirsty");
-
-        if (this.Buffs.ActiveBuffs.Count == 0)
+        foreach (Quest quest in this.myQuestJournal.quests)
         {
-            DisplayLog("Adding Buff");
-            this.Buffs.AddBuff(this.strHomeBuff, -1, true);
+            if (quest.ID == strQuest)
+                return;
         }
+        Quest NewQuest = QuestClass.CreateQuest(strQuest);
+        if (NewQuest == null)
+            return;
 
-        DisplayLog(" Buffs:");
-        foreach (var buff in this.Buffs.ActiveBuffs)
-        {
-            DisplayLog("Active Buff: " + buff.BuffName);
-        }
-        Debug.Log("");
+        // If there's no shared owner, it tries to read the PlayerLocal's entity ID. This entity doesn't have that.
+        NewQuest.SharedOwnerID = this.entityId;
+        NewQuest.QuestGiverID = -1;
+        this.myQuestJournal.AddQuest(NewQuest);
     }
 
-    // This gets called on the top of each hour to see if the animal needs to do any kind of special effect.
     public void CheckAnimalEvent()
     {
-        // Only process this method once an hour
-        int minute = GameUtils.WorldTimeToMinutes(GameManager.Instance.World.GetWorldTime());
-        if (minute == 0 && CheckEvent)
-        {
-            CheckEvent = false;
-        }
-        else if (minute > 0) // Once we are past the 1 minute mark, toggle the CheckEvent to be true so that in the next hour, the condition will run again.
-        {
-            CheckEvent = true;
-            return;
-        }
-
         int day = GameUtils.WorldTimeToDays(GameManager.Instance.World.GetWorldTime());
         int hour = GameUtils.WorldTimeToHours(GameManager.Instance.World.GetWorldTime());
+        int minute = GameUtils.WorldTimeToMinutes(GameManager.Instance.World.GetWorldTime());
 
         // Look for a new home position buff. It bails early if it already has a home buff
-        FindHomePosition();
+       // FindHomePosition();
 
         // Check the size scale for the entity 
         AdjustSizeForStage();
 
         // Test Hooks
-        DisplayEntityStats();
-
         DisplayLog(this.ToString());
 
 
@@ -186,6 +228,9 @@ class EntityFarmingAnimal : EntityAlive
             }
             return;  // Do not process any subsequent rules. No milking, no harvesting; animals are too upset.
         }
+
+
+
         switch (hour)
         {
             case 6: // morning harvest time
@@ -245,7 +290,8 @@ class EntityFarmingAnimal : EntityAlive
                     if (entityPlayer.inventory.holdingItem.Name == strFoodItem)
                     {
                         DisplayLog("I am following " + entityPlayer.EntityName + " because they have yummy " + strFoodItem);
-                        SetInvestigatePosition(entityPlayer.GetBlockPosition().ToVector3(), 5);
+                        //SetInvestigatePosition(entityPlayer.GetBlockPosition().ToVector3(), 5);
+                        SetAttackTarget(entityPlayer, 10);
                     }
 
                 }
@@ -271,13 +317,16 @@ class EntityFarmingAnimal : EntityAlive
         this.Stats.UpdateStatsOverTime(0.05f);
         base.OnUpdateLive();
 
-        // Check if there's an animal event that needs to happen.
-        CheckAnimalEvent();
+
 
         // Quicker update to check if there's any entities around
         if (CheckDelay < Time.time)
         {
-            CheckForPlayersWithFood();
+
+          //  CheckForPlayersWithFood();
+
+            // Check if there's an animal event that needs to happen.
+            //   CheckAnimalEvent();
         }
 
 

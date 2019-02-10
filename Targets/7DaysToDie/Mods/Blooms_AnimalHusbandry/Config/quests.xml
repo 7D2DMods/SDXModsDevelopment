@@ -1,0 +1,35 @@
+﻿<configs>
+  <append xpath="/quests">
+    <quest id="farmingAnimal_Cow_Pregnancy">
+      <property name="name_key" value="farmingAnimal_Cow_Pregnancy" />
+      <property name="subtitle_key" value="farmingAnimal_Cow_Pregnancy" />
+      <property name="description_key" value="farmingAnimal_Cow_Pregnancy" />
+      <property name="icon" value="ui_game_symbol_zombie" />
+      <property name="repeatable" value="true" />
+      <property name="category_key" value="challenge" />
+      <property name="offer_key" value="farmingAnimal_Cow_Pregnancy" />
+      <property name="difficulty" value="veryeasy" />
+
+      <objective type="BuffSDX, Mods">
+        <property name="phase" value="1" />
+        <property name="buff" value="buffAnimalAdult" />
+      </objective>
+
+      <objective type="BuffSDX, Mods">
+        <property name="phase" value="2" />
+        <property name="buff" value="buffAnimalPrgenant" />
+      </objective>
+
+      <objective type="BuffSDX, Mods">
+        <property name="phase" value="3" />
+        <property name="buff" value="buffAnimalNewMother" />
+      </objective>
+      <action type="SpawnEntitySDX, Mods" id="animalFarmCow" value="1" phase="3" />
+      <!--reward type="Quest" id="farmingAnimal_Cow_Pregnancy" /-->
+
+    </quest>
+
+  </append>
+  
+  
+</configs>

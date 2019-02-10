@@ -11,5 +11,6 @@
 	
 	<dependencies>
 		<dependency>Hal's DLL Fixes</dependency>
+    <dependency>SDX_EAITasks</dependency>
 	</dependencies>
 </mod>

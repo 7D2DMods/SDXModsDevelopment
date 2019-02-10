@@ -1,0 +1,42 @@
+﻿<configs>
+  <!--
+  
+  ApproachAndFollowTargetSDX, Mods:
+  =================================
+  Add this AI Task to your entity to make it follow, if you match the requirements in param1. It will follow you with a range of a few blocks, 
+  but won't move to be on top of you.
+  
+  Param1 can be one of two things: a buff or an item name. If you have a buff that matches, the entity will follow you around. Likewise
+  if you are holding an item in your hand that matches it, it will follow you around too. This item can also be a block name.
+         
+    <property name="AITask-9" value="ApproachAndFollowTargetSDX, Mods" param1="buffBeastMaster"/>
+    <property name="AITask-9" value="ApproachAndFollowTargetSDX, Mods" param1="foodRawMeat"/>
+    <property name="AITask-9" value="ApproachAndFollowTargetSDX, Mods" param1="hayBaleBlock"/>
+  
+  
+  ApproachAndAttackTargetSDX, Mods:
+  =================================
+  Add this AI Task to your entity to replace it's vanilla ApproachAndAttackTarget. This behaves much like ApproachAndFollow, with the exception that
+  the entity will remain hostile to other things, just not you.
+  
+  <property name="AITask-4" value="ApproachAndAttackTargetSDX, Mods" param1="EntityAnimalStag,40,EntityPlayer,15,EntityZombie,30" param2="buffBeastMaster"/>
+  
+  
+  FollowOrdersSDX, Mods:
+  ======================
+  Add this AI Task, to be used with ApproachAndAttackTargetSDX or ApproachAndFollowTarget.  This is a test class that will eventually allow you to give orders
+  to your followers.
+  
+  <property name="AITask-8" value="FollowOrdersSDX, Mods" />
+  
+  
+  
+  SetNearestEntityAsTargetSDX, Mods:
+  ==================================
+  This is an AITarget task to replace the vanilla SetNearestEntityAsTarget. It's mean to stop the entity from attacking its master.
+  
+  	<property name="AITarget-3" value="SetNearestEntityAsTargetSDX, Mods" param1="EntityAnimalStag,0,EntityPlayer,0,EntityZombie,0" />
+
+  -->
+
+</configs>

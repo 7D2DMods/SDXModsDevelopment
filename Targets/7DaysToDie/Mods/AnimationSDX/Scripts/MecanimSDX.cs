@@ -188,11 +188,13 @@ class MecanimSDX : AvatarController
                 else if (num2 >= 1234f)
                 {
                     this.SetInt("MovementState", 4);
+                 
                 }
                 else
                 {
                     float num4 = num * num + num3 * num3;
-                    this.SetInt("MovementState", (num4 <= this.entity.moveSpeedAggro * this.entity.moveSpeedAggro) ? ((num4 <= this.entity.moveSpeed * this.entity.moveSpeed) ? ((num4 <= 0.001f) ? 0 : 1) : 2) : 3);
+                    int intMovementState = (num4 <= this.entity.moveSpeedAggro * this.entity.moveSpeedAggro) ? ((num4 <= this.entity.moveSpeed * this.entity.moveSpeed) ? ((num4 <= 0.001f) ? 0 : 1) : 2) : 3;
+                    this.SetInt("MovementState", intMovementState);
                 }
             }
 

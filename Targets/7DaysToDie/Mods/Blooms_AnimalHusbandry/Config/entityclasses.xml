@@ -53,15 +53,20 @@
 				<!--triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffAnimalStatusCheck"/-->
 			</effect_group>
 
-			<property name="AITask-1" value="Swim"/>
-			<property name="AITask-2" value="RunawayWhenHurt"/>
+      <property name="AITask-1" value="FollowOrdersSDX, Mods" />
+			<property name="AITask-2" value="ApproachAndFollowTargetSDX, Mods" param1="buffBeastMaster"/>
+      <property name="AITask-3" value="ApproachAndAttackTarget" param1="EntityNPC,0"/>
+
+
+      <!--property name="AITask-2" value="RunawayWhenHurt"/>
+      
 			<property name="AITask-3" value="Territorial"/>
-			<!-- Territorial lets them stay close to their home block -->
+			
 			<property name="AITask-4" value="RunawayFromEntity" param1="EntityZombie"/>
 			<property name="AITask-5" value="Look"/>
 			<property name="AITask-6" value="Wander"/>
       <property name="AITask-7" value="ApproachSpot" />
-      
+      -->
 			<!-- These are the items that the animal will swap back and forth, depending on whether it needs to eat or drink-->
 			<property name="EatItem" value="eatAnimalFood" />
 			<property name="DrinkItem" value="drinkAnimalWater" />
@@ -81,7 +86,8 @@
 
       <!-- This is the food value it likes best -->
 			<property name="FoodItem" value="hayBaleBlock"/>
-      
+      <property name="Incentive" value="buffCowLeader"/>
+
       <!-- This is the item you get from harvesting it -->
 			<property name="ProductItem" value="drinkJarMilk"/>
       
@@ -96,10 +102,12 @@
       
       <!-- This is the male entity you need to apply the pregnancy buff -->
       <property name="MaleEntity" value="animalFarmCowMale" />
+
+      <property name="AnimalType" value="Cow" />
       
       <!-- This is the pregnancy buff for the entity. Can control the duration -->
       <property name="PregnancyBuff" value="buffCowPregnancy" />
-      
+      <property name="PregnancyQuest" value="farmingAnimal_Cow_Pregnancy" />
       <!-- this is the buff that is applied if the animal is harvestable. Either apply it immediately, or
       apply it after the animal has reached adult hood -->
       <property name="HarvestableBuff" value="buffAnimalHarvestable" />
@@ -108,7 +116,7 @@
       <property name="AdultBuff" value="buffAnimalAdult" />
       
       <!-- Which stage to start off with -->
-      <property name="StartingGrowthBuff" value="buffAnimalAdult" />
+      <property name="StartingGrowthBuff" value="buffAnimalBaby" />
 		</entity_class>
 
     <entity_class name="animalFarmCowMale" extends="animalFarm">
@@ -166,4 +174,7 @@
       <property name="StartingGrowthBuff" value="buffAnimalBaby" />
     </entity_class>
 	</append>
+
+ 
+
 </configs>

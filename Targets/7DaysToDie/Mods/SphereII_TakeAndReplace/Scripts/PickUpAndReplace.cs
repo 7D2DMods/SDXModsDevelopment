@@ -80,7 +80,7 @@ public class BlockTakeAndReplace : Block
             {
                 // Bump the Use time by one.
                 global::ItemValue itemValue = _player.inventory.holdingItemItemValue;
-
+                
               
                 // Calculate the degradation value.
                 itemValue.UseTimes += (int)EffectManager.GetValue(PassiveEffects.DegradationPerUse, itemValue, 1f, _player, null, default(FastTags), true, true, true, true);

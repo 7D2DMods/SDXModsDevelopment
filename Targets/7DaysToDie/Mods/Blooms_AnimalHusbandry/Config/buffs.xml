@@ -108,6 +108,12 @@
       </effect_group>
     </buff>
 
+
+    <buff name="buffBeastMaster" >
+      <stack_type value="ignore"/>
+      <duration value="0"/>
+    </buff>
+    
     <!-- This is the buff to make the farm animals know that this is home-->
     <buff name="buffHomePoint" hidden="true">
       <stack_type value="ignore"/>
@@ -120,7 +126,7 @@
     </buff>
 
     <!-- Animal Pregnancy Buff only applies to Females -->
-    <buff name="buffCowPregnancy" hidden="true">
+    <buff name="buffPregnancyCow" hidden="true">
       <stack_type value="ignore"/>
       <duration value="1000"/>
       <requirement name="IsMale" inverts="true "/>
@@ -145,14 +151,11 @@
     <buff name="buffNewMother" hidden="true">
       <stack_type value="ignore"/>
       <duration value="0"/>
-      <requirement name="IsMale" inverts="true "/>
-      <requirement name="HasBuff" buff="buffAnimalAdult"/>
     </buff>
     
     <buff name="buffAnimalHarvestable" hidden="true">
       <stack_type value="ignore"/>
       <duration value="0"/>
-      <requirement name="IsMale" inverts="true "/>
     </buff>
 
     <!-- Controls the animal's age -->
@@ -160,7 +163,7 @@
       <stack_type value="ignore"/>
       <duration value="90"/>
       <effect_group>
-        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$sizeScale" operation="set" value="0.3"/>
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$sizeScale" operation="set" value="0.3"/>
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalJuvenile" />
       </effect_group>
     </buff>
@@ -168,40 +171,67 @@
       <stack_type value="ignore"/>
       <duration value="90"/>
       <effect_group>
-        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$sizeScale" operation="set" value="0.7"/>
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$sizeScale" operation="set" value="0.7"/>
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalAdult" />
       </effect_group>
     </buff>
     <buff name="buffAnimalAdult" hidden="true">
       <stack_type value="ignore"/>
       <duration value="90"/>
+      
+      <!-- If it's an adult, have a 25% chance of becoming pregnant, but only if its not currently pregnant and is not a new MOther.-->
       <effect_group>
-        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$sizeScale" operation="set" value="1"/>
+        <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="25"/>
+        <requirement name="NotHasBuff" buff="buffAnimalPrgenant"/>
+        <requirement name="NotHasBuff" buff="buffAnimalNewMother"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalPrgenant"/>
+      </effect_group>
 
-        <!-- Once the animal reaches adult hood, let it be harvestable.-->
-        <triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="buffAnimalHarvestable" />
-        
-        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalSenior" />
-        <!-- Remove the harvestable buff once its out of adult hood -->
-        <triggered_effect trigger="onSelfBuffFinish" action="RemoveBuff" target="self" buff="buffAnimalHarvestable" />
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$sizeScale" operation="set" value="1"/>
+        <triggered_effect trigger="onSelfBuffStart" action="PumpQuestSDX, Mods" target="self"  />
+
+        <!-- Progress through the aging to Senior -->
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalSenior" />   
       </effect_group>
     </buff>
+    
+    <buff name="buffAnimalPrgenant" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="70"/>
+      <effect_group>
+
+        <triggered_effect trigger="onSelfBuffStart" action="PumpQuestSDX, Mods" target="self"  />
+
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalNewMother" />
+
+        <!-- Remove the harvestable buff once its out of adult hood -->
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalHarvestable" />
+      </effect_group>
+    </buff>
+    <buff name="buffAnimalNewMother" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="50"/>
+      <effect_group>
+   
+      </effect_group>
+    </buff>
+    
     <buff name="buffAnimalSenior" hidden="true">
       <stack_type value="ignore"/>
-      <duration value="90"/>
+      <duration value="180"/>
       <effect_group>
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalDeath" />
       </effect_group>
     </buff>  
     <buff name="buffAnimalDeath" hidden="true">
       <stack_type value="ignore"/>
+      <damage_type value="disease"/>
       <duration value="0"/>
       <update_rate value="2"/>
 
       <effect_group>
-        <passive_effect name="StaminaChangeOT" operation="base_subtract" value="2" />
-        <passive_effect name="HealthMaxModifierOT" operation="base_subtract" value="1" />
-        <passive_effect name="StaminaMaxModifierOT" operation="base_subtract" value="1" />
+        <passive_effect name="HealthChangeOT" operation="base_subtract" value="1,500" duration="0,60"/>
       </effect_group>
     </buff>
 
