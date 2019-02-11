@@ -109,6 +109,7 @@
     </buff>
 
 
+    
     <buff name="buffBeastMaster" >
       <stack_type value="ignore"/>
       <duration value="0"/>
@@ -182,9 +183,9 @@
       <!-- If it's an adult, have a 25% chance of becoming pregnant, but only if its not currently pregnant and is not a new MOther.-->
       <effect_group>
         <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="25"/>
-        <requirement name="NotHasBuff" buff="buffAnimalPrgenant"/>
+        <requirement name="NotHasBuff" buff="buffAnimalPregenant"/>
         <requirement name="NotHasBuff" buff="buffAnimalNewMother"/>
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalPrgenant"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalPregenant"/>
       </effect_group>
 
       <effect_group>
@@ -192,17 +193,18 @@
         <triggered_effect trigger="onSelfBuffStart" action="PumpQuestSDX, Mods" target="self"  />
 
         <!-- Progress through the aging to Senior -->
-        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalSenior" />   
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalSenior" />
+        <triggered_effect trigger="onSelfBuffFinish" action="RemoveBuff" target="self" buff="buffAnimalHarvestable" />
+
       </effect_group>
     </buff>
     
-    <buff name="buffAnimalPrgenant" hidden="true">
+    <buff name="buffAnimalPregenant" hidden="true">
       <stack_type value="ignore"/>
       <duration value="70"/>
       <effect_group>
 
         <triggered_effect trigger="onSelfBuffStart" action="PumpQuestSDX, Mods" target="self"  />
-
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalNewMother" />
 
         <!-- Remove the harvestable buff once its out of adult hood -->

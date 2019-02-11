@@ -1340,6 +1340,8 @@ A single player on default diff can have a GS of up to 480 without perks.
 	<item name="leatherDuster"/>
 	<item name="leatherDusterBlack" prob="0.2"/>
 	<item name="leatherPoncho" prob="1"/>
+	<item name="gothBootsBlack" prob=".3"/>
+	<item name="gothicPants" prob=".3"/>
 </lootgroup>
 
 <lootgroup name="warmClothes">
@@ -2636,7 +2638,7 @@ if the loot entry for mods is empty then it will use the lootgroup mods and mod_
 	<item group="modAllT1" loot_prob_template="probTemplate1.0"/>
 	<item group="modAllT2" loot_prob_template="probTemplate0.75"/>
 	<item group="modAllT3" loot_prob_template="probTemplate0.5"/>
-	<item group="modAllT3" loot_prob_template="vehicleParts"/>
+	<item group="vehicleParts" loot_prob_template="probTemplate0.5"/>
 </lootcontainer>
 
 <!-- cntFetchQuestSatchel  -->

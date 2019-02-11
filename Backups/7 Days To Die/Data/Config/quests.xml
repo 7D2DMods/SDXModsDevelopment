@@ -226,7 +226,7 @@
 		<objective type="BlockPlace" id="campfire" value="1" phase="2" />
 
 
-		<reward type="Quest" id="quest_whiteRiverCitizen1" stage="aftercomplete">
+		<reward type="Quest" id="quest_whiteRiverCitizen1">
 			<property name="chainquest" value="false" />
 		</reward>
 		<reward type="SkillPoints" value="4" chainreward="true" />
@@ -244,7 +244,9 @@
 		<property name="difficulty" value="medium" />
 		<property name="shareable" value="false" />
 
-		<action type="ShowTip" value="quest_WhiteRiverCitizen1_description" />
+		<action type="ShowTip" value="quest_WhiteRiverCitizen1_description">
+			<property name="delay" value="3" />
+		</action>
 		<objective type="Goto" id="trader" value="5" phase="1" />
 
 		<objective type="InteractWithNPC">
@@ -2705,7 +2707,7 @@
 		<reward type="LootItem" id="questSchematics" ischosen="true" value="2" />
 		<reward type="LootItem" id="questMods" ischosen="true" value="2" />
 	</quest>
-
+	
 	<quest id="test_turnin">
 		<property name="name_key" value="Turn In Quest" />
 		<property name="subtitle_key" value="Talk to Trader" />

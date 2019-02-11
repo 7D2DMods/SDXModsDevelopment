@@ -1100,27 +1100,17 @@ Textures we might want for (terrain) imposters
 <paint id="13" name="txName_Gravestone1">    Do we want this paintable?
 	<property name="TextureId" value="24"/>
 
-
-<paint id="30" name="txName_Black_TV_Screen">  metallic grey
-	<property name="TextureId" value="62"/>
-
 <paint id="14" name="txName_Pillcase">     makes no sense without BEING this block
 	<property name="TextureId" value="25"/>
 
-<paint id="75" name="txName_Fridge_stainless"> makes no sense without BEING this block
+*<paint id="75" name="txName_Fridge_stainless"> makes no sense without BEING this block
 	<property name="TextureId" value="265"/>
 
-<paint id="76" name="txName_Fridge_stainless_bottom"> makes no sense without BEING this block
+*<paint id="76" name="txName_Fridge_stainless_bottom"> makes no sense without BEING this block
 	<property name="TextureId" value="266"/>
 
 <paint id="105" name="txName_Wall_oven">  makes no sense without BEING this block
 	<property name="TextureId" value="341"/>
-
-<paint id="101" name="txName_Painting01">   Lake House / Bearded Guy
-	<property name="TextureId" value="334"/>
-
-<paint id="103" name="txName_Painting02">   Tree
-	<property name="TextureId" value="336"/>
 
 <paint id="122" name="txName_Window_plug04"> Should this even be a unique texture?
 	<property name="TextureId" value="384"/>
@@ -1128,9 +1118,6 @@ Textures we might want for (terrain) imposters
 
 <paint id="54" name="txName_Beercooler_sides"> solid black
 	<property name="TextureId" value="191"/>
-<paint id="102" name="txName_Painting01_trim"> solid black (do we need 2?)
-	<property name="TextureId" value="335"/>
-
 
 <paint id="122" name="txName_Window_plug04">
 	<property name="TextureId" value="384"/>

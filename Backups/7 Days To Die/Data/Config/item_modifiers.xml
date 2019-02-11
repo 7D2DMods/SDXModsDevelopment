@@ -1148,7 +1148,7 @@ Use 762 ammo in smaller caliber guns. 98% chance for the gun to explode on firin
 		</effect_group>
 	</item_modifier>
 
-	<item_modifier name="modArmorMuffledConnectors" installable_tags="armor" modifier_tags="movement" type="attachment" rarity="0.5">
+	<item_modifier name="modArmorMuffledConnectors" installable_tags="armor" modifier_tags="stealth" type="attachment" rarity="0.5">
 		<property name="DisplayType" value="modNoiseReduction"/>
 		<property name="Material" value="Msteel"/>
 		<property name="Stacknumber" value="1"/>
@@ -1159,7 +1159,7 @@ Use 762 ammo in smaller caliber guns. 98% chance for the gun to explode on firin
 		</effect_group>
 	</item_modifier>
 
-	<item_modifier name="modArmorAdvancedMuffledConnectors" installable_tags="armor" modifier_tags="movement" type="attachment" rarity="0.5">
+	<item_modifier name="modArmorAdvancedMuffledConnectors" installable_tags="armor" modifier_tags="stealth" type="attachment" rarity="0.5">
 		<property name="DisplayType" value="modNoiseReduction"/>
 		<property name="Material" value="Msteel"/>
 		<property name="Stacknumber" value="1"/>

@@ -458,12 +458,12 @@
 		</grid>
 	</window>
 	
-	<window name="newContinueGame" anchor="CenterCenter" pos="-600,375" width="1165" height="780" controller="NewContinueGame" cursor_area="true">
+	<window name="newContinueGame" anchor="CenterCenter" pos="-600,375" width="1185" height="780" controller="NewContinueGame" cursor_area="true">
 		<panel name="header" pos="0,0" height="43" depth="1" backgroundspritename="ui_game_panel_header" bordercolor="[black]" borderthickness="3" >
 			<label style="header.name" name="windowheader" pos="6,-6" width="550" text_key="xuiNewContinueGame" />
 		</panel>
 		
-		<rect pos="0,-50" height="650" width="580">
+		<rect pos="0,-50" height="650" width="590">
 			<rect name="newContent" visible="{isnewgame}">
 				<sprite depth="10" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" globalopacity="true" globalopacitymod="0.9" />
 				<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
@@ -516,7 +516,7 @@
 			</rect>
 	
 			<rect name="continueContent" visible="{iscontinuegame}">
-				<rect name="saves" pos="0,0" height="650" width="580" controller="SavegamesList" matching_version_color="60,255,60,128" compatible_version_color="255,216,0" incompatible_version_color="255,0,0" clear_selection_on_open="false">
+				<rect name="saves" pos="0,0" height="650" width="590" controller="SavegamesList" matching_version_color="60,255,60,128" compatible_version_color="255,216,0" incompatible_version_color="255,0,0" clear_selection_on_open="false">
 					<sprite depth="8" name="border" sprite="menu_empty3px" color="[black]" type="sliced" fillcenter="false" />
 					<sprite depth="0" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 
@@ -536,8 +536,8 @@
 						</panel>
 					</rect>
 					
-					<grid name="list" depth="2" rows="9" cols="1" pos="0,-44" height="490" cell_width="600" cell_height="61" repeat_content="true" arrangement="vertical" >
-						<savegames_list_entry width="580" height="61" />
+					<grid name="list" depth="2" rows="9" cols="1" pos="0,-44" height="490" cell_width="610" cell_height="61" repeat_content="true" arrangement="vertical" >
+						<savegames_list_entry width="590" height="61" />
 					</grid>
 
 					<simplebutton name="btnDeleteSave" pos="290,-610" width="200" height="30" font_size="26" caption_key="btnDelete" pivot="center" />
@@ -545,7 +545,7 @@
 			</rect>
 		</rect>
 		
-		<rect name="tabs" controller="TabSelector" pos="585,-50" width="580" height="650">
+		<rect name="tabs" controller="TabSelector" pos="595,-50" width="590" height="650">
 			<panel name="disableOptions" depth="100" createuipanel="true" on_hover="true" disableautobackground="true">
 				<sprite depth="0" name="backgroundMain" sprite="menu_empty" color="0,0,0,100" type="sliced" fillcenter="true" />
 			</panel>
@@ -564,10 +564,10 @@
 			</rect>
 			
 			<rect name="tabsContents" depth="2" pos="0,-37" height="611">
-				<sprite depth="0" pos="2,0" width="576" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
+				<sprite depth="0" pos="2,0" width="586" name="backgroundMain" sprite="menu_empty3px" color="[mediumGrey]" type="sliced" fillcenter="true" />
 
 				<rect tab_key="General">
-					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+					<grid pos="6,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 						<gameoption name="ServerVisibility" title="goServerVisibility" value_wrap="false" value_type="int" values="" display_names="goServerVisibility0,goServerVisibility1,goServerVisibility2" value_localization_prefix="" />
 						<gameoption name="ServerPassword" title="goPassword" value_wrap="false" value_type="string" values="" display_names="" value_localization_prefix="" is_textinput="true" password_field="true" />
 						<gameoption name="ServerMaxPlayerCount" title="goMaxPlayers" value_wrap="false" value_type="int" values="1, 2, 4, 8, 16" display_names="" value_localization_prefix="goPlayer" />
@@ -575,22 +575,27 @@
 				</rect>
 
 				<rect tab_key="Basic">
-					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+					<grid pos="6,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 						<gameoption name="GameDifficulty" title="goDifficulty" value_wrap="false" value_type="int" values="" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6" value_localization_prefix="" />
 						<gameoption name="DayNightLength" title="goDayLength" value_wrap="false" value_type="int" values="10, 20, 30, 40, 50, 60, 90, 120" display_names="" value_localization_prefix="goMinute" />
 						<gameoption name="DayLightLength" title="goDayLightLength" value_wrap="false" value_type="int" values="12, 14, 16, 18" display_names="" value_localization_prefix="goDayLightLengthValue" />
-						<!--<gameoption name="ZombiesRun" title="goZombiesRun" value_wrap="false" value_type="int" values="" display_names="goZRDefault,goZRNever,goZRAlways" value_localization_prefix="" />-->
+						<gameoption name="BloodMoonFrequency" title="goBloodMoonFrequency" value_wrap="false" value_type="int" values="0, 1, 3, 7, 14, 30" display_names="goDisabled" value_localization_prefix="goDay" />
+						<gameoption name="BloodMoonRange" title="goBloodMoonRange" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 7, 10, 14, 20" display_names="" value_localization_prefix="goDay" />
 						<gameoption name="ZombieMove" title="goZombieMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
 						<gameoption name="ZombieMoveNight" title="goZombieMoveNight" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
 						<gameoption name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
 						<gameoption name="ZombieBMMove" title="goZombieBMMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
 						<gameoption name="PersistentPlayerProfiles" title="goPersistentCharacters" value_wrap="false" value_type="bool" values="" display_names="" value_localization_prefix="" />
+						<gameoption name="XPMultiplier" title="goXPMultiplier" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goXPMultiplierValue" />
 					</grid>
 				</rect>
 
 				<rect tab_key="Advanced">
-					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
-						<gameoption name="BlockDurabilityModifier" title="goBlockDurability" value_wrap="false" value_type="int" values="25, 50, 100, 200" display_names="" value_localization_prefix="goBlockDurabilityValue" />
+					<grid pos="6,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+						<!--<gameoption name="BlockDurabilityModifier" title="goBlockDurability" value_wrap="false" value_type="int" values="25, 50, 100, 200" display_names="" value_localization_prefix="goBlockDurabilityValue" />-->
+						<gameoption name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
+						<gameoption name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
+						<gameoption name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
 						<gameoption name="LootAbundance" title="goLootAbundance" value_wrap="false" value_type="int" values="25, 50, 75, 100, 150, 200" display_names="" value_localization_prefix="goLootAbundanceValue" />
 						<gameoption name="LootRespawnDays" title="goLootRespawnDays" value_wrap="false" value_type="int" values="-1, 5, 10, 15, 20, 30, 40, 50" display_names="goDisabled" value_localization_prefix="goLootRespawnDaysValue" />
 						<gameoption name="DropOnDeath" title="goDropOnDeath" value_wrap="false" value_type="int" values="" display_names="goAll,goToolbelt,goBackpack,goDeleteAll" value_localization_prefix="" />
@@ -604,7 +609,7 @@
 				</rect>
 				
 				<rect tab_key="Multiplayer">
-					<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
+					<grid pos="6,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
 						<gameoption name="PlayerKillingMode" title="goPlayerKillingMode" value_wrap="false" value_type="int" values="" display_names="goPlayerKillingModeNoKilling,goPlayerKillingModeKillAlliesOnly,goPlayerKillingModeKillStrangersOnly,goPlayerKillingModeKillEveryone" value_localization_prefix="" />
 						<gameoption name="LandClaimSize" title="goLandClaimSize" value_wrap="false" value_type="int" values="21, 31, 41, 51, 71" display_names="" value_localization_prefix="goLandClaimSizeValue" />
 						<gameoption name="LandClaimDeadZone" title="goLandClaimDeadZone" value_wrap="false" value_type="int" values="0, 5, 10, 15, 20, 30, 40, 50" display_names="goLandClaimNoDeadzone" value_localization_prefix="goLandClaimDeadZoneValue" />
@@ -612,7 +617,7 @@
 						<gameoption name="LandClaimDecayMode" title="goLandClaimDecayMode" value_wrap="false" value_type="int" values="" display_names="goLandClaimDecayModeSlow,goLandClaimDecayModeFast,goLandClaimDecayModeNone" value_localization_prefix="" />
 						<gameoption name="LandClaimOnlineDurabilityModifier" title="goLandClaimOnlineDurabilityModifier" value_wrap="false" value_type="int" values="0, 1, 2, 4, 8, 16, 32, 64, 128, 256" display_names="goInfinite" value_localization_prefix="goLandClaimOnlineDurabilityModifierValue" />
 						<gameoption name="LandClaimOfflineDurabilityModifier" title="goLandClaimOfflineDurabilityModifier" value_wrap="false" value_type="int" values="0, 1, 2, 4, 8, 16, 32, 64, 128, 256" display_names="goInfinite" value_localization_prefix="goLandClaimOfflineDurabilityModifierValue" />
-						<gameoption name="PartySharedKillRange" title="goPartySharedKillRange" value_wrap="false" value_type="int" values="0, 100, 500, 1000, 5000, 10000" display_names="" value_localization_prefix="goPartySharedKillRangeValue" />
+						<gameoption name="PartySharedKillRange" title="goPartySharedKillRange" value_wrap="false" value_type="int" values="0, 100, 500, 1000, 5000, 10000" display_names="goDisabled" value_localization_prefix="goPartySharedKillRangeValue" />
 						<gameoption name="ServerPort" title="goPort" value_wrap="false" value_type="int" values="" display_names="" value_localization_prefix="" is_textinput="true" />
 
 						<gameoption name="DayCount" title="goDayCount" value_wrap="false" value_type="int" values="0, 1, 3, 5, 7, 9" display_names="goUnlimited" value_localization_prefix="goDay" />
@@ -769,7 +774,6 @@
 							<browsergameoptioncombined name="GameDifficulty" title="goDifficulty" value_wrap="false" values="" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6" value_localization_prefix="" allow_custom="false" />
 							<browsergameoptioncombined name="DayNightLength" title="goDayLength" value_wrap="false" values="10, 20, 30, 40, 50, 60, 90, 120" display_names="" value_localization_prefix="goMinute" />
 							<browsergameoptioncombined name="DayLightLength" title="goDayLightLength" value_wrap="false" values="12, 14, 16, 18" display_names="" value_localization_prefix="goDayLightLengthValue" />
-							<!--<browsergameoptioncombined name="ZombiesRun" title="goZombiesRun" value_wrap="false" values="" display_names="goZRDefault,goZRNever,goZRAlways" value_localization_prefix="" allow_custom="false" />-->
 							<browsergameoptioncombined name="ZombieMove" title="goZombieMove" value_wrap="false" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false" />
 							<browsergameoptioncombined name="ZombieMoveNight" title="goZombieMoveNight" value_wrap="false" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false" />
 							<browsergameoptioncombined name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" allow_custom="false" />
@@ -777,12 +781,15 @@
 							<!--<gameoption name="PersistentPlayerProfiles" title="goPersistentCharacters" value_wrap="false" values="" display_names="" value_localization_prefix="" />-->
 							<browsergameoptioncombined name="MaxSpawnedZombies" title="goMaxSpawnedZombies" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="true" force_custom="true" />
 							<browsergameoptioncombined name="MaxSpawnedAnimals" title="goMaxSpawnedAnimals" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="true" force_custom="true" />
+							<browsergameoptioncombined name="XPMultiplier" title="goXPMultiplier" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goXPMultiplierValue" />
 						</grid>
 					</rect>
 
 					<rect tab_key="Advanced">
 						<grid pos="8,-40" rows="13" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
-							<browsergameoptioncombined name="BlockDurabilityModifier" title="goBlockDurability" value_wrap="false" values="25, 50, 100, 200" display_names="" value_localization_prefix="goBlockDurabilityValue" />
+							<browsergameoptioncombined name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<browsergameoptioncombined name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<browsergameoptioncombined name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
 							<browsergameoptioncombined name="LootAbundance" title="goLootAbundance" value_wrap="false" values="25, 50, 75, 100, 150, 200" display_names="" value_localization_prefix="goLootAbundanceValue" />
 							<browsergameoptioncombined name="LootRespawnDays" title="goLootRespawnDays" value_wrap="false" values="-1, 5, 10, 15, 20, 30, 40, 50" display_names="goDisabled" value_localization_prefix="goLootRespawnDaysValue" />
 							<browsergameoptioncombined name="DropOnDeath" title="goDropOnDeath" value_wrap="false" values="" display_names="goAll,goToolbelt,goBackpack,goDeleteAll" value_localization_prefix="" allow_custom="false" />
@@ -804,7 +811,7 @@
 							<browsergameoptioncombined name="LandClaimDecayMode" title="goLandClaimDecayMode" value_wrap="false" values="" display_names="goLandClaimDecayModeSlow,goLandClaimDecayModeFast,goLandClaimDecayModeNone" value_localization_prefix="" allow_custom="false" />
 							<browsergameoptioncombined name="LandClaimOnlineDurabilityModifier" title="goLandClaimOnlineDurabilityModifier" value_wrap="false" values="0, 1, 2, 4, 8, 16, 32, 64, 128, 256" display_names="goInfinite" value_localization_prefix="goLandClaimOnlineDurabilityModifierValue" />
 							<browsergameoptioncombined name="LandClaimOfflineDurabilityModifier" title="goLandClaimOfflineDurabilityModifier" value_wrap="false" values="0, 1, 2, 4, 8, 16, 32, 64, 128, 256" display_names="goInfinite" value_localization_prefix="goLandClaimOfflineDurabilityModifierValue" />
-							<browsergameoptioncombined name="PartySharedKillRange" title="goPartySharedKillRange" value_wrap="false" values="0, 100, 500, 1000, 5000, 10000" value_localization_prefix="goPartySharedKillRangeValue" />
+							<browsergameoptioncombined name="PartySharedKillRange" title="goPartySharedKillRange" value_wrap="false" values="0, 100, 500, 1000, 5000, 10000" display_names="goDisabled" value_localization_prefix="goPartySharedKillRangeValue" />
 							<browsergameoptioncombined name="ShowFriendPlayerOnMap" title="goShowFriendPlayerOnMap" value_wrap="false" values="" display_names="" value_localization_prefix="" allow_custom="false" />
 						</grid>
 					</rect>
@@ -872,7 +879,6 @@
 							<browsergameoptioninfo name="GameDifficulty" title="goDifficulty" display_names="goDifficulty1,goDifficulty2,goDifficulty3,goDifficulty4,goDifficulty5,goDifficulty6" />
 							<browsergameoptioninfo name="DayNightLength" title="goDayLength" value_localization_prefix="goMinute" />
 							<browsergameoptioninfo name="DayLightLength" title="goDayLightLength" value_localization_prefix="goDayLightLengthValue" />
-							<!-- <browsergameoptioninfo name="ZombiesRun" title="goZombiesRun" display_names="goZRDefault,goZRNever,goZRAlways" /> -->
 							<browsergameoptioninfo name="ZombieMove" title="goZombieMove" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" />
 							<browsergameoptioninfo name="ZombieMoveNight" title="goZombieMoveNight" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" />
 							<browsergameoptioninfo name="ZombieFeralMove" title="goZombieFeralMove" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" />
@@ -880,12 +886,15 @@
 							<!--<browsergameoptioninfo name="PersistentPlayerProfiles" title="goPersistentCharacters" />-->
 							<browsergameoptioninfo name="MaxSpawnedZombies" title="goMaxSpawnedZombies" />
 							<browsergameoptioninfo name="MaxSpawnedAnimals" title="goMaxSpawnedAnimals" />
+							<browsergameoptioninfo name="XPMultiplier" title="goXPMultiplier" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goXPMultiplierValue" />
 						</grid>
 					</rect>
 
 					<rect tab_key="Advanced">
 						<grid pos="8,-40" rows="15" cell_width="525" cell_height="45" repeat_content="false" arrangement="vertical" >
-							<browsergameoptioninfo name="BlockDurabilityModifier" title="goBlockDurability" value_localization_prefix="goBlockDurabilityValue" />
+							<browsergameoptioninfo name="BlockDamagePlayer" title="goBlockDamagePlayer" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<browsergameoptioninfo name="BlockDamageAI" title="goBlockDamageAI" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
+							<browsergameoptioninfo name="BlockDamageAIBM" title="goBlockDamageAIBM" value_wrap="false" value_type="int" values="25, 50, 75, 100, 125, 150, 175, 200, 300" display_names="" value_localization_prefix="goBlockDamageValue" />
 							<browsergameoptioninfo name="LootAbundance" title="goLootAbundance" value_localization_prefix="goLootAbundanceValue" />
 							<browsergameoptioninfo name="LootRespawnDays" title="goLootRespawnDays" display_names="-1=goDisabled" value_localization_prefix="goLootRespawnDaysValue" />
 							<browsergameoptioninfo name="DropOnDeath" title="goDropOnDeath" display_names="goAll,goToolbelt,goBackpack,goDeleteAll" value_localization_prefix="" />
@@ -907,7 +916,7 @@
 							<browsergameoptioninfo name="LandClaimDecayMode" title="goLandClaimDecayMode" display_names="goLandClaimDecayModeSlow,goLandClaimDecayModeFast,goLandClaimDecayModeNone" />
 							<browsergameoptioninfo name="LandClaimOnlineDurabilityModifier" title="goLandClaimOnlineDurabilityModifier" display_names="goInfinite" value_localization_prefix="goLandClaimOnlineDurabilityModifierValue" />
 							<browsergameoptioninfo name="LandClaimOfflineDurabilityModifier" title="goLandClaimOfflineDurabilityModifier" display_names="goInfinite" value_localization_prefix="goLandClaimOfflineDurabilityModifierValue" />
-							<browsergameoptioninfo name="PartySharedKillRange" title="goPartySharedKillRange" value_localization_prefix="goPartySharedKillRangeValue" />
+							<browsergameoptioninfo name="PartySharedKillRange" title="goPartySharedKillRange" display_names="goDisabled" value_localization_prefix="goPartySharedKillRangeValue" />
 							<browsergameoptioninfo name="ShowFriendPlayerOnMap" title="goShowFriendPlayerOnMap" />
 						</grid>
 					</rect>
@@ -1053,7 +1062,7 @@
 				<rect tab_key="xuiOptionsVideoQuality">
 					<videooption pos="8,-40" name="QualityPreset" type="ComboBoxList&lt;System.String&gt;" values="Low,Medium,High,Custom" value_wrap="false" />
 
-					<grid pos="8,-120" rows="9" cell_width="600" cell_height="45" repeat_content="false" arrangement="vertical" >
+					<grid pos="8,-120" rows="10" cell_width="600" cell_height="45" repeat_content="false" arrangement="vertical" >
 						<videooption name="AntiAliasing" type="ComboBoxBool" />
 
 						<videooption name="TextureQuality" type="ComboBoxList&lt;System.String&gt;" values="Full,Half,Quarter,Eighth" value_wrap="false" reverse_list="true" />
@@ -1073,6 +1082,7 @@
 						<videooption name="ViewDistance" type="ComboBoxList&lt;System.String&gt;" values="Low,Medium,High" value_wrap="false" />
 
 						<!--videooption name="FieldOfView" type="ComboBoxInt" value_increment="2" value_wrap="false" /-->
+						<rect />
 
 						<videooption name="LODDistance" type="ComboBoxFloat" value_increment="0.05" value_wrap="false" format_string="0%" />
 
@@ -1090,6 +1100,10 @@
 						<videooption name="DepthOfField" type="ComboBoxBool" />
 
 						<videooption name="SunShafts" type="ComboBoxBool" />
+						
+						<rect />
+
+						<videooption name="StreamingMipmapsEnabled" type="ComboBoxBool" />
 						
 					</grid>
 				</rect>

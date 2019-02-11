@@ -2,7 +2,7 @@
 	<append xpath="/entity_classes">
 		<entity_class name="animalFarm" extends="animalStag">
 			<property name="Tags" value="animal,Farmanimal"/>
-			<property name="Class" value="EntityFarmingAnimal, Mods" />
+			<property name="Class" value="EntityAliveSDX, Mods" />
 			<property name="AvatarController" value="MecanimSDX, Mods" />
 			<property name="RootMotion" value="false" />
 			<property name="Mass" value="90"/>
@@ -56,6 +56,9 @@
       <property name="AITask-1" value="FollowOrdersSDX, Mods" />
 			<property name="AITask-2" value="ApproachAndFollowTargetSDX, Mods" param1="buffBeastMaster"/>
       <property name="AITask-3" value="ApproachAndAttackTarget" param1="EntityNPC,0"/>
+      
+      <!-- To find the Home Block, you need a block, plus a buff to keep it close by -->
+      <property name="AITask-3" value="FindHomeBlockSDX, Mods" param1="cntCowHomeBlock" param2="buffAnimalStatusCheck"/>
 
 
       <!--property name="AITask-2" value="RunawayWhenHurt"/>
@@ -74,6 +77,7 @@
 		</entity_class>
 
 		<entity_class name="animalFarmCow" extends="animalFarm">
+      <property name="Class" value="EntityAliveFarmingAnimal, Mods" />
 			<property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
 			<drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
 			<drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="20"/>
@@ -81,6 +85,9 @@
 			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="3"/>
 			<drop event="Harvest" name="resourceFemur" tag="butcherHarvest" count="3"/>
 			<drop event="Harvest" name="resourceFemur" tag="allToolsHarvest" count="1"/>
+
+      <property name="StartingQuests" value="farmingAnimal_Cow_Pregnancy" />
+      <property name="LootListAlive" value="62"/>
 
       <property name="RootMotion" value="false" />
 

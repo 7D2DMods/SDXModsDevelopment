@@ -2291,6 +2291,7 @@
 	<property name="Faction" value="animals"/>
 	<property name="PhysicsBody" value="bear"/>
 
+	<property name="AIGroupCircle" value="1"/>
 	<property name="AIPathCostScale" value=".4, .6"/>
 	<property name="AITask-1" value="Swim"/>
 	<property name="AITask-2" value="BreakBlock"/>
@@ -3001,7 +3002,7 @@
 	<property name="Parent" value="SupplyCrates"/>
 	<property name="Faction" value="none"/>
 	<property name="Weight" value="100"/>
-	<property name="SurfaceCategory" value="resourceWood"/>
+	<property name="SurfaceCategory" value="wood"/>
 	<property name="ParticleOnDeath" value="supply_crate_gib_Prefab"/>
 	<effect_group name="Base Effects">
 		<passive_effect name="HealthMax" operation="base_set" value="200"/>
@@ -3021,7 +3022,7 @@
 	<property name="MaxHealth" value="200"/>
 	<property name="Weight" value="100"/>
 	<property name="HasRagdoll" value="false"/>
-	<property name="SurfaceCategory" value="resourceWood"/>
+	<property name="SurfaceCategory" value="wood"/>
 	<property name="ParticleOnDeath" value="supply_crate_gib_Prefab"/>
 	<property name="LootListAlive" value="34"/>
 	<property name="IsEnemyEntity" value="false"/>

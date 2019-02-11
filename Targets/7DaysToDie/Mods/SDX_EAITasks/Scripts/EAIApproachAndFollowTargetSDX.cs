@@ -31,11 +31,12 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         this.executeDelay = 0.1f;
     }
 
-    public void DisplayLog(string strMessage)
+    private bool blDisplayLog = true;
+    public void DisplayLog(String strMessage)
     {
-        Debug.Log(this.GetType().Name + ": " + strMessage);
+        if (blDisplayLog)
+            Debug.Log(this.theEntity.EntityName + ": " + strMessage);
     }
-
     public override void SetParams1(string _par1)
     {
         this.strControlMechanism = _par1;

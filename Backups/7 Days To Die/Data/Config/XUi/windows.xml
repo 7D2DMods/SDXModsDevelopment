@@ -172,7 +172,7 @@
 
 		</texture>
 		<sprite pos="240,-60" sprite="" color="255,255,255,255" globalopacitymod="1.8">
-			<label depth="2" width="300" height="30" text="{daytitle}: {day|always}  {timetitle}: {time|always}" font_size="28" pivot="center" effect="outline" upper_case="true" justify="center"/>
+			<label depth="2" width="300" height="30" text="{daytitle}: [{daycolor|always}]{day|always}[-] {timetitle}: {time|always}" font_size="28" pivot="center" effect="outline" upper_case="true" justify="center"/>
 		</sprite>
 	</window>
 

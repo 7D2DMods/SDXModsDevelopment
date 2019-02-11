@@ -82,11 +82,11 @@
 	</controloption>
 
 	<gameoption>
-		<rect name="${name}" pos="${pos|0,0}" width="560" height="32" is_textinput="${is_textinput|false}" value_type="${value_type}" controller="GamePrefSelector"
+		<rect name="${name}" pos="${pos|0,0}" width="570" height="32" is_textinput="${is_textinput|false}" value_type="${value_type}" controller="GamePrefSelector"
 			values="${values|}" display_names="${display_names|}" value_localization_prefix="${value_localization_prefix|}">
-			<label depth="4" pos="0,0" width="250" height="30" style="hover" tooltip_key="${title}Desc" text_key="${title}" font_size="28" color="[white]" justify="right" pivot="topleft" />
-			<combobox name="ControlCombo" type="ComboBoxList&lt;XUiC_GamePrefSelector.GameOptionValue&gt;" value_min="${value_min|@DEF}" value_max="${value_max|@DEF}" value_wrap="${value_wrap|@DEF}" value_increment="${value_increment|@DEF}" values="${values|@DEF}" reverse_list="${reverse_list|@DEF}" localization_prefix="${localization_prefix|}" format_string="${format_string|}" pos="255,0" width="300" height="32" />
-			<textfield name="ControlText" depth="5" pos="289,0" width="${Defined(password_field) and password_field ? 232+32+10 : 232|232}" height="32" pivot="topLeft" password_field="${password_field|false}" />
+			<label name="ControlLabel" depth="4" pos="0,0" width="262" height="30" style="hover" tooltip_key="${title}Desc" text_key="${title}" font_size="28" color="[white]" justify="right" pivot="topleft" />
+			<combobox name="ControlCombo" type="ComboBoxList&lt;XUiC_GamePrefSelector.GameOptionValue&gt;" value_min="${value_min|@DEF}" value_max="${value_max|@DEF}" value_wrap="${value_wrap|@DEF}" value_increment="${value_increment|@DEF}" values="${values|@DEF}" reverse_list="${reverse_list|@DEF}" localization_prefix="${localization_prefix|}" format_string="${format_string|}" pos="269,0" width="300" height="32" />
+			<textfield name="ControlText" depth="5" pos="303,0" width="${Defined(password_field) and password_field ? 232+32+10 : 232|232}" height="32" pivot="topLeft" password_field="${password_field|false}" />
 		</rect>
 	</gameoption>
 
@@ -858,7 +858,7 @@
 			<label depth="4" name="World" pos="${width-215},-2" width="100" height="32" text="{world}" font_size="26" justify="left" pivot="topleft" />
 			<!--<label depth="4" name="Difficulty" pos="${width-140},-2" width="30" height="32" text="{difficulty}" font_size="26" justify="right" pivot="topleft" visible="{hasentry}" />-->
 			<label depth="4" name="Players" pos="${width-105},-2" width="50" height="32" text="{playersonline}/{playersmax}" font_size="26" justify="right" pivot="topleft" visible="{hasentry}" />
-			<label depth="4" name="Ping" pos="${width-50},-2" width="40" height="32" text="{ping}" font_size="26" justify="right" pivot="topleft" />
+			<label depth="4" name="Ping" pos="${width-50},-2" width="40" height="32" text="{ping}" color="{pingcolor}" font_size="26" justify="right" pivot="topleft" />
 			<!--
 			<label depth="4" name="Version" pos="${width-10},-2" on_hover="true" color="{versioncolor}" width="80" height="32" text="{version}" tooltip="{versiontooltip}" font_size="26" justify="right" pivot="topright" />
 			<label depth="4" name="World" pos="8,${-height+2}" color="255,255,255,128" width="${width-200}" height="32" text="{worldname} - {mode}" font_size="26" justify="left" pivot="bottomleft" visible="{hasentry}" />
