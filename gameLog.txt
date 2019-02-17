@@ -2,62 +2,68 @@ Initialize engine version: 2018.2.0f2 (787658998520)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
+    Renderer: AMD Radeon (TM) R7 M360 (ID=0x6900)
     Vendor:   
-    VRAM:     2988 MB
-    Driver:   24.21.14.1170
+    VRAM:     2039 MB
+    Driver:   24.20.11016.4
 Begin MonoManager ReloadAssembly
-- Completed reload, in  0.069 seconds
+- Completed reload, in  0.219 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.332100 ms
-2019-02-10T19:56:40 0.002 INF [Steamworks.NET] SteamAPI_Init() ok
-2019-02-10T19:56:40 0.031 INF NET: InitCallbacks
-2019-02-10T19:56:40 0.037 INF Texture quality is set to 1
-2019-02-10T19:56:40 0.038 INF Precaching...
-2019-02-10T19:56:40 0.042 INF Precaching file: 7DaysToDie_Data/resources.assets
-2019-02-10T19:56:40 0.102 INF [EAC] Not loading, not started from launcher
-2019-02-10T19:56:41 1.571 INF Precaching file: 7DaysToDie_Data/sharedassets1.assets
-2019-02-10T19:56:41 1.572 INF Precaching file: Data/Bundles/blocktextureatlases
-2019-02-10T19:56:42 2.611 INF Precaching file: Data/Bundles/terraintextures
-2019-02-10T19:56:43 2.715 INF Precaching done
-2019-02-10T19:56:46 6.419 INF Loading main scene
+UnloadTime: 0.414632 ms
+2019-02-16T21:54:26 0.006 INF [Steamworks.NET] SteamAPI_Init() ok
+2019-02-16T21:54:26 0.076 INF NET: InitCallbacks
+2019-02-16T21:54:26 0.086 INF Texture quality is set to 2
+2019-02-16T21:54:26 0.088 INF Precaching...
+2019-02-16T21:54:26 0.094 INF Precaching file: 7DaysToDie_Data/resources.assets
+2019-02-16T21:54:26 0.164 INF [EAC] Not loading, not started from launcher
+2019-02-16T21:54:27 1.387 INF Precaching file: 7DaysToDie_Data/sharedassets1.assets
+2019-02-16T21:54:27 1.390 INF Precaching file: Data/Bundles/blocktextureatlases
+2019-02-16T21:54:28 2.344 INF Precaching file: Data/Bundles/terraintextures
+2019-02-16T21:54:29 2.424 INF Precaching done
+2019-02-16T21:54:32 6.235 INF Loading main scene
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.456400 ms
+UnloadTime: 3.185774 ms
 SDX:  SDX detected base game directory as: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\
 SDX:  Could not find sdx config file: ''. Using default settings
 SDX: Mod Engine Started.
 SDX: Finding type refs...
 SDX: Loading mods assembly
-SDX: Loaded!40
+SDX: Loaded!47
 SDX: MecanimSDX
 SDX: NewMecanimSDX
 SDX: EntityAliveSDX
+SDX: EntityAliveSDX+Orders
 SDX: EntityAliveFarmingAnimal
+SDX: ItemActionNPCEat
 SDX: EntityAnimalHal
 SDX: EntityAnimalHalRanged
 SDX: HalHelperEvents
+SDX: MinEventActionAnimatorSpeedSDX
+SDX: MinEventActionGiveQuestSDX
+SDX: MinEventActionPumpQuestSDX
+SDX: RequirementEveryXDaySDX
+SDX: RequirementEveryXHourSDX
+SDX: EAIAnimalBloodMoonSDX
 SDX: EAIApproachAndAttackTargetSDX
 SDX: EAIApproachAndFollowTargetSDX
+SDX: EAIFindHomeBlockSDX
+SDX: EAIFindNearestWaterBlockSDX
+SDX: EAIFindNearestFoodBlockSDX
 SDX: EAIFollowOrdersSDX
 SDX: EAISetNearestEntityAsTargetSDX
-SDX: EAIVisitLocation
-SDX: MinEventActionPumpQuestSDX
 SDX: ObjectiveBuffSDX
+SDX: ObjectiveGotoPOISDX
+SDX: QuestActionGiveBuffSDX
 SDX: QuestActionSpawnEntitySDX
+SDX: QuestActionReplaceEntitySDX
 SDX: RewardItemSDX
 SDX: RewardQuestSDX
 SDX: BlockMortSpawner
 SDX: MortSpawnerScript
 SDX: EntityZombieFlyingSDX
 SDX: EntitySwimingSDX
-SDX: EntityPlayerSDXLocal
-SDX: EntityPlayerSDX
-SDX: BlockLocalizationBlock
-SDX: BlockMusicBox
-SDX: MusicBoxScript
-SDX: BlockTakeAndReplace
 SDX: EntityFlyingBaseSDX
 SDX: EntityGenericSDX
 SDX: EntityZombieSDX
@@ -65,109 +71,102 @@ SDX: EntityZombieCopSDX
 SDX: EntityZombieCrawlSDX
 SDX: EntityZombieFlockSDX
 SDX: EntityZombieHordeSDX
-SDX: <PrivateImplementationDetails>{8F0BCA28-5541-4DEE-B1AE-296EFD982207}
+SDX: <PrivateImplementationDetails>{A50F2E86-CA3A-489E-BE0A-C9649568DD14}
 SDX: QuestActionSpawnEntitySDX+<SpawnEntities>d__0
-SDX: <PrivateImplementationDetails>{8F0BCA28-5541-4DEE-B1AE-296EFD982207}+__StaticArrayInitTypeSize=36
+SDX: QuestActionReplaceEntitySDX+<SpawnEntities>d__4
+SDX: <PrivateImplementationDetails>{A50F2E86-CA3A-489E-BE0A-C9649568DD14}+__StaticArrayInitTypeSize=36
 SDX: EntityZombieFlockSDX+<>c__DisplayClass1
 SDX: EntityZombieFlockSDX+<>c__DisplayClass4
 SDX: EntityZombieFlockSDX+<>c__DisplayClass7
 SDX:  SDX is no longer loading bundles
 SDX: Begin Load mod script...
-2019-02-10T19:56:46 6.567 INF Awake
-2019-02-10T19:56:46 6.591 WRN Setting global culture failed!
+2019-02-16T21:54:33 6.511 INF Awake
+2019-02-16T21:54:33 6.564 WRN Setting global culture failed!
 Localization language: English
-2019-02-10T19:56:46 6.622 INF Version: Alpha 17.2 (b20) Compatibility Version: Alpha 17.2, Build: Windows 64 Bit
-2019-02-10T19:56:46 6.622 INF System information:
-2019-02-10T19:56:46 6.622 INF    OS: Windows 10  (10.0.0) 64bit
-2019-02-10T19:56:46 6.622 INF    CPU: Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz (cores: 8)
-2019-02-10T19:56:46 6.622 INF    RAM: 12223 MB
-2019-02-10T19:56:46 6.622 INF    GPU: NVIDIA GeForce GTX 1060 3GB (2988 MB)
-2019-02-10T19:56:46 6.622 INF    Graphics API: Direct3D 11.0 [level 11.1] (shader level 5.0)
-2019-02-10T19:56:46 6.623 INF Last played version: Alpha 17.2
-2019-02-10T19:56:46 6.623 INF Local UTC offset: -4 hours
-2019-02-10T19:56:46 6.623 WRN Setting global culture failed!
-2019-02-10T19:56:46 6.626 INF Command line arguments: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie.exe
-2019-02-10T19:56:46 6.627 INF Not running in Big Picture Mode, no on-screen keyboard available
-2019-02-10T19:56:46 6.628 INF Starting PlayerInputManager...
-2019-02-10T19:56:46 6.636 INF InControl (version 1.6.17 build 9143, native module = False, XInput = True)
+2019-02-16T21:54:33 6.629 INF Version: Alpha 17.2 (b20) Compatibility Version: Alpha 17.2, Build: Windows 64 Bit
+2019-02-16T21:54:33 6.629 INF System information:
+2019-02-16T21:54:33 6.630 INF    OS: Windows 10  (10.0.0) 64bit
+2019-02-16T21:54:33 6.630 INF    CPU: Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz (cores: 4)
+2019-02-16T21:54:33 6.630 INF    RAM: 16210 MB
+2019-02-16T21:54:33 6.630 INF    GPU: AMD Radeon (TM) R7 M360 (2039 MB)
+2019-02-16T21:54:33 6.631 INF    Graphics API: Direct3D 11.0 [level 11.1] (shader level 5.0)
+2019-02-16T21:54:33 6.631 INF Last played version: Alpha 17.2
+2019-02-16T21:54:33 6.631 INF Local UTC offset: -4 hours
+2019-02-16T21:54:33 6.631 WRN Setting global culture failed!
+2019-02-16T21:54:33 6.641 INF Command line arguments: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie.exe
+2019-02-16T21:54:33 6.644 INF Not running in Big Picture Mode, no on-screen keyboard available
+2019-02-16T21:54:33 6.644 INF Starting PlayerInputManager...
+2019-02-16T21:54:33 6.678 INF InControl (version 1.6.17 build 9143, native module = False, XInput = True)
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libXInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\libXInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libXInputInterface32
-2019-02-10T19:56:47 6.701 INF Starting UserProfileManager...
-2019-02-10T19:56:47 6.717 INF ApplyAllOptions current screen 1920 x 1080, 60hz, window 1366 x 768, fullscreen False Windowed
-2019-02-10T19:56:47 6.717 INF SetResolution was screen 1920 x 1080, 60hz, window 1366 x 768, fullscreen False Windowed
-2019-02-10T19:56:47 6.717 INF SetResolution to window 1366 x 768, fullscreen False
-2019-02-10T19:56:47 6.751 INF [MODS] Start loading
-2019-02-10T19:56:47 6.752 INF [MODS] Trying to load from AnimationSDX
-2019-02-10T19:56:47 6.773 INF [MODS] Loaded Mod: Animation SDX (2.0)
-2019-02-10T19:56:47 6.773 INF [MODS] Trying to load from Bloom's Animal Husbandry
-2019-02-10T19:56:47 6.774 INF [MODS] Loaded Mod: Bloom's Animal Husbandry (1.0.0)
-2019-02-10T19:56:47 6.774 INF [MODS] Trying to load from Hal's DLL Fixes
-2019-02-10T19:56:47 6.776 INF [MODS] Loaded Mod: Hal's DLL Fixes (1)
-2019-02-10T19:56:47 6.776 INF [MODS] Trying to load from SDX_EAITasks
-2019-02-10T19:56:47 6.777 INF [MODS] Loaded Mod: SDX_EAITasks (1.0)
-2019-02-10T19:56:47 6.777 INF [MODS] Trying to load from SDX_EntityAliveSDX
-2019-02-10T19:56:47 6.778 INF [MODS] Loaded Mod: SDX_EntityAliveSDX (1.0.0.0)
-2019-02-10T19:56:47 6.778 INF [MODS] Trying to load from SDX_Quests
-2019-02-10T19:56:47 6.779 INF [MODS] Loaded Mod: SDX_Quests (1.0)
-2019-02-10T19:56:47 6.779 INF [MODS] Trying to load from SphereII A Better Life
-2019-02-10T19:56:47 6.782 INF [MODS] Loaded Mod: SphereII A Better Life (1.0)
-2019-02-10T19:56:47 6.782 INF [MODS] Trying to load from SphereII Entity Player
-2019-02-10T19:56:47 6.783 INF [MODS] Loaded Mod: SphereII Entity Player (1.0.0.0)
-2019-02-10T19:56:47 6.783 INF [MODS] Trying to load from SphereII Mod Localization Hook
-2019-02-10T19:56:47 6.784 INF [MODS] Loaded Mod: SphereII Mod Localization Hook (1.0.0.0)
-2019-02-10T19:56:47 6.784 INF [MODS] Trying to load from SphereII Music Boxes
-2019-02-10T19:56:47 6.785 INF [MODS] Loaded Mod: SphereII Music Boxes (1.0.0.0)
-2019-02-10T19:56:47 6.785 INF [MODS] Trying to load from SphereII Take And Replace
-2019-02-10T19:56:47 6.786 INF [MODS] Loaded Mod: SphereII_Take_And_Replace (1.0.0.0)
-2019-02-10T19:56:47 6.786 INF [MODS] Trying to load from SphereII Unlock Health Bar
-2019-02-10T19:56:47 6.787 INF [MODS] Loaded Mod: SphereII Unlock Health Bar (1)
-2019-02-10T19:56:47 6.787 INF [MODS] Trying to load from SphereII Wandering Traders
-2019-02-10T19:56:47 6.788 INF [MODS] Loaded Mod: SphereII Wandering Traders (1.0.0)
-2019-02-10T19:56:47 6.788 INF [MODS] Trying to load from Zombie Transmogrifier
-2019-02-10T19:56:47 6.789 INF [MODS] Loaded Mod: Zombie Transmogrifier (1)
-2019-02-10T19:56:47 6.789 INF [MODS] Initializing mod code
-2019-02-10T19:56:47 6.789 INF [MODS] Loading done
-2019-02-10T19:56:47 6.796 INF Loading permissions file at 'C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
-2019-02-10T19:56:47 6.816 INF Loading permissions file done.
-2019-02-10T19:56:47 6.838 WRN Old savegame folder (C:\Users\Jeff\Documents/7 Days To Die) exists but new one (C:\Users\Jeff\AppData\Roaming/7DaysToDie) also exists, not moving
-2019-02-10T19:56:47 6.839 INF Awake done in 271 ms
-2019-02-10T19:56:47 7.083 INF Atlas reset took 238 ms
-2019-02-10T19:56:47 7.083 INF Atlas load took 243 ms
+2019-02-16T21:54:33 6.824 INF Starting UserProfileManager...
+2019-02-16T21:54:33 6.853 INF ApplyAllOptions current screen 1920 x 1080, 60hz, window 1360 x 768, fullscreen False Windowed
+2019-02-16T21:54:33 6.853 INF SetResolution was screen 1920 x 1080, 60hz, window 1360 x 768, fullscreen False Windowed
+2019-02-16T21:54:33 6.853 INF SetResolution to window 1360 x 768, fullscreen False
+2019-02-16T21:54:33 6.920 INF [MODS] Start loading
+2019-02-16T21:54:33 6.922 INF [MODS] Trying to load from AnimationSDX
+2019-02-16T21:54:33 6.972 INF [MODS] Loaded Mod: Animation SDX (2.0)
+2019-02-16T21:54:33 6.973 INF [MODS] Trying to load from Bloom's Animal Husbandry
+2019-02-16T21:54:33 6.974 INF [MODS] Loaded Mod: Bloom's Animal Husbandry (1.0.0)
+2019-02-16T21:54:33 6.974 INF [MODS] Trying to load from Hal's DLL Fixes
+2019-02-16T21:54:33 6.976 INF [MODS] Loaded Mod: Hal's DLL Fixes (1)
+2019-02-16T21:54:33 6.976 INF [MODS] Trying to load from SDX_Buffs
+2019-02-16T21:54:33 6.977 INF [MODS] Loaded Mod: SDX_Buffs (1.0)
+2019-02-16T21:54:33 6.977 INF [MODS] Trying to load from SDX_EAITasks
+2019-02-16T21:54:33 6.979 INF [MODS] Loaded Mod: SDX_EAITasks (1.0)
+2019-02-16T21:54:33 6.979 INF [MODS] Trying to load from SDX_EntityAliveSDX
+2019-02-16T21:54:33 6.981 INF [MODS] Loaded Mod: SDX_EntityAliveSDX (1.0.0.0)
+2019-02-16T21:54:33 6.982 INF [MODS] Trying to load from SDX_Quests
+2019-02-16T21:54:33 6.992 INF [MODS] Loaded Mod: SDX_Quests (1.0)
+2019-02-16T21:54:33 6.992 INF [MODS] Trying to load from SphereII A Better Life
+2019-02-16T21:54:33 6.994 INF [MODS] Loaded Mod: SphereII A Better Life (1.0)
+2019-02-16T21:54:33 6.994 INF [MODS] Trying to load from SphereII Unlock Health Bar
+2019-02-16T21:54:33 6.996 INF [MODS] Loaded Mod: SphereII Unlock Health Bar (1)
+2019-02-16T21:54:33 6.996 INF [MODS] Trying to load from Zombie Transmogrifier
+2019-02-16T21:54:33 6.997 INF [MODS] Loaded Mod: Zombie Transmogrifier (1)
+2019-02-16T21:54:33 6.997 INF [MODS] Initializing mod code
+2019-02-16T21:54:33 6.997 INF [MODS] Loading done
+2019-02-16T21:54:33 7.014 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
+2019-02-16T21:54:33 7.080 INF Loading permissions file done.
+2019-02-16T21:54:33 7.130 WRN Old savegame folder (C:\Users\jkilpatrick\Documents/7 Days To Die) exists but new one (C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie) also exists, not moving
+2019-02-16T21:54:33 7.133 INF Awake done in 621 ms
+2019-02-16T21:54:34 7.646 INF Atlas reset took 503 ms
+2019-02-16T21:54:34 7.646 INF Atlas load took 512 ms
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libc
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\libc
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libc
 Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 3966.
-Total: 6.061000 ms (FindLiveObjects: 0.701000 ms CreateObjectMapping: 0.206000 ms MarkObjects: 5.111600 ms  DeleteObjects: 0.041600 ms)
+Total: 22.895204 ms (FindLiveObjects: 1.810961 ms CreateObjectMapping: 0.968933 ms MarkObjects: 20.024505 ms  DeleteObjects: 0.087521 ms)
 Unloading 1 Unused Serialized files (Serialized files now loaded: 1)
-2019-02-10T19:56:47 7.550 INF Reloading serveradmin.xml
-2019-02-10T19:56:47 7.550 INF Loading permissions file at 'C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
-2019-02-10T19:56:47 7.551 INF Loading permissions file done.
+2019-02-16T21:54:34 7.779 INF Reloading serveradmin.xml
+2019-02-16T21:54:34 7.779 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
+2019-02-16T21:54:34 7.781 INF Loading permissions file done.
 Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3966.
-Total: 6.424400 ms (FindLiveObjects: 0.631900 ms CreateObjectMapping: 0.071800 ms MarkObjects: 5.666100 ms  DeleteObjects: 0.054000 ms)
+Total: 13.266403 ms (FindLiveObjects: 0.933560 ms CreateObjectMapping: 0.295749 ms MarkObjects: 11.991510 ms  DeleteObjects: 0.044489 ms)
 Unloading 0 Unused Serialized files (Serialized files now loaded: 1)
 Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 3966.
-Total: 5.633100 ms (FindLiveObjects: 0.733300 ms CreateObjectMapping: 0.133900 ms MarkObjects: 4.760800 ms  DeleteObjects: 0.004700 ms)
-2019-02-10T19:56:48 8.015 INF User joined: sphereii
-UMA Overlay loading took 1286 ms
-UMA Slot loading took 0 ms
-2019-02-10T19:56:52 12.151 INF WorldStaticData.Init() needed 2.124s
-2019-02-10T19:56:52 12.255 INF [Steamworks.NET] Login ok.
-2019-02-10T19:56:52 12.587 INF AchievementManager: Received stats and achievements from Steam
-2019-02-10T19:57:09 28.894 INF NET: Starting server protocols
-2019-02-10T19:57:09 28.906 INF NET: LiteNetLib server started
-2019-02-10T19:57:09 28.906 INF [Steamworks.NET] NET: Server started
+Total: 7.844095 ms (FindLiveObjects: 0.937571 ms CreateObjectMapping: 0.151703 ms MarkObjects: 6.748620 ms  DeleteObjects: 0.005470 ms)
+2019-02-16T21:54:34 8.064 INF User joined: sphereii
+UMA Overlay loading took 421 ms
+UMA Slot loading took 1 ms
+2019-02-16T21:54:37 11.293 INF WorldStaticData.Init() needed 2.007s
+2019-02-16T21:54:40 13.609 INF [Steamworks.NET] User not logged in.
+2019-02-16T21:55:55 88.854 INF NET: Starting server protocols
+2019-02-16T21:55:55 88.885 INF NET: LiteNetLib server started
+2019-02-16T21:55:55 88.886 INF [Steamworks.NET] NET: Server started
 SDX: SDX ModEngine::StartModScripts
-2019-02-10T19:57:09 28.907 INF StartGame
-2019-02-10T19:57:09 29.271 INF Atlas reset took 331 msUnloading 3 Unused Serialized files (Serialized files now loaded: 4)
-Unloading 731 unused Assets to reduce memory usage. Loaded Objects now: 24732.
-Total: 50.859500 ms (FindLiveObjects: 3.568400 ms CreateObjectMapping: 1.422200 ms MarkObjects: 44.902600 ms  DeleteObjects: 0.966100 ms)
-2019-02-10T19:57:10 29.687 INF Atlas got enough free room to fit icons. Old 2221 icons, 8192x4096, now 2229 icons
-2019-02-10T19:57:10 29.715 INF Adding 8 sprites to atlas took 793 ms
-2019-02-10T19:57:11 31.373 INF Persistent GamePrefs saved
+2019-02-16T21:55:55 88.887 INF StartGame
+2019-02-16T21:55:56 89.418 INF Atlas reset took 502 ms
+Unloading 3 Unused Serialized files (Serialized files now loaded: 4)
+Unloading 731 unused Assets to reduce memory usage. Loaded Objects now: 24730.
+Total: 83.754954 ms (FindLiveObjects: 4.003369 ms CreateObjectMapping: 1.258118 ms MarkObjects: 76.731736 ms  DeleteObjects: 1.761001 ms)
+2019-02-16T21:55:56 89.593 INF Atlas got enough free room to fit icons. Old 2221 icons, 8192x4096, now 2225 icons
+2019-02-16T21:55:56 89.599 INF Adding 4 sprites to atlas took 686 ms
+2019-02-16T21:55:57 90.572 INF Persistent GamePrefs saved
 GamePref.AdminFileName = serveradmin.xml
 GamePref.AirDropFrequency = 72
 GamePref.AirDropMarker = False
@@ -179,9 +178,9 @@ GamePref.BlockDamagePlayer = 100
 GamePref.BloodMoonEnemyCount = 8
 GamePref.BloodMoonFrequency = 7
 GamePref.BloodMoonRange = 0
-GamePref.BuildCreate = False
-GamePref.ConnectToServerIP = 98.192.128.220
-GamePref.ConnectToServerPort = 26920
+GamePref.BuildCreate = True
+GamePref.ConnectToServerIP = 127.0.0.1
+GamePref.ConnectToServerPort = 26900
 GamePref.ControlPanelEnabled = False
 GamePref.ControlPanelPort = 8080
 GamePref.CraftTimer = 
@@ -202,10 +201,10 @@ GamePref.EnemyDifficulty = 0
 GamePref.EnemySpawnMode = False
 GamePref.FavoriteServersList = 
 GamePref.FragLimit = 20
-GamePref.GameDifficulty = 2
+GamePref.GameDifficulty = 0
 GamePref.GameGuidClient = 
 GamePref.GameMode = GameModeSurvival
-GamePref.GameName = CowTest5
+GamePref.GameName = cow12
 GamePref.GameNameClient = My Game
 GamePref.GameVersion = Alpha 17.2
 GamePref.GameWorld = Navezgane
@@ -229,7 +228,7 @@ GamePref.MaxSpawnedAnimals = 50
 GamePref.MaxSpawnedZombies = 60
 GamePref.MaxUncoveredMapChunksPerPlayer = 524288
 GamePref.NoGraphicsMode = False
-GamePref.OptionsAA = 1
+GamePref.OptionsAA = 0
 GamePref.OptionsAllowController = True
 GamePref.OptionsAmbientVolumeLevel = 0
 GamePref.OptionsAudioOcclusion = False
@@ -240,21 +239,21 @@ GamePref.OptionsDeferredLighting = True
 GamePref.OptionsDOF = False
 GamePref.OptionsDynamicMusicEnabled = False
 GamePref.OptionsDynamicMusicVolume = 0
-GamePref.OptionsFieldOfView = 67
+GamePref.OptionsFieldOfView = 45
 GamePref.OptionsFieldOfViewNew = 65
 GamePref.OptionsForegroundGlobalOpacity = 1
-GamePref.OptionsGamma = 1.293103
-GamePref.OptionsGraphicsQuality = 1
-GamePref.OptionsGrassDistance = 1
+GamePref.OptionsGamma = 1.551724
+GamePref.OptionsGraphicsQuality = 0
+GamePref.OptionsGrassDistance = 0
 GamePref.OptionsHudOpacity = 1
 GamePref.OptionsHudSize = 2
 GamePref.OptionsImageEffects = True
 GamePref.OptionsInterfaceSensitivity = 0.75
 GamePref.OptionsInvertMouse = False
 GamePref.OptionsJournalPopup = True
-GamePref.OptionsLODDistance = 0.5
+GamePref.OptionsLODDistance = 0
 GamePref.OptionsMicVolumeLevel = 0.75
-GamePref.OptionsMotionBlur = 1
+GamePref.OptionsMotionBlur = 0
 GamePref.OptionsMouseSensitivity = 0.5
 GamePref.OptionsMusicVolumeLevel = 0
 GamePref.OptionsObjectBlur = False
@@ -266,32 +265,32 @@ GamePref.OptionsReflectedShadows = False
 GamePref.OptionsReflectionBounces = 1
 GamePref.OptionsReflectionCullList = Default
 GamePref.OptionsReflectionFarClip = 100
-GamePref.OptionsReflectionQuality = 2
+GamePref.OptionsReflectionQuality = 0
 GamePref.OptionsReflectionRefreshMode = ViaScripting
 GamePref.OptionsReflectionRefreshRate = 0
 GamePref.OptionsReflectionShadowDistance = 0
 GamePref.OptionsReflectionTimeSlicingMode =  Trees ReflectionsOnly Terrain
 GamePref.OptionsResolution = 0
 GamePref.OptionsScreenBoundsValue = 1
-GamePref.OptionsShadowDistance = 1
+GamePref.OptionsShadowDistance = 0
 GamePref.OptionsShowCompass = True
 GamePref.OptionsShowCrosshair = True
-GamePref.OptionsSSAO = True
+GamePref.OptionsSSAO = False
 GamePref.OptionsStabSpawnBlocksOnGround = True
 GamePref.OptionsStreamingMipmapsBudget = 4096
 GamePref.OptionsStreamingMipmapsEnabled = True
-GamePref.OptionsSunShafts = True
+GamePref.OptionsSunShafts = False
 GamePref.OptionsTempCelsius = False
-GamePref.OptionsTextureQuality = 1
+GamePref.OptionsTextureQuality = 2
 GamePref.OptionsTreeDistance = 4
-GamePref.OptionsTreeQuality = 2
-GamePref.OptionsUMATextureQuality = 1
+GamePref.OptionsTreeQuality = 0
+GamePref.OptionsUMATextureQuality = 3
 GamePref.OptionsViewDistance = 6
 GamePref.OptionsVoiceChatEnabled = True
 GamePref.OptionsVoiceVolumeLevel = 0.75
 GamePref.OptionsVsync = 1
-GamePref.OptionsWaterParticleLimiter = 0.5
-GamePref.OptionsWaterQuality = 1
+GamePref.OptionsWaterParticleLimiter = 0
+GamePref.OptionsWaterQuality = 0
 GamePref.OptionsZoomMouseSensitivity = 0.5
 GamePref.PartySharedKillRange = 100
 GamePref.PersistentPlayerProfiles = True
@@ -303,7 +302,7 @@ GamePref.PlayerSafeZoneHours = 7
 GamePref.PlayerSafeZoneLevel = 5
 GamePref.PlayerToken = 
 GamePref.RebuildMap = False
-GamePref.SaveGameFolder = C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves
+GamePref.SaveGameFolder = C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves
 GamePref.SelectionContextMode = 0
 GamePref.SelectionOperationMode = 0
 GamePref.ServerAdminSlots = 0
@@ -318,7 +317,7 @@ GamePref.ServerName = Default Server
 GamePref.ServerPort = 26900
 GamePref.ServerReservedSlots = 0
 GamePref.ServerReservedSlotsPermission = 100
-GamePref.ServerVisibility = 1
+GamePref.ServerVisibility = 0
 GamePref.ServerWebsiteURL = 
 GamePref.ShowFriendPlayerOnMap = True
 GamePref.TelnetEnabled = False
@@ -326,7 +325,7 @@ GamePref.TelnetFailedLoginLimit = 10
 GamePref.TelnetFailedLoginsBlocktime = 10
 GamePref.TelnetPort = 25003
 GamePref.TerminalWindowEnabled = True
-GamePref.UserDataFolder = C:\Users\Jeff\AppData\Roaming/7DaysToDie
+GamePref.UserDataFolder = C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie
 GamePref.WorldGenSeed = 
 GamePref.WorldGenSize = 8192
 GamePref.XPMultiplier = 100
@@ -395,84 +394,147 @@ GameStat.TimeLimitThisRound = 0
 GameStat.TimeOfDayIncPerSec = 20
 GameStat.XPMultiplier = 100
 GameStat.ZombieHordeMeter = False
-2019-02-10T19:57:11 31.410 INF StartAsServer
-SphereII - Localization Gap Solution
-Initializing Localization Block...
-Searching in: C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods
-Searching for Localization.txt...
-Found : C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods\Bloom's Animal Husbandry\Config\Localization.txt
-Found : C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods\SphereII Music Boxes\Config\Localization.txt
-Found : C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods\SphereII Take And Replace\Config\Localization.txt
-Searching for ModLocalization - Quests.txt...
-Found : C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods\SphereII Music Boxes\Config\Localization - Quest.txt
-2019-02-10T19:57:16 36.508 INF Block IDs with mapping
-2019-02-10T19:57:16 36.508 INF BlockIDs from Mapping
-2019-02-10T19:57:17 37.132 INF Item IDs with mapping
-2019-02-10T19:57:17 37.133 INF ItemIDs from Mapping
-2019-02-10T19:57:20 40.155 INF createWorld: Navezgane, CowTest5, GameModeSurvival
-2019-02-10T19:57:20 40.320 INF Started thread ChunkCalc
-2019-02-10T19:57:20 40.320 INF Started thread ChunkRegeneration
-2019-02-10T19:57:21 40.719 INF World.Load: Navezgane
-2019-02-10T19:57:21 40.731 INF BloodMoon SetDay: day 7, last day 0, freq 7, range 0
-2019-02-10T19:57:21 40.731 INF BloodMoon SetDay: day 7, last day 0, freq 7, range 0
-2019-02-10T19:57:32 51.726 INF Started thread GenerateChunks
-2019-02-10T19:57:32 52.109 INF Loading dtm raw file took 318ms
-2019-02-10T19:57:33 52.746 INF Biomes image size w= 3072, h = 3072
-2019-02-10T19:57:33 53.411 INF Loading and creating biomes took 1302ms
-2019-02-10T19:57:35 55.530 INF Loading and parsing of generator took 2118ms
-2019-02-10T19:57:35 55.668 INF Started thread SaveChunks C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/Navezgane/CowTest5\Region
-2019-02-10T19:57:37 57.105 INF AstarManager Init
-2019-02-10T19:57:40 60.679 INF Weather Packages Created FROM BIOMES
-2019-02-10T19:57:41 61.037 INF createWorld() done
-2019-02-10T19:57:41 61.038 INF Loading players.xml
-2019-02-10T19:57:41 61.261 INF Created player with id=171
-2019-02-10T19:57:41 61.309 INF Loaded player
-2019-02-10T19:57:42 61.954 INF Setting for 'EnemySpawnMode' does not match the default (server will go to the modded category): current = False, default = True
-2019-02-10T19:57:42 62.149 INF OpenSpawnWindow
-2019-02-10T19:57:42 62.155 INF StartGame done
-2019-02-10T19:57:43 62.919 INF [Steamworks.NET] GameServer.Init successful
-2019-02-10T19:57:44 63.778 INF [Steamworks.NET] GameServer.LogOn successful, SteamID=90123429873195015
-2019-02-10T19:57:44 63.789 INF [Steamworks.NET] Trying to create Lobby (visibility: k_ELobbyTypeFriendsOnly)
-2019-02-10T19:57:44 63.895 INF found
-2019-02-10T19:57:44 64.002 INF [Steamworks.NET] Lobby creation succeeded
-2019-02-10T19:57:44 64.007 INF [Steamworks.NET] Lobby entered: 109775240995329483
-2019-02-10T19:57:46 66.106 INF Respawn almost done
-2019-02-10T19:57:46 66.114 INF PlayerSpawnedInWorld (reason: LoadedGame, position: 505, 61, 951): localplayer
-animalFarmCow: GetActivationCommands
-animalFarmCow: GetActivationCommands
-animalFarmCow: OnEntityActivated
-2019-02-10T19:58:12 92.293 INF Time: 1.05m FPS: 60.00 Heap: 1197.0MB Max: 1197.0MB Chunks: 225 CGO: 100 Ply: 1 Zom: 0 Ent: 3 (3) Items: 0 CO: 1 RSS: 2854.6MB
-2019-02-10T19:58:42 122.292 INF Time: 1.55m FPS: 60.00 Heap: 1212.8MB Max: 1212.8MB Chunks: 225 CGO: 100 Ply: 1 Zom: 0 Ent: 3 (3) Items: 0 CO: 1 RSS: 2866.4MB
-2019-02-10T19:59:12 152.293 INF Time: 2.05m FPS: 59.99 Heap: 1228.3MB Max: 1228.3MB Chunks: 225 CGO: 100 Ply: 1 Zom: 0 Ent: 3 (3) Items: 0 CO: 1 RSS: 2864.7MB
-2019-02-10T19:59:42 182.277 INF VehicleManager Save
-2019-02-10T19:59:42 182.296 INF Time: 2.55m FPS: 59.61 Heap: 1243.8MB Max: 1243.8MB Chunks: 225 CGO: 100 Ply: 1 Zom: 0 Ent: 3 (4) Items: 0 CO: 1 RSS: 2867.6MB
-2019-02-10T19:59:50 189.966 INF Saving 69 of chunks took 62ms
-2019-02-10T19:59:51 191.011 INF Disconnect
-2019-02-10T19:59:51 191.015 INF NET: Stopping server protocols
-2019-02-10T19:59:51 191.018 INF NET: LiteNetLib server stopped
-2019-02-10T19:59:51 191.018 INF [Steamworks.NET] NET: Server stopped
-2019-02-10T19:59:51 191.019 INF [NET] ServerShutdown
-2019-02-10T19:59:51 191.020 INF SaveAndCleanupWorld
-2019-02-10T19:59:51 191.099 INF Saving 75 of chunks took 62ms
-2019-02-10T19:59:51 191.105 INF [Steamworks.NET] Stopping server
-2019-02-10T19:59:51 191.142 INF [Steamworks.NET] Exiting Lobby
-2019-02-10T19:59:51 191.152 INF AstarManager Cleanup
-2019-02-10T19:59:51 191.155 INF World.Unload
-2019-02-10T19:59:51 191.175 INF Exited thread GenerateChunks
-2019-02-10T19:59:51 191.212 INF Exited thread SaveChunks C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/Navezgane/CowTest5\Region
-2019-02-10T19:59:51 191.362 INF World.Cleanup
-2019-02-10T19:59:51 191.365 INF Exited thread ChunkRegeneration
-2019-02-10T19:59:51 191.370 INF Exited thread ChunkCalc
-2019-02-10T19:59:51 191.372 INF VehicleManager Save
-2019-02-10T19:59:51 191.385 INF Persistent GamePrefs saved
-2019-02-10T19:59:53 192.880 INF Preparing quit
-2019-02-10T19:59:53 192.882 INF Persistent GamePrefs saved
-2019-02-10T19:59:53 192.884 INF Cleanup
-2019-02-10T19:59:53 192.908 INF AchievementManager.Cleanup
-2019-02-10T19:59:53 193.085 INF OnApplicationQuit
-2019-02-10T19:59:53 193.087 INF OnApplicationQuit
-Setting up 4 worker threads for Enlighten.
-  Thread -> id: 33b64 -> priority: 1 
-  Thread -> id: 340c0 -> priority: 1 
-  Thread -> id: 34294 -> priority: 1 
-  Thread -> id: 3305c -> priority: 1 
+2019-02-16T21:55:57 90.689 INF StartAsServer
+2019-02-16T21:56:05 98.900 INF Block IDs with mapping
+2019-02-16T21:56:05 98.900 INF BlockIDs from Mapping
+2019-02-16T21:56:06 99.933 INF Item IDs with mapping
+2019-02-16T21:56:06 99.933 INF ItemIDs from Mapping
+2019-02-16T21:56:10 103.852 INF createWorld: Navezgane, cow12, GameModeSurvival
+2019-02-16T21:56:10 103.927 INF Started thread ChunkRegeneration
+2019-02-16T21:56:10 103.927 INF Started thread ChunkCalc
+2019-02-16T21:56:10 104.200 INF World.Load: Navezgane
+2019-02-16T21:56:10 104.216 INF BloodMoon SetDay: day 7, last day 0, freq 7, range 0
+2019-02-16T21:56:10 104.217 INF BloodMoon SetDay: day 7, last day 0, freq 7, range 0
+2019-02-16T21:56:18 111.534 INF Started thread GenerateChunks
+2019-02-16T21:56:19 113.333 INF Loading dtm raw file took 887ms
+2019-02-16T21:56:20 114.180 INF Biomes image size w= 3072, h = 3072
+2019-02-16T21:56:22 115.843 INF Loading and creating biomes took 2509ms
+2019-02-16T21:56:24 118.185 INF Loading and parsing of generator took 2341ms
+2019-02-16T21:56:25 118.437 INF Started thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow12\Region
+2019-02-16T21:56:27 120.703 INF AstarManager Init
+2019-02-16T21:56:33 127.043 INF Weather Packages Created FROM BIOMES
+2019-02-16T21:56:33 127.392 INF createWorld() done
+2019-02-16T21:56:33 127.393 INF Loading players.xml
+2019-02-16T21:56:34 127.603 INF Created player with id=171
+2019-02-16T21:56:34 127.662 INF Loaded player
+2019-02-16T21:56:35 128.583 INF OpenSpawnWindow
+2019-02-16T21:56:35 128.589 INF StartGame done
+2019-02-16T21:56:35 128.628 INF MinEventLogMessage: Animal Baby Spawn respawn trigger
+animalFarmCow: 248:  CheckForBlock(): Found Water Block: id=257 r=8 d=0 m=0 m2=3 m3=0
+animalFarmCow: animalFarmCow - ID: 248 Health: 110 Stamina: 82.39163 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 276.65 Ticks: 5533 )
+	buffanimalsenior ( Seconds: 59.5 Ticks: 1190 )
+	buffinfectedanimal1 ( Seconds: 44.5 Ticks: 890 )
+	buffstatusthirsty1 ( Seconds: 24.65 Ticks: 493 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-16T21:56:42 135.702 INF Respawn almost done
+2019-02-16T21:56:42 135.712 INF PlayerSpawnedInWorld (reason: LoadedGame, position: 902, 61, -1850): localplayer
+2019-02-16T21:57:05 158.470 INF Time: 2.12m FPS: 22.78 Heap: 1047.9MB Max: 1047.9MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (2) Items: 0 CO: 1 RSS: 3281.5MB
+2019-02-16T21:57:35 188.508 INF Time: 2.62m FPS: 22.85 Heap: 1056.6MB Max: 1056.6MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (2) Items: 0 CO: 1 RSS: 3284.0MB
+animalFarmCow: animalFarmCow - ID: 248 Health: 110 Stamina: 110 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 335.8 Ticks: 6716 )
+	buffanimalsenior ( Seconds: 118.65 Ticks: 2373 )
+	buffanimalharvestable ( Seconds: 53.6 Ticks: 1072 )
+	buffinfectedanimal3 ( Seconds: 3.55 Ticks: 71 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-16T21:58:05 218.544 INF Time: 3.12m FPS: 22.72 Heap: 1091.3MB Max: 1091.3MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (2) Items: 0 CO: 1 RSS: 3285.4MB
+2019-02-16T21:58:35 248.442 INF VehicleManager Save
+2019-02-16T21:58:35 248.576 INF Time: 3.62m FPS: 22.71 Heap: 1129.4MB Max: 1129.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (2) Items: 0 CO: 1 RSS: 3287.4MB
+animalFarmCow: animalFarmCow - ID: 248 Health: 110 Stamina: 110 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 395.85 Ticks: 7917 )
+	buffanimalsenior ( Seconds: 178.7 Ticks: 3574 )
+	buffinfectedanimal1 ( Seconds: 7.7 Ticks: 154 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-16T21:58:38 252.332 INF GMSG: Player 'animalFarmCow' died
+2019-02-16T21:58:38 252.334 INF Entity 248 killed.
+2019-02-16T21:59:05 278.582 INF Time: 4.12m FPS: 22.74 Heap: 1167.0MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (2) Items: 0 CO: 1 RSS: 3289.9MB
+2019-02-16T21:59:29 302.482 INF Executing command 'spawnentity 171 122'
+2019-02-16T21:59:29 302.493 INF MinEventLogMessage: Animal Baby Spawn respawn trigger
+animalFarmCow: animalFarmCow - ID: 249 Health: 110 Stamina: 110 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 1 Ticks: 20 )
+ Active Quests: 
+2019-02-16T21:59:35 308.615 INF Time: 4.62m FPS: 22.20 Heap: 1087.2MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3290.5MB
+2019-02-16T22:00:05 338.655 INF Time: 5.12m FPS: 22.74 Heap: 1118.7MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3291.0MB
+animalFarmCow: animalFarmCow - ID: 249 Health: 110 Stamina: 110 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 60.85 Ticks: 1217 )
+	buffanimaladult ( Seconds: 43.75 Ticks: 875 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-16T22:00:35 368.475 INF VehicleManager Save
+2019-02-16T22:00:35 368.693 INF Time: 5.62m FPS: 22.60 Heap: 1155.2MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3291.9MB
+2019-02-16T22:01:05 398.727 INF Time: 6.12m FPS: 22.84 Heap: 1083.4MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3292.7MB
+animalFarmCow: animalFarmCow - ID: 249 Health: 110 Stamina: 110 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 120.45 Ticks: 2409 )
+	buffanimaladult ( Seconds: 103.35 Ticks: 2067 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-16T22:01:35 428.738 INF Time: 6.62m FPS: 22.68 Heap: 1114.7MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3292.9MB
+2019-02-16T22:02:05 458.768 INF Time: 7.12m FPS: 22.80 Heap: 1148.1MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3293.6MB
+animalFarmCow: animalFarmCow - ID: 249 Health: 110 Stamina: 110 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 179.95 Ticks: 3599 )
+	buffanimaladult ( Seconds: 162.85 Ticks: 3257 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-16T22:02:35 488.649 INF VehicleManager Save
+2019-02-16T22:02:35 488.938 INF Time: 7.62m FPS: 22.87 Heap: 1077.0MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3294.6MB
+2019-02-16T22:03:05 518.976 INF Time: 8.12m FPS: 22.50 Heap: 1108.1MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3295.0MB
+animalFarmCow: animalFarmCow - ID: 249 Health: 110 Stamina: 110 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 239.95 Ticks: 4799 )
+	buffanimalsenior ( Seconds: 22.8 Ticks: 456 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-16T22:03:35 549.008 INF Time: 8.62m FPS: 22.74 Heap: 1139.5MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3295.4MB
+2019-02-16T22:04:05 579.053 INF Time: 9.12m FPS: 22.88 Heap: 1073.1MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3295.8MB
+animalFarmCow: animalFarmCow - ID: 249 Health: 110 Stamina: 110 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 299.6 Ticks: 5992 )
+	buffanimalsenior ( Seconds: 82.45 Ticks: 1649 )
+	buffinfectedanimal1 ( Seconds: 47.45 Ticks: 949 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-16T22:04:35 608.683 INF VehicleManager Save
+2019-02-16T22:04:35 609.084 INF Time: 9.62m FPS: 22.86 Heap: 1103.2MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3296.4MB
+2019-02-16T22:05:05 639.101 INF Time: 10.12m FPS: 22.87 Heap: 1136.7MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3296.9MB
+animalFarmCow: animalFarmCow - ID: 249 Health: 110 Stamina: 110 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 359.25 Ticks: 7185 )
+	buffanimalsenior ( Seconds: 142.1 Ticks: 2842 )
+	buffanimalharvestable ( Seconds: 57.05 Ticks: 1141 )
+	buffinfectedanimal3 ( Seconds: 7 Ticks: 140 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-16T22:05:35 669.145 INF Time: 10.63m FPS: 22.90 Heap: 1071.8MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3297.4MB
+2019-02-16T22:06:05 699.175 INF Time: 11.13m FPS: 22.28 Heap: 1102.1MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3297.8MB
+2019-02-16T22:06:09 703.239 INF GMSG: Player 'animalFarmCow' died
+2019-02-16T22:06:09 703.239 INF Entity 249 killed.
+2019-02-16T22:06:35 728.705 INF VehicleManager Save
+2019-02-16T22:06:35 729.188 INF Time: 11.63m FPS: 22.87 Heap: 1135.3MB Max: 1167.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3298.2MB
+2019-02-16T22:06:37 731.372 INF Executing command 'le'
+2019-02-16T22:06:45 739.387 INF Executing command 'spawnentity 171 122'
+2019-02-16T22:06:45 739.389 INF MinEventLogMessage: Animal Baby Spawn respawn trigger
+animalFarmCow: animalFarmCow - ID: 250 Health: 110 Stamina: 110 Thirst: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 1 Ticks: 20 )
+ Active Quests: 

@@ -8,7 +8,7 @@ class EAIFindHomeBlockSDX : EAIBase
     String strHomeBuff;
     private String strControlMechanism = "";
 
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)

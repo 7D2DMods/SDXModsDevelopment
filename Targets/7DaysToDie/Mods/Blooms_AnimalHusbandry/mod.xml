@@ -13,6 +13,8 @@
 		<dependency>Hal's DLL Fixes</dependency>
     <dependency>SDX_EAITasks</dependency>
     <dependency>SDX_Quests</dependency>
+    <dependency>SDX_Buffs</dependency>
   </dependencies>
+  
   
 </mod>

@@ -22,7 +22,7 @@
       <property name="FilterTags" value="floot,ffurniture"/>
 
       <!-- Buff to keep the animals close by. thenumber in the ( ) is the range -->
-      <property name="ActiveRadiusEffects" value="buffAnimalStatusCheck(15)"/>
+      <property name="ActiveRadiusEffects" value="buffHomePoint(15)"/>
 
     </block>
 

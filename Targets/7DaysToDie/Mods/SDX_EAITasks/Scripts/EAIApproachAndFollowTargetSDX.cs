@@ -8,7 +8,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 {
 
     private List<Entity> NearbyEntities = new List<Entity>();
-
+    float distanceToEntity = UnityEngine.Random.Range(2f, 5.0f);
     private float maxChaseTime;
 
     private bool hasHome;
@@ -85,7 +85,13 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         // If there is an entity in bounds, then let this AI Task roceed. Otherwise, don't do anything with it.
         ConfigureTargetEntity();
 
-        return (this.entityTarget != null);
+        if (this.theEntity is EntityAliveSDX)
+        {
+            EntityAliveSDX aliveTarget = theEntity as EntityAliveSDX;
+            if (aliveTarget.CurrentOrder != EntityAliveSDX.Orders.Follow)
+                return false;
+        }
+            return (this.entityTarget != null);
     }
 
     public override void Start()
@@ -134,6 +140,12 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             else if (this.entityTarget == null)
             {
                 return false;
+            }
+            else if ( this.theEntity is EntityAliveSDX)
+            {
+                EntityAliveSDX aliveTarget = theEntity as EntityAliveSDX;
+                if (aliveTarget.CurrentOrder != EntityAliveSDX.Orders.Follow)
+                    return false;
             }
             else
             {
@@ -222,7 +234,6 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
         this.theEntity.moveHelper.CalcIfUnreachablePos(position);
 
-        float distanceToEntity = 2f;
         float num2 = distanceToEntity * distanceToEntity;
         float targetXZDistanceSq = this.GetTargetXZDistanceSq(6);
         float num3 = position.y - this.theEntity.position.y;

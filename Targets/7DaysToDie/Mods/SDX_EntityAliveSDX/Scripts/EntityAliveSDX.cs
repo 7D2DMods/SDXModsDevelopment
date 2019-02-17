@@ -20,11 +20,12 @@ class EntityAliveSDX : EntityAlive
 {
     public QuestJournal QuestJournal = new QuestJournal();
     public List<String> lstQuests = new List<String>();
+    public Orders currentOrder = Orders.Wander;
 
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
-        if (blDisplayLog)
+        if (blDisplayLog &&  !this.IsDead())
             Debug.Log(this.entityName + ": " + strMessage);
     }
 
@@ -43,13 +44,25 @@ class EntityAliveSDX : EntityAlive
                 this.lstQuests.Add(text2);
             }
         }
+
+        if (entityClass.Properties.Values.ContainsKey("DebugEntity"))
+        {
+            this.blDisplayLog = StringParsers.ParseBool(entityClass.Properties.Values["DebugEntity"], 0, -1, true);
+        }
+
     }
 
+    public virtual bool IsEntityDebug()
+    {
+        return this.blDisplayLog;
+    }
+    
     public override void PostInit()
     {
         base.PostInit();
-        foreach (String strQuest in this.lstQuests)
-            GiveQuest(strQuest);
+
+        InvokeRepeating("OneMinuteUpdates", 0f, 60f);
+
     }
 
     // Reads the buff and quest information
@@ -59,6 +72,7 @@ class EntityAliveSDX : EntityAlive
         this.Buffs.Read(_br);
         this.QuestJournal = new QuestJournal();
         this.QuestJournal.Read(_br);
+        
     }
 
     // Saves the buff and quest information
@@ -71,7 +85,8 @@ class EntityAliveSDX : EntityAlive
 
     public override string ToString()
     {
-        string strOutput = this.entityName + " - ID: " + this.entityId + " Health: " + this.Health + " Hunger: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value;
+        string strOutput = this.entityName + " - ID: " + this.entityId + " Health: " + this.Stats.Health.Value + " Stamina: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value;
+        strOutput += "\n Current Order: " + CurrentOrder;
         strOutput += "\n Active Buffs: ";
         foreach (BuffValue buff in this.Buffs.ActiveBuffs)
             strOutput += "\n\t" + buff.BuffName + " ( Seconds: " + buff.DurationInSeconds + " Ticks: " + buff.DurationInTicks + " )";
@@ -88,7 +103,7 @@ class EntityAliveSDX : EntityAlive
         // Don't give duplicate quests.
         foreach (Quest quest in this.QuestJournal.quests)
         {
-            if (quest.ID == strQuest)
+            if (quest.ID == strQuest.ToLower() )
                 return;
         }
 
@@ -103,16 +118,72 @@ class EntityAliveSDX : EntityAlive
         this.QuestJournal.AddQuest(NewQuest);
     }
 
+    protected virtual void SetupStartingItems()
+    {
+        for (int i = 0; i < this.itemsOnEnterGame.Count; i++)
+        {
+            ItemStack itemStack = this.itemsOnEnterGame[i];
+            ItemClass forId = ItemClass.GetForId(itemStack.itemValue.type);
+            if (forId.HasQuality)
+            {
+                itemStack.itemValue = new ItemValue(itemStack.itemValue.type, 1, 6, false, default(FastTags), 1f);
+            }
+            else
+            {
+                itemStack.count = forId.Stacknumber.Value;
+            }
+            this.inventory.SetItem(i, itemStack);
+        }
+    }
+
     // Helper method.
     public bool HasBuff(String strBuff)
     {
         return this.Buffs.ActiveBuffs.Contains(Buffs.GetBuff(strBuff));
     }
-
+   
     public override void OnUpdateLive()
     {
-        // Update it's entity stats.
-        this.Stats.UpdateStatsOverTime(0.05f);
+        // Non-player entities don't fire all the buffs, so we'll manually fire the water tick,
+        this.Stats.Water.Tick(0.5f, 0, false);
+
+        // then fire the updatestats over time, which is protected from a IsPlayer check in the base onUpdateLive().
+        this.Stats.UpdateStatsOverTime(0.5f);
+      
         base.OnUpdateLive();
+
+        
+
+    }
+
+    protected override void onUnderwaterStateChanged(bool _bUnderwater)
+    {
+        base.onUnderwaterStateChanged(_bUnderwater);
+        if (_bUnderwater)
+            this.Buffs.SetCustomVar("_underwater", 1f, true);
+        else if (!this.IsDead())
+            this.Buffs.SetCustomVar("_underwater", 0f, true);
+        else
+            this.Buffs.SetCustomVar("_underwater", 0f, true);
+    }
+    public Orders CurrentOrder
+    {
+        get
+        {
+            return this.currentOrder;
+        }
+        set
+        {
+            this.currentOrder = value;
+        }
+    }
+
+
+    public enum Orders
+    {
+        Follow = 0,
+        Stay = 1,
+        Wander = 2,
+        Pet = 3
     }
 }

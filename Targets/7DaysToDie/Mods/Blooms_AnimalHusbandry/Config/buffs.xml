@@ -5,7 +5,24 @@
     <buff name="buffAnimalStatusCheck" hidden="true" remove_on_death="false">
       <stack_type value="ignore"/>
       <update_rate value="2"/>
-      <effect_group>
+      <!-- This allows the animal to use stamina and water over time, regardless of what they are doing. -->
+      <effect_group name="Regular stamina change">
+        <passive_effect name="StaminaMaxModifierOT" operation="base_subtract" value="0.01"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.01"/>
+      </effect_group>
+
+      <effect_group name="OnFirstSpawn Work Around">
+        <!-- The onFirstSpawn isn't working for the zombies, so handle it this way, so that all new entities at least have buffAnimalBaby -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalBaby">
+          <requirement name="NotHasBuff" buff="buffAnimalBaby"/>
+          <requirement name="NotHasBuff" buff="buffAnimalJunior"/>
+          <requirement name="NotHasBuff" buff="buffAnimalAdult"/>
+          <requirement name="NotHasBuff" buff="buffAnimalSenior"/>
+          <requirement name="NotHasBuff" buff="buffAnimalDeath"/>
+        </triggered_effect>
+
+      </effect_group>
+      <effect_group name="Vanilla Settings to control environmental effects">
         <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusHungry1">
           <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="LTE" value="0.5"/>
           <requirement name="NotHasBuff" buff="buffStatusHungry2"/>
@@ -26,6 +43,7 @@
         </triggered_effect>
 
         <!-- Remove particle effect if not on fire, this is a backup removal for remote clients -->
+
         <triggered_effect trigger="onSelfBuffUpdate" action="RemoveParticleEffectFromEntity" particle="p_onFire">
           <requirement name="NotHasBuff" buff="buffIsOnFire"/>
         </triggered_effect>
@@ -100,132 +118,264 @@
           <requirement name="NotHasBuff" buff="buffDrowning3"/>
         </triggered_effect>
 
+
         <!-- Falling -->
         <triggered_effect trigger="onSelfFallImpact" action="AddBuff" target="self" buff="buffPlayerFallingDamage">
           <requirement name="CVarCompare" cvar="_fallSpeed" operation="GTE" value=".15"/>
         </triggered_effect>
+      </effect_group>
+
+
+      <!-- This NonBlood Moon event counter-acts the BoodMoonEvent below. This will execute when it's not a blood moon -->
+      <effect_group name="NonBloodMoonEvent">
+        <requirement name="RequirementEveryXDaySDX, Mods" invert="true" value="0"/>
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="AnimatorSpeedSDX, Mods" target="self" value="1" />
+        <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" target="self" buff="buffBloodMoonEffect"/>
+      </effect_group>
+
+      <!-- During a Blood Event, the animals will have some adverse affects. Configure them here. This will apply for the entire blood moon event -->
+      <effect_group name="BloodMoonEvent">
+        <requirement name="RequirementEveryXDaySDX, Mods" value="0"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffBloodMoonEffect" />
+      </effect_group>
+
+      <!-- Horde night! It's time! -->
+      <effect_group name="BloodMoonEventsAt2200">
+        <requirement name="RequirementEveryXDaySDX, Mods" value="0"/>
+        <requirement name="RequirementEveryXHourSDX, Mods" value="22"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AnimatorSpeedSDX, Mods" target="self" value="2" />
+      
+      </effect_group>
+
+      <!-- horde night is approaching. make them jittery -->
+      <effect_group name="BloodMoonEventsAt2000">
+        <requirement name="RequirementEveryXDaySDX, Mods" value="0"/>
+        <requirement name="RequirementEveryXHourSDX, Mods" value="20"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AnimatorSpeedSDX, Mods" target="self" value="1.3" />
+      </effect_group>
+
+
+      <effect_group name="Inital Animal Buff">
+        <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffAnimalBaby"/>
+
+        <triggered_effect trigger="onSelfFirstSpawn" action="LogMessage" message="Animal Baby Spawn respawn trigger"/>
 
       </effect_group>
     </buff>
 
+    <buff name="buffAnimalDrinking" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="200"/>
+      <effect_group name="Regular stamina change">
+        <passive_effect name="StaminaMaxModifierOT" operation="base_add" value="40"/>
+        <passive_effect name="WaterChangeOT" operation="base_add" value="40"/>
+      </effect_group>
+    </buff>
+   
+    <!-- Progress an animal through stages of Infection, which turns them into aggressive animals-->
+    <buff name="buffInfectedAnimal1">
+      <stack_type value="ignore"/>
+      <duration value="50"/>
+      <effect_group name="Starting Effects">
+        <triggered_effect trigger="onSelfBuffStart" action="PumpQuestSDX, Mods" target="self"  />
+        <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffAnimalHarvestable" />
+        <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffAnimalFertility" />
+      </effect_group>
 
-    
+      <effect_group name="Updates">
+        <!-- Give the anbimal a chance to fight the infection -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffInfectedAnimal1" >
+          <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="1"/>
+        </triggered_effect>
+      </effect_group>
+      
+      <!-- handles the buffs that we are adding and removing together-->
+      <effect_group name="General Matched buffs">
+        <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,-.2,0" parent_transform="Hips"/>
+        <triggered_effect trigger="onSelfBuffFinish" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_onFire"/>
+      </effect_group>
+
+      <effect_group name="Exit Buffs">
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffInfectedAnimal2" />
+        <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffAnimalHarvestable" />
+      </effect_group>
+    </buff>
+
+    <buff name="buffInfectedAnimal2">
+      <stack_type value="ignore"/>
+      <duration value="50"/>
+      <effect_group name="Starting Effects">
+        <triggered_effect trigger="onSelfBuffStart" action="PumpQuestSDX, Mods" target="self"  />
+        <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffPregnancyCow" />
+        <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffNewMother" />
+      </effect_group>
+
+      <effect_group name="Updates">
+        <!-- Give the animal a chance to fight the infection -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffInfectedAnimal2" >
+          <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="1"/>
+        </triggered_effect>
+      </effect_group>
+      
+      <effect_group name="General Matched buffs">
+        <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_shock" local_offset="0,0.75,0"/>
+        <triggered_effect trigger="onSelfBuffFinish" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
+        <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
+      </effect_group>
+      
+      <effect_group name="Exit Buffs">
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffInfectedAnimal3" />
+        <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffAnimalHarvestable" />
+      </effect_group>
+    </buff>
+
+    <!-- Infected Animal 3 is contagious -->
+    <buff name="buffInfectedAnimal3">
+      <stack_type value="ignore"/>
+      <duration value="50"/>
+      <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="5" buff="buffInfectedAnimal1" target_tags="farmanimal"/>
+    </buff>
+
     <buff name="buffBeastMaster" >
       <stack_type value="ignore"/>
       <duration value="0"/>
     </buff>
-    
+
+    <!-- Blood Moon Effect: This effect gets applied during the the blood moon. Have some fun with it. Make them more dangerous, etc -->
+    <buff name="buffBloodMoonEffect" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="0"/>
+
+      <!-- Animals that are nervous can be downright dangerous. Let's increase their damage as they are panicking -->
+      <effect_group name="DangerousPerks">
+        <triggered_effect trigger="onSelfSecondaryActionRayHit" action="AddBuff" target="otherAOE" range="1.2" target_tags="entity" buff="buffInjuryBleeding">
+          <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="20"/>
+        </triggered_effect>
+        <passive_effect name="DamageModifier" operation="perc_add" value="0.2,1" level="1,5" tags="head"/>
+        <passive_effect name="DismemberChance" operation="base_add" value="0.05,0.15" level="3,5" tags="head"/>
+        <triggered_effect trigger="onSelfDamagedOther" action="AddBuff" target="other" buff="buffInjuryBleeding" />
+      </effect_group>
+    </buff>
+
+    <!-- this is an AoE that a male gives to surrounding females. -->
+    <buff name="buffAnimalFertility" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="0"/>
+      <requirement name="IsMale" invert="true"/>
+    </buff>
+
     <!-- This is the buff to make the farm animals know that this is home-->
     <buff name="buffHomePoint" hidden="true">
       <stack_type value="ignore"/>
       <duration value="1"/>
-      <effect_group>
-        <triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="not Animal">
-          <requirement name="EntityTagCompare" tags="Farmanimal"/>
-        </triggered_effect>
-      </effect_group>
     </buff>
 
-    <!-- Animal Pregnancy Buff only applies to Females -->
-    <buff name="buffPregnancyCow" hidden="true">
-      <stack_type value="ignore"/>
-      <duration value="1000"/>
-      <requirement name="IsMale" inverts="true "/>
-      <requirement name="HasBuff" buff="buffAnimalAdult"/> <!-- make sure the animal is adult -->
-      <effect_group>
-        <!-- When the pregnancy buff is over, apply the newmother buff, and the animal harvestable  That's because cows will only produce milk after having a baby -->
-        <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffNewMother"/>
-        <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffAnimalHarvestable"/>
-      </effect_group>
-    </buff>
-    <!-- Example of a pregnancy that does not need to be set to harvestable after pregnancy is over -->
-    <buff name="buffAnimalPregnancy" hidden="true">
-      <stack_type value="ignore"/>
-      <duration value="1000"/>
-      <requirement name="IsMale" inverts="true "/>
-      <requirement name="HasBuff" buff="buffAnimalAdult"/>       <!-- make sure the animal is adult -->
-      <effect_group>
-      </effect_group>
-    </buff>
 
-    <!-- New Mother buff is only removeable through code -->
-    <buff name="buffNewMother" hidden="true">
-      <stack_type value="ignore"/>
-      <duration value="0"/>
-    </buff>
-    
     <buff name="buffAnimalHarvestable" hidden="true">
       <stack_type value="ignore"/>
       <duration value="0"/>
+      <requirement name="HasBuff" buff="buffAnimalAdult" />
     </buff>
 
     <!-- Controls the animal's age -->
     <buff name="buffAnimalBaby" hidden="true">
       <stack_type value="ignore"/>
-      <duration value="90"/>
+      <duration value="5"/>
       <effect_group>
         <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$sizeScale" operation="set" value="0.3"/>
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalJuvenile" />
       </effect_group>
     </buff>
+
     <buff name="buffAnimalJuvenile" hidden="true">
       <stack_type value="ignore"/>
-      <duration value="90"/>
+      <duration value="10"/>
       <effect_group>
         <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$sizeScale" operation="set" value="0.7"/>
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalAdult" />
       </effect_group>
     </buff>
+
     <buff name="buffAnimalAdult" hidden="true">
       <stack_type value="ignore"/>
-      <duration value="90"/>
-      
-      <!-- If it's an adult, have a 25% chance of becoming pregnant, but only if its not currently pregnant and is not a new MOther.-->
-      <effect_group>
-        <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="25"/>
-        <requirement name="NotHasBuff" buff="buffAnimalPregenant"/>
-        <requirement name="NotHasBuff" buff="buffAnimalNewMother"/>
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalPregenant"/>
+      <duration value="200"/>
+
+      <!-- Effects that only need to happen on the females -->
+      <effect_group name="Female Effects">
+        <requirement name="IsMale" invert="true"/>
+
+        <!-- Trigger the pregnancy quest line -->
+        <triggered_effect trigger="onSelfBuffStart" action="GiveQuestSDX, Mods" target="self" quest="farmingAnimal_Cow_Pregnancy" />
+
+        <!-- Conditions for triggering pregnancy-->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalPregnant">
+          <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="25"/>
+          <requirement name="NotHasBuff" buff="buffAnimalPregnant"/>
+          <requirement name="NotHasBuff" buff="buffAnimalNewMother"/>
+          <requirement name="NotHasBuff" buff="buffBloodMoonEffect" />
+          <requirement name="HasBuff" buff="buffAnimalFertility"/>
+        </triggered_effect>
       </effect_group>
 
-      <effect_group>
+      <!-- if the entity is a male, then give it the fertility buff -->
+      <effect_group name="Male Effects">
+        <requirement name="IsMale" />
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="4" buff="buffAnimalFertility" target_tags="farmanimal"/>
+      </effect_group>
+
+      <!-- Effects and triggers for both genders -->
+      <effect_group name="Universal effects">
         <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$sizeScale" operation="set" value="1"/>
         <triggered_effect trigger="onSelfBuffStart" action="PumpQuestSDX, Mods" target="self"  />
+      </effect_group>
 
-        <!-- Progress through the aging to Senior -->
+      <effect_group name="Exit Buffs">
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalSenior" />
         <triggered_effect trigger="onSelfBuffFinish" action="RemoveBuff" target="self" buff="buffAnimalHarvestable" />
-
+        <triggered_effect trigger="onSelfBuffFinish" action="RemoveBuff" target="self" buff="buffAnimalFertility" />
       </effect_group>
     </buff>
-    
-    <buff name="buffAnimalPregenant" hidden="true">
+
+    <buff name="buffAnimalPregnant" hidden="true">
       <stack_type value="ignore"/>
       <duration value="70"/>
-      <effect_group>
+      <requirement name="IsMale" invert="true"/>
+      <requirement name="HasBuff" buff="buffAnimalAdult"/>
+      <requirement name="NotHasBuff" buff="buffAnimalPregnant"/>
 
+      <effect_group name="Universal effects">
         <triggered_effect trigger="onSelfBuffStart" action="PumpQuestSDX, Mods" target="self"  />
-        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalNewMother" />
+      </effect_group>
 
-        <!-- Remove the harvestable buff once its out of adult hood -->
+      <effect_group name="Exit Buffs">
+        <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalNewMother" />
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalHarvestable" />
       </effect_group>
     </buff>
     <buff name="buffAnimalNewMother" hidden="true">
       <stack_type value="ignore"/>
       <duration value="50"/>
-      <effect_group>
-   
-      </effect_group>
     </buff>
-    
     <buff name="buffAnimalSenior" hidden="true">
       <stack_type value="ignore"/>
       <duration value="180"/>
-      <effect_group>
+      <effect_group name="Old Age Effects" >
+        <!-- 5% chance to getting an infection -->
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffInfectedAnimal1">
+          <requirement name="NotHasBuff" buff="buffInfectedAnimal1" />
+          <requirement name="NotHasBuff" buff="buffInfectedAnimal2" />
+          <requirement name="NotHasBuff" buff="buffInfectedAnimal3" />
+          <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="5"/>
+        </triggered_effect>
+      </effect_group>
+      <effect_group name="Exit Buffs">
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalDeath" />
       </effect_group>
-    </buff>  
+    </buff>
+
+    <!-- Handles damaging the entity for 500 points of damage over a minute.-->
     <buff name="buffAnimalDeath" hidden="true">
       <stack_type value="ignore"/>
       <damage_type value="disease"/>

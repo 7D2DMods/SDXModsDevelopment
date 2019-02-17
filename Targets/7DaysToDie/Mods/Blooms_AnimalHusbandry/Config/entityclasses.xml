@@ -10,23 +10,22 @@
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="110"/>
 				<passive_effect name="StaminaMax" operation="base_set" value="110"/>
-				<passive_effect name="WaterMax" operation="base_set" value="100"/>
-				<passive_effect name="HealthChangeOT" operation="base_set" value="0.017" />
-				<!-- heal 1 point of (red) health / minute -->
+        <passive_effect name="WaterMax" operation="base_set" value="100" />
+
+        <passive_effect name="WaterLossPerHealthPointGained" operation="base_set" value="0.06"/>
+        <!-- healing damage costs you water -->
+        <passive_effect name="WaterLossPerStaminaPointGained" operation="base_set" value="0.0075"/>
+        <!-- regening stamina costs you water -->
+
+        <passive_effect name="HealthLossMaxMult" operation="base_set" value="0.144"/>
+        <!-- taking damage blacks out part of the HP bar -->
+        <passive_effect name="StaminaLossMaxMult" operation="base_set" value="0.0068"/>
+        <!-- regening stamina costs food, blacks out the stamina bar -->
+
+        <passive_effect name="HealthChangeOT" operation="base_set" value="0.017" />
 				<passive_effect name="HealthMaxModifierOT" operation="base_add" value=".00028"/>
-				<!-- heal 1 point of MaxHealth / hour -->
 
-				<passive_effect name="WaterLossPerHealthPointGained" operation="base_set" value="0.06"/>
-				<!-- healing damage costs you water -->
-				<passive_effect name="WaterLossPerStaminaPointGained" operation="base_set" value="0.0075"/>
-				<!-- regening stamina costs you water -->
-
-				<passive_effect name="HealthLossMaxMult" operation="base_set" value="0.144"/>
-				<!-- taking damage blacks out part of the HP bar -->
-				<passive_effect name="StaminaLossMaxMult" operation="base_set" value="0.0068"/>
-				<!-- regening stamina costs food, blacks out the stamina bar -->
-
-				<passive_effect name="WalkSpeed" operation="base_set" value="1.53"/>
+        <passive_effect name="WalkSpeed" operation="base_set" value="1.53"/>
 				<passive_effect name="RunSpeed" operation="base_set" value="1.10"/>
 				<passive_effect name="CrouchSpeed" operation="base_set" value="1.04"/>
 				<passive_effect name="WalkSpeed" operation="base_set" value="1.02" tags="swimming"/>
@@ -41,36 +40,34 @@
 
 				<passive_effect name="JumpStrength" operation="base_set" value="0.08" tags="crouching"/>
 
-				<passive_effect name="StaminaChangeOT" operation="base_set" value="10" />
-
+        <passive_effect name="StaminaChangeOT" operation="base_set" value="10" />
 				<passive_effect name="StaminaChangeOT" operation="perc_subtract" value="1.5" tags="running"/>
-
 				<passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".75" tags="swimming" />
-				<passive_effect name="StaminaChangeOT" operation="perc_subtract" value=".3" match_all_tags="true" tags="crouching,walking"/>
 
-				<passive_effect name="StaminaLoss" operation="base_set" value="20" tags="jumping"/>
+        <passive_effect name="StaminaLoss" operation="base_set" value="20" tags="jumping"/>
 				<passive_effect name="StaminaLoss" operation="base_set" value="40" tags="swimming"/>
-				<!--triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffAnimalStatusCheck"/-->
-			</effect_group>
+        
+
+      </effect_group>
 
       <property name="AITask-1" value="FollowOrdersSDX, Mods" />
+
+      <!-- If you have the param1 buff, or item in hand, it won't attack, but will follow you. -->
 			<property name="AITask-2" value="ApproachAndFollowTargetSDX, Mods" param1="buffBeastMaster"/>
       <property name="AITask-3" value="ApproachAndAttackTarget" param1="EntityNPC,0"/>
       
       <!-- To find the Home Block, you need a block, plus a buff to keep it close by -->
-      <property name="AITask-3" value="FindHomeBlockSDX, Mods" param1="cntCowHomeBlock" param2="buffAnimalStatusCheck"/>
-
-
-      <!--property name="AITask-2" value="RunawayWhenHurt"/>
+      <!-- This allows you to re-use the same block, but have different buffs for different animals -->
+      <property name="AITask-3" value="FindHomeBlockSDX, Mods" param1="cntCowHomeBlock" param2="buffHomePoint"/>
+      <property name="AITask-4" value="RunawayWhenHurt"/>
       
-			<property name="AITask-3" value="Territorial"/>
+			<property name="AITask-5" value="Territorial"/>
 			
-			<property name="AITask-4" value="RunawayFromEntity" param1="EntityZombie"/>
-			<property name="AITask-5" value="Look"/>
-			<property name="AITask-6" value="Wander"/>
-      <property name="AITask-7" value="ApproachSpot" />
-      -->
-			<!-- These are the items that the animal will swap back and forth, depending on whether it needs to eat or drink-->
+			<property name="AITask-6" value="RunawayFromEntity" param1="EntityZombie"/>
+			<property name="AITask-7" value="Look"/>
+			<property name="AITask-8" value="Wander"/>
+
+      <!-- These are the items that the animal will swap back and forth, depending on whether it needs to eat or drink-->
 			<property name="EatItem" value="eatAnimalFood" />
 			<property name="DrinkItem" value="drinkAnimalWater" />
 
@@ -85,11 +82,41 @@
 			<drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="3"/>
 			<drop event="Harvest" name="resourceFemur" tag="butcherHarvest" count="3"/>
 			<drop event="Harvest" name="resourceFemur" tag="allToolsHarvest" count="1"/>
+      <property name="IsMale" value="false"/>
+      <property name="Tags" value="entity,animal,farmanimal" />
+			<property name="AvatarController" value="MecanimSDX, Mods" />
 
-      <property name="StartingQuests" value="farmingAnimal_Cow_Pregnancy" />
+      <!-- Hand item allows them to eat and drink from water sources, much like a player -->
+      <property name="HandItem" value="meleeHandFarmAnimal"/>
+
+      <property name="DebugEntity" value="true" />
+      
+      <!-- The starting buffs -->
+      <property name="Buffs" value="buffAnimalStatusCheck" />
+
+      <property name="TimeStayAfterDeath" value="1" />
+
+      <!--property name="AITask-1" value="FollowOrdersSDX, Mods" /-->
+      <!-- if the entity has the following buffs, search for water 20 blocks in all direction -->
+      <property name="AITask-1" value="FindNearestWaterBlockSDX, Mods" param1="buffStatusThirsty1,buffStatusThirsty2" param2="20" />
+      <property name="AITask-2" value="FindNearestFoodBlockSDX, Mods" param1="buffStatusHungry1,buffStatusHungry2" param2="campfire" />
+      <!-- If you have the param1 buff, or item in hand, it won't attack, but will follow you. -->
+      <property name="AITask-3" value="ApproachAndFollowTargetSDX, Mods" param1="buffBeastMaster"/>
+
+      <!-- To find the Home Block, you need a block, plus a buff to keep it close by -->
+      <!-- This allows you to re-use the same block, but have different buffs for different animals -->
+      <property name="AITask-4" value="FindHomeBlockSDX, Mods" param1="cntCowHomeBlock" param2="buffHomePoint"/>
+      <property name="AITask-5" value="Wander"/>
+
+
+
+      <property name="AITask-6" value="Territorial"/>
+
+      <property name="AITask-7" value="RunawayFromEntity" param1="EntityZombie"/>
+      <property name="AITask-8" value="Look"/>
+
       <property name="LootListAlive" value="62"/>
 
-      <property name="RootMotion" value="false" />
 
       <!-- This is the food value it likes best -->
 			<property name="FoodItem" value="hayBaleBlock"/>
@@ -106,79 +133,16 @@
       
       <!-- This is the buff that will mark it as a home point -->
 			<property name="HomeBuff" value="buffAnimalStatusCheck"/>
-      
-      <!-- This is the male entity you need to apply the pregnancy buff -->
-      <property name="MaleEntity" value="animalFarmCowMale" />
-
-      <property name="AnimalType" value="Cow" />
-      
-      <!-- This is the pregnancy buff for the entity. Can control the duration -->
-      <property name="PregnancyBuff" value="buffCowPregnancy" />
-      <property name="PregnancyQuest" value="farmingAnimal_Cow_Pregnancy" />
-      <!-- this is the buff that is applied if the animal is harvestable. Either apply it immediately, or
-      apply it after the animal has reached adult hood -->
-      <property name="HarvestableBuff" value="buffAnimalHarvestable" />
-      
-      <!-- What stage is the Adult -->
-      <property name="AdultBuff" value="buffAnimalAdult" />
-      
-      <!-- Which stage to start off with -->
-      <property name="StartingGrowthBuff" value="buffAnimalBaby" />
+    
 		</entity_class>
 
-    <entity_class name="animalFarmCowMale" extends="animalFarm">
+    <entity_class name="animalFarmCowMale" extends="animalFarmCow">
       <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
-      <drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
-      <drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="20"/>
-      <drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="6"/>
-      <drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="3"/>
-      <drop event="Harvest" name="resourceFemur" tag="butcherHarvest" count="3"/>
-      <drop event="Harvest" name="resourceFemur" tag="allToolsHarvest" count="1"/>
       <property name="IsMale" value="true"/>
-
-      <property name="RootMotion" value="false" />
-
-      <!-- This is the food value it likes best -->
-      <property name="FoodItem" value="hayBaleBlock"/>
-
-      <!-- This is the item you get from harvesting it -->
-      <property name="ProductItem" value="drinkJarMilk"/>
-
-      <!-- This is what you need to be hold to harvest the product -->
-      <property name="HarvestItem" value="drinkJarEmptyMilk"/>
-
-      <!-- This is the block it'll call home -->
-      <property name="HomeBlock" value="cntCowHomeBlock"/>
-
-      <!-- This is the buff that will mark it as a home point -->
-      <property name="HomeBuff" value="buffAnimalStatusCheck"/>
-
     </entity_class>
-    <entity_class name="animalFarmCowBaby" extends="animalFarm">
+
+    <entity_class name="zombieFarmCow" extends="animalBear">
       <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
-      <drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
-      <drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="2"/>
-      <drop event="Harvest" name="resourceLeather" tag="butcherHarvest" count="1"/>
-      <drop event="Harvest" name="resourceAnimalFat" tag="butcherHarvest" count="1"/>
-      <drop event="Harvest" name="resourceFemur" tag="butcherHarvest" count="1"/>
-      <drop event="Harvest" name="resourceFemur" tag="allToolsHarvest" count="1"/>
-
-      <property name="RootMotion" value="false" />
-
-      <!-- This is the food value it likes best -->
-      <property name="FoodItem" value="hayBaleBlock"/>
-
-      <!-- This is the block it'll call home -->
-      <property name="HomeBlock" value="cntCowHomeBlock"/>
-
-      <!-- This is the buff that will mark it as a home point -->
-      <property name="HomeBuff" value="buffAnimalStatusCheck"/>
-
-      <!-- What stage is the Adult -->
-      <property name="AdultBuff" value="buffAnimalAdult" />
-
-      <!-- Which stage to start off with -->
-      <property name="StartingGrowthBuff" value="buffAnimalBaby" />
     </entity_class>
 	</append>
 
