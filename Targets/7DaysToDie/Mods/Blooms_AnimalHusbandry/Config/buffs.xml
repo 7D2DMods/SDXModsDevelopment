@@ -7,8 +7,8 @@
       <update_rate value="2"/>
       <!-- This allows the animal to use stamina and water over time, regardless of what they are doing. -->
       <effect_group name="Regular stamina change">
-        <passive_effect name="StaminaMaxModifierOT" operation="base_subtract" value="0.01"/>
-        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.01"/>
+        <passive_effect name="StaminaMaxModifierOT" operation="base_subtract" value="0.05"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.05"/>
       </effect_group>
 
       <effect_group name="OnFirstSpawn Work Around">

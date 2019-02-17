@@ -73,6 +73,7 @@
     <Compile Include="Mods\AnimationSDX\Scripts\MecanimSDX.cs" />
     <Compile Include="Mods\AnimationSDX\Scripts\NewMecanimSDX.cs" />
     <Compile Include="Mods\Blooms_AnimalHusbandry\Scripts\EntityAliveFarmingAnimal.cs" />
+    <Compile Include="Mods\Blooms_AnimalHusbandry\Scripts\ItemActionNPCEat.cs" />
     <Compile Include="Mods\HalDllUpdates\PatchScripts\PatcherHalDll.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\EntityAnimalHal.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\HalHelperEvents.cs" />
@@ -84,6 +85,8 @@
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndAttackTarget.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndFollowTargetSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFindNearestBlockSDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFindNearestFoodBlockSDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFindNearestWaterBlockSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFollowOrdersSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetNearestEntityAsTargetSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFindHomeBlockSDX.cs" />
