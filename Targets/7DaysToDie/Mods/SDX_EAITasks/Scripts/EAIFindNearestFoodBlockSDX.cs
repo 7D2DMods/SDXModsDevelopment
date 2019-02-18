@@ -38,7 +38,7 @@ class EAIFindNearestFoodBlockSDX : EAIFindNearestWaterBlockSDX
     }
 
     // Virtual method to find the target for what we are looking for. This one is for liquid.
-    public override bool CheckForBlock()
+    public override bool CheckForWaterBlock()
     {
         
         Vector3i blockPosition = theEntity.GetBlockPosition();

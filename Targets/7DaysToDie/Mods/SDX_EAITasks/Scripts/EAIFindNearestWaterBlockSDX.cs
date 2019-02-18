@@ -5,14 +5,16 @@ using UnityEngine;
 
 class EAIFindNearestWaterBlockSDX : EAIApproachSpot
 {
+
     List<String> Incentives = new List<String>();
     int MaxDistance = 20;
     public int investigateTicks;
 
-    Vector3i LastBlockPosition = new Vector3i(0, 0, 0);
+   // Vector3i LastBlockPosition = new Vector3i(0, 0, 0);
     public  bool hadPath;
     private bool blDisplayLog = true;
-
+    private Vector3 investigatePos;
+    private Vector3 seekPos;
 
     public void DisplayLog(String strMessage)
     {     
@@ -46,20 +48,14 @@ class EAIFindNearestWaterBlockSDX : EAIApproachSpot
         if (this.MaxDistance == 0)
             this.MaxDistance = 10;
     }
+
+
     public override bool CanExecute()
     {
-        if (! CheckIncentive())
+        if (!CheckIncentive() || !CheckForWaterBlock())
             return false;
-
-      
-        if (CheckForBlock() == false)
-            return false;
-
+        
         return base.CanExecute();
-        //DisplayLog(" Setting Investigation Position to: " + this.LastBlockPosition);
-        //this.theEntity.SetInvestigatePosition(this.LastBlockPosition.ToVector3(), 60);
-            
-        //return false;
     }
 
     public virtual  bool CheckIncentive()
@@ -69,9 +65,6 @@ class EAIFindNearestWaterBlockSDX : EAIApproachSpot
             if (this.theEntity.Buffs.HasBuff(strIncentive))
                 return true;
         }
-
-        // Doesn't match any incentive, so reset its invesgitate position.
-        this.theEntity.SetInvestigatePosition(Vector3.zero, 0);
         return false;
 
     }
@@ -81,73 +74,49 @@ class EAIFindNearestWaterBlockSDX : EAIApproachSpot
     {
         if ( CheckIncentive() == false)
             return false;
-   
-        PathNavigate navigator = this.theEntity.navigator;
-        PathEntity path = navigator.getPath();
-        if (this.hadPath && path == null)
-        {
-            DisplayLog("Continue(): No AI Task Found");
-            return false;
-        }
 
-        if (++this.investigateTicks > 40)
-        {
-            this.investigateTicks = 0;
-            if (!this.theEntity.HasInvestigatePosition)
-            {
-                DisplayLog("No Investigation Position. Not Searching anymore.");
-                return false;
-            }
-            float sqrMagnitude = (this.LastBlockPosition.ToVector3() - this.theEntity.InvestigatePosition).sqrMagnitude;
-            if (sqrMagnitude >= 4f)
-            {
-                DisplayLog(" Too Far away. Not searching anymore.");
-                return false;
-            }
-        }
-        float sqrMagnitude2 = (this.LastBlockPosition.ToVector3() - this.theEntity.position).sqrMagnitude;
-        if (sqrMagnitude2 <= 1f || (path != null && path.isFinished()))
-        {
-            DisplayLog("Continue(): I am at the block, or I have given up.");
-            PerformAction();
-            return false;
-        }
-        return true;
+        //PathNavigate navigator = this.theEntity.navigator;
+        //PathEntity path = navigator.getPath();
+        
+        //if ( (path != null && path.isFinished()) || (this.seekPos - this.theEntity.position).sqrMagnitude < 2f)
+        //{
+        //        PerformAction();
+        //        return false;
+        //}
+        bool result = base.Continue();
+        PerformAction();
+        return result;  
     }
 
     // Virtual methods to overload, so we can choose what kind of action to take.
     public virtual void PerformAction()
     {
-        if (this.theEntity.inventory.holdingItem.Actions[0] != null)
+        if (this.theEntity.inventory.holdingItem.Actions[1] != null)
         {
-            DisplayLog(" Before: ");
-            DisplayLog( this.theEntity.ToString());
-            DisplayLog(" Executing: " + this.theEntity.inventory.holdingItem.GetItemName());
-
-  
             // Look at the water, then execute the action on the empty jar.
-            this.theEntity.SetLookPosition(this.LastBlockPosition.ToVector3());
+            this.theEntity.SetLookPosition(seekPos);
             if (this.theEntity.inventory.holdingItem.Actions[1] != null)
             {
-                DisplayLog(" Executing drinkAnimalWater ");
                 this.theEntity.inventory.holdingItem.Actions[1].ExecuteAction(this.theEntity.inventory.holdingItemData.actionData[1], true);
-            }
+                this.theEntity.SetInvestigatePosition(Vector3.zero, 0);
 
-          
-            DisplayLog(" After: ");
-            DisplayLog(this.theEntity.ToString());
+            }
         }
     }
 
 
     // Virtual method to find the target for what we are looking for. This one is for liquid.
-    public virtual bool CheckForBlock()
+    public virtual bool CheckForWaterBlock()
     {
-        // if the last source of water is still available, then re-use that, rather than scan.
-        if (Block.list[theEntity.world.GetBlock(this.LastBlockPosition).type].blockMaterial.IsLiquid  )
-        {
+        if (this.theEntity.InvestigatePosition == this.seekPos)
             return true;
-        }
+
+        // if the last source of water is still available, then re-use that, rather than scan.
+        //if (Block.list[theEntity.world.GetBlock(seekPos).type].blockMaterial.IsLiquid)
+        //{
+        //    this.theEntity.SetInvestigatePosition(seekPos, 40);
+        //    return true;
+        //}
         Vector3i blockPosition = theEntity.GetBlockPosition();
   
 
@@ -162,10 +131,14 @@ class EAIFindNearestWaterBlockSDX : EAIApproachSpot
                     if (Block.list[checkBlock.type].blockMaterial.IsLiquid)
                     {
                         DisplayLog(" CheckForBlock(): Found Water Block: " + checkBlock.ToString());
-                        this.LastBlockPosition.x = x;
-                        this.LastBlockPosition.y = y;
-                        this.LastBlockPosition.z = z;
-                        this.theEntity.SetInvestigatePosition(this.LastBlockPosition.ToVector3(), 400);
+                        seekPos.x = x;
+                        seekPos.y = y;
+                        seekPos.z = z;
+
+                        //this.LastBlockPosition.x = x;
+                        //this.LastBlockPosition.y = y;
+                        //this.LastBlockPosition.z = z;
+                        this.theEntity.SetInvestigatePosition(seekPos, 1200);
                         return true;
                     }
                 }

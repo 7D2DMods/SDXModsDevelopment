@@ -20,7 +20,7 @@
       </property>
       <property class="Action1">
         <property name="Class" value="ExchangeItemSDX, Mods"/>
-        <property name="Delay" value="1.0"/>
+        <property name="Delay" value="2.0"/>
         <property name="Change_item_to" value="drinkJarRiverWater"/>
         <property name="Do_block_action" value="deplete1"/>
         <property name="Focused_blockname_1" value="water"/>
@@ -32,10 +32,14 @@
       </property>
 
       <effect_group name="Regular stamina change">
-        <triggered_effect trigger="onSelfSecondaryActionStart" action="AddBuff" target="self" buff="buffAnimalDrinking"/>
-        <triggered_effect trigger="onSelfPrimaryActionStart" action="AddBuff" target="self" buff="buffAnimalDrinking"/>
+        	<triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="20"/>
+      		<triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffProcessConsumables"/>
 
-      </effect_group>
+        <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="20"/>
+        <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="20"/>
+
+        <triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" target="self" buff="buffProcessConsumables"/>
+     </effect_group>
      
     </item>
     

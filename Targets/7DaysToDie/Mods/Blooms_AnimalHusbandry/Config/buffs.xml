@@ -5,24 +5,52 @@
     <buff name="buffAnimalStatusCheck" hidden="true" remove_on_death="false">
       <stack_type value="ignore"/>
       <update_rate value="2"/>
+
       <!-- This allows the animal to use stamina and water over time, regardless of what they are doing. -->
       <effect_group name="Regular stamina change">
-        <passive_effect name="StaminaMaxModifierOT" operation="base_subtract" value="0.05"/>
-        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.05"/>
-      </effect_group>
+        <passive_effect name="StaminaMaxModifierOT" operation="base_subtract" value="0.001"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.001"/>
 
-      <effect_group name="OnFirstSpawn Work Around">
-        <!-- The onFirstSpawn isn't working for the zombies, so handle it this way, so that all new entities at least have buffAnimalBaby -->
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalBaby">
-          <requirement name="NotHasBuff" buff="buffAnimalBaby"/>
-          <requirement name="NotHasBuff" buff="buffAnimalJunior"/>
-          <requirement name="NotHasBuff" buff="buffAnimalAdult"/>
-          <requirement name="NotHasBuff" buff="buffAnimalSenior"/>
-          <requirement name="NotHasBuff" buff="buffAnimalDeath"/>
+
+        <!-- Minimum cap for "blacked out" water and stamina:-->
+        <passive_effect name="WaterChangeOT" operation="base_add" value="1">
+          <requirement name="StatCompareModMax" stat="Water" operation="LTE" value="10"/>
+        </passive_effect>
+        <passive_effect name="StaminaMaxModifierOT" operation="base_add" value="1">
+          <requirement name="StatCompareModMax" stat="Stamina" operation="LTE" value="10"/>
+        </passive_effect>
+
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="$waterAmountAdd">
+          <requirement name="CVarCompare" target="self" cvar="$waterAmountAdd" operation="GT" value="0"/>
         </triggered_effect>
 
+        <triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="$foodAmountAdd">
+          <requirement name="CVarCompare" target="self" cvar="$foodAmountAdd" operation="GT" value="0"/>
+        </triggered_effect>
       </effect_group>
-      <effect_group name="Vanilla Settings to control environmental effects">
+
+
+      <!-- The onFirstSpawn isn't working for the zombies, so handle it this way, so that all new entities at least have buffAnimalBaby -->
+      <effect_group name="OnFirstSpawn Work Around">
+        <requirement name="NotHasBuff" buff="buffAnimalBaby"/>
+        <requirement name="NotHasBuff" buff="buffAnimalJunior"/>
+        <requirement name="NotHasBuff" buff="buffAnimalAdult"/>
+        <requirement name="NotHasBuff" buff="buffAnimalSenior"/>
+        <requirement name="NotHasBuff" buff="buffAnimalDeath"/>
+
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalBaby" />
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="set" value="5"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmountAdd" operation="set" value="5"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmount" operation="set" value="5"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmount" operation="set" value="5"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffProcessConsumables"/>
+
+
+      </effect_group>
+
+
+      <effect_group name="vanilla pump">
         <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusHungry1">
           <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="LTE" value="0.5"/>
           <requirement name="NotHasBuff" buff="buffStatusHungry2"/>
@@ -43,7 +71,6 @@
         </triggered_effect>
 
         <!-- Remove particle effect if not on fire, this is a backup removal for remote clients -->
-
         <triggered_effect trigger="onSelfBuffUpdate" action="RemoveParticleEffectFromEntity" particle="p_onFire">
           <requirement name="NotHasBuff" buff="buffIsOnFire"/>
         </triggered_effect>
@@ -52,9 +79,19 @@
           <requirement name="HasBuff" buff="buffIsOnFire"/>
         </triggered_effect>
 
+
+
         <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffPerkPain">
           <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value="@PainTolerance"/>
         </triggered_effect>
+
+
+        <!--<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="_sheltered"/>-->
+        <!--<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="_shaded"/>-->
+        <!--<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="_wetness"/>-->
+
+        <!-- One time weather survival buff for newbies -->
+        <triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="buffNewbieCoat"/>
 
         <!-- Weather Survival HOT -->
         <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementHot">
@@ -109,6 +146,16 @@
           <requirement name="NotHasBuff" buff="god"/>
           <requirement name="CVarCompare" cvar="_biomeradiation" operation="GT" value="2.5"/>
         </triggered_effect>
+        <!--
+			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="_biomeradiation"/>
+			-->
+
+
+        <!-- Initialise perk abilities; buff only works onStack so fire it 2x -->
+        <triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="buffPerkAbilityUpdate"/>
+        <triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="buffPerkAbilityUpdate"/>
+        <!-- Update cvar driven perks on buying perk levels -->
+        <triggered_effect trigger="onSelfProgressionUpdate" action="AddBuff" target="self" buff="buffPerkAbilityUpdate"/>
 
         <!-- Drowning -->
         <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffDrowning1">
@@ -118,12 +165,23 @@
           <requirement name="NotHasBuff" buff="buffDrowning3"/>
         </triggered_effect>
 
-
         <!-- Falling -->
         <triggered_effect trigger="onSelfFallImpact" action="AddBuff" target="self" buff="buffPlayerFallingDamage">
           <requirement name="CVarCompare" cvar="_fallSpeed" operation="GTE" value=".15"/>
         </triggered_effect>
+
       </effect_group>
+
+
+
+      <effect_group name="Is Entity Eating">
+        <requirement name="CVarCompare" target="self" cvar="$foodAmountAdd" operation="GT" value="0"/>
+        <passive_effect name="StaminaMaxModifierOT" operation="base_add" value="@$foodAmountAdd"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="Adding Food"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar="$foodAmountAdd" operation="set" value="0"/>
+      </effect_group>
+
+
 
 
       <!-- This NonBlood Moon event counter-acts the BoodMoonEvent below. This will execute when it's not a blood moon -->
@@ -145,7 +203,7 @@
         <requirement name="RequirementEveryXDaySDX, Mods" value="0"/>
         <requirement name="RequirementEveryXHourSDX, Mods" value="22"/>
         <triggered_effect trigger="onSelfBuffUpdate" action="AnimatorSpeedSDX, Mods" target="self" value="2" />
-      
+
       </effect_group>
 
       <!-- horde night is approaching. make them jittery -->
@@ -156,23 +214,10 @@
       </effect_group>
 
 
-      <effect_group name="Inital Animal Buff">
-        <triggered_effect trigger="onSelfFirstSpawn" action="AddBuff" target="self" buff="buffAnimalBaby"/>
 
-        <triggered_effect trigger="onSelfFirstSpawn" action="LogMessage" message="Animal Baby Spawn respawn trigger"/>
-
-      </effect_group>
     </buff>
 
-    <buff name="buffAnimalDrinking" hidden="true">
-      <stack_type value="ignore"/>
-      <duration value="200"/>
-      <effect_group name="Regular stamina change">
-        <passive_effect name="StaminaMaxModifierOT" operation="base_add" value="40"/>
-        <passive_effect name="WaterChangeOT" operation="base_add" value="40"/>
-      </effect_group>
-    </buff>
-   
+
     <!-- Progress an animal through stages of Infection, which turns them into aggressive animals-->
     <buff name="buffInfectedAnimal1">
       <stack_type value="ignore"/>
@@ -189,7 +234,7 @@
           <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="1"/>
         </triggered_effect>
       </effect_group>
-      
+
       <!-- handles the buffs that we are adding and removing together-->
       <effect_group name="General Matched buffs">
         <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_onFire" local_offset="0,-.2,0" parent_transform="Hips"/>
@@ -218,13 +263,13 @@
           <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="1"/>
         </triggered_effect>
       </effect_group>
-      
+
       <effect_group name="General Matched buffs">
         <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_shock" local_offset="0,0.75,0"/>
         <triggered_effect trigger="onSelfBuffFinish" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
         <triggered_effect trigger="onSelfBuffRemove" action="RemoveParticleEffectFromEntity" particle="p_electric_shock"/>
       </effect_group>
-      
+
       <effect_group name="Exit Buffs">
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffInfectedAnimal3" />
         <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffAnimalHarvestable" />
@@ -300,7 +345,7 @@
 
     <buff name="buffAnimalAdult" hidden="true">
       <stack_type value="ignore"/>
-      <duration value="200"/>
+      <duration value="0"/>
 
       <!-- Effects that only need to happen on the females -->
       <effect_group name="Female Effects">

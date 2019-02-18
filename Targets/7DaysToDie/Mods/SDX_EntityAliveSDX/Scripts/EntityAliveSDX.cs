@@ -85,7 +85,9 @@ class EntityAliveSDX : EntityAlive
 
     public override string ToString()
     {
-        string strOutput = this.entityName + " - ID: " + this.entityId + " Health: " + this.Stats.Health.Value + " Stamina: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value;
+        String FoodAmount = ((float)Mathf.RoundToInt(this.Stats.Stamina.ModifiedMax + this.Stats.Entity.Buffs.GetCustomVar("foodAmount"))).ToString() ;
+        String WaterAmount = ((float)Mathf.RoundToInt(this.Stats.Water.Value + this.Stats.Entity.Buffs.GetCustomVar("waterAmount"))).ToString();
+        string strOutput = this.entityName + " - ID: " + this.entityId + " Health: " + this.Stats.Health.Value + " Stamina: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value + " Food: " + FoodAmount + " Water: " + WaterAmount;
         strOutput += "\n Current Order: " + CurrentOrder;
         strOutput += "\n Active Buffs: ";
         foreach (BuffValue buff in this.Buffs.ActiveBuffs)
