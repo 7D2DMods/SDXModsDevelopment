@@ -22,7 +22,7 @@
         <property name="Class" value="ExchangeItemSDX, Mods"/>
         <property name="Delay" value="2.0"/>
         <property name="Change_item_to" value="drinkJarRiverWater"/>
-        <property name="Do_block_action" value="deplete1"/>
+        <property name="Do_block_action" value="deplete3"/>
         <property name="Focused_blockname_1" value="water"/>
         <property name="Focused_blockname_2" value="waterMoving"/>
         <property name="Focused_blockname_3" value="waterStaticBucket"/>
@@ -37,6 +37,7 @@
 
         <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$waterAmountAdd" operation="add" value="20"/>
         <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="20"/>
+        <triggered_effect trigger="onSelfSecondaryActionEnd" action="AttachParticleEffectToEntity" particle="p_electric_shock" local_offset="0,0.75,0"/>
 
         <triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" target="self" buff="buffProcessConsumables"/>
      </effect_group>
@@ -49,94 +50,6 @@
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffProcessConsumables"/>
       </effect_group>
     </item>
-    <!-- eatAnimalFood and drinkAnimalWater are items that the animals will use to get food and water, if the source is available -->
-    <item name="eatAnimalFood">
-      <property name="DisplayType" value="foodWaterOnly"/>
-      <property name="HoldType" value="31"/>
-      <property name="Meshfile" value="Items/Misc/parcelPrefab"/>
-      <property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab"/>
-      <property name="Material" value="MresourceCrop"/>
-      <property name="Stacknumber" value="1"/>
-      <property name="EconomicValue" value="6"/>
-      <property name="EconomicBundleSize" value="1"/>
-      <property name="SellableToTrader" value="false"/>
-      <property class="Action0">
-        <property name="Class" value="Eat"/>
-        <property name="Delay" value="1.0"/>
-        <property name="Use_time" value="..."/>
-        <property name="Sound_start" value="player_eating"/>
-      </property>
-      <property name="Group" value="Food/Cooking"/>
-      <effect_group tiered="false">
-        <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="10"/>
-        <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffBeastMaster"/>
-      </effect_group>
-    </item>
-    <item name="drinkAnimalWater">
-      <property name="HoldType" value="14"/>
-      <property name="DisplayType" value="water"/>
-      <property name="Meshfile" value="Items/Food/can_empty"/>
-      <property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab"/>
-      <property name="Material" value="Mmetal"/>
-      <property name="Weight" value="5"/>
-      <property name="Stacknumber" value="1"/>
-      <!-- STK resource -->
-      <property name="EconomicValue" value="20"/>
-      <property name="EconomicBundleSize" value="1"/>
-      <property name="SellableToTrader" value="false"/>
-      <property name="CraftingIngredientTime" value="10"/>
-      <property class="Action0">
-        <!-- UseAction -->
-        <property name="Class" value="ExchangeItem"/>
-        <property name="Delay" value="1.0"/>
-        <property name="Change_item_to" value="drinkJarRiverWater"/>
-        <property name="Do_block_action" value="deplete1"/>
-        <property name="Focused_blockname_1" value="water"/>
-        <property name="Focused_blockname_2" value="waterMoving"/>
-        <property name="Focused_blockname_3" value="waterStaticBucket"/>
-        <property name="Focused_blockname_4" value="waterMovingBucket"/>
-        <property name="Focused_blockname_5" value="terrWaterPOI"/>
-        <property name="Sound_start" value="bucketfill_water"/>
-      </property>
-      <property name="Group" value="Food/Cooking"/>
-      <effect_group tiered="false">
-          <passive_effect name="StaminaMaxModifierOT" operation="base_add" value="15"/>
-          <passive_effect name="WaterChangeOT" operation="base_add" value="15"/>
-        </effect_group>
-    </item>
-    
-    <!-- the player needs to hold this to harvest milk from the cow -->
-    <item name="drinkJarEmptyMilk">
-      <property name="HoldType" value="3"/>
-      <property name="Meshfile" value="Items/Food/emptyJarPrefab"/>
-      <property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab"/>
-      <property name="Material" value="Mglass"/>
-      <property name="Stacknumber" value="10"/>
-      <!-- STK resource -->
-      <property name="Weight" value="10"/>
-      <property name="EconomicValue" value="6"/>
-      <property name="CraftingIngredientTime" value="9"/>
-       <property name="Group" value="Resources"/>
-    </item>
-    <!-- the player will get this exchanged-->
-    <item name="drinkJarMilk">
-      <property name="HoldType" value="3"/>
-      <property name="Meshfile" value="Items/Food/emptyJarPrefab"/>
-      <property name="DropMeshfile" value="Items/Misc/sack_droppedPrefab"/>
-      <property name="Material" value="Mglass"/>
-      <property name="Stacknumber" value="10"/>
-      <!-- STK resource -->
-      <property name="Weight" value="10"/>
-      <property name="EconomicValue" value="6"/>
-      <property name="CraftingIngredientTime" value="9"/>
-      <property class="Action0">
-        <property name="Class" value="Eat"/>
-        <property name="Delay" value="0"/>
-        <property name="Sound_start" value="player_drinking"/>
-        <property name="Create_item" value="drinkJarEmptyMilk"/>
-      </property>
-      <property name="Group" value="Food/Cooking"/>
-    </item>
-
+  
   </append>
 </configs>

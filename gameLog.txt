@@ -2,35 +2,35 @@ Initialize engine version: 2018.2.0f2 (787658998520)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: AMD Radeon (TM) R7 M360 (ID=0x6900)
+    Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
     Vendor:   
-    VRAM:     2039 MB
-    Driver:   24.20.11016.4
+    VRAM:     2988 MB
+    Driver:   24.21.14.1170
 Begin MonoManager ReloadAssembly
-- Completed reload, in  0.121 seconds
+- Completed reload, in  0.067 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.450005 ms
-2019-02-17T20:15:46 0.004 INF [Steamworks.NET] SteamAPI_Init() ok
-2019-02-17T20:15:46 0.054 INF NET: InitCallbacks
-2019-02-17T20:15:46 0.063 INF Texture quality is set to 2
-2019-02-17T20:15:46 0.065 INF Precaching...
-2019-02-17T20:15:46 0.069 INF Precaching file: 7DaysToDie_Data/resources.assets
-2019-02-17T20:15:46 0.198 INF [EAC] Not loading, not started from launcher
-2019-02-17T20:15:47 1.180 INF Precaching file: 7DaysToDie_Data/sharedassets1.assets
-2019-02-17T20:15:47 1.182 INF Precaching file: Data/Bundles/blocktextureatlases
-2019-02-17T20:15:48 1.836 INF Precaching file: Data/Bundles/terraintextures
-2019-02-17T20:15:48 1.917 INF Precaching done
-2019-02-17T20:15:52 6.126 INF Loading main scene
+UnloadTime: 0.325200 ms
+2019-02-20T19:44:53 0.002 INF [Steamworks.NET] SteamAPI_Init() ok
+2019-02-20T19:44:53 0.026 INF NET: InitCallbacks
+2019-02-20T19:44:53 0.031 INF Texture quality is set to 1
+2019-02-20T19:44:53 0.032 INF Precaching...
+2019-02-20T19:44:53 0.036 INF Precaching file: 7DaysToDie_Data/resources.assets
+2019-02-20T19:44:53 0.096 INF [EAC] Not loading, not started from launcher
+2019-02-20T19:44:54 1.047 INF Precaching file: 7DaysToDie_Data/sharedassets1.assets
+2019-02-20T19:44:54 1.091 INF Precaching file: Data/Bundles/blocktextureatlases
+2019-02-20T19:44:54 1.402 INF Precaching file: Data/Bundles/terraintextures
+2019-02-20T19:44:54 1.435 INF Precaching done
+2019-02-20T19:44:59 6.159 INF Loading main scene
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.037353 ms
+UnloadTime: 1.536300 ms
 SDX:  SDX detected base game directory as: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\
 SDX:  Could not find sdx config file: ''. Using default settings
 SDX: Mod Engine Started.
 SDX: Finding type refs...
 SDX: Loading mods assembly
-SDX: Loaded!53
+SDX: Loaded!57
 SDX: MecanimSDX
 SDX: NewMecanimSDX
 SDX: EntityAliveSDX
@@ -43,6 +43,7 @@ SDX: HalHelperEvents
 SDX: MinEventActionAnimatorSpeedSDX
 SDX: MinEventActionGiveQuestSDX
 SDX: MinEventActionPumpQuestSDX
+SDX: MinEventActionSpawnEntitySDX
 SDX: RequirementEveryXDaySDX
 SDX: RequirementEveryXHourSDX
 SDX: EAIAnimalBloodMoonSDX
@@ -51,8 +52,10 @@ SDX: EAIApproachAndFollowTargetSDX
 SDX: EAIFindHomeBlockSDX
 SDX: EAIFindNearestWaterBlockSDX
 SDX: EAIFindNearestFoodBlockSDX
+SDX: EAIFollowFriendSDX
 SDX: EAIFollowOrdersSDX
 SDX: EAISetNearestEntityAsTargetSDX
+SDX: EAIWanderSDX
 SDX: ObjectiveBuffSDX
 SDX: ObjectiveGotoPOISDX
 SDX: QuestActionGiveBuffSDX
@@ -70,6 +73,7 @@ SDX: BlockLocalizationBlock
 SDX: BlockMusicBox
 SDX: MusicBoxScript
 SDX: BlockTakeAndReplace
+SDX: EntityWanderingTrader
 SDX: EntityFlyingBaseSDX
 SDX: EntityGenericSDX
 SDX: EntityZombieSDX
@@ -77,110 +81,112 @@ SDX: EntityZombieCopSDX
 SDX: EntityZombieCrawlSDX
 SDX: EntityZombieFlockSDX
 SDX: EntityZombieHordeSDX
-SDX: <PrivateImplementationDetails>{C03D734A-3BA7-4B1B-9287-214CCBDD2B18}
+SDX: <PrivateImplementationDetails>{A135A681-82CC-4A5E-B9BE-B59AB85AA5CA}
 SDX: QuestActionSpawnEntitySDX+<SpawnEntities>d__0
 SDX: QuestActionReplaceEntitySDX+<SpawnEntities>d__4
-SDX: <PrivateImplementationDetails>{C03D734A-3BA7-4B1B-9287-214CCBDD2B18}+__StaticArrayInitTypeSize=36
+SDX: <PrivateImplementationDetails>{A135A681-82CC-4A5E-B9BE-B59AB85AA5CA}+__StaticArrayInitTypeSize=36
 SDX: EntityZombieFlockSDX+<>c__DisplayClass1
 SDX: EntityZombieFlockSDX+<>c__DisplayClass4
 SDX: EntityZombieFlockSDX+<>c__DisplayClass7
 SDX:  SDX is no longer loading bundles
 SDX: Begin Load mod script...
-2019-02-17T20:15:53 6.368 INF Awake
-2019-02-17T20:15:53 6.437 WRN Setting global culture failed!
+2019-02-20T19:44:59 6.297 INF Awake
+2019-02-20T19:44:59 6.319 WRN Setting global culture failed!
 Localization language: English
-2019-02-17T20:15:53 6.498 INF Version: Alpha 17.2 (b20) Compatibility Version: Alpha 17.2, Build: Windows 64 Bit
-2019-02-17T20:15:53 6.499 INF System information:
-2019-02-17T20:15:53 6.499 INF    OS: Windows 10  (10.0.0) 64bit
-2019-02-17T20:15:53 6.500 INF    CPU: Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz (cores: 4)
-2019-02-17T20:15:53 6.500 INF    RAM: 16210 MB
-2019-02-17T20:15:53 6.500 INF    GPU: AMD Radeon (TM) R7 M360 (2039 MB)
-2019-02-17T20:15:53 6.500 INF    Graphics API: Direct3D 11.0 [level 11.1] (shader level 5.0)
-2019-02-17T20:15:53 6.500 INF Last played version: Alpha 17.2
-2019-02-17T20:15:53 6.501 INF Local UTC offset: -4 hours
-2019-02-17T20:15:53 6.501 WRN Setting global culture failed!
-2019-02-17T20:15:53 6.508 INF Command line arguments: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie.exe
-2019-02-17T20:15:53 6.511 INF Not running in Big Picture Mode, no on-screen keyboard available
-2019-02-17T20:15:53 6.511 INF Starting PlayerInputManager...
-2019-02-17T20:15:53 6.529 INF InControl (version 1.6.17 build 9143, native module = False, XInput = True)
+2019-02-20T19:44:59 6.347 INF Version: Alpha 17.2 (b20) Compatibility Version: Alpha 17.2, Build: Windows 64 Bit
+2019-02-20T19:44:59 6.347 INF System information:
+2019-02-20T19:44:59 6.347 INF    OS: Windows 10  (10.0.0) 64bit
+2019-02-20T19:44:59 6.347 INF    CPU: Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz (cores: 8)
+2019-02-20T19:44:59 6.347 INF    RAM: 12223 MB
+2019-02-20T19:44:59 6.347 INF    GPU: NVIDIA GeForce GTX 1060 3GB (2988 MB)
+2019-02-20T19:44:59 6.348 INF    Graphics API: Direct3D 11.0 [level 11.1] (shader level 5.0)
+2019-02-20T19:44:59 6.348 INF Last played version: Alpha 17.2
+2019-02-20T19:44:59 6.348 INF Local UTC offset: -4 hours
+2019-02-20T19:44:59 6.348 WRN Setting global culture failed!
+2019-02-20T19:44:59 6.352 INF Command line arguments: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie.exe
+2019-02-20T19:44:59 6.353 INF Not running in Big Picture Mode, no on-screen keyboard available
+2019-02-20T19:44:59 6.353 INF Starting PlayerInputManager...
+2019-02-20T19:44:59 6.362 INF InControl (version 1.6.17 build 9143, native module = False, XInput = True)
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libXInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\libXInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libXInputInterface32
-2019-02-17T20:15:53 6.726 INF Starting UserProfileManager...
-2019-02-17T20:15:53 6.783 INF ApplyAllOptions current screen 1920 x 1080, 60hz, window 1360 x 768, fullscreen False Windowed
-2019-02-17T20:15:53 6.784 INF SetResolution was screen 1920 x 1080, 60hz, window 1360 x 768, fullscreen False Windowed
-2019-02-17T20:15:53 6.784 INF SetResolution to window 1360 x 768, fullscreen False
-2019-02-17T20:15:53 6.865 INF [MODS] Start loading
-2019-02-17T20:15:53 6.867 INF [MODS] Trying to load from AnimationSDX
-2019-02-17T20:15:53 6.919 INF [MODS] Loaded Mod: Animation SDX (2.0)
-2019-02-17T20:15:53 6.919 INF [MODS] Trying to load from Bloom's Animal Husbandry
-2019-02-17T20:15:53 6.921 INF [MODS] Loaded Mod: Bloom's Animal Husbandry (1.0.0)
-2019-02-17T20:15:53 6.921 INF [MODS] Trying to load from Hal's DLL Fixes
-2019-02-17T20:15:53 6.922 INF [MODS] Loaded Mod: Hal's DLL Fixes (1)
-2019-02-17T20:15:53 6.923 INF [MODS] Trying to load from SDX_Buffs
-2019-02-17T20:15:53 6.924 INF [MODS] Loaded Mod: SDX_Buffs (1.0)
-2019-02-17T20:15:53 6.925 INF [MODS] Trying to load from SDX_EAITasks
-2019-02-17T20:15:53 6.926 INF [MODS] Loaded Mod: SDX_EAITasks (1.0)
-2019-02-17T20:15:53 6.926 INF [MODS] Trying to load from SDX_EntityAliveSDX
-2019-02-17T20:15:53 6.929 INF [MODS] Loaded Mod: SDX_EntityAliveSDX (1.0.0.0)
-2019-02-17T20:15:53 6.930 INF [MODS] Trying to load from SDX_Quests
-2019-02-17T20:15:53 6.936 INF [MODS] Loaded Mod: SDX_Quests (1.0)
-2019-02-17T20:15:53 6.937 INF [MODS] Trying to load from SphereII A Better Life
-2019-02-17T20:15:53 6.938 INF [MODS] Loaded Mod: SphereII A Better Life (1.0)
-2019-02-17T20:15:53 6.938 INF [MODS] Trying to load from SphereII Entity Player
-2019-02-17T20:15:53 6.939 INF [MODS] Loaded Mod: SphereII Entity Player (1.0.0.0)
-2019-02-17T20:15:53 6.939 INF [MODS] Trying to load from SphereII Mod Localization Hook
-2019-02-17T20:15:53 6.940 INF [MODS] Loaded Mod: SphereII Mod Localization Hook (1.0.0.0)
-2019-02-17T20:15:53 6.940 INF [MODS] Trying to load from SphereII Music Boxes
-2019-02-17T20:15:53 6.942 INF [MODS] Loaded Mod: SphereII Music Boxes (1.0.0.0)
-2019-02-17T20:15:53 6.942 INF [MODS] Trying to load from SphereII Take And Replace
-2019-02-17T20:15:53 6.964 INF [MODS] Loaded Mod: SphereII_Take_And_Replace (1.0.0.0)
-2019-02-17T20:15:53 6.964 INF [MODS] Trying to load from SphereII Unlock Health Bar
-2019-02-17T20:15:53 6.965 INF [MODS] Loaded Mod: SphereII Unlock Health Bar (1)
-2019-02-17T20:15:53 6.965 INF [MODS] Trying to load from Zombie Transmogrifier
-2019-02-17T20:15:53 6.966 INF [MODS] Loaded Mod: Zombie Transmogrifier (1)
-2019-02-17T20:15:53 6.966 INF [MODS] Initializing mod code
-2019-02-17T20:15:53 6.966 INF [MODS] Loading done
-2019-02-17T20:15:53 6.981 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
-2019-02-17T20:15:53 7.041 INF Loading permissions file done.
-2019-02-17T20:15:53 7.106 WRN Old savegame folder (C:\Users\jkilpatrick\Documents/7 Days To Die) exists but new one (C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie) also exists, not moving
-2019-02-17T20:15:53 7.108 INF Awake done in 740 ms
-2019-02-17T20:15:54 7.715 INF Atlas reset took 593 ms
-2019-02-17T20:15:54 7.715 INF Atlas load took 606 ms
+2019-02-20T19:44:59 6.424 INF Starting UserProfileManager...
+2019-02-20T19:44:59 6.439 INF ApplyAllOptions current screen 1920 x 1080, 60hz, window 1366 x 768, fullscreen False Windowed
+2019-02-20T19:44:59 6.440 INF SetResolution was screen 1920 x 1080, 60hz, window 1366 x 768, fullscreen False Windowed
+2019-02-20T19:44:59 6.440 INF SetResolution to window 1366 x 768, fullscreen False
+2019-02-20T19:44:59 6.470 INF [MODS] Start loading
+2019-02-20T19:44:59 6.471 INF [MODS] Trying to load from AnimationSDX
+2019-02-20T19:44:59 6.493 INF [MODS] Loaded Mod: Animation SDX (2.0)
+2019-02-20T19:44:59 6.493 INF [MODS] Trying to load from Bloom's Animal Husbandry
+2019-02-20T19:44:59 6.494 INF [MODS] Loaded Mod: Bloom's Animal Husbandry (1.0.0)
+2019-02-20T19:44:59 6.494 INF [MODS] Trying to load from Hal's DLL Fixes
+2019-02-20T19:44:59 6.495 INF [MODS] Loaded Mod: Hal's DLL Fixes (1)
+2019-02-20T19:44:59 6.495 INF [MODS] Trying to load from SDX_Buffs
+2019-02-20T19:44:59 6.495 INF [MODS] Loaded Mod: SDX_Buffs (1.0)
+2019-02-20T19:44:59 6.495 INF [MODS] Trying to load from SDX_EAITasks
+2019-02-20T19:44:59 6.496 INF [MODS] Loaded Mod: SDX_EAITasks (1.0)
+2019-02-20T19:44:59 6.496 INF [MODS] Trying to load from SDX_EntityAliveSDX
+2019-02-20T19:44:59 6.501 INF [MODS] Loaded Mod: SDX_EntityAliveSDX (1.0.0.0)
+2019-02-20T19:44:59 6.501 INF [MODS] Trying to load from SDX_Quests
+2019-02-20T19:44:59 6.501 INF [MODS] Loaded Mod: SDX_Quests (1.0)
+2019-02-20T19:44:59 6.501 INF [MODS] Trying to load from SphereII A Better Life
+2019-02-20T19:44:59 6.502 INF [MODS] Loaded Mod: SphereII A Better Life (1.0)
+2019-02-20T19:44:59 6.502 INF [MODS] Trying to load from SphereII Entity Player
+2019-02-20T19:44:59 6.503 INF [MODS] Loaded Mod: SphereII Entity Player (1.0.0.0)
+2019-02-20T19:44:59 6.503 INF [MODS] Trying to load from SphereII Mod Localization Hook
+2019-02-20T19:44:59 6.505 INF [MODS] Loaded Mod: SphereII Mod Localization Hook (1.0.0.0)
+2019-02-20T19:44:59 6.505 INF [MODS] Trying to load from SphereII Music Boxes
+2019-02-20T19:44:59 6.508 INF [MODS] Loaded Mod: SphereII Music Boxes (1.0.0.0)
+2019-02-20T19:44:59 6.509 INF [MODS] Trying to load from SphereII Take And Replace
+2019-02-20T19:44:59 6.511 INF [MODS] Loaded Mod: SphereII_Take_And_Replace (1.0.0.0)
+2019-02-20T19:44:59 6.511 INF [MODS] Trying to load from SphereII Unlock Health Bar
+2019-02-20T19:44:59 6.512 INF [MODS] Loaded Mod: SphereII Unlock Health Bar (1)
+2019-02-20T19:44:59 6.512 INF [MODS] Trying to load from SphereII Wandering Traders
+2019-02-20T19:44:59 6.515 INF [MODS] Loaded Mod: SphereII Wandering Traders (1.0.0)
+2019-02-20T19:44:59 6.515 INF [MODS] Trying to load from Zombie Transmogrifier
+2019-02-20T19:44:59 6.516 INF [MODS] Loaded Mod: Zombie Transmogrifier (1)
+2019-02-20T19:44:59 6.516 INF [MODS] Initializing mod code
+2019-02-20T19:44:59 6.516 INF [MODS] Loading done
+2019-02-20T19:44:59 6.522 INF Loading permissions file at 'C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
+2019-02-20T19:44:59 6.541 INF Loading permissions file done.
+2019-02-20T19:44:59 6.561 WRN Old savegame folder (C:\Users\Jeff\Documents/7 Days To Die) exists but new one (C:\Users\Jeff\AppData\Roaming/7DaysToDie) also exists, not moving
+2019-02-20T19:44:59 6.562 INF Awake done in 265 ms
+2019-02-20T19:44:59 6.841 INF Atlas reset took 274 ms
+2019-02-20T19:44:59 6.841 INF Atlas load took 278 ms
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libc
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\libc
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libc
-2019-02-17T20:15:54 7.746 INF Reloading serveradmin.xml
-2019-02-17T20:15:54 7.746 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
-2019-02-17T20:15:54 7.748 INF Loading permissions file done.
 Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 3966.
-Total: 30.474183 ms (FindLiveObjects: 1.610756 ms CreateObjectMapping: 0.786597 ms MarkObjects: 27.754459 ms  DeleteObjects: 0.321276 ms)
+Total: 6.413200 ms (FindLiveObjects: 0.780100 ms CreateObjectMapping: 0.261700 ms MarkObjects: 5.333500 ms  DeleteObjects: 0.037500 ms)
 Unloading 1 Unused Serialized files (Serialized files now loaded: 1)
+2019-02-20T19:45:00 7.276 INF Reloading serveradmin.xml
+2019-02-20T19:45:00 7.276 INF Loading permissions file at 'C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
+2019-02-20T19:45:00 7.277 INF Loading permissions file done.
 Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3966.
-Total: 13.001287 ms (FindLiveObjects: 0.997742 ms CreateObjectMapping: 0.204216 ms MarkObjects: 11.743168 ms  DeleteObjects: 0.055430 ms)
+Total: 5.496800 ms (FindLiveObjects: 0.550700 ms CreateObjectMapping: 0.117400 ms MarkObjects: 4.800700 ms  DeleteObjects: 0.027200 ms)
 Unloading 0 Unused Serialized files (Serialized files now loaded: 1)
 Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 3966.
-Total: 13.287554 ms (FindLiveObjects: 1.050620 ms CreateObjectMapping: 0.233754 ms MarkObjects: 11.993333 ms  DeleteObjects: 0.009116 ms)
-2019-02-17T20:15:55 8.345 INF User joined: sphereii
-UMA Overlay loading took 446 ms
-UMA Slot loading took 2 ms
-2019-02-17T20:15:58 11.588 INF WorldStaticData.Init() needed 1.867s
-2019-02-17T20:16:00 13.653 INF [Steamworks.NET] User not logged in.
-2019-02-17T20:16:22 35.925 INF NET: Starting server protocols
-2019-02-17T20:16:22 35.954 INF NET: LiteNetLib server started
-2019-02-17T20:16:22 35.954 INF [Steamworks.NET] NET: Server started
+Total: 5.498700 ms (FindLiveObjects: 0.553400 ms CreateObjectMapping: 0.104900 ms MarkObjects: 4.835700 ms  DeleteObjects: 0.003500 ms)
+2019-02-20T19:45:00 7.805 INF User joined: sphereii
+UMA Overlay loading took 233 ms
+UMA Slot loading took 0 ms
+2019-02-20T19:45:03 10.477 INF WorldStaticData.Init() needed 1.908s
+2019-02-20T19:45:03 10.585 INF [Steamworks.NET] User not logged in.
+2019-02-20T19:45:51 58.401 INF NET: Starting server protocols
+2019-02-20T19:45:51 58.414 INF NET: LiteNetLib server started
+2019-02-20T19:45:51 58.414 INF [Steamworks.NET] NET: Server started
 SDX: SDX ModEngine::StartModScripts
-2019-02-17T20:16:22 35.956 INF StartGame
-2019-02-17T20:16:23 36.381 INF Atlas reset took 404 ms
+2019-02-20T19:45:51 58.415 INF StartGame
+2019-02-20T19:45:51 58.639 INF Atlas reset took 193 ms
 Unloading 3 Unused Serialized files (Serialized files now loaded: 4)
-Unloading 731 unused Assets to reduce memory usage. Loaded Objects now: 24728.
-Total: 91.711734 ms (FindLiveObjects: 2.851370 ms CreateObjectMapping: 1.139964 ms MarkObjects: 86.370382 ms  DeleteObjects: 1.348921 ms)
-2019-02-17T20:16:23 36.623 INF Atlas got enough free room to fit icons. Old 2221 icons, 8192x4096, now 2229 icons
-2019-02-17T20:16:23 36.830 INF Adding 8 sprites to atlas took 856 ms
-2019-02-17T20:16:24 37.646 INF Persistent GamePrefs saved
+Unloading 731 unused Assets to reduce memory usage. Loaded Objects now: 24738.
+Total: 50.128000 ms (FindLiveObjects: 2.269200 ms CreateObjectMapping: 1.107100 ms MarkObjects: 45.622600 ms  DeleteObjects: 1.128800 ms)
+2019-02-20T19:45:52 59.591 INF Atlas got enough free room to fit icons. Old 2221 icons, 8192x4096, now 2229 icons
+2019-02-20T19:45:52 59.619 INF Adding 8 sprites to atlas took 1190 ms
+2019-02-20T19:45:54 61.121 INF Persistent GamePrefs saved
 GamePref.AdminFileName = serveradmin.xml
 GamePref.AirDropFrequency = 72
 GamePref.AirDropMarker = False
@@ -192,9 +198,9 @@ GamePref.BlockDamagePlayer = 100
 GamePref.BloodMoonEnemyCount = 8
 GamePref.BloodMoonFrequency = 7
 GamePref.BloodMoonRange = 0
-GamePref.BuildCreate = True
-GamePref.ConnectToServerIP = 127.0.0.1
-GamePref.ConnectToServerPort = 26900
+GamePref.BuildCreate = False
+GamePref.ConnectToServerIP = 98.192.128.220
+GamePref.ConnectToServerPort = 26920
 GamePref.ControlPanelEnabled = False
 GamePref.ControlPanelPort = 8080
 GamePref.CraftTimer = 
@@ -203,7 +209,7 @@ GamePref.CreateLevelName = My Level
 GamePref.CreativeMenuEnabled = False
 GamePref.DayCount = 3
 GamePref.DayLightLength = 18
-GamePref.DayNightLength = 60
+GamePref.DayNightLength = 120
 GamePref.DebugMenuEnabled = False
 GamePref.DebugMenuShowTasks = False
 GamePref.DebugStopEnemiesMoving = False
@@ -215,10 +221,10 @@ GamePref.EnemyDifficulty = 0
 GamePref.EnemySpawnMode = False
 GamePref.FavoriteServersList = 
 GamePref.FragLimit = 20
-GamePref.GameDifficulty = 0
+GamePref.GameDifficulty = 2
 GamePref.GameGuidClient = 
 GamePref.GameMode = GameModeSurvival
-GamePref.GameName = cow12
+GamePref.GameName = CowTest6
 GamePref.GameNameClient = My Game
 GamePref.GameVersion = Alpha 17.2
 GamePref.GameWorld = Navezgane
@@ -242,7 +248,7 @@ GamePref.MaxSpawnedAnimals = 50
 GamePref.MaxSpawnedZombies = 60
 GamePref.MaxUncoveredMapChunksPerPlayer = 524288
 GamePref.NoGraphicsMode = False
-GamePref.OptionsAA = 0
+GamePref.OptionsAA = 1
 GamePref.OptionsAllowController = True
 GamePref.OptionsAmbientVolumeLevel = 0
 GamePref.OptionsAudioOcclusion = False
@@ -253,21 +259,21 @@ GamePref.OptionsDeferredLighting = True
 GamePref.OptionsDOF = False
 GamePref.OptionsDynamicMusicEnabled = False
 GamePref.OptionsDynamicMusicVolume = 0
-GamePref.OptionsFieldOfView = 45
+GamePref.OptionsFieldOfView = 67
 GamePref.OptionsFieldOfViewNew = 65
 GamePref.OptionsForegroundGlobalOpacity = 1
-GamePref.OptionsGamma = 1.551724
-GamePref.OptionsGraphicsQuality = 0
-GamePref.OptionsGrassDistance = 0
+GamePref.OptionsGamma = 0.4396552
+GamePref.OptionsGraphicsQuality = 1
+GamePref.OptionsGrassDistance = 1
 GamePref.OptionsHudOpacity = 1
 GamePref.OptionsHudSize = 2
 GamePref.OptionsImageEffects = True
 GamePref.OptionsInterfaceSensitivity = 0.75
 GamePref.OptionsInvertMouse = False
 GamePref.OptionsJournalPopup = True
-GamePref.OptionsLODDistance = 0
+GamePref.OptionsLODDistance = 0.5
 GamePref.OptionsMicVolumeLevel = 0.75
-GamePref.OptionsMotionBlur = 0
+GamePref.OptionsMotionBlur = 1
 GamePref.OptionsMouseSensitivity = 0.5
 GamePref.OptionsMusicVolumeLevel = 0
 GamePref.OptionsObjectBlur = False
@@ -279,32 +285,32 @@ GamePref.OptionsReflectedShadows = False
 GamePref.OptionsReflectionBounces = 1
 GamePref.OptionsReflectionCullList = Default
 GamePref.OptionsReflectionFarClip = 100
-GamePref.OptionsReflectionQuality = 0
+GamePref.OptionsReflectionQuality = 2
 GamePref.OptionsReflectionRefreshMode = ViaScripting
 GamePref.OptionsReflectionRefreshRate = 0
 GamePref.OptionsReflectionShadowDistance = 0
 GamePref.OptionsReflectionTimeSlicingMode =  Trees ReflectionsOnly Terrain
 GamePref.OptionsResolution = 0
 GamePref.OptionsScreenBoundsValue = 1
-GamePref.OptionsShadowDistance = 0
+GamePref.OptionsShadowDistance = 1
 GamePref.OptionsShowCompass = True
 GamePref.OptionsShowCrosshair = True
-GamePref.OptionsSSAO = False
+GamePref.OptionsSSAO = True
 GamePref.OptionsStabSpawnBlocksOnGround = True
 GamePref.OptionsStreamingMipmapsBudget = 4096
 GamePref.OptionsStreamingMipmapsEnabled = True
-GamePref.OptionsSunShafts = False
+GamePref.OptionsSunShafts = True
 GamePref.OptionsTempCelsius = False
-GamePref.OptionsTextureQuality = 2
+GamePref.OptionsTextureQuality = 1
 GamePref.OptionsTreeDistance = 4
-GamePref.OptionsTreeQuality = 0
-GamePref.OptionsUMATextureQuality = 3
+GamePref.OptionsTreeQuality = 2
+GamePref.OptionsUMATextureQuality = 1
 GamePref.OptionsViewDistance = 6
 GamePref.OptionsVoiceChatEnabled = True
 GamePref.OptionsVoiceVolumeLevel = 0.75
 GamePref.OptionsVsync = 1
-GamePref.OptionsWaterParticleLimiter = 0
-GamePref.OptionsWaterQuality = 0
+GamePref.OptionsWaterParticleLimiter = 0.5
+GamePref.OptionsWaterQuality = 1
 GamePref.OptionsZoomMouseSensitivity = 0.5
 GamePref.PartySharedKillRange = 100
 GamePref.PersistentPlayerProfiles = True
@@ -316,7 +322,7 @@ GamePref.PlayerSafeZoneHours = 7
 GamePref.PlayerSafeZoneLevel = 5
 GamePref.PlayerToken = 
 GamePref.RebuildMap = False
-GamePref.SaveGameFolder = C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves
+GamePref.SaveGameFolder = C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves
 GamePref.SelectionContextMode = 0
 GamePref.SelectionOperationMode = 0
 GamePref.ServerAdminSlots = 0
@@ -331,7 +337,7 @@ GamePref.ServerName = Default Server
 GamePref.ServerPort = 26900
 GamePref.ServerReservedSlots = 0
 GamePref.ServerReservedSlotsPermission = 100
-GamePref.ServerVisibility = 0
+GamePref.ServerVisibility = 1
 GamePref.ServerWebsiteURL = 
 GamePref.ShowFriendPlayerOnMap = True
 GamePref.TelnetEnabled = False
@@ -339,7 +345,7 @@ GamePref.TelnetFailedLoginLimit = 10
 GamePref.TelnetFailedLoginsBlocktime = 10
 GamePref.TelnetPort = 25003
 GamePref.TerminalWindowEnabled = True
-GamePref.UserDataFolder = C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie
+GamePref.UserDataFolder = C:\Users\Jeff\AppData\Roaming/7DaysToDie
 GamePref.WorldGenSeed = 
 GamePref.WorldGenSize = 8192
 GamePref.XPMultiplier = 100
@@ -408,7 +414,7 @@ GameStat.TimeLimitThisRound = 0
 GameStat.TimeOfDayIncPerSec = 20
 GameStat.XPMultiplier = 100
 GameStat.ZombieHordeMeter = False
-2019-02-17T20:16:24 37.799 INF StartAsServer
+2019-02-20T19:45:54 61.153 INF StartAsServer
 SphereII - Localization Gap Solution
 Initializing Localization Block...
 Searching in: C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods
@@ -418,285 +424,634 @@ Found : C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_D
 Found : C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods\SphereII Take And Replace\Config\Localization.txt
 Searching for ModLocalization - Quests.txt...
 Found : C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods\SphereII Music Boxes\Config\Localization - Quest.txt
-2019-02-17T20:16:31 44.814 INF Block IDs with mapping
-2019-02-17T20:16:31 44.815 INF BlockIDs from Mapping
-2019-02-17T20:16:32 45.625 INF Item IDs with mapping
-2019-02-17T20:16:32 45.625 INF ItemIDs from Mapping
-2019-02-17T20:16:35 49.069 INF createWorld: Navezgane, cow12, GameModeSurvival
-2019-02-17T20:16:35 49.149 INF Started thread ChunkCalc
-2019-02-17T20:16:35 49.149 INF Started thread ChunkRegeneration
-2019-02-17T20:16:36 49.398 INF World.Load: Navezgane
-2019-02-17T20:16:36 49.412 INF BloodMoon SetDay: day 14, last day 7, freq 7, range 0
-2019-02-17T20:16:36 49.413 INF BloodMoon SetDay: day 11, last day 0, freq 7, range 0
-2019-02-17T20:16:42 55.405 INF Started thread GenerateChunks
-2019-02-17T20:16:43 56.754 INF Loading dtm raw file took 707ms
-2019-02-17T20:16:44 57.463 INF Biomes image size w= 3072, h = 3072
-2019-02-17T20:16:45 58.679 INF Loading and creating biomes took 1924ms
-2019-02-17T20:16:47 60.911 INF Loading and parsing of generator took 2232ms
-2019-02-17T20:16:47 60.987 INF Started thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow12\Region
-2019-02-17T20:16:49 63.226 INF AstarManager Init
-2019-02-17T20:16:56 69.737 INF Weather Packages Created FROM BIOMES
-2019-02-17T20:16:56 70.138 INF createWorld() done
-2019-02-17T20:16:56 70.139 INF Loading players.xml
-2019-02-17T20:16:57 70.408 INF Created player with id=171
-2019-02-17T20:16:57 70.467 INF Loaded player
-2019-02-17T20:16:58 71.530 INF OpenSpawnWindow
-2019-02-17T20:16:58 71.537 INF StartGame done
-animalFarmCow: animalFarmCow - ID: 291 Health: 37.44108 Stamina: 76.99715 Thirst: 25
+2019-02-20T19:45:58 65.438 INF Block IDs with mapping
+2019-02-20T19:45:58 65.438 INF BlockIDs from Mapping
+2019-02-20T19:45:59 66.165 INF Item IDs with mapping
+2019-02-20T19:45:59 66.165 INF ItemIDs from Mapping
+2019-02-20T19:46:02 69.025 INF createWorld: Navezgane, CowTest6, GameModeSurvival
+2019-02-20T19:46:02 69.179 INF Started thread ChunkCalc
+2019-02-20T19:46:02 69.179 INF Started thread ChunkRegeneration
+2019-02-20T19:46:02 69.485 INF World.Load: Navezgane
+2019-02-20T19:46:02 69.496 INF BloodMoon SetDay: day 14, last day 7, freq 7, range 0
+2019-02-20T19:46:02 69.497 INF BloodMoon SetDay: day 12, last day 0, freq 7, range 0
+2019-02-20T19:46:13 80.550 INF Started thread GenerateChunks
+2019-02-20T19:46:14 80.903 INF Loading dtm raw file took 286ms
+2019-02-20T19:46:14 81.492 INF Biomes image size w= 3072, h = 3072
+2019-02-20T19:46:15 82.319 INF Loading and creating biomes took 1415ms
+2019-02-20T19:46:17 84.258 INF Loading and parsing of generator took 1938ms
+2019-02-20T19:46:17 84.329 INF Started thread SaveChunks C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/Navezgane/CowTest6\Region
+2019-02-20T19:46:18 85.664 INF AstarManager Init
+2019-02-20T19:46:22 89.044 INF Weather Packages Created FROM BIOMES
+2019-02-20T19:46:22 89.394 INF createWorld() done
+2019-02-20T19:46:22 89.394 INF Loading players.xml
+2019-02-20T19:46:22 89.545 INF Created player with id=171
+2019-02-20T19:46:22 89.571 INF Loaded player
+2019-02-20T19:46:23 90.016 INF OpenSpawnWindow
+2019-02-20T19:46:23 90.019 INF StartGame done
+2019-02-20T19:46:25 92.786 INF Respawn almost done
+2019-02-20T19:46:25 92.791 INF PlayerSpawnedInWorld (reason: LoadedGame, position: 319, 61, -664): localplayer
+2019-02-20T19:46:38 105.884 INF Executing command 'spawnentity 171 122'
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 109.995 Thirst: 100 Food: 110 Water: 100
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 330.05 Ticks: 6601 )
-	buffanimalsenior ( Seconds: 112.9 Ticks: 2258 )
-	buffstatusthirsty2 ( Seconds: 66.05 Ticks: 1321 )
-	buffperkabilityupdate ( Seconds: 66 Ticks: 1320 )
-	buffinfectedanimal1 ( Seconds: 22.9 Ticks: 458 )
-	buffstatuswounded ( Seconds: 14.05 Ticks: 281 )
+	buffanimalstatuscheck ( Seconds: 0.05 Ticks: 1 )
+	buffstatuscheck ( Seconds: 0.05 Ticks: 1 )
+ Active Quests: 
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 109.9 Thirst: 99.90505 Food: 110 Water: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 1 Ticks: 20 )
+	buffstatuscheck ( Seconds: 1 Ticks: 20 )
+ Active Quests: 
+2019-02-20T19:46:40 107.851 INF MinEventLogMessage: Adding Food
+2019-02-20T19:46:40 107.868 INF Executing command 'spawnentity 171 123'
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 398 Health: 110 Stamina: 110 Thirst: 100 Food: 110 Water: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 0 Ticks: 0 )
+	buffstatuscheck ( Seconds: 0 Ticks: 0 )
+ Active Quests: 
+2019-02-20T19:46:41 107.902 INF MinEventLogMessage: XP gained during the last level:
+2019-02-20T19:46:41 107.902 INF CVarLogValue: $xpFromLootThisLevel == 0
+2019-02-20T19:46:41 107.902 INF CVarLogValue: $xpFromHarvestingThisLevel == 0
+2019-02-20T19:46:41 107.902 INF CVarLogValue: $xpFromKillThisLevel == 0
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 398 Health: 110 Stamina: 110 Thirst: 100 Food: 159 Water: 149
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 1 Ticks: 20 )
+	buffstatuscheck ( Seconds: 1 Ticks: 20 )
+	buffnewbiecoat ( Seconds: 0.95 Ticks: 19 )
+	buffperkabilityupdate ( Seconds: 0.95 Ticks: 19 )
+	buffhealstaminamax ( Seconds: 0.85 Ticks: 17 )
+	buffhealwatermax ( Seconds: 0.8 Ticks: 16 )
+	buffwaterstaminaregen ( Seconds: 0.8 Ticks: 16 )
+ Active Quests: 
+2019-02-20T19:46:42 109.851 INF CVarLogValue: $foodAmountAdd == 97.20003
+2019-02-20T19:46:42 109.851 INF MinEventLogMessage: Adding Food
+2019-02-20T19:46:42 109.851 INF CVarLogValue: $foodAmountAdd == 54.00002
+2019-02-20T19:46:42 109.851 INF MinEventLogMessage: Adding Food
+2019-02-20T19:46:43 109.900 INF MinEventLogMessage: XP gained during the last level:
+2019-02-20T19:46:43 109.900 INF CVarLogValue: $xpFromLootThisLevel == 0
+2019-02-20T19:46:43 109.900 INF CVarLogValue: $xpFromHarvestingThisLevel == 0
+2019-02-20T19:46:43 109.900 INF CVarLogValue: $xpFromKillThisLevel == 0
+2019-02-20T19:46:44 111.852 INF CVarLogValue: $foodAmountAdd == 54.00002
+2019-02-20T19:46:44 111.852 INF MinEventLogMessage: Adding Food
+2019-02-20T19:46:46 113.851 INF MinEventLogMessage: Adding Food
+2019-02-20T19:46:48 115.851 INF MinEventLogMessage: Adding Food
+2019-02-20T19:46:49 116.374 INF GMSG: Player 'animalFarmCowMale' killed by 'sphereii'
+2019-02-20T19:46:52 119.852 INF MinEventLogMessage: Adding Food
+2019-02-20T19:46:53 119.936 INF Time: 1.56m FPS: 59.97 Heap: 1110.2MB Max: 1110.2MB Chunks: 225 CGO: 149 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 2783.0MB
+2019-02-20T19:46:54 121.684 INF Executing command 'spawnentity 171 123'
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 110 Thirst: 100 Food: 110 Water: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 0 Ticks: 0 )
+	buffstatuscheck ( Seconds: 0 Ticks: 0 )
+ Active Quests: 
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 110 Thirst: 100 Food: 159 Water: 149
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 1 Ticks: 20 )
+	buffstatuscheck ( Seconds: 1 Ticks: 20 )
+	buffnewbiecoat ( Seconds: 0.95 Ticks: 19 )
+	buffperkabilityupdate ( Seconds: 0.95 Ticks: 19 )
+	buffhealstaminamax ( Seconds: 0.85 Ticks: 17 )
+	buffhealwatermax ( Seconds: 0.8 Ticks: 16 )
+	buffwaterstaminaregen ( Seconds: 0.8 Ticks: 16 )
+ Active Quests: 
+2019-02-20T19:46:56 123.651 INF CVarLogValue: $foodAmountAdd == 97.20003
+2019-02-20T19:46:56 123.651 INF MinEventLogMessage: Adding Food
+2019-02-20T19:46:56 123.700 INF MinEventLogMessage: XP gained during the last level:
+2019-02-20T19:46:56 123.700 INF CVarLogValue: $xpFromLootThisLevel == 0
+2019-02-20T19:46:56 123.700 INF CVarLogValue: $xpFromHarvestingThisLevel == 0
+2019-02-20T19:46:56 123.700 INF CVarLogValue: $xpFromKillThisLevel == 0
+2019-02-20T19:46:58 125.651 INF CVarLogValue: $foodAmountAdd == 54.00002
+2019-02-20T19:46:58 125.651 INF MinEventLogMessage: Adding Food
+2019-02-20T19:47:02 129.651 INF MinEventLogMessage: Adding Food
+2019-02-20T19:47:08 135.651 INF MinEventLogMessage: Adding Food
+2019-02-20T19:47:12 139.201 INF Executing command 'dm'
+2019-02-20T19:47:12 139.602 INF Executing command 'cm'
+2019-02-20T19:47:23 149.935 INF Time: 2.06m FPS: 59.75 Heap: 1060.2MB Max: 1110.2MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 3 (4) Items: 0 CO: 1 RSS: 2795.2MB
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 109.905 Thirst: 99.9182 Food: 110 Water: 146
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 59.9 Ticks: 1198 )
+	buffstatuscheck ( Seconds: 59.9 Ticks: 1198 )
+	buffhealwatermax ( Seconds: 57.8 Ticks: 1156 )
+	buffwaterstaminaregen ( Seconds: 57.8 Ticks: 1156 )
+	buffhealstaminamax ( Seconds: 57 Ticks: 1140 )
+	buffanimaladult ( Seconds: 42.8 Ticks: 856 )
+	buffanimalfertility ( Seconds: 8.05 Ticks: 161 )
  Active Quests: 
 	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:17:10 83.918 INF Respawn almost done
-2019-02-17T20:17:10 83.926 INF PlayerSpawnedInWorld (reason: LoadedGame, position: 902, 60, -1853): localplayer
-2019-02-17T20:17:28 101.501 INF Time: 1.23m FPS: 12.09 Heap: 1118.1MB Max: 1118.1MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (2) Items: 0 CO: 1 RSS: 3315.2MB
-2019-02-17T20:17:58 131.545 INF Time: 1.73m FPS: 12.26 Heap: 1137.7MB Max: 1137.7MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (2) Items: 0 CO: 1 RSS: 3317.5MB
-animalFarmCow: animalFarmCow - ID: 291 Health: 20.00995 Stamina: 73.47141 Thirst: 25
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 109.905 Thirst: 99.91825 Food: 110 Water: 147
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 365.3 Ticks: 7306 )
-	buffanimalsenior ( Seconds: 148.15 Ticks: 2963 )
-	buffstatusthirsty2 ( Seconds: 101.3 Ticks: 2026 )
-	buffperkabilityupdate ( Seconds: 101.25 Ticks: 2025 )
-	buffstatuswounded ( Seconds: 49.3 Ticks: 986 )
-	buffinfectedanimal2 ( Seconds: 8.1 Ticks: 162 )
-	buffanimalharvestable ( Seconds: 8.1 Ticks: 162 )
+	buffanimalstatuscheck ( Seconds: 60.9 Ticks: 1218 )
+	buffstatuscheck ( Seconds: 60.9 Ticks: 1218 )
+	buffhealwatermax ( Seconds: 58.8 Ticks: 1176 )
+	buffwaterstaminaregen ( Seconds: 58.8 Ticks: 1176 )
+	buffhealstaminamax ( Seconds: 58 Ticks: 1160 )
+	buffanimaladult ( Seconds: 43.8 Ticks: 876 )
+	buffanimalfertility ( Seconds: 9.05 Ticks: 181 )
  Active Quests: 
 	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:18:10 143.729 INF Executing command 'spawnentity 171 122'
-animalFarmCow: animalFarmCow - ID: 292 Health: 110 Stamina: 109.93 Thirst: 99.67498
+2019-02-20T19:47:53 179.951 INF Time: 2.56m FPS: 59.97 Heap: 1077.3MB Max: 1110.2MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 3 (4) Items: 0 CO: 1 RSS: 2802.2MB
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 109.905 Thirst: 99.91309 Food: 110 Water: 146
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 0.7 Ticks: 14 )
+	buffanimalstatuscheck ( Seconds: 59.9 Ticks: 1198 )
+	buffstatuscheck ( Seconds: 59.9 Ticks: 1198 )
+	buffperkabilityupdate ( Seconds: 59.85 Ticks: 1197 )
+	buffwaterstaminaregen ( Seconds: 57.8 Ticks: 1156 )
+	buffhealstaminamax ( Seconds: 57 Ticks: 1140 )
+	buffhealwatermax ( Seconds: 56.95 Ticks: 1139 )
+	buffanimaladult ( Seconds: 42.8 Ticks: 856 )
  Active Quests: 
-2019-02-17T20:18:13 146.897 INF MinEventLogMessage: Adding Food
-2019-02-17T20:18:24 157.622 INF MinEventLogMessage: Adding Food
-2019-02-17T20:18:28 161.616 INF Time: 2.23m FPS: 11.07 Heap: 1161.0MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 3 (3) Items: 0 CO: 1 RSS: 3327.1MB
-2019-02-17T20:18:34 168.143 INF MinEventLogMessage: Adding Food
-2019-02-17T20:18:55 188.386 INF GMSG: Player 'animalFarmCow' died
-2019-02-17T20:18:55 188.388 INF Entity 291 killed.
-2019-02-17T20:18:58 191.562 INF VehicleManager Save
-2019-02-17T20:18:58 191.648 INF Time: 2.73m FPS: 11.61 Heap: 1072.4MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3327.9MB
-animalFarmCow: animalFarmCow - ID: 292 Health: 110 Stamina: 106.505 Thirst: 99.94867
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 109.905 Thirst: 99.91315 Food: 110 Water: 147
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 34.95 Ticks: 699 )
-	buffhealwatermax ( Seconds: 32.85 Ticks: 657 )
-	buffwaterstaminaregen ( Seconds: 32.85 Ticks: 657 )
-	buffanimaladult ( Seconds: 17.85 Ticks: 357 )
+	buffanimalstatuscheck ( Seconds: 60.9 Ticks: 1218 )
+	buffstatuscheck ( Seconds: 60.9 Ticks: 1218 )
+	buffperkabilityupdate ( Seconds: 60.85 Ticks: 1217 )
+	buffwaterstaminaregen ( Seconds: 58.8 Ticks: 1176 )
+	buffhealstaminamax ( Seconds: 58 Ticks: 1160 )
+	buffhealwatermax ( Seconds: 57.95 Ticks: 1159 )
+	buffanimaladult ( Seconds: 43.8 Ticks: 876 )
  Active Quests: 
-	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:19:28 221.651 INF Time: 3.23m FPS: 11.49 Heap: 1087.1MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3329.3MB
-2019-02-17T20:19:58 251.657 INF Time: 3.73m FPS: 11.09 Heap: 1104.7MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3330.0MB
-animalFarmCow: animalFarmCow - ID: 292 Health: 110 Stamina: 103.0699 Thirst: 99.97236
+2019-02-20T19:48:23 209.937 INF VehicleManager Save
+2019-02-20T19:48:23 209.951 INF Time: 3.06m FPS: 60.02 Heap: 1045.0MB Max: 1110.2MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 3 (4) Items: 0 CO: 1 RSS: 381.3MB
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 104.3149 Thirst: 99.9314 Food: 104 Water: 144
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 69.3 Ticks: 1386 )
-	buffhealwatermax ( Seconds: 67.2 Ticks: 1344 )
-	buffwaterstaminaregen ( Seconds: 67.2 Ticks: 1344 )
-	buffanimaladult ( Seconds: 52.2 Ticks: 1044 )
- Active Quests: 
-	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:20:28 281.684 INF Time: 4.23m FPS: 11.24 Heap: 1127.1MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3331.3MB
-2019-02-17T20:20:58 311.647 INF VehicleManager Save
-2019-02-17T20:20:58 311.737 INF Time: 4.73m FPS: 11.11 Heap: 1149.6MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3332.4MB
-animalFarmCow: animalFarmCow - ID: 292 Health: 110 Stamina: 99.72482 Thirst: 99.94608
- Current Order: Wander
- Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 102.75 Ticks: 2055 )
-	buffhealwatermax ( Seconds: 100.65 Ticks: 2013 )
-	buffwaterstaminaregen ( Seconds: 100.65 Ticks: 2013 )
-	buffanimaladult ( Seconds: 85.65 Ticks: 1713 )
+	buffanimalstatuscheck ( Seconds: 119.8 Ticks: 2396 )
+	buffstatuscheck ( Seconds: 119.8 Ticks: 2396 )
+	buffhealwatermax ( Seconds: 117.7 Ticks: 2354 )
+	buffwaterstaminaregen ( Seconds: 117.7 Ticks: 2354 )
+	buffanimaladult ( Seconds: 102.7 Ticks: 2054 )
+	buffanimalfertility ( Seconds: 67.95 Ticks: 1359 )
  Active Quests: 
 	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:21:28 341.759 INF Time: 5.24m FPS: 11.17 Heap: 1082.3MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3333.9MB
-2019-02-17T20:21:58 371.770 INF Time: 5.74m FPS: 11.24 Heap: 1095.4MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3334.4MB
-animalFarmCow: animalFarmCow - ID: 292 Health: 110 Stamina: 96.37974 Thirst: 93.8199
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 104.2149 Thirst: 99.93145 Food: 104 Water: 144
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 136.2 Ticks: 2724 )
-	buffwaterstaminaregen ( Seconds: 134.1 Ticks: 2682 )
-	buffanimaladult ( Seconds: 119.1 Ticks: 2382 )
+	buffanimalstatuscheck ( Seconds: 120.8 Ticks: 2416 )
+	buffstatuscheck ( Seconds: 120.8 Ticks: 2416 )
+	buffhealwatermax ( Seconds: 118.7 Ticks: 2374 )
+	buffwaterstaminaregen ( Seconds: 118.7 Ticks: 2374 )
+	buffanimaladult ( Seconds: 103.7 Ticks: 2074 )
+	buffanimalfertility ( Seconds: 68.95 Ticks: 1379 )
  Active Quests: 
 	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:22:28 401.847 INF Time: 6.24m FPS: 11.21 Heap: 1111.4MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3334.5MB
-2019-02-17T20:22:58 431.670 INF VehicleManager Save
-2019-02-17T20:22:58 431.921 INF Time: 6.74m FPS: 11.73 Heap: 1128.3MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3334.7MB
-animalFarmCow: animalFarmCow - ID: 292 Health: 110 Stamina: 92.94485 Thirst: 76.64385
+2019-02-20T19:48:53 239.953 INF Time: 3.56m FPS: 60.00 Heap: 1053.0MB Max: 1110.2MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 3 (4) Items: 0 CO: 1 RSS: 398.5MB
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 104.3149 Thirst: 99.92629 Food: 104 Water: 144
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 170.55 Ticks: 3411 )
-	buffwaterstaminaregen ( Seconds: 168.45 Ticks: 3369 )
-	buffanimaladult ( Seconds: 153.45 Ticks: 3069 )
+	buffanimalstatuscheck ( Seconds: 119.8 Ticks: 2396 )
+	buffstatuscheck ( Seconds: 119.8 Ticks: 2396 )
+	buffperkabilityupdate ( Seconds: 119.75 Ticks: 2395 )
+	buffwaterstaminaregen ( Seconds: 117.7 Ticks: 2354 )
+	buffhealwatermax ( Seconds: 116.85 Ticks: 2337 )
+	buffanimaladult ( Seconds: 102.7 Ticks: 2054 )
  Active Quests: 
-	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:23:28 462.000 INF Time: 7.24m FPS: 11.77 Heap: 1147.7MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3130.8MB
-2019-02-17T20:23:58 492.052 INF Time: 7.74m FPS: 11.44 Heap: 1080.3MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3125.9MB
-animalFarmCow: animalFarmCow - ID: 292 Health: 110 Stamina: 89.49044 Thirst: 59.3678
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 104.2149 Thirst: 99.92635 Food: 104 Water: 144
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 205.1 Ticks: 4102 )
-	buffwaterstaminaregen ( Seconds: 203 Ticks: 4060 )
-	buffanimaladult ( Seconds: 188 Ticks: 3760 )
-	buffstatusthirsty1 ( Seconds: 31.1 Ticks: 622 )
+	buffanimalstatuscheck ( Seconds: 120.8 Ticks: 2416 )
+	buffstatuscheck ( Seconds: 120.8 Ticks: 2416 )
+	buffperkabilityupdate ( Seconds: 120.75 Ticks: 2415 )
+	buffwaterstaminaregen ( Seconds: 118.7 Ticks: 2374 )
+	buffhealwatermax ( Seconds: 117.85 Ticks: 2357 )
+	buffanimaladult ( Seconds: 103.7 Ticks: 2074 )
  Active Quests: 
-	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:24:28 522.059 INF Time: 8.24m FPS: 11.49 Heap: 1093.8MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3126.6MB
-2019-02-17T20:24:58 551.691 INF VehicleManager Save
-2019-02-17T20:24:58 552.132 INF Time: 8.74m FPS: 11.38 Heap: 1111.0MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3127.0MB
-animalFarmCow: animalFarmCow - ID: 292 Health: 110 Stamina: 86.06601 Thirst: 42.24175
+2019-02-20T19:49:23 269.953 INF Time: 4.06m FPS: 59.99 Heap: 1063.7MB Max: 1110.2MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 3 (4) Items: 0 CO: 1 RSS: 431.4MB
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 98.31478 Thirst: 99.9346 Food: 98 Water: 138
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 239.35 Ticks: 4787 )
-	buffwaterstaminaregen ( Seconds: 237.25 Ticks: 4745 )
-	buffstatusthirsty1 ( Seconds: 65.35 Ticks: 1307 )
-	buffanimalsenior ( Seconds: 22.2 Ticks: 444 )
-	buffinfectedanimal1 ( Seconds: 21.2 Ticks: 424 )
+	buffanimalstatuscheck ( Seconds: 179.8 Ticks: 3596 )
+	buffstatuscheck ( Seconds: 179.8 Ticks: 3596 )
+	buffhealwatermax ( Seconds: 177.7 Ticks: 3554 )
+	buffanimaladult ( Seconds: 162.7 Ticks: 3254 )
+	buffanimalfertility ( Seconds: 127.95 Ticks: 2559 )
  Active Quests: 
 	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:25:28 582.136 INF Time: 9.24m FPS: 11.38 Heap: 1130.3MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3127.2MB
-2019-02-17T20:25:58 612.222 INF Time: 9.74m FPS: 11.45 Heap: 1154.4MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3127.7MB
-animalFarmCow: animalFarmCow - ID: 292 Health: 99.03467 Stamina: 82.64659 Thirst: 25.14123
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 98.21478 Thirst: 99.93465 Food: 98 Water: 138
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 273.55 Ticks: 5471 )
-	buffwaterstaminaregen ( Seconds: 271.45 Ticks: 5429 )
-	buffanimalsenior ( Seconds: 56.4 Ticks: 1128 )
-	buffstatusthirsty2 ( Seconds: 9.55 Ticks: 191 )
-	buffperkabilityupdate ( Seconds: 9.5 Ticks: 190 )
-	buffinfectedanimal2 ( Seconds: 5.35 Ticks: 107 )
-	buffanimalharvestable ( Seconds: 5.35 Ticks: 107 )
+	buffanimalstatuscheck ( Seconds: 180.8 Ticks: 3616 )
+	buffstatuscheck ( Seconds: 180.8 Ticks: 3616 )
+	buffhealwatermax ( Seconds: 178.7 Ticks: 3574 )
+	buffanimaladult ( Seconds: 163.7 Ticks: 3274 )
+	buffanimalfertility ( Seconds: 128.95 Ticks: 2579 )
  Active Quests: 
 	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:26:28 642.256 INF Time: 10.24m FPS: 11.54 Heap: 1083.2MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3128.0MB
-2019-02-17T20:26:58 671.751 INF VehicleManager Save
-2019-02-17T20:26:58 672.281 INF Time: 10.74m FPS: 11.46 Heap: 1102.8MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3128.4MB
-animalFarmCow: animalFarmCow - ID: 292 Health: 61.8009 Stamina: 79.21217 Thirst: 25
+2019-02-20T19:49:53 299.969 INF Time: 4.56m FPS: 59.99 Heap: 1077.8MB Max: 1110.2MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 3 (4) Items: 0 CO: 1 RSS: 448.5MB
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 98.31478 Thirst: 99.9295 Food: 98 Water: 138
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 307.9 Ticks: 6158 )
-	buffwaterstaminaregen ( Seconds: 305.8 Ticks: 6116 )
-	buffanimalsenior ( Seconds: 90.75 Ticks: 1815 )
-	buffstatusthirsty2 ( Seconds: 43.9 Ticks: 878 )
-	buffperkabilityupdate ( Seconds: 43.85 Ticks: 877 )
-	buffinfectedanimal2 ( Seconds: 39.7 Ticks: 794 )
-	buffanimalharvestable ( Seconds: 39.7 Ticks: 794 )
+	buffanimalstatuscheck ( Seconds: 179.8 Ticks: 3596 )
+	buffstatuscheck ( Seconds: 179.8 Ticks: 3596 )
+	buffperkabilityupdate ( Seconds: 179.75 Ticks: 3595 )
+	buffwaterstaminaregen ( Seconds: 177.7 Ticks: 3554 )
+	buffhealwatermax ( Seconds: 176.85 Ticks: 3537 )
+	buffanimaladult ( Seconds: 162.7 Ticks: 3254 )
  Active Quests: 
-	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:27:29 702.293 INF Time: 11.24m FPS: 11.50 Heap: 1123.8MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3129.0MB
-2019-02-17T20:27:59 732.343 INF Time: 11.74m FPS: 11.39 Heap: 1148.5MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3129.7MB
-2019-02-17T20:28:02 736.009 INF BloodMoon SetDay: day 12, last day 0, freq 7, range 0
-animalFarmCow: animalFarmCow - ID: 292 Health: 27.0255 Stamina: 75.7719 Thirst: 25
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 98.21478 Thirst: 99.92955 Food: 98 Water: 138
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 342.3 Ticks: 6846 )
-	buffanimalsenior ( Seconds: 125.15 Ticks: 2503 )
-	buffstatusthirsty2 ( Seconds: 78.3 Ticks: 1566 )
-	buffperkabilityupdate ( Seconds: 78.25 Ticks: 1565 )
-	buffanimalharvestable ( Seconds: 74.1 Ticks: 1482 )
-	buffstatuswounded ( Seconds: 26.3 Ticks: 526 )
-	buffinfectedanimal3 ( Seconds: 24.05 Ticks: 481 )
+	buffanimalstatuscheck ( Seconds: 180.8 Ticks: 3616 )
+	buffstatuscheck ( Seconds: 180.8 Ticks: 3616 )
+	buffperkabilityupdate ( Seconds: 180.75 Ticks: 3615 )
+	buffwaterstaminaregen ( Seconds: 178.7 Ticks: 3574 )
+	buffhealwatermax ( Seconds: 177.85 Ticks: 3557 )
+	buffanimaladult ( Seconds: 163.7 Ticks: 3274 )
  Active Quests: 
-	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:28:29 762.371 INF Time: 12.25m FPS: 11.45 Heap: 1078.1MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3130.1MB
-2019-02-17T20:28:58 791.752 INF VehicleManager Save
-2019-02-17T20:28:59 792.442 INF Time: 12.75m FPS: 11.61 Heap: 1097.9MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3130.8MB
-animalFarmCow: animalFarmCow - ID: 292 Health: 19.55244 Stamina: 72.33116 Thirst: 25
+2019-02-20T19:50:23 329.937 INF VehicleManager Save
+2019-02-20T19:50:23 329.969 INF Time: 5.06m FPS: 60.00 Heap: 1092.5MB Max: 1110.2MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 3 (4) Items: 0 CO: 1 RSS: 470.4MB
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 92.31496 Thirst: 99.93781 Food: 92 Water: 132
  Current Order: Wander
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 376.7 Ticks: 7534 )
-	buffanimalsenior ( Seconds: 159.55 Ticks: 3191 )
-	buffstatusthirsty2 ( Seconds: 112.7 Ticks: 2254 )
-	buffperkabilityupdate ( Seconds: 112.65 Ticks: 2253 )
-	buffstatuswounded ( Seconds: 60.7 Ticks: 1214 )
-	buffinfectedanimal1 ( Seconds: 2.55 Ticks: 51 )
+	buffanimalstatuscheck ( Seconds: 239.8 Ticks: 4796 )
+	buffstatuscheck ( Seconds: 239.8 Ticks: 4796 )
+	buffhealwatermax ( Seconds: 237.7 Ticks: 4754 )
+	buffanimaladult ( Seconds: 222.7 Ticks: 4454 )
+	buffanimalfertility ( Seconds: 187.95 Ticks: 3759 )
+	buffanimalpregnant ( Seconds: 10.7 Ticks: 214 )
  Active Quests: 
 	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
-2019-02-17T20:29:29 822.464 INF Time: 13.25m FPS: 11.66 Heap: 1119.9MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 2 (3) Items: 0 CO: 1 RSS: 3131.2MB
-2019-02-17T20:29:47 840.864 INF GMSG: Player 'animalFarmCow' died
-2019-02-17T20:29:47 840.865 INF Entity 292 killed.
-2019-02-17T20:29:59 852.518 INF Time: 13.75m FPS: 11.61 Heap: 1146.7MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3131.6MB
-2019-02-17T20:30:29 882.581 INF Time: 14.25m FPS: 11.55 Heap: 1077.5MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3132.0MB
-2019-02-17T20:30:58 911.768 INF VehicleManager Save
-2019-02-17T20:30:59 912.633 INF Time: 14.75m FPS: 11.57 Heap: 1097.9MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3132.5MB
-2019-02-17T20:31:29 942.700 INF Time: 15.25m FPS: 11.51 Heap: 1120.8MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3132.9MB
-2019-02-17T20:31:59 972.768 INF Time: 15.75m FPS: 11.52 Heap: 1149.2MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3133.3MB
-2019-02-17T20:32:29 1002.811 INF Time: 16.25m FPS: 11.54 Heap: 1078.7MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3133.6MB
-2019-02-17T20:32:58 1031.788 INF VehicleManager Save
-2019-02-17T20:32:59 1032.826 INF Time: 16.75m FPS: 11.54 Heap: 1100.3MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3133.9MB
-2019-02-17T20:33:29 1063.260 INF Time: 17.25m FPS: 11.49 Heap: 1124.8MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3135.2MB
-2019-02-17T20:34:00 1093.310 INF Time: 17.76m FPS: 11.56 Heap: 1154.9MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3135.6MB
-2019-02-17T20:34:30 1123.388 INF Time: 18.26m FPS: 11.53 Heap: 1082.0MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3135.8MB
-2019-02-17T20:34:58 1152.165 INF VehicleManager Save
-2019-02-17T20:35:00 1153.469 INF Time: 18.76m FPS: 11.50 Heap: 1105.0MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3136.2MB
-2019-02-17T20:35:30 1183.501 INF Time: 19.26m FPS: 11.44 Heap: 1131.6MB Max: 1161.0MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3136.5MB
-2019-02-17T20:36:00 1213.515 INF Time: 19.76m FPS: 11.49 Heap: 1163.4MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3136.7MB
-2019-02-17T20:36:30 1243.549 INF Time: 20.26m FPS: 11.51 Heap: 1087.7MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3137.1MB
-2019-02-17T20:36:58 1272.192 INF VehicleManager Save
-2019-02-17T20:37:00 1273.569 INF Time: 20.76m FPS: 11.67 Heap: 1111.6MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3137.3MB
-2019-02-17T20:37:30 1303.575 INF Time: 21.26m FPS: 11.81 Heap: 1142.2MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3137.7MB
-2019-02-17T20:38:00 1333.658 INF Time: 21.76m FPS: 12.08 Heap: 1075.6MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3138.0MB
-2019-02-17T20:38:30 1363.687 INF Time: 22.26m FPS: 12.11 Heap: 1099.3MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3138.3MB
-2019-02-17T20:38:58 1392.216 INF VehicleManager Save
-2019-02-17T20:39:00 1393.716 INF Time: 22.76m FPS: 12.07 Heap: 1127.8MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3124.6MB
-2019-02-17T20:39:30 1423.738 INF Time: 23.26m FPS: 11.73 Heap: 1162.3MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3126.7MB
-2019-02-17T20:40:00 1453.767 INF Time: 23.76m FPS: 11.94 Heap: 1087.9MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3134.8MB
-2019-02-17T20:40:30 1483.775 INF Time: 24.26m FPS: 11.51 Heap: 1113.3MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3135.7MB
-2019-02-17T20:40:58 1512.276 INF VehicleManager Save
-2019-02-17T20:41:00 1513.839 INF Time: 24.76m FPS: 11.45 Heap: 1145.5MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3136.7MB
-2019-02-17T20:41:30 1543.866 INF Time: 25.26m FPS: 11.51 Heap: 1076.4MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3137.3MB
-2019-02-17T20:42:00 1573.917 INF Time: 25.77m FPS: 11.56 Heap: 1100.3MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3137.6MB
-2019-02-17T20:42:30 1603.983 INF Time: 26.27m FPS: 11.55 Heap: 1129.5MB Max: 1163.4MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3137.9MB
-2019-02-17T20:42:59 1632.316 INF VehicleManager Save
-2019-02-17T20:43:00 1633.989 INF Time: 26.77m FPS: 11.42 Heap: 1164.8MB Max: 1164.8MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3138.1MB
-2019-02-17T20:43:30 1663.990 INF Time: 27.27m FPS: 11.51 Heap: 1089.0MB Max: 1164.8MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3138.6MB
-2019-02-17T20:44:00 1694.040 INF Time: 27.77m FPS: 11.51 Heap: 1116.4MB Max: 1164.8MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3138.8MB
-2019-02-17T20:44:30 1724.097 INF Time: 28.27m FPS: 11.50 Heap: 1151.0MB Max: 1164.8MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3139.2MB
-2019-02-17T20:44:59 1752.364 INF VehicleManager Save
-2019-02-17T20:45:00 1754.104 INF Time: 28.77m FPS: 11.51 Heap: 1079.5MB Max: 1164.8MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3139.5MB
-2019-02-17T20:45:30 1784.176 INF Time: 29.27m FPS: 11.53 Heap: 1105.6MB Max: 1164.8MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3139.7MB
-2019-02-17T20:46:00 1814.229 INF Time: 29.77m FPS: 11.69 Heap: 1139.7MB Max: 1164.8MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3140.0MB
-2019-02-17T20:46:31 1844.272 INF Time: 30.27m FPS: 11.57 Heap: 1073.4MB Max: 1164.8MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3140.3MB
-2019-02-17T20:46:59 1872.425 INF VehicleManager Save
-2019-02-17T20:47:01 1874.316 INF Time: 30.77m FPS: 11.66 Heap: 1098.2MB Max: 1164.8MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3140.6MB
-2019-02-17T20:47:31 1904.373 INF Time: 31.27m FPS: 11.59 Heap: 1130.4MB Max: 1164.8MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3140.9MB
-2019-02-17T20:48:01 1934.375 INF Time: 31.77m FPS: 11.62 Heap: 1168.6MB Max: 1168.6MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3141.4MB
-2019-02-17T20:48:31 1964.402 INF Time: 32.27m FPS: 11.62 Heap: 1092.4MB Max: 1168.6MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3141.6MB
-2019-02-17T20:48:59 1992.481 INF VehicleManager Save
-2019-02-17T20:49:01 1994.437 INF Time: 32.77m FPS: 11.71 Heap: 1123.4MB Max: 1168.6MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3141.9MB
-2019-02-17T20:49:31 2024.490 INF Time: 33.28m FPS: 11.73 Heap: 1162.1MB Max: 1168.6MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3142.2MB
-2019-02-17T20:50:01 2054.492 INF Time: 33.78m FPS: 11.67 Heap: 1088.0MB Max: 1168.6MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 3142.6MB
-2019-02-17T21:26:18 4232.069 INF Time: 34.28m FPS: 19.20 Heap: 1123.3MB Max: 1168.6MB Chunks: 225 CGO: 153 Ply: 1 Zom: 0 Ent: 1 (3) Items: 0 CO: 1 RSS: 4003.4MB
-2019-02-17T21:26:26 4239.294 INF Preparing quit
-2019-02-17T21:26:26 4239.294 INF Disconnect
-2019-02-17T21:26:26 4239.300 INF NET: Stopping server protocols
-2019-02-17T21:26:26 4239.305 INF NET: LiteNetLib server stopped
-2019-02-17T21:26:26 4239.306 INF [Steamworks.NET] NET: Server stopped
-2019-02-17T21:26:26 4239.307 INF [NET] ServerShutdown
-2019-02-17T21:26:26 4239.309 INF SaveAndCleanupWorld
-2019-02-17T21:26:26 4239.419 INF Saving 77 of chunks took 80ms
-2019-02-17T21:26:26 4239.423 INF [Steamworks.NET] Stopping server
-2019-02-17T21:26:26 4239.423 INF [Steamworks.NET] Exiting Lobby
-2019-02-17T21:26:26 4239.462 INF AstarManager Cleanup
-2019-02-17T21:26:26 4239.470 INF World.Unload
-2019-02-17T21:26:26 4239.533 INF Exited thread GenerateChunks
-2019-02-17T21:26:26 4239.610 INF Exited thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow12\Region
-2019-02-17T21:26:26 4239.973 INF World.Cleanup
-2019-02-17T21:26:26 4239.978 INF Exited thread ChunkRegeneration
-2019-02-17T21:26:26 4239.984 INF Exited thread ChunkCalc
-2019-02-17T21:26:26 4239.987 INF VehicleManager Save
-2019-02-17T21:26:26 4240.036 INF Persistent GamePrefs saved
-2019-02-17T21:26:27 4240.290 INF Persistent GamePrefs saved
-2019-02-17T21:26:27 4240.295 INF Cleanup
-2019-02-17T21:26:27 4240.350 INF AchievementManager.Cleanup
-2019-02-17T21:26:27 4241.013 INF OnApplicationQuit
-2019-02-17T21:26:27 4241.017 INF OnApplicationQuit
-Setting up 2 worker threads for Enlighten.
-  Thread -> id: 20e4 -> priority: 1 
-  Thread -> id: 950 -> priority: 1 
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 92.21498 Thirst: 99.93786 Food: 92 Water: 132
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 240.8 Ticks: 4816 )
+	buffstatuscheck ( Seconds: 240.8 Ticks: 4816 )
+	buffhealwatermax ( Seconds: 238.7 Ticks: 4774 )
+	buffanimaladult ( Seconds: 223.7 Ticks: 4474 )
+	buffanimalfertility ( Seconds: 188.95 Ticks: 3779 )
+	buffanimalpregnant ( Seconds: 11.7 Ticks: 234 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-20T19:50:53 359.970 INF Time: 5.56m FPS: 60.01 Heap: 1108.2MB Max: 1110.2MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 3 (4) Items: 0 CO: 1 RSS: 496.1MB
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 92.31496 Thirst: 99.9327 Food: 92 Water: 132
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 239.8 Ticks: 4796 )
+	buffstatuscheck ( Seconds: 239.8 Ticks: 4796 )
+	buffperkabilityupdate ( Seconds: 239.75 Ticks: 4795 )
+	buffwaterstaminaregen ( Seconds: 237.7 Ticks: 4754 )
+	buffhealwatermax ( Seconds: 236.85 Ticks: 4737 )
+	buffanimaladult ( Seconds: 222.7 Ticks: 4454 )
+ Active Quests: 
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 92.21498 Thirst: 99.93275 Food: 92 Water: 132
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 240.8 Ticks: 4816 )
+	buffstatuscheck ( Seconds: 240.8 Ticks: 4816 )
+	buffperkabilityupdate ( Seconds: 240.75 Ticks: 4815 )
+	buffwaterstaminaregen ( Seconds: 238.7 Ticks: 4774 )
+	buffhealwatermax ( Seconds: 237.85 Ticks: 4757 )
+	buffanimaladult ( Seconds: 223.7 Ticks: 4474 )
+ Active Quests: 
+2019-02-20T19:51:23 389.987 INF Time: 6.06m FPS: 60.00 Heap: 1126.3MB Max: 1126.3MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 3 (4) Items: 0 CO: 1 RSS: 516.5MB
+An entity was created: GameObject
+animalFarmCow: Clarabelle The animalFarmCow - ID: 400 Health: 110 Stamina: 110 Thirst: 100 Food: 110 Water: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 0 Ticks: 0 )
+	buffstatuscheck ( Seconds: 0 Ticks: 0 )
+ Active Quests: 
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 86.31597 Thirst: 99.94101 Food: 86 Water: 126
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 299.8 Ticks: 5996 )
+	buffstatuscheck ( Seconds: 299.8 Ticks: 5996 )
+	buffhealwatermax ( Seconds: 297.7 Ticks: 5954 )
+	buffanimaladult ( Seconds: 282.7 Ticks: 5654 )
+	buffanimalfertility ( Seconds: 247.95 Ticks: 4959 )
+	buffanimalnewmother ( Seconds: 0.65 Ticks: 13 )
+	buffanimalharvestable ( Seconds: 0.65 Ticks: 13 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+animalFarmCow: Clarabelle The animalFarmCow - ID: 400 Health: 110 Stamina: 110 Thirst: 100 Food: 159 Water: 149
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 1 Ticks: 20 )
+	buffstatuscheck ( Seconds: 1 Ticks: 20 )
+	buffnewbiecoat ( Seconds: 0.95 Ticks: 19 )
+	buffperkabilityupdate ( Seconds: 0.95 Ticks: 19 )
+	buffhealstaminamax ( Seconds: 0.85 Ticks: 17 )
+	buffhealwatermax ( Seconds: 0.8 Ticks: 16 )
+	buffwaterstaminaregen ( Seconds: 0.8 Ticks: 16 )
+ Active Quests: 
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 86.21599 Thirst: 99.94106 Food: 86 Water: 126
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 300.8 Ticks: 6016 )
+	buffstatuscheck ( Seconds: 300.8 Ticks: 6016 )
+	buffhealwatermax ( Seconds: 298.7 Ticks: 5974 )
+	buffanimaladult ( Seconds: 283.7 Ticks: 5674 )
+	buffanimalfertility ( Seconds: 248.95 Ticks: 4979 )
+	buffanimalnewmother ( Seconds: 1.65 Ticks: 33 )
+	buffanimalharvestable ( Seconds: 1.65 Ticks: 33 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-20T19:51:40 407.205 INF CVarLogValue: $foodAmountAdd == 97.20003
+2019-02-20T19:51:40 407.205 INF MinEventLogMessage: Adding Food
+2019-02-20T19:51:40 407.238 INF MinEventLogMessage: XP gained during the last level:
+2019-02-20T19:51:40 407.238 INF CVarLogValue: $xpFromLootThisLevel == 0
+2019-02-20T19:51:40 407.238 INF CVarLogValue: $xpFromHarvestingThisLevel == 0
+2019-02-20T19:51:40 407.239 INF CVarLogValue: $xpFromKillThisLevel == 0
+2019-02-20T19:51:42 409.204 INF CVarLogValue: $foodAmountAdd == 54.00002
+2019-02-20T19:51:42 409.204 INF MinEventLogMessage: Adding Food
+2019-02-20T19:51:46 413.205 INF MinEventLogMessage: Adding Food
+2019-02-20T19:51:52 419.205 INF MinEventLogMessage: Adding Food
+2019-02-20T19:51:53 419.991 INF Time: 6.56m FPS: 59.99 Heap: 1143.7MB Max: 1143.7MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 4 (5) Items: 0 CO: 1 RSS: 540.1MB
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 86.31097 Thirst: 99.93091 Food: 86 Water: 126
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 299.85 Ticks: 5997 )
+	buffstatuscheck ( Seconds: 299.85 Ticks: 5997 )
+	buffperkabilityupdate ( Seconds: 299.8 Ticks: 5996 )
+	buffwaterstaminaregen ( Seconds: 297.75 Ticks: 5955 )
+	buffhealwatermax ( Seconds: 296.9 Ticks: 5938 )
+	buffanimaladult ( Seconds: 282.75 Ticks: 5655 )
+ Active Quests: 
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 86.21599 Thirst: 99.93596 Food: 86 Water: 126
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 300.8 Ticks: 6016 )
+	buffstatuscheck ( Seconds: 300.8 Ticks: 6016 )
+	buffperkabilityupdate ( Seconds: 300.75 Ticks: 6015 )
+	buffwaterstaminaregen ( Seconds: 298.7 Ticks: 5974 )
+	buffhealwatermax ( Seconds: 297.85 Ticks: 5957 )
+	buffanimaladult ( Seconds: 283.7 Ticks: 5674 )
+ Active Quests: 
+2019-02-20T19:52:23 449.937 INF VehicleManager Save
+2019-02-20T19:52:23 450.005 INF Time: 7.06m FPS: 59.79 Heap: 1161.3MB Max: 1161.3MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 4 (5) Items: 0 CO: 1 RSS: 567.1MB
+animalFarmCow: Clarabelle The animalFarmCow - ID: 400 Health: 110 Stamina: 109.91 Thirst: 99.91809 Food: 110 Water: 146
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 59.85 Ticks: 1197 )
+	buffstatuscheck ( Seconds: 59.85 Ticks: 1197 )
+	buffperkabilityupdate ( Seconds: 59.8 Ticks: 1196 )
+	buffwaterstaminaregen ( Seconds: 57.75 Ticks: 1155 )
+	buffhealstaminamax ( Seconds: 56.95 Ticks: 1139 )
+	buffhealwatermax ( Seconds: 56.9 Ticks: 1138 )
+	buffanimaladult ( Seconds: 42.75 Ticks: 855 )
+	buffanimalfertility ( Seconds: 24.1 Ticks: 482 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 80.32198 Thirst: 99.94921 Food: 80 Water: 120
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 359.75 Ticks: 7195 )
+	buffstatuscheck ( Seconds: 359.75 Ticks: 7195 )
+	buffhealwatermax ( Seconds: 357.65 Ticks: 7153 )
+	buffanimaladult ( Seconds: 342.65 Ticks: 6853 )
+	buffanimalfertility ( Seconds: 307.9 Ticks: 6158 )
+	buffanimalnewmother ( Seconds: 60.6 Ticks: 1212 )
+	buffanimalharvestable ( Seconds: 60.6 Ticks: 1212 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+animalFarmCow: Clarabelle The animalFarmCow - ID: 400 Health: 110 Stamina: 109.91 Thirst: 99.91814 Food: 110 Water: 147
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 60.85 Ticks: 1217 )
+	buffstatuscheck ( Seconds: 60.85 Ticks: 1217 )
+	buffperkabilityupdate ( Seconds: 60.8 Ticks: 1216 )
+	buffwaterstaminaregen ( Seconds: 58.75 Ticks: 1175 )
+	buffhealstaminamax ( Seconds: 57.95 Ticks: 1159 )
+	buffhealwatermax ( Seconds: 57.9 Ticks: 1158 )
+	buffanimaladult ( Seconds: 43.75 Ticks: 875 )
+	buffanimalfertility ( Seconds: 25.1 Ticks: 502 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 80.22199 Thirst: 99.94926 Food: 80 Water: 120
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 360.75 Ticks: 7215 )
+	buffstatuscheck ( Seconds: 360.75 Ticks: 7215 )
+	buffhealwatermax ( Seconds: 358.65 Ticks: 7173 )
+	buffanimaladult ( Seconds: 343.65 Ticks: 6873 )
+	buffanimalfertility ( Seconds: 308.9 Ticks: 6178 )
+	buffanimalnewmother ( Seconds: 61.6 Ticks: 1232 )
+	buffanimalharvestable ( Seconds: 61.6 Ticks: 1232 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-20T19:52:53 480.004 INF Time: 7.56m FPS: 59.99 Heap: 1070.8MB Max: 1161.3MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 4 (5) Items: 0 CO: 1 RSS: 568.4MB
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 80.32198 Thirst: 99.94411 Food: 80 Water: 120
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 359.75 Ticks: 7195 )
+	buffstatuscheck ( Seconds: 359.75 Ticks: 7195 )
+	buffperkabilityupdate ( Seconds: 359.7 Ticks: 7194 )
+	buffhealwatermax ( Seconds: 356.8 Ticks: 7136 )
+	buffanimaladult ( Seconds: 342.65 Ticks: 6853 )
+ Active Quests: 
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 80.22199 Thirst: 99.94416 Food: 80 Water: 120
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 360.75 Ticks: 7215 )
+	buffstatuscheck ( Seconds: 360.75 Ticks: 7215 )
+	buffperkabilityupdate ( Seconds: 360.7 Ticks: 7214 )
+	buffhealwatermax ( Seconds: 357.8 Ticks: 7156 )
+	buffanimaladult ( Seconds: 343.65 Ticks: 6873 )
+ Active Quests: 
+2019-02-20T19:53:23 510.005 INF Time: 8.06m FPS: 60.01 Heap: 1079.9MB Max: 1161.3MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 4 (5) Items: 0 CO: 1 RSS: 569.1MB
+animalFarmCow: Clarabelle The animalFarmCow - ID: 400 Health: 110 Stamina: 104.3049 Thirst: 99.9163 Food: 104 Water: 144
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 119.9 Ticks: 2398 )
+	buffstatuscheck ( Seconds: 119.9 Ticks: 2398 )
+	buffperkabilityupdate ( Seconds: 119.85 Ticks: 2397 )
+	buffwaterstaminaregen ( Seconds: 117.8 Ticks: 2356 )
+	buffhealwatermax ( Seconds: 116.95 Ticks: 2339 )
+	buffanimaladult ( Seconds: 102.8 Ticks: 2056 )
+	buffanimalfertility ( Seconds: 84.15 Ticks: 1683 )
+	buffanimalpregnant ( Seconds: 7.8 Ticks: 156 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 74.32158 Thirst: 99.95242 Food: 74 Water: 114
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 419.75 Ticks: 8395 )
+	buffstatuscheck ( Seconds: 419.75 Ticks: 8395 )
+	buffhealwatermax ( Seconds: 417.65 Ticks: 8353 )
+	buffanimaladult ( Seconds: 402.65 Ticks: 8053 )
+	buffanimalfertility ( Seconds: 367.9 Ticks: 7358 )
+	buffanimalnewmother ( Seconds: 120.6 Ticks: 2412 )
+	buffanimalharvestable ( Seconds: 120.6 Ticks: 2412 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+animalFarmCow: Clarabelle The animalFarmCow - ID: 400 Health: 110 Stamina: 104.2049 Thirst: 99.91635 Food: 104 Water: 144
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 120.9 Ticks: 2418 )
+	buffstatuscheck ( Seconds: 120.9 Ticks: 2418 )
+	buffperkabilityupdate ( Seconds: 120.85 Ticks: 2417 )
+	buffwaterstaminaregen ( Seconds: 118.8 Ticks: 2376 )
+	buffhealwatermax ( Seconds: 117.95 Ticks: 2359 )
+	buffanimaladult ( Seconds: 103.8 Ticks: 2076 )
+	buffanimalfertility ( Seconds: 85.15 Ticks: 1703 )
+	buffanimalpregnant ( Seconds: 8.8 Ticks: 176 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 74.22156 Thirst: 99.95247 Food: 74 Water: 114
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 420.75 Ticks: 8415 )
+	buffstatuscheck ( Seconds: 420.75 Ticks: 8415 )
+	buffhealwatermax ( Seconds: 418.65 Ticks: 8373 )
+	buffanimaladult ( Seconds: 403.65 Ticks: 8073 )
+	buffanimalfertility ( Seconds: 368.9 Ticks: 7378 )
+	buffanimalnewmother ( Seconds: 121.6 Ticks: 2432 )
+	buffanimalharvestable ( Seconds: 121.6 Ticks: 2432 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+2019-02-20T19:53:53 540.021 INF Time: 8.56m FPS: 60.01 Heap: 1091.6MB Max: 1161.3MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 4 (5) Items: 0 CO: 1 RSS: 565.7MB
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 74.32158 Thirst: 99.94731 Food: 74 Water: 114
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 419.75 Ticks: 8395 )
+	buffstatuscheck ( Seconds: 419.75 Ticks: 8395 )
+	buffperkabilityupdate ( Seconds: 419.7 Ticks: 8394 )
+	buffhealwatermax ( Seconds: 416.8 Ticks: 8336 )
+	buffanimaladult ( Seconds: 402.65 Ticks: 8053 )
+ Active Quests: 
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 74.22156 Thirst: 99.94736 Food: 74 Water: 114
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 420.75 Ticks: 8415 )
+	buffstatuscheck ( Seconds: 420.75 Ticks: 8415 )
+	buffperkabilityupdate ( Seconds: 420.7 Ticks: 8414 )
+	buffhealwatermax ( Seconds: 417.8 Ticks: 8356 )
+	buffanimaladult ( Seconds: 403.65 Ticks: 8073 )
+ Active Quests: 
+2019-02-20T19:54:04 551.305 INF Saving 80 of chunks took 62ms
+2019-02-20T19:54:24 571.373 INF VehicleManager Save
+2019-02-20T19:54:24 571.457 INF Time: 9.06m FPS: 60.00 Heap: 1076.9MB Max: 1161.3MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 4 (5) Items: 0 CO: 1 RSS: 743.8MB
+animalFarmCow: Clarabelle The animalFarmCow - ID: 400 Health: 110 Stamina: 98.31478 Thirst: 99.9295 Food: 98 Water: 138
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 179.8 Ticks: 3596 )
+	buffstatuscheck ( Seconds: 179.8 Ticks: 3596 )
+	buffperkabilityupdate ( Seconds: 179.75 Ticks: 3595 )
+	buffwaterstaminaregen ( Seconds: 177.7 Ticks: 3554 )
+	buffhealwatermax ( Seconds: 176.85 Ticks: 3537 )
+	buffanimaladult ( Seconds: 162.7 Ticks: 3254 )
+	buffanimalfertility ( Seconds: 144.05 Ticks: 2881 )
+	buffanimalpregnant ( Seconds: 67.7 Ticks: 1354 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 68.33031 Thirst: 99.96561 Food: 68 Water: 108
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 479.65 Ticks: 9593 )
+	buffstatuscheck ( Seconds: 479.65 Ticks: 9593 )
+	buffhealwatermax ( Seconds: 477.55 Ticks: 9551 )
+	buffanimaladult ( Seconds: 462.55 Ticks: 9251 )
+	buffanimalfertility ( Seconds: 427.8 Ticks: 8556 )
+	buffanimalnewmother ( Seconds: 180.5 Ticks: 3610 )
+	buffanimalharvestable ( Seconds: 180.5 Ticks: 3610 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+animalFarmCow: Clarabelle The animalFarmCow - ID: 400 Health: 110 Stamina: 98.21478 Thirst: 99.92955 Food: 98 Water: 138
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 180.8 Ticks: 3616 )
+	buffstatuscheck ( Seconds: 180.8 Ticks: 3616 )
+	buffperkabilityupdate ( Seconds: 180.75 Ticks: 3615 )
+	buffwaterstaminaregen ( Seconds: 178.7 Ticks: 3574 )
+	buffhealwatermax ( Seconds: 177.85 Ticks: 3557 )
+	buffanimaladult ( Seconds: 163.7 Ticks: 3274 )
+	buffanimalfertility ( Seconds: 145.05 Ticks: 2901 )
+	buffanimalpregnant ( Seconds: 68.7 Ticks: 1374 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+animalFarmCow: Candie The animalFarmCow - ID: 397 Health: 110 Stamina: 68.23029 Thirst: 99.96567 Food: 68 Water: 108
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 480.65 Ticks: 9613 )
+	buffstatuscheck ( Seconds: 480.65 Ticks: 9613 )
+	buffhealwatermax ( Seconds: 478.55 Ticks: 9571 )
+	buffanimaladult ( Seconds: 463.55 Ticks: 9271 )
+	buffanimalfertility ( Seconds: 428.8 Ticks: 8576 )
+	buffanimalnewmother ( Seconds: 181.5 Ticks: 3630 )
+	buffanimalharvestable ( Seconds: 181.5 Ticks: 3630 )
+ Active Quests: 
+	farminganimal_cow_pregnancy Current State: InProgress Current Phase: 2
+An entity was created: GameObject
+animalFarmCow:  Anna The animalFarmCow - ID: 401 Health: 110 Stamina: 110 Thirst: 100 Food: 110 Water: 100
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 0 Ticks: 0 )
+	buffstatuscheck ( Seconds: 0 Ticks: 0 )
+ Active Quests: 
+animalFarmCow:  Anna The animalFarmCow - ID: 401 Health: 110 Stamina: 110 Thirst: 100 Food: 159 Water: 149
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 1 Ticks: 20 )
+	buffstatuscheck ( Seconds: 1 Ticks: 20 )
+	buffnewbiecoat ( Seconds: 0.95 Ticks: 19 )
+	buffperkabilityupdate ( Seconds: 0.95 Ticks: 19 )
+	buffhealstaminamax ( Seconds: 0.85 Ticks: 17 )
+	buffhealwatermax ( Seconds: 0.8 Ticks: 16 )
+	buffwaterstaminaregen ( Seconds: 0.8 Ticks: 16 )
+ Active Quests: 
+2019-02-20T19:54:44 590.972 INF CVarLogValue: $foodAmountAdd == 97.20003
+2019-02-20T19:54:44 590.972 INF MinEventLogMessage: Adding Food
+2019-02-20T19:54:44 591.023 INF MinEventLogMessage: XP gained during the last level:
+2019-02-20T19:54:44 591.023 INF CVarLogValue: $xpFromLootThisLevel == 0
+2019-02-20T19:54:44 591.023 INF CVarLogValue: $xpFromHarvestingThisLevel == 0
+2019-02-20T19:54:44 591.023 INF CVarLogValue: $xpFromKillThisLevel == 0
+2019-02-20T19:54:46 592.973 INF CVarLogValue: $foodAmountAdd == 54.00002
+2019-02-20T19:54:46 592.973 INF MinEventLogMessage: Adding Food
+2019-02-20T19:54:50 596.973 INF MinEventLogMessage: Adding Food
+2019-02-20T19:54:54 601.474 INF Time: 9.56m FPS: 59.61 Heap: 1091.4MB Max: 1161.3MB Chunks: 240 CGO: 159 Ply: 1 Zom: 0 Ent: 5 (6) Items: 0 CO: 1 RSS: 757.0MB
+2019-02-20T19:54:56 602.973 INF MinEventLogMessage: Adding Food
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 68.33031 Thirst: 99.96051 Food: 68 Water: 108
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 479.65 Ticks: 9593 )
+	buffstatuscheck ( Seconds: 479.65 Ticks: 9593 )
+	buffperkabilityupdate ( Seconds: 479.6 Ticks: 9592 )
+	buffhealwatermax ( Seconds: 476.7 Ticks: 9534 )
+	buffanimaladult ( Seconds: 462.55 Ticks: 9251 )
+ Active Quests: 
+animalFarmCowMale: Grassyella The animalFarmCowMale - ID: 399 Health: 110 Stamina: 68.23029 Thirst: 99.96056 Food: 68 Water: 108
+ Current Order: Wander
+ Active Buffs: 
+	buffanimalstatuscheck ( Seconds: 480.65 Ticks: 9613 )
+	buffstatuscheck ( Seconds: 480.65 Ticks: 9613 )
+	buffperkabilityupdate ( Seconds: 480.6 Ticks: 9612 )
+	buffhealwatermax ( Seconds: 477.7 Ticks: 9554 )
+	buffanimaladult ( Seconds: 463.55 Ticks: 9271 )
+ Active Quests: 
+2019-02-20T19:55:00 607.043 INF Preparing quit
+2019-02-20T19:55:00 607.043 INF Disconnect
+2019-02-20T19:55:00 607.050 INF NET: Stopping server protocols
+2019-02-20T19:55:00 607.055 INF NET: LiteNetLib server stopped
+2019-02-20T19:55:00 607.055 INF [Steamworks.NET] NET: Server stopped
+2019-02-20T19:55:00 607.056 INF [NET] ServerShutdown
+2019-02-20T19:55:00 607.057 INF SaveAndCleanupWorld
+2019-02-20T19:55:00 607.136 INF Saving 83 of chunks took 62ms
+2019-02-20T19:55:00 607.142 INF [Steamworks.NET] Stopping server
+2019-02-20T19:55:00 607.142 INF [Steamworks.NET] Exiting Lobby
+2019-02-20T19:55:00 607.153 INF AstarManager Cleanup
+2019-02-20T19:55:00 607.156 INF World.Unload
+2019-02-20T19:55:00 607.189 INF Exited thread GenerateChunks
+2019-02-20T19:55:00 607.215 INF Exited thread SaveChunks C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/Navezgane/CowTest6\Region
+2019-02-20T19:55:00 607.394 INF World.Cleanup
+2019-02-20T19:55:00 607.398 INF Exited thread ChunkRegeneration
+2019-02-20T19:55:00 607.404 INF Exited thread ChunkCalc
+2019-02-20T19:55:00 607.406 INF VehicleManager Save
+2019-02-20T19:55:00 607.421 INF Persistent GamePrefs saved
+2019-02-20T19:55:00 607.550 INF Persistent GamePrefs saved
+2019-02-20T19:55:00 607.552 INF Cleanup
+2019-02-20T19:55:00 607.582 INF AchievementManager.Cleanup
+2019-02-20T19:55:00 607.853 INF OnApplicationQuit
+2019-02-20T19:55:00 607.855 INF OnApplicationQuit
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: 21528 -> priority: 1 
+  Thread -> id: 1997c -> priority: 1 
+  Thread -> id: 21594 -> priority: 1 
+  Thread -> id: 21874 -> priority: 1 

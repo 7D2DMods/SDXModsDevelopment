@@ -21,8 +21,10 @@ class EntityAliveSDX : EntityAlive
     public QuestJournal QuestJournal = new QuestJournal();
     public List<String> lstQuests = new List<String>();
     public Orders currentOrder = Orders.Wander;
+    String strMyName = "Bob";
+    public System.Random random = new System.Random();
 
-    private bool blDisplayLog = false;
+    private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog &&  !this.IsDead())
@@ -34,20 +36,13 @@ class EntityAliveSDX : EntityAlive
     {
         base.CopyPropertiesFromEntityClass();
         EntityClass entityClass = EntityClass.list[this.entityClass];
-        if (entityClass.Properties.Values.ContainsKey("StartingQuests"))
-        {
-            string text = entityClass.Properties.Values["StartingQuests"];
-            foreach (string text2 in text.Split(new char[] {',' }))
-            {
-                if (this.lstQuests.Contains(text2.Trim()))
-                    continue;
-                this.lstQuests.Add(text2);
-            }
-        }
 
-        if (entityClass.Properties.Values.ContainsKey("DebugEntity"))
+        if (entityClass.Properties.Values.ContainsKey("Names"))
         {
-            this.blDisplayLog = StringParsers.ParseBool(entityClass.Properties.Values["DebugEntity"], 0, -1, true);
+            string text = entityClass.Properties.Values["Names"];
+            string[] Names = text.Split(',');
+            int index = random.Next(0, Names.Length);
+            strMyName = Names[index];
         }
 
     }
@@ -61,7 +56,7 @@ class EntityAliveSDX : EntityAlive
     {
         base.PostInit();
 
-        InvokeRepeating("OneMinuteUpdates", 0f, 60f);
+        InvokeRepeating("DisplayStats", 0f, 60f);
 
     }
 
@@ -69,6 +64,7 @@ class EntityAliveSDX : EntityAlive
     public override void Read(byte _version, BinaryReader _br)
     {
         base.Read(_version, _br);
+        this.strMyName = _br.ReadString();
         this.Buffs.Read(_br);
         this.QuestJournal = new QuestJournal();
         this.QuestJournal.Read(_br);
@@ -79,15 +75,20 @@ class EntityAliveSDX : EntityAlive
     public override void Write(BinaryWriter _bw)
     {
         base.Write(_bw);
+        _bw.Write(this.strMyName);
         this.Buffs.Write(_bw, true);
         this.QuestJournal.Write(_bw);
     }
 
+    public void DisplayStats()
+    {
+        DisplayLog(ToString());
+    }
     public override string ToString()
     {
         String FoodAmount = ((float)Mathf.RoundToInt(this.Stats.Stamina.ModifiedMax + this.Stats.Entity.Buffs.GetCustomVar("foodAmount"))).ToString() ;
         String WaterAmount = ((float)Mathf.RoundToInt(this.Stats.Water.Value + this.Stats.Entity.Buffs.GetCustomVar("waterAmount"))).ToString();
-        string strOutput = this.entityName + " - ID: " + this.entityId + " Health: " + this.Stats.Health.Value + " Stamina: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value + " Food: " + FoodAmount + " Water: " + WaterAmount;
+        string strOutput = this.strMyName + " The " + this.entityName + " - ID: " + this.entityId + " Health: " + this.Stats.Health.Value + " Stamina: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value + " Food: " + FoodAmount + " Water: " + WaterAmount;
         strOutput += "\n Current Order: " + CurrentOrder;
         strOutput += "\n Active Buffs: ";
         foreach (BuffValue buff in this.Buffs.ActiveBuffs)
@@ -158,6 +159,32 @@ class EntityAliveSDX : EntityAlive
 
     }
 
+    public String GetEntityTitle()
+    {
+        return this.strMyName + " the " + this.entityName;
+    }
+    public override void OnEntityDeath()
+    {
+        if (this.isEntityRemote)
+            return;
+
+        String strDeath = "";
+        if ( this.entityThatKilledMe == null )
+            strDeath = GetEntityTitle() + " has died. May we rememeber them fondly.";
+        else
+            strDeath = GetEntityTitle() + " has been killed by " + this.entityThatKilledMe.EntityName;
+
+        GameManager.Instance.GameMessage(EnumGameMessages.EntityWasKilled, strDeath, this, this.entityThatKilledMe);
+        DisplayLog(ToString());
+
+        ModEvents.EntityKilled.Invoke(this, this.entityThatKilledMe);
+        if (this.AttachedToEntity)
+        {
+            this.Detach();
+        }
+        this.dropItemOnDeath();
+        this.entityThatKilledMe = null;
+    }
     protected override void onUnderwaterStateChanged(bool _bUnderwater)
     {
         base.onUnderwaterStateChanged(_bUnderwater);

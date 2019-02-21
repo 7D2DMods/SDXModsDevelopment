@@ -49,23 +49,7 @@
 
       </effect_group>
 
-      <property name="AITask-1" value="FollowOrdersSDX, Mods" />
-
-      <!-- If you have the param1 buff, or item in hand, it won't attack, but will follow you. -->
-			<property name="AITask-2" value="ApproachAndFollowTargetSDX, Mods" param1="buffBeastMaster"/>
-      <property name="AITask-3" value="ApproachAndAttackTarget" param1="EntityNPC,0"/>
-      
-      <!-- To find the Home Block, you need a block, plus a buff to keep it close by -->
-      <!-- This allows you to re-use the same block, but have different buffs for different animals -->
-      <property name="AITask-3" value="FindHomeBlockSDX, Mods" param1="cntCowHomeBlock" param2="buffHomePoint"/>
-      <property name="AITask-4" value="RunawayWhenHurt"/>
-      
-			<property name="AITask-5" value="Territorial"/>
-			
-			<property name="AITask-6" value="RunawayFromEntity" param1="EntityZombie"/>
-			<property name="AITask-7" value="Look"/>
-			<property name="AITask-8" value="Wander"/>
-
+   
       <!-- These are the items that the animal will swap back and forth, depending on whether it needs to eat or drink-->
 			<property name="EatItem" value="eatAnimalFood" />
 			<property name="DrinkItem" value="drinkAnimalWater" />
@@ -91,19 +75,25 @@
       <property name="DebugEntity" value="true" />
       
       <!-- The starting buffs -->
-      <property name="Buffs" value="buffAnimalStatusCheck" />
-
+      <property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck" />
+  
       <property name="TimeStayAfterDeath" value="1" />
 
       <!--property name="AITask-1" value="FollowOrdersSDX, Mods" /-->
       <!-- if the entity has the following buffs, search for water 20 blocks in all direction -->
-      <property name="AITask-1" value="FindNearestWaterBlockSDX, Mods" param1="buffStatusThirsty1,buffStatusThirsty2" param2="20" />
-      <property name="AITask-2" value="Wander"/>
+      <property name="AITask-1" value="FindNearestWaterBlockSDX, Mods" param1="buffStatusThirsty1,buffStatusThirsty2,buffStatusHungry1,buffStatusHungry2" param2="20" />
+      <property name="AITask-2" value="WanderSDX, Mods"/>
       <property name="AITask-3" value="Territorial"/>
+      <property name="AITask-4" value="Look"/>
+      <property name="AITask-5" value="ApproachAndFollowTargetSDX, Mods" param1=""/>
+      <property name="AITask-6" value=""/>
+
+      <property name="Names" value="Rose,Dahlia,Flower,Minnie,Daisy,Darla,Margie,Maggie,Esmeralda,Shelly,Meg,Lois,Jasmine,Bella,Candie,Bessie,Emma,Penelope,Bella,Molly,Clarabelle,Henrietta,Nettie,Annabelle,Gertie,Betty Sue, Ella, Anna,Dorothy,Annie,Honebun,Sweetie,LovaBull,Cupcake,Baby,Cookie,Sunny,SunShine,Cocoa,Muffin,Pinky,Blue,Sugar,Booboo,Princess,Big Mac,Madonna,Bertha,Waffles,Moscow,MooMoo,Mud Pie,Shrimp,Cowlick,Ineda Bunn,Waffles,Hamburger,Brown Cow,Humphry,Heifer,Mickey D" />
+      <!--property name="AITask-3" value="Territorial"/-->
 
       <!--property name="AITask-2" value="FindNearestFoodBlockSDX, Mods" param1="buffStatusHungry1,buffStatusHungry2" param2="campfire" /-->
       <!-- If you have the param1 buff, or item in hand, it won't attack, but will follow you. -->
-      <property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="buffBeastMaster"/>
+      <!--property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="buffBeastMaster"/-->
 
       <!-- To find the Home Block, you need a block, plus a buff to keep it close by -->
       <!-- This allows you to re-use the same block, but have different buffs for different animals -->
@@ -134,6 +124,7 @@
     <entity_class name="animalFarmCowMale" extends="animalFarmCow">
       <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
       <property name="IsMale" value="true"/>
+      <property name="Names" value="Bully, Duke,Hydro,Homer,Earl,Disel,Horns,Armor,Bob,Sampson,Tank,Kristof,Angus,Midnight,Nitrous,Red Bull,Moogan Freeman,Meatloaf,T-Bone,Mooshu,Leonardo DiCowprio,Cheeseburger,LovaBull,Hugh Heifer,Moossolini,Grassyella,Moo Rock,Rick Raws The Sause Bause,SteakHouse" />
     </entity_class>
 
     <entity_class name="zombieFarmCow" extends="animalBear">

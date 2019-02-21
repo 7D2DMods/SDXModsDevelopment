@@ -47,6 +47,16 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
         InvokeRepeating("CheckAnimalEvent", 1f, 60f);
     }
 
+    // Cows were being stuck on the fence and trying to attack them. This is, I think, due to the entity move helper which makes
+    // it attack blocks that get in its way, ala zombie.
+    public override bool Attack(bool _bAttackReleased)
+    {
+        if (this.attackTarget == null)
+            return false;
+
+        return base.Attack(_bAttackReleased);
+    }
+
     public void CheckAnimalEvent()
     {
         int day = GameUtils.WorldTimeToDays(GameManager.Instance.World.GetWorldTime());
@@ -155,7 +165,7 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
 
         EntityActivationCommand[] ActivationCommands = new EntityActivationCommand[]
         {
-            new EntityActivationCommand("Tel me about yourself", "talk", true ),
+            new EntityActivationCommand("Tell me about yourself", "talk", true ),
             new EntityActivationCommand("Pet", "hand", true ),
             new EntityActivationCommand("Follow Me", "talk", true),
             new EntityActivationCommand("Stay here", "talk", true),
@@ -192,6 +202,10 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
         return true;
     }
 
+    public override bool CanEntityJump()
+    {
+        return false;
+    }
     public override bool Jumping
     {
         get

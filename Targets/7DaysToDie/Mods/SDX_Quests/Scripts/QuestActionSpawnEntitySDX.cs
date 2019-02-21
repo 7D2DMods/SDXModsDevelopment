@@ -69,7 +69,7 @@ class QuestActionSpawnEntitySDX : QuestActionSpawnEnemy
 
             // Spawn the entity close by
             float d = UnityEngine.Random.Range(1f, 1f);
-
+        
             Vector3 transformPos = questEntity.position + a * d;
             Vector3 rotation = new Vector3(0f, questEntity.transform.eulerAngles.y + 180f, 0f);
             float num = (float)GameManager.Instance.World.GetHeight((int)transformPos.x, (int)transformPos.z);

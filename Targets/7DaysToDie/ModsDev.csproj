@@ -78,6 +78,7 @@
     <Compile Include="Mods\HalDllUpdates\Scripts\EntityAnimalHal.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\HalHelperEvents.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionAnimatorSDX.cs" />
+    <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionSpawnEntitySDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryHourSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryDaySDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\PatchScripts\PatchScript.cs" />
@@ -87,11 +88,13 @@
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFindNearestBlockSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFindNearestFoodBlockSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFindNearestWaterBlockSDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFollowFriendSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFollowOrdersSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetNearestEntityAsTargetSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIFindHomeBlockSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionGiveQuestSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionPumpQuestSDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIWanderSDX.cs" />
     <Compile Include="Mods\SDX_Quests\PatchScripts\QuestHooks.cs" />
     <Compile Include="Mods\SDX_Quests\Scripts\ObjectiveGotoPOISDX.cs" />
     <Compile Include="Mods\SDX_Quests\Scripts\ObjectiveBuffSDX.cs" />
@@ -111,6 +114,7 @@
     <Compile Include="Mods\SphereII_MusicBoxes\Scripts\MusicBoxScript.cs" />
     <Compile Include="Mods\SphereII_TakeAndReplace\Scripts\PickUpAndReplace.cs" />
     <Compile Include="Mods\SphereII_UnlockHealthBar\PatchScripts\UnlockHealthBar.cs" />
+    <Compile Include="Mods\SphereII_WanderingTraders\Scripts\EntityWanderingTrader.cs" />
     <Compile Include="Mods\ZombieTransmogrifier\PatchScripts\EntityAlive.cs" />
     <Compile Include="Mods\ZombieTransmogrifier\Scripts\EntityFlyingBaseSDX.cs" />
     <Compile Include="Mods\ZombieTransmogrifier\Scripts\EntityGenericSDX.cs" />
@@ -182,6 +186,7 @@
     <None Include="Mods\SphereII_SphereBots\Resources\Spheres.unity3d" />
     <None Include="Mods\SphereII_TakeAndReplace\README.md" />
     <None Include="Mods\SphereII_UnlockHealthBar\ReadMe.md" />
+    <None Include="Mods\SphereII_WanderingTraders\ReadMe.md" />
     <None Include="Mods\ZombieTransmogrifier\ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
@@ -267,6 +272,9 @@
     <Content Include="Mods\SphereII_UnlockHealthBar\Config\XUi\xui.xml" />
     <Content Include="Mods\SphereII_UnlockHealthBar\mod.xml" />
     <Content Include="Mods\SphereII_UnlockHealthBar\ModInfo.xml" />
+    <Content Include="Mods\SphereII_WanderingTraders\Config\entityclasses.xml" />
+    <Content Include="Mods\SphereII_WanderingTraders\mod.xml" />
+    <Content Include="Mods\SphereII_WanderingTraders\ModInfo.xml" />
     <Content Include="Mods\ZombieTransmogrifier\Config\EntityClasses.xml" />
     <Content Include="Mods\ZombieTransmogrifier\mod.xml" />
     <Content Include="Mods\ZombieTransmogrifier\ModInfo.xml" />

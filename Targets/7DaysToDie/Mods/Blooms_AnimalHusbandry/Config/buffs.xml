@@ -8,18 +8,8 @@
 
       <!-- This allows the animal to use stamina and water over time, regardless of what they are doing. -->
       <effect_group name="Regular stamina change">
-        <passive_effect name="StaminaMaxModifierOT" operation="base_subtract" value="0.001"/>
-        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.001"/>
-
-
-        <!-- Minimum cap for "blacked out" water and stamina:-->
-        <passive_effect name="WaterChangeOT" operation="base_add" value="1">
-          <requirement name="StatCompareModMax" stat="Water" operation="LTE" value="10"/>
-        </passive_effect>
-        <passive_effect name="StaminaMaxModifierOT" operation="base_add" value="1">
-          <requirement name="StatCompareModMax" stat="Stamina" operation="LTE" value="10"/>
-        </passive_effect>
-
+        <passive_effect name="StaminaMaxModifierOT" operation="base_subtract" value="0.01"/>
+        <passive_effect name="WaterChangeOT" operation="base_subtract" value="0.01"/>
 
         <triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="$waterAmountAdd">
           <requirement name="CVarCompare" target="self" cvar="$waterAmountAdd" operation="GT" value="0"/>
@@ -40,139 +30,14 @@
         <requirement name="NotHasBuff" buff="buffAnimalDeath"/>
 
         <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalBaby" />
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffNewbieCoat"/>
+
         <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmountAdd" operation="set" value="5"/>
         <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmountAdd" operation="set" value="5"/>
         <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$foodAmount" operation="set" value="5"/>
         <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" cvar="$waterAmount" operation="set" value="5"/>
         <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffProcessConsumables"/>
-
-
       </effect_group>
-
-
-      <effect_group name="vanilla pump">
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusHungry1">
-          <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="LTE" value="0.5"/>
-          <requirement name="NotHasBuff" buff="buffStatusHungry2"/>
-        </triggered_effect>
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusHungry2">
-          <requirement name="StatComparePercModMaxToMax" stat="Stamina" operation="LTE" value="0.3"/>
-        </triggered_effect>
-
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusThirsty1">
-          <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value="0.75"/>
-          <requirement name="NotHasBuff" buff="buffStatusThirsty2"/>
-        </triggered_effect>
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusThirsty2">
-          <requirement name="StatComparePercCurrentToMax" stat="Water" operation="LTE" value="0.3"/>
-        </triggered_effect>
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffStatusWounded">
-          <requirement name="StatComparePercModMaxToMax" stat="Health" operation="LTE" value="0.5"/>
-        </triggered_effect>
-
-        <!-- Remove particle effect if not on fire, this is a backup removal for remote clients -->
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveParticleEffectFromEntity" particle="p_onFire">
-          <requirement name="NotHasBuff" buff="buffIsOnFire"/>
-        </triggered_effect>
-
-        <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" particle="p_onFire">
-          <requirement name="HasBuff" buff="buffIsOnFire"/>
-        </triggered_effect>
-
-
-
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffPerkPain">
-          <requirement name="StatComparePercCurrentToMax" stat="Health" operation="LTE" value="@PainTolerance"/>
-        </triggered_effect>
-
-
-        <!--<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="_sheltered"/>-->
-        <!--<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="_shaded"/>-->
-        <!--<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="_wetness"/>-->
-
-        <!-- One time weather survival buff for newbies -->
-        <triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="buffNewbieCoat"/>
-
-        <!-- Weather Survival HOT -->
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementHot">
-          <requirement name="NotHasBuff" buff="god"/>
-          <requirement name="CVarCompare" cvar="_coretemp" operation="GT" value="10"/>
-          <requirement name="CVarCompare" cvar="_coretemp" operation="LT" value="30"/>
-        </triggered_effect>
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementHot">
-          <requirement name="CVarCompare" cvar="_coretemp" operation="LTE" value="10"/>
-        </triggered_effect>
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementHot">
-          <requirement name="CVarCompare" cvar="_coretemp" operation="GTE" value="30"/>
-        </triggered_effect>
-
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementSweltering">
-          <requirement name="NotHasBuff" buff="god"/>
-          <requirement name="CVarCompare" cvar="_coretemp" operation="GTE" value="30"/>
-        </triggered_effect>
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementSweltering">
-          <requirement name="CVarCompare" cvar="_coretemp" operation="LT" value="30"/>
-        </triggered_effect>
-
-        <!-- Weather Survival COLD -->
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementCold">
-          <requirement name="NotHasBuff" buff="god"/>
-          <requirement name="CVarCompare" cvar="_coretemp" operation="GT" value="-30"/>
-          <requirement name="CVarCompare" cvar="_coretemp" operation="LT" value="-10"/>
-        </triggered_effect>
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementCold">
-          <requirement name="CVarCompare" cvar="_coretemp" operation="GTE" value="-10"/>
-        </triggered_effect>
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementCold">
-          <requirement name="CVarCompare" cvar="_coretemp" operation="LTE" value="-30"/>
-        </triggered_effect>
-
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementFreezing">
-          <requirement name="NotHasBuff" buff="god"/>
-          <requirement name="CVarCompare" cvar="_coretemp" operation="LTE" value="-30"/>
-        </triggered_effect>
-        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffElementFreezing">
-          <requirement name="CVarCompare" cvar="_coretemp" operation="GT" value="-30"/>
-        </triggered_effect>
-
-        <!-- Weather Survival WETNESS -->
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffElementWet">
-          <requirement name="NotHasBuff" buff="god"/>
-          <requirement name="CVarCompare" cvar="_wetness" operation="GT" value=".15"/>
-        </triggered_effect>
-
-        <!-- Biome radiation effects (simplified! We only use "3" for now) -->
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffRadiation3">
-          <requirement name="NotHasBuff" buff="god"/>
-          <requirement name="CVarCompare" cvar="_biomeradiation" operation="GT" value="2.5"/>
-        </triggered_effect>
-        <!--
-			<triggered_effect trigger="onSelfBuffUpdate" action="CVarLogValue" target="self" cvar="_biomeradiation"/>
-			-->
-
-
-        <!-- Initialise perk abilities; buff only works onStack so fire it 2x -->
-        <triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="buffPerkAbilityUpdate"/>
-        <triggered_effect trigger="onSelfBuffStart" action="AddBuff" target="self" buff="buffPerkAbilityUpdate"/>
-        <!-- Update cvar driven perks on buying perk levels -->
-        <triggered_effect trigger="onSelfProgressionUpdate" action="AddBuff" target="self" buff="buffPerkAbilityUpdate"/>
-
-        <!-- Drowning -->
-        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffDrowning1">
-          <requirement name="CVarCompare" cvar="_underwater" operation="Equals" value="1"/>
-          <requirement name="NotHasBuff" buff="buffDrowning1"/>
-          <requirement name="NotHasBuff" buff="buffDrowning2"/>
-          <requirement name="NotHasBuff" buff="buffDrowning3"/>
-        </triggered_effect>
-
-        <!-- Falling -->
-        <triggered_effect trigger="onSelfFallImpact" action="AddBuff" target="self" buff="buffPlayerFallingDamage">
-          <requirement name="CVarCompare" cvar="_fallSpeed" operation="GTE" value=".15"/>
-        </triggered_effect>
-
-      </effect_group>
-
-
 
       <effect_group name="Is Entity Eating">
         <requirement name="CVarCompare" target="self" cvar="$foodAmountAdd" operation="GT" value="0"/>
@@ -180,9 +45,6 @@
         <triggered_effect trigger="onSelfBuffUpdate" action="LogMessage" message="Adding Food"/>
         <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar="$foodAmountAdd" operation="set" value="0"/>
       </effect_group>
-
-
-
 
       <!-- This NonBlood Moon event counter-acts the BoodMoonEvent below. This will execute when it's not a blood moon -->
       <effect_group name="NonBloodMoonEvent">
@@ -345,7 +207,7 @@
 
     <buff name="buffAnimalAdult" hidden="true">
       <stack_type value="ignore"/>
-      <duration value="0"/>
+      <duration value="8000"/>
 
       <!-- Effects that only need to happen on the females -->
       <effect_group name="Female Effects">
@@ -356,7 +218,7 @@
 
         <!-- Conditions for triggering pregnancy-->
         <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalPregnant">
-          <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="25"/>
+          <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="1"/>
           <requirement name="NotHasBuff" buff="buffAnimalPregnant"/>
           <requirement name="NotHasBuff" buff="buffAnimalNewMother"/>
           <requirement name="NotHasBuff" buff="buffBloodMoonEffect" />
@@ -367,6 +229,7 @@
       <!-- if the entity is a male, then give it the fertility buff -->
       <effect_group name="Male Effects">
         <requirement name="IsMale" />
+        <triggered_effect trigger="onSelfBuffStart" action="AttachParticleEffectToEntity" particle="p_electric_shock" local_offset="0,0.75,0"/>
         <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="selfAOE" range="4" buff="buffAnimalFertility" target_tags="farmanimal"/>
       </effect_group>
 
@@ -397,11 +260,13 @@
       <effect_group name="Exit Buffs">
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalNewMother" />
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalHarvestable" />
+        <!--triggered_effect trigger="onSelfBuffFinish" action="SpawnEntitySDX, Mods" target="self" entityname="Same" /-->
+
       </effect_group>
     </buff>
     <buff name="buffAnimalNewMother" hidden="true">
       <stack_type value="ignore"/>
-      <duration value="50"/>
+      <duration value="5000"/>
     </buff>
     <buff name="buffAnimalSenior" hidden="true">
       <stack_type value="ignore"/>
