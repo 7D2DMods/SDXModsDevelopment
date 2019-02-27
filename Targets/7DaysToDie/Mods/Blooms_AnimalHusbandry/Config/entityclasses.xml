@@ -71,9 +71,6 @@
 
       <!-- Hand item allows them to eat and drink from water sources, much like a player -->
       <property name="HandItem" value="meleeHandFarmAnimal"/>
-
-      <property name="DebugEntity" value="true" />
-      
  
       <property name="TimeStayAfterDeath" value="1" />
 
@@ -83,9 +80,14 @@
       <property name="AITask-2" value="Look"/>
       
       <!-- This AI task is tied to a cvar, which is being used to record entity ID that we want to follow -->
-      <property name="AITask-3" value="ApproachAndFollowTargetSDX, Mods" param1="$Mother"/>
+      <!-- Param1 can be:  cvar, Buff or the current hand item, such as a block or item name -->
+      <!--  param1="$Mother,$Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
+      <property name="AITask-3" value="ApproachAndFollowTargetSDX, Mods" param1="$Mother,$Leader,hayBaleBlock,foodCornOnTheCob"/>
       <property name="AITask-4" value="MaslowLevel1SDX, Mods"/>
       <property name="AITask-5" value="WanderSDX, Mods"/>
+
+      <!-- Uses the same mechanism as ApproachAndFollowTargetSDX to assign leadership. -->
+      <!--property name="AITask-6" value="ApproachAndAttackTargetSDX, Mods" param1="$Mother,$Leader"/-->
 
       <property name="AITask-6" value=""/>
 
@@ -100,7 +102,7 @@
       <!-- This allows you to re-use the same block, but have different buffs for different animals -->
       <!--property name="AITask-4" value="FindHomeBlockSDX, Mods" param1="cntCowHomeBlock" param2="buffHomePoint"/-->
   
-
+      <!-- Loot List Alive lets us display the dialog box for the entity commands -->
       <property name="LootListAlive" value="62"/>
       
       <!-- The starting buffs -->

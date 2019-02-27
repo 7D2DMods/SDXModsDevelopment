@@ -106,8 +106,6 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             // Search for food if its hungry.
             if (CheckForFoodBin())
                 result = true;
-            else if (CheckForBossEntity())
-                result = true;
             // Search for water.
             else if (CheckForWaterBlock())
                 result = true;
@@ -202,14 +200,6 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         // If there's no buff incentive, or no nearby water block, don't bother looking for water.
         if (!CheckIncentive(this.lstThirstyBuffs) && !CheckIncentive(this.lstHungryBuffs) && !CheckIncentive(this.lstSanitationBuffs) && !CheckIfShelterNeeded() )
             return false;
-
-       
-        // If you are thirsty and in water, drink.
-        //        if (CheckIncentive(this.lstThirstyBuffs) )//&& this.theEntity.IsInWater(this.theEntity.position.x, this.theEntity.position.y, this.theEntity.position.z))
-        //      {
-        //        DisplayLog(" I am standing in water. Attempting to drink.");
-        //return PerformAction();
-        //  }
 
         PathNavigate navigator = this.theEntity.navigator;
         PathEntity path = navigator.getPath();
@@ -623,65 +613,24 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
     }
 
-    public virtual bool CheckForBossEntity()
+      public virtual float GetEntityWater()
     {
-        if (!CheckIncentive(this.lstBabyBuffs))
+        if (this.theEntity.Buffs.HasCustomVar("$Mother"))
         {
-            DisplayLog(" No baby buff");
-            return false;
-        }
-        EntityAliveSDX entity = this.theEntity as EntityAliveSDX;
-        if (entity)
-        {
-            // is a baby and potentially has a baby.
-            if (entity.BossEntity != null)
+            float MotherID = this.theEntity.Buffs.GetCustomVar("$Mother");
+            EntityAliveSDX MotherEntity = this.theEntity.world.GetEntity((int)MotherID) as EntityAliveSDX;
+            if ( MotherEntity )
             {
-                DisplayLog("Entity is a baby, and has a mother");
-                // Make sure they are the same species
-                if (entity.BossEntity.entityType == entity.entityType)
+                if (MotherEntity.Buffs.HasCustomVar("MilkLevel"))
                 {
+                    DisplayLog("Heading to mommy");
+                    float MilkLevel = MotherEntity.Buffs.GetCustomVar("MilkLevel");
+                    this.theEntity.SetInvestigatePosition(this.theEntity.world.GetEntity((int)MotherID).position, 60);
 
-                    entity.SetInvestigatePosition(entity.BossEntity.position, 120);
-                    return true;
+                    return MilkLevel;
                 }
             }
-            else
-            {
-                DisplayLog(" There is no boss Entity set.");
-            }
-        }
-        else
-        {
-            DisplayLog(" Not an EntityAliveSDX");
-        }
-        return false;
 
-    }
-    public virtual float GetEntityWater()
-    {
-        if ( !CheckIncentive(this.lstBabyBuffs))
-            return 0f;
-
-        EntityAliveSDX entity = this.theEntity as EntityAliveSDX;
-        if (entity)
-        {
-            // is a baby and potentially has a baby.
-            if ( entity.BossEntity != null)
-            {
-                DisplayLog("Entity is a baby, and has a mother");
-                // Make sure they are the same species
-                if (entity.BossEntity.entityType == entity.entityType)
-                {
-                    if (entity.BossEntity.Buffs.HasCustomVar("MilkLevel"))
-                    {
-
-                        DisplayLog("Heading to mommy");
-                        float MilkLevel = entity.BossEntity.Buffs.GetCustomVar("MilkLevel");
-                        entity.SetInvestigatePosition(entity.BossEntity.position, 120);
-                        return MilkLevel;
-                    }
-                }
-            }
         }
         return 0f;
     }

@@ -113,48 +113,7 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
       }
 
 
-    public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
-    {
-
-
-        EntityActivationCommand[] ActivationCommands = new EntityActivationCommand[]
-        {
-            new EntityActivationCommand("Tell me about yourself", "talk", true ),
-            new EntityActivationCommand("Pet", "hand", true ),
-            new EntityActivationCommand("Follow Me", "talk", true),
-            new EntityActivationCommand("Stay here", "talk", true),
-            new EntityActivationCommand("Hang out here", "talk", true)
-        };
-
-        return ActivationCommands;
-    }
-
-    public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
-    {
-        DisplayLog("OnEntityActivated");
-        switch (_indexInBlockActivationCommands)
-        {
-            case 0:
-                GameManager.ShowTooltipWithAlert(_entityFocusing as EntityPlayerLocal, this.ToString() + "\n\n\n\n\n", "ui_denied");
-                break;
-            case 1:
-                // Pet
-                break;
-            case 2:
-                this.CurrentOrder = Orders.Follow;
-                break;
-            case 3:
-                this.CurrentOrder = Orders.Stay;
-                break;
-            case 4:
-                this.CurrentOrder = Orders.Wander;
-                break;
-            default:
-                break;
-        }
-
-        return true;
-    }
+ 
 
     public override bool CanEntityJump()
     {

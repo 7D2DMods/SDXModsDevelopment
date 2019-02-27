@@ -21,7 +21,7 @@ public class MinEventActionSpawnBabySDX : MinEventActionRemoveBuff
 
                     Debug.Log("An entity was created: " + NewEntity.ToString());
 
-                    Debug.Log("Setting Mother ID to Baby: " + entity.entityId + " to " + NewEntity.entityId);
+                    Debug.Log("Setting Mother ID to Baby: " + entity.entityId + " for " + NewEntity.entityId);
                     NewEntity.Buffs.SetCustomVar("$Mother", entity.entityId, true);
 
                 }

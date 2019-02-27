@@ -224,7 +224,7 @@
     <!-- Controls the animal's age -->
     <buff name="buffAnimalBaby" hidden="true">
       <stack_type value="ignore"/>
-      <duration value="200"/>
+      <duration value="20000"/>
       <effect_group>
         <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$sizeScale" operation="set" value="0.3"/>
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalJuvenile" />

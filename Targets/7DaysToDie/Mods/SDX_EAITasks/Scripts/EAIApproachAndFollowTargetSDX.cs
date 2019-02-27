@@ -7,6 +7,7 @@ using UnityEngine;
 public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 {
 
+    List<String> lstIncentives = new List<String>();
     private List<Entity> NearbyEntities = new List<Entity>();
     float distanceToEntity = UnityEngine.Random.Range(2f, 5.0f);
 
@@ -14,14 +15,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
     private Vector3 entityTargetVel;
     private int pathCounter;
 
-    private String strControlMechanism = "";
 
-    //public override void Init(EntityAlive _theEntity)
-    //{
-    //    base.Init(_theEntity);
-    //    this.MutexBits = 3;
-    //    this.executeDelay = 0.1f;
-    //}
 
     private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
@@ -29,15 +23,58 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         if (blDisplayLog)
             Debug.Log(this.theEntity.EntityName + ": " + strMessage);
     }
+
+    // Allow params to be a comma-delimited list of various incentives, such as item name, buff, or cvar.
     public override void SetParams1(string _par1)
     {
-        this.strControlMechanism = _par1;
+
+        string[] array = _par1.Split(new char[]
+        {
+                ','
+        });
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (this.lstIncentives.Contains(array[i].ToString()))
+                continue;
+            this.lstIncentives.Add(array[i].ToString());
+        }
     }
 
-    public virtual void ConfigureTargetEntity()
+    // Checks a list of buffs to see if there's an incentive for it to execute.
+    public virtual bool CheckIncentive(EntityAlive entity)
+    {
+        bool result = false;
+        foreach (String strIncentive in this.lstIncentives)
+        {
+            // Check if the entity that is looking at us has the right buff for us to follow.
+            if (entity.Buffs.HasBuff(strIncentive))
+                result = true;
+
+            // Check if there's a cvar for that incentive, such as $Mother or $Leader.
+            if (this.theEntity.Buffs.HasCustomVar(strIncentive))
+            {
+                if (this.theEntity.Buffs.GetCustomVar(strIncentive) == entity.entityId)
+                    result = true;
+            }
+
+            // Then we check if the control mechanism is an item being held.
+            if (entity.inventory.holdingItem.Name == strIncentive)
+                result = true;
+
+            // if we are true here, it means we found a match to our entity.
+            if (result)
+                break;
+        }
+
+        if (result)
+            this.entityTarget = entity;
+   
+        return result;
+    }
+
+    public virtual bool ConfigureTargetEntity()
     {
         this.NearbyEntities.Clear();
-        this.theEntity.otherEntitySDX = null;
 
         // Search in the bounds are to try to find the most appealing entity to follow.
         Bounds bb = new Bounds(this.theEntity.position, new Vector3(20f, 20f, 20f));
@@ -47,36 +84,14 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             EntityAlive x = (EntityAlive)this.NearbyEntities[i];
             if (x != this.theEntity)
             {
-                // Check if the there's an entity in our area that is allowed to control us.
-
-                // Check if the control mechanism is a cvar
-                if (this.theEntity.Buffs.HasCustomVar(this.strControlMechanism))
-                {
-                    DisplayLog(" I have a cvar for an incentive:" + this.strControlMechanism );
-                    if (this.theEntity.Buffs.GetCustomVar(this.strControlMechanism) == x.entityId)
-                    {
-                        Debug.Log(" My CVAR value is: " + x.entityId);
-                        this.theEntity.otherEntitySDX = x;
-                    }
-                }
-                // first, we check if we are controlled via an activate buff.
-                if (x.Buffs.HasBuff(this.strControlMechanism))
-                    this.theEntity.otherEntitySDX = x;
-
-                // Then we check if the control mechanism is an item being held.
-                if (x.inventory.holdingItem.Name == this.strControlMechanism)
-                    this.theEntity.otherEntitySDX = x;
-
-                // If we do have a master entity, and it's still in range, then set it as the target.
-                if (this.theEntity.otherEntitySDX != null)
-                {
-                    base.entityTarget = this.theEntity.otherEntitySDX;
-                    return;
-
-                }
+                // Check the entity against the incentives
+                if (CheckIncentive(x))
+                    return true;
             }
         }
 
+        this.entityTarget = null;
+        return false;
     }
 
     public override bool CanExecute()
@@ -84,51 +99,19 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.theEntity.Jumping)
             return false;
 
-        if (this.theEntity.Buffs.HasCustomVar(this.strControlMechanism) && this.theEntity.Buffs.GetCustomVar(this.strControlMechanism) == 0)
-            return false;
-
         // If there is an entity in bounds, then let this AI Task roceed. Otherwise, don't do anything with it.
-        ConfigureTargetEntity();
+       return ConfigureTargetEntity();
 
-        //if (this.theEntity is EntityAliveSDX)
-        //{
-        //    EntityAliveSDX aliveTarget = theEntity as EntityAliveSDX;
-        //    if (aliveTarget.CurrentOrder != EntityAliveSDX.Orders.Follow)
-        //        return false;
-        //}
-
- 
-        return (this.entityTarget != null);
     }
 
-    //public override void Start()
-    //{
-    //    this.entityTargetPos = this.entityTarget.position;
-    //    this.entityTargetVel = Vector3.zero;
-    //    this.pathCounter = 0;
-    //}
+  
 
     public override bool Continue()
     {
-        bool result = true;
-
-        // If the entity has a cvar for a control mechanism, and its 0, then just return. 
-        if (this.theEntity.Buffs.HasCustomVar(this.strControlMechanism) && this.theEntity.Buffs.GetCustomVar(this.strControlMechanism) == 0)
+        if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.entityTarget == null)
             return false;
 
-        if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
-        {
-            result = false;
-        }
-        else
-        {
-            EntityAlive Target = this.theEntity.otherEntitySDX;
-            if (!Target)
-                result = false;
-        
-        }
-
-        return result;
+        return ConfigureTargetEntity();
     }
 
     public override void Update()

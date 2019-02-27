@@ -21,7 +21,6 @@ class EntityAliveSDX : EntityAlive
     public QuestJournal QuestJournal = new QuestJournal();
     public List<String> lstQuests = new List<String>();
     public Orders currentOrder = Orders.Wander;
-    public EntityAlive BossEntity;
 
     String strMyName = "Bob";
     public System.Random random = new System.Random();
@@ -32,6 +31,16 @@ class EntityAliveSDX : EntityAlive
         if (blDisplayLog &&  !this.IsDead())
             Debug.Log(this.entityName + ": " + strMessage);
     }
+
+    // These are the orders, used in cvars for the EAI Tasks. They are casted as floats.
+    public enum Orders
+    {
+        Follow = 0,
+        Stay = 1,
+        Wander = 2,
+        Pet = 3
+    }
+
 
     // Over-ride for CopyProperties to allow it to read in StartingQuests.
     public override void CopyPropertiesFromEntityClass()
@@ -50,17 +59,52 @@ class EntityAliveSDX : EntityAlive
 
     }
 
-    public virtual bool IsEntityDebug()
+    public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
     {
-        return this.blDisplayLog;
+        EntityActivationCommand[] ActivationCommands = new EntityActivationCommand[]
+        {
+            new EntityActivationCommand("TellMe", "talk", true ),
+            new EntityActivationCommand("FollowMe", "talk", true),
+            new EntityActivationCommand("StayHere", "talk", true),
+            new EntityActivationCommand("HangOut", "talk", true),
+            new EntityActivationCommand("Compliment", "talk", true)
+        };
+
+        return ActivationCommands;
     }
-    
+
+    public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
+    {
+        switch (_indexInBlockActivationCommands)
+        {
+            case 0: // Tell me about yourself
+                GameManager.ShowTooltipWithAlert(_entityFocusing as EntityPlayerLocal, this.ToString() + "\n\n\n\n\n", "ui_denied");
+                break;
+            case 1: // Follow me
+                this.Buffs.SetCustomVar("$Leader", _entityFocusing.entityId, true);
+                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Follow, true);
+                break;
+            case 2: // Stay Here
+                this.Buffs.SetCustomVar("$Leader", 0, true);
+                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Stay, true);
+                break;
+            case 3: // Hang out / wander here
+                this.Buffs.SetCustomVar("$Leader", 0, true);
+                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Wander, true);
+                break;
+            case 4: // Something nice?
+                break;
+            default:
+                break;
+        }
+
+        return true;
+    }
+
     public override void PostInit()
     {
         base.PostInit();
-
         InvokeRepeating("DisplayStats", 0f, 60f);
-
     }
 
     // Reads the buff and quest information
@@ -71,7 +115,6 @@ class EntityAliveSDX : EntityAlive
         this.Buffs.Read(_br);
         this.QuestJournal = new QuestJournal();
         this.QuestJournal.Read(_br);
-        
     }
 
     // Saves the buff and quest information
@@ -87,6 +130,7 @@ class EntityAliveSDX : EntityAlive
     {
         DisplayLog(ToString());
     }
+
     public override string ToString()
     {
         String FoodAmount = ((float)Mathf.RoundToInt(this.Stats.Stamina.ModifiedMax + this.Stats.Entity.Buffs.GetCustomVar("foodAmount"))).ToString() ;
@@ -95,11 +139,9 @@ class EntityAliveSDX : EntityAlive
         if (this.Buffs.HasCustomVar("$solidWasteAmount"))
             strSanitation = this.Buffs.GetCustomVar("$solidWasteAmount").ToString();
 
-    
         string strOutput = this.strMyName + " The " + this.entityName + " - ID: " + this.entityId + " Health: " + this.Stats.Health.Value;
         strOutput += " Stamina: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value + " Food: " + FoodAmount + " Water: " + WaterAmount;
         strOutput += " Sanitation: " + strSanitation;
-        strOutput += "\n Current Order: " + CurrentOrder;
 
         strOutput += "\n Active Buffs: ";
         foreach (BuffValue buff in this.Buffs.ActiveBuffs)
@@ -145,64 +187,20 @@ class EntityAliveSDX : EntityAlive
             this.inventory.SetItem(i, itemStack);
         }
     }
-
-    // Helper method.
-    public bool HasBuff(String strBuff)
-    {
-        return this.Buffs.ActiveBuffs.Contains(Buffs.GetBuff(strBuff));
-    }
    
     public override void OnUpdateLive()
     {
-        
-        // Non-player entities don't fire all the buffs, so we'll manually fire the water tick,
+        // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
         this.Stats.Water.Tick(0.5f, 0, false);
 
         // then fire the updatestats over time, which is protected from a IsPlayer check in the base onUpdateLive().
         this.Stats.UpdateStatsOverTime(0.5f);
+
+        // Make the entity sensitive to the environment.
         this.Stats.UpdateWeatherStats(0.5f, this.world.worldTime, false);
         base.OnUpdateLive();
-
-        
-
     }
 
-    public String GetEntityTitle()
-    {
-        return this.strMyName + " the " + this.entityName;
-    }
- 
-    protected override void onUnderwaterStateChanged(bool _bUnderwater)
-    {
-        base.onUnderwaterStateChanged(_bUnderwater);
-        if (_bUnderwater)
-            this.Buffs.SetCustomVar("_underwater", 1f, true);
-        else if (!this.IsDead())
-            this.Buffs.SetCustomVar("_underwater", 0f, true);
-        else
-            this.Buffs.SetCustomVar("_underwater", 0f, true);
-    }
-
-    public Orders CurrentOrder
-    {
-        get
-        {
-            return this.currentOrder;
-        }
-        set
-        {
-            this.currentOrder = value;
-        }
-    }
-
-
-    public enum Orders
-    {
-        Follow = 0,
-        Stay = 1,
-        Wander = 2,
-        Pet = 3
-    }
-
+   
   
 }
