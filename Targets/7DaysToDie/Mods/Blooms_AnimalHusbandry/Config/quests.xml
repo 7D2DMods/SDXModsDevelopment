@@ -29,7 +29,7 @@
       </objective>
       
       <!-- This will spawn in an animlFarmCow entity during Phase 3 -->
-      <action type="SpawnEntitySDX, Mods" id="animalFarmCow" value="1" phase="3" />
+      <!--action type="SpawnEntitySDX, Mods" id="animalFarmCow" value="1" phase="3" /-->
       
       <!-- Once the entity is spawned, give back the same quest, and give it a casino coin for a good job. -->
       <reward type="QuestSDX, Mods" id="farmingAnimal_Cow_Pregnancy" />

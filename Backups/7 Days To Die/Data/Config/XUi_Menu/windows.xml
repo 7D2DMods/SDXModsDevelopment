@@ -581,6 +581,7 @@
 						<gameoption name="DayLightLength" title="goDayLightLength" value_wrap="false" value_type="int" values="12, 14, 16, 18" display_names="" value_localization_prefix="goDayLightLengthValue" />
 						<gameoption name="BloodMoonFrequency" title="goBloodMoonFrequency" value_wrap="false" value_type="int" values="0, 1, 3, 7, 14, 30" display_names="goDisabled" value_localization_prefix="goDay" />
 						<gameoption name="BloodMoonRange" title="goBloodMoonRange" value_wrap="false" value_type="int" values="0, 1, 2, 3, 4, 7, 10, 14, 20" display_names="" value_localization_prefix="goDay" />
+						<gameoption name="BloodMoonWarning" title="goBloodMoonWarning" value_wrap="false" value_type="int" values="-1, 8, 18" display_names="goDisabled,goMorning,goEvening" value_localization_prefix="" />
 						<gameoption name="ZombieMove" title="goZombieMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
 						<gameoption name="ZombieMoveNight" title="goZombieMoveNight" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />
 						<gameoption name="ZombieFeralMove" title="goZombieFeralMove" value_wrap="false" value_type="int" values="" display_names="goZMWalk,goZMJog,goZMRun,goZMSprint,goZMNightmare" value_localization_prefix="" />

@@ -22,11 +22,36 @@
       <property name="FilterTags" value="floot,ffurniture"/>
 
       <!-- Buff to keep the animals close by. thenumber in the ( ) is the range -->
-      <property name="ActiveRadiusEffects" value="buffHomePoint(15)"/>
+      <property name="ActiveRadiusEffects" value="buffHomePoint(30)"/>
 
     </block>
 
+    <block name="animalPoop">
+      <property name="Material" value="Mdirt"/>
+      <property name="Shape" value="Terrain"/>
+      <property name="Mesh" value="terrain"/>
+      <property name="Texture" value="2"/>
+      <property name="ImposterExclude" value="true"/>
+      <property name="LPHardnessScale" value="2"/>
+      <property name="Map.Color" value="20,50,21"/>
+      <property class="RepairItems">
+        <property name="animalPoop" value="1"/>
+      </property>
+  
+      <drop event="Harvest" name="resourceClayLump" count="22" tag="oreWoodHarvest"/>
+      <drop event="Destroy" count="0"/>
+    
+      <property name="CanMobsSpawnOn" value="false"/>
+      <property name="EconomicValue" value="5"/>
+      <property name="EconomicBundleSize" value="1"/>
+      <property name="SellableToTrader" value="false"/>
+      <property name="FilterTags" value="fterrain"/>
+      <property name="SortOrder1" value="d0k0"/>
+      <property name="SortOrder2" value="0050"/>
+      <property name="DisplayType" value="blockTerrainFertile" />
+    </block>
    
 
   </append>
+
 </configs>

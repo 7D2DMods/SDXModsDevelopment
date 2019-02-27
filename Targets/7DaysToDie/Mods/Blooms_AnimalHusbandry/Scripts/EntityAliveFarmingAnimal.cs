@@ -27,6 +27,19 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
     public int MaxDistanceFromHome = 15;
     public float MaxDistanceToSeePlayer = 20f;
     public float HarvestDelay = 10f;
+
+    protected override void Awake()
+    {
+        //BoxCollider component = base.gameObject.GetComponent<BoxCollider>();
+        //if (component == null)
+        //    component = base.gameObject.AddComponent<BoxCollider>();
+        //if (component)
+        //{
+        //    component.center = new Vector3(0f, 0.85f, 0f);
+        //    component.size = new Vector3(2f, 1.6f, 2f);
+        //}
+        base.Awake();
+    }
     public override void CopyPropertiesFromEntityClass()
     {
         base.CopyPropertiesFromEntityClass();
@@ -43,7 +56,6 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
         if (entityClass.Properties.Values.ContainsKey("HomeBuff"))
             this.strHomeBuff = entityClass.Properties.Values["HomeBuff"];
 
-
         InvokeRepeating("CheckAnimalEvent", 1f, 60f);
     }
 
@@ -59,60 +71,8 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
 
     public void CheckAnimalEvent()
     {
-        int day = GameUtils.WorldTimeToDays(GameManager.Instance.World.GetWorldTime());
-        int hour = GameUtils.WorldTimeToHours(GameManager.Instance.World.GetWorldTime());
-        int minute = GameUtils.WorldTimeToMinutes(GameManager.Instance.World.GetWorldTime());
-
-        // Look for a new home position buff. It bails early if it already has a home buff
-        // FindHomePosition();
-
-        //foreach (Mod myMod in ModManager.GetLoadedMods())
-        //    Debug.Log(myMod.ModInfo.Name + " by " + myMod.ModInfo.Author + " - " + myMod.ModInfo.Description);
-
-
-        // Check the size scale for the entity 
-        AdjustSizeForStage();
-
-        // Test Hooks
+         // Test Hooks
         DisplayLog(this.ToString());
-
-
-        if (day % 7 == 0) // Blood Moon Day Events
-        {
-            // Become a bit restless
-            switch (hour)
-            {
-                case 19:
-                    // Get nervous
-                    break;
-                case 20:
-                    // Get more nervous
-                    break;
-                case 21:
-                    // Get panicky
-                    break;
-                case 22:
-                    // Freak out OMG
-                    break;
-            }
-            return;  // Do not process any subsequent rules. No milking, no harvesting; animals are too upset.
-        }
-
-
-
-        switch (hour)
-        {
-
-            case 21:
-                // Nearly night time event
-                //    FindPotentialFather();
-                break;
-            case 22:
-                // night time
-                break;
-        }
-
-
     }
 
     // read in the cvar for sizeScale and adjust it based on the buff
@@ -126,37 +86,31 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
     }
 
 
-
-
-
-    public bool CheckFoodBox(TileEntityLootContainer tileLootContainer)
+    public override void OnUpdateLive()
     {
-        if (tileLootContainer.items != null)
-        {
-            ItemStack[] array = tileLootContainer.items;
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (array[i].IsEmpty())
-                    continue;
-
-                // The animals will only eat the food they like best.
-                if (array[i].itemValue.ItemClass.Name == this.strFoodItem)
-                {
-                    DisplayLog(" Feeding Trough has food");
-                    DisplayLog("Consuming food.");
-
-                    // if there's only one left, remove the entire item; otherwise, decrease it.
-                    if (array[i].count == 1)
-                        tileLootContainer.RemoveItem(array[i].itemValue);
-                    else
-                        array[i].count--;
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        AdjustSizeForStage();
+    
+            base.OnUpdateLive();
     }
+
+
+    public override string ToString()
+    {
+        String strOutput = base.ToString();
+
+        String strMilkLevel = "0";
+        String strMother = "None";
+        if (this.Buffs.HasCustomVar("MilkLevel"))
+            strMilkLevel = this.Buffs.GetCustomVar("MilkLevel").ToString();
+
+        if (this.Buffs.HasCustomVar("$Mother"))
+             strMother = this.Buffs.GetCustomVar("$Mother").ToString();
+
+        strOutput += "\n Milk Level: " + strMilkLevel;
+        strOutput += "\n My Mother is: " + strMother;
+        return strOutput;
+       
+      }
 
 
     public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)

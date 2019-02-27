@@ -523,7 +523,7 @@
 
 	<terrain_generators>
 		
-		<terrain_generator name="vanilla" base_height="0" water_level="17">
+		<terrain_generator name="vanilla2" base_height="0" water_level="17">
 			<module name="Spheres Node-28012" type="Spheres">
 			   <property name="frequency" value="7E-05"/>
 			</module>
@@ -627,7 +627,7 @@
 			<output module="Select Modifier Node13054"/>
 		</terrain_generator>
 		
-		<terrain_generator name="vanilla2" base_height="32" water_level="38">
+		<terrain_generator name="vanilla" base_height="32" water_level="38">
 			<!-- Total Module Count [62] -->
 			<!--  Module Block: Main Land  [12] modules -->
 			<module name="lnd_Fn" type="FastNoise" seed_additive="1024">
@@ -641,13 +641,13 @@
 				<property name="octave" value="1"/>
 			</module>
 			<module name="lnd_Cu" type="CurveOutput">
-				<property name="sourceModule" value="lnd_Fn"/>
+				<property name="sourceModule" value="lnd_Fn1"/>
 				<property name="source_module1" value="lnd_Fn1"/>
 				<property name="controlPoints" value="-4.0,0.05; -3.0,-0.05; -2.00,-0.1; -1.00,0.05; -0.1,-0.05; 1.00,0.05; 2.00,-0.05; 3.0,0.0; 4.0,0.05"/>
 				<!--<property name="controlPoints" value="-2.00,-0.1; -1.75,-0.05; -1.50,0.0; -1.25,0.05; -1.00,0.05; -0.75,0.05; -0.50,0.0; -0.05,-0.05; 0.00,-0.05; 0.25,0.0; 0.50,0.05; 0.75,0.1; 1.00,0.05; 1.25,0.0; 1.50,-0.05; 1.75,-0.1; 2.00,-0.05"/>-->
 			</module>
 			<module name="lnd_Cu1" type="CurveOutput">
-				<property name="sourceModule" value="lnd_Fn"/>
+				<property name="sourceModule" value="lnd_Fn1"/>
 				<property name="source_module1" value="lnd_Fn1"/>
 				<property name="controlPoints" value="-4.01,0.05; -3.01,-0.05; -2.01,-0.1; -1.01,0.05; -0.11,-0.05; 1.01,0.05; 2.01,-0.05; 3.01,0.0; 4.01,0.05"/>
 				<!--<property name="controlPoints" value="-2.00,-0.1; -1.75,-0.05; -1.50,0.0; -1.25,0.05; -1.00,0.05; -0.75,0.05; -0.50,0.0; -0.05,-0.05; 0.00,-0.05; 0.25,0.0; 0.50,0.05; 0.75,0.1; 1.00,0.05; 1.25,0.0; 1.50,-0.05; 1.75,-0.1; 2.00,-0.05"/>-->

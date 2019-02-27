@@ -265,113 +265,113 @@ A single player on default diff can have a GS of up to 480 without perks.
 <lootqualitytemplates>
 	<lootqualitytemplate name="baseTemplate">
 		<qualitytemplate level="1,25" default_quality="1,2">
-			<loot quality="5,6" prob="0.0025"/>
-			<loot quality="3,4" prob="0.00625"/>
+			<loot quality="5,6" prob="0.005"/>
+			<loot quality="3,4" prob="0.0125"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="26,50" default_quality="1,2">
-			<loot quality="5,6" prob="0.005"/>
-			<loot quality="3,4" prob="0.0126"/>
-			<loot quality="1,2" prob="1"/>
-		</qualitytemplate>
-		<qualitytemplate level="51,75" default_quality="1,2">
-			<loot quality="5,6" prob="0.0075"/>
-			<loot quality="3,4" prob="0.01875"/>
-			<loot quality="1,2" prob="1"/>
-		</qualitytemplate>
-		<qualitytemplate level="76,100" default_quality="1,2">
 			<loot quality="5,6" prob="0.01"/>
 			<loot quality="3,4" prob="0.025"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
-		<qualitytemplate level="101,150" default_quality="1,2">
+		<qualitytemplate level="51,75" default_quality="1,2">
 			<loot quality="5,6" prob="0.015"/>
 			<loot quality="3,4" prob="0.0375"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
-		<qualitytemplate level="151,200" default_quality="1,2">
+		<qualitytemplate level="76,100" default_quality="1,2">
 			<loot quality="5,6" prob="0.02"/>
 			<loot quality="3,4" prob="0.05"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
-		<qualitytemplate level="201,250" default_quality="1,2">
-			<loot quality="5,6" prob="0.025"/>
-			<loot quality="3,4" prob="0.0625"/>
-			<loot quality="1,2" prob="1"/>
-		</qualitytemplate>
-		<qualitytemplate level="251,300" default_quality="1,2">
+		<qualitytemplate level="101,150" default_quality="1,2">
 			<loot quality="5,6" prob="0.03"/>
 			<loot quality="3,4" prob="0.075"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
-		<qualitytemplate level="301,350" default_quality="1,2">
-			<loot quality="5,6" prob="0.035"/>
-			<loot quality="3,4" prob="0.0875"/>
-			<loot quality="1,2" prob="1"/>
-		</qualitytemplate>
-		<qualitytemplate level="351,400" default_quality="1,2">
+		<qualitytemplate level="151,200" default_quality="1,2">
 			<loot quality="5,6" prob="0.04"/>
 			<loot quality="3,4" prob="0.1"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
-		<qualitytemplate level="401,450" default_quality="1,2">
-			<loot quality="5,6" prob="0.045"/>
-			<loot quality="3,4" prob="0.1125"/>
-			<loot quality="1,2" prob="1"/>
-		</qualitytemplate>
-		<qualitytemplate level="451,500" default_quality="1,2">
+		<qualitytemplate level="201,250" default_quality="1,2">
 			<loot quality="5,6" prob="0.05"/>
 			<loot quality="3,4" prob="0.125"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
-		<qualitytemplate level="501,550" default_quality="1,2">
-			<loot quality="5,6" prob="0.055"/>
-			<loot quality="3,4" prob="0.1375"/>
-			<loot quality="1,2" prob="1"/>
-		</qualitytemplate>
-		<qualitytemplate level="551,600" default_quality="1,2">
+		<qualitytemplate level="251,300" default_quality="1,2">
 			<loot quality="5,6" prob="0.06"/>
 			<loot quality="3,4" prob="0.15"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
-		<qualitytemplate level="601,650" default_quality="1,2">
-			<loot quality="5,6" prob="0.065"/>
-			<loot quality="3,4" prob="0.1625"/>
-			<loot quality="1,2" prob="1"/>
-		</qualitytemplate>
-		<qualitytemplate level="651,700" default_quality="1,2">
+		<qualitytemplate level="301,350" default_quality="1,2">
 			<loot quality="5,6" prob="0.07"/>
 			<loot quality="3,4" prob="0.175"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
-		<qualitytemplate level="701,750" default_quality="1,2">
-			<loot quality="5,6" prob="0.075"/>
-			<loot quality="3,4" prob="0.1875"/>
-			<loot quality="1,2" prob="1"/>
-		</qualitytemplate>
-		<qualitytemplate level="751,800" default_quality="1,2">
+		<qualitytemplate level="351,400" default_quality="1,2">
 			<loot quality="5,6" prob="0.08"/>
 			<loot quality="3,4" prob="0.2"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
-		<qualitytemplate level="801,850" default_quality="1,2">
-			<loot quality="5,6" prob="0.085"/>
-			<loot quality="3,4" prob="0.2125"/>
-			<loot quality="1,2" prob="1"/>
-		</qualitytemplate>
-		<qualitytemplate level="851,900" default_quality="1,2">
+		<qualitytemplate level="401,450" default_quality="1,2">
 			<loot quality="5,6" prob="0.09"/>
 			<loot quality="3,4" prob="0.225"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
+		<qualitytemplate level="451,500" default_quality="1,2">
+			<loot quality="5,6" prob="0.1"/>
+			<loot quality="3,4" prob="0.25"/>
+			<loot quality="1,2" prob="1"/>
+		</qualitytemplate>
+		<qualitytemplate level="501,550" default_quality="1,2">
+			<loot quality="5,6" prob="0.11"/>
+			<loot quality="3,4" prob="0.275"/>
+			<loot quality="1,2" prob="1"/>
+		</qualitytemplate>
+		<qualitytemplate level="551,600" default_quality="1,2">
+			<loot quality="5,6" prob="0.12"/>
+			<loot quality="3,4" prob="0.3"/>
+			<loot quality="1,2" prob="1"/>
+		</qualitytemplate>
+		<qualitytemplate level="601,650" default_quality="1,2">
+			<loot quality="5,6" prob="0.13"/>
+			<loot quality="3,4" prob="0.325"/>
+			<loot quality="1,2" prob="1"/>
+		</qualitytemplate>
+		<qualitytemplate level="651,700" default_quality="1,2">
+			<loot quality="5,6" prob="0.14"/>
+			<loot quality="3,4" prob="0.35"/>
+			<loot quality="1,2" prob="1"/>
+		</qualitytemplate>
+		<qualitytemplate level="701,750" default_quality="1,2">
+			<loot quality="5,6" prob="0.15"/>
+			<loot quality="3,4" prob="0.375"/>
+			<loot quality="1,2" prob="1"/>
+		</qualitytemplate>
+		<qualitytemplate level="751,800" default_quality="1,2">
+			<loot quality="5,6" prob="0.16"/>
+			<loot quality="3,4" prob="0.4"/>
+			<loot quality="1,2" prob="1"/>
+		</qualitytemplate>
+		<qualitytemplate level="801,850" default_quality="1,2">
+			<loot quality="5,6" prob="0.17"/>
+			<loot quality="3,4" prob="0.425"/>
+			<loot quality="1,2" prob="1"/>
+		</qualitytemplate>
+		<qualitytemplate level="851,900" default_quality="1,2">
+			<loot quality="5,6" prob="0.18"/>
+			<loot quality="3,4" prob="0.45"/>
+			<loot quality="1,2" prob="1"/>
+		</qualitytemplate>
 		<qualitytemplate level="901,950" default_quality="1,2">
-			<loot quality="5,6" prob="0.095"/>
-			<loot quality="3,4" prob="0.2375"/>
+			<loot quality="5,6" prob="0.19"/>
+			<loot quality="3,4" prob="0.475"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="951,999999" default_quality="1,2">
-			<loot quality="5,6" prob="0.1"/>
-			<loot quality="3,4" prob="0.25"/>
+			<loot quality="5,6" prob="0.2"/>
+			<loot quality="3,4" prob="0.5"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 	</lootqualitytemplate>
@@ -380,114 +380,114 @@ A single player on default diff can have a GS of up to 480 without perks.
 <lootqualitytemplates>
 	<lootqualitytemplate name="treasureTemplate">
 		<qualitytemplate level="1,25" default_quality="1,2">
-			<loot quality="5,6" prob="0.004"/>
-			<loot quality="3,4" prob="0.009"/>
+			<loot quality="5,6" prob="0.0075"/>
+			<loot quality="3,4" prob="0.01875"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="26,50" default_quality="1,2">
-			<loot quality="5,6" prob="0.008"/>
-			<loot quality="3,4" prob="0.019"/>
+			<loot quality="5,6" prob="0.015"/>
+			<loot quality="3,4" prob="0.0375"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="51,75" default_quality="1,2">
-			<loot quality="5,6" prob="0.011"/>
-			<loot quality="3,4" prob="0.028"/>
+			<loot quality="5,6" prob="0.0225"/>
+			<loot quality="3,4" prob="0.05625"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="76,100" default_quality="1,2">
-			<loot quality="5,6" prob="0.015"/>
-			<loot quality="3,4" prob="0.037"/>
+			<loot quality="5,6" prob="0.03"/>
+			<loot quality="3,4" prob="0.075"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="101,150" default_quality="1,2">
-			<loot quality="5,6" prob="0.023"/>
-			<loot quality="3,4" prob="0.056"/>
+			<loot quality="5,6" prob="0.045"/>
+			<loot quality="3,4" prob="0.1125"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="151,200" default_quality="1,2">
-			<loot quality="5,6" prob="0.03"/>
-			<loot quality="3,4" prob="0.074"/>
+			<loot quality="5,6" prob="0.06"/>
+			<loot quality="3,4" prob="0.15"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="201,250" default_quality="1,2">
-			<loot quality="5,6" prob="0.038"/>
-			<loot quality="3,4" prob="0.093"/>
+			<loot quality="5,6" prob="0.075"/>
+			<loot quality="3,4" prob="0.1875"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="251,300" default_quality="1,2">
-			<loot quality="5,6" prob="0.045"/>
-			<loot quality="3,4" prob="0.111"/>
+			<loot quality="5,6" prob="0.09"/>
+			<loot quality="3,4" prob="0.225"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="301,350" default_quality="1,2">
-			<loot quality="5,6" prob="0.053"/>
-			<loot quality="3,4" prob="0.130"/>
+			<loot quality="5,6" prob="0.105"/>
+			<loot quality="3,4" prob="0.2625"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="351,400" default_quality="1,2">
-			<loot quality="5,6" prob="0.06"/>
-			<loot quality="3,4" prob="0.148"/>
+			<loot quality="5,6" prob="0.12"/>
+			<loot quality="3,4" prob="0.3"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="401,450" default_quality="1,2">
-			<loot quality="5,6" prob="0.068"/>
-			<loot quality="3,4" prob="0.167"/>
+			<loot quality="5,6" prob="0.135"/>
+			<loot quality="3,4" prob="0.3375"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="451,500" default_quality="1,2">
-			<loot quality="5,6" prob="0.076"/>
-			<loot quality="3,4" prob="0.185"/>
+			<loot quality="5,6" prob="0.15"/>
+			<loot quality="3,4" prob="0.375"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="501,550" default_quality="1,2">
-			<loot quality="5,6" prob="0.083"/>
-			<loot quality="3,4" prob="0.204"/>
+			<loot quality="5,6" prob="0.165"/>
+			<loot quality="3,4" prob="0.4125"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="551,600" default_quality="1,2">
-			<loot quality="5,6" prob="0.091"/>
-			<loot quality="3,4" prob="0.222"/>
+			<loot quality="5,6" prob="0.18"/>
+			<loot quality="3,4" prob="0.45"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="601,650" default_quality="1,2">
-			<loot quality="5,6" prob="0.098"/>
-			<loot quality="3,4" prob="0.241"/>
+			<loot quality="5,6" prob="0.195"/>
+			<loot quality="3,4" prob="0.4875"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="651,700" default_quality="1,2">
-			<loot quality="5,6" prob="0.106"/>
-			<loot quality="3,4" prob="0.259"/>
+			<loot quality="5,6" prob="0.21"/>
+			<loot quality="3,4" prob="0.525"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="701,750" default_quality="1,2">
-			<loot quality="5,6" prob="0.113"/>
-			<loot quality="3,4" prob="0.278"/>
+			<loot quality="5,6" prob="0.225"/>
+			<loot quality="3,4" prob="0.5625"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="751,800" default_quality="1,2">
-			<loot quality="5,6" prob="0.121"/>
-			<loot quality="3,4" prob="0.296"/>
+			<loot quality="5,6" prob="0.24"/>
+			<loot quality="3,4" prob="0.6"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="801,850" default_quality="1,2">
-			<loot quality="5,6" prob="0.128"/>
-			<loot quality="3,4" prob="0.315"/>
+			<loot quality="5,6" prob="0.255"/>
+			<loot quality="3,4" prob="0.6375"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="851,900" default_quality="1,2">
-			<loot quality="5,6" prob="0.136"/>
-			<loot quality="3,4" prob="0.333"/>
+			<loot quality="5,6" prob="0.27"/>
+			<loot quality="3,4" prob="0.675"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="901,950" default_quality="1,2">
-			<loot quality="5,6" prob="0.143"/>
-			<loot quality="3,4" prob="0.352"/>
+			<loot quality="5,6" prob="0.285"/>
+			<loot quality="3,4" prob="0.7125"/>
 			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 		<qualitytemplate level="951,999999" default_quality="1,2">
-			<loot quality="5,6" prob="0.151"/>
-			<loot quality="3,4" prob="0.37"/>
-			<loot quality="1,3" prob="1"/>
+			<loot quality="5,6" prob="0.3"/>
+			<loot quality="3,4" prob="0.75"/>
+			<loot quality="1,2" prob="1"/>
 		</qualitytemplate>
 	</lootqualitytemplate>
 </lootqualitytemplates>

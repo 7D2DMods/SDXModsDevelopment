@@ -16662,6 +16662,7 @@ NOT the TextureNumber.
 	<property name="Shape" value="Ext3dModel"/> <property name="Texture" value="293"/>
 	<property name="Mesh" value="models"/>
 	<property name="Model" value="Commercial/store_shelving01" param1="main_mesh"/>
+	<property name="Path" value="solid"/>
 	<property class="RepairItems"> <property name="resourceForgedIron" value="3"/> </property>
 	<drop event="Harvest" name="resourceScrapIron" count="17" tag="allHarvest"/>
 	<drop event="Destroy" count="0"/>
@@ -16672,7 +16673,6 @@ NOT the TextureNumber.
 
 <block name="storeShelving01Double">
 	<property name="Extends" value="storeShelving01"/>
-	<property name="Path" value="solid"/>
 	<property name="Model" value="Commercial/store_shelving01_double" param1="main_mesh"/>
 </block>
 
@@ -16684,7 +16684,6 @@ NOT the TextureNumber.
 
 <block name="storeShelving01TopDouble">
 	<property name="Extends" value="storeShelving01"/>
-	<property name="Path" value="solid"/>
 	<property name="Model" value="Commercial/store_shelving01_top_double" param1="main_mesh"/>
 </block>
 
@@ -20274,11 +20273,7 @@ NOT the TextureNumber.
 		<property name="resourceMechanicalParts" value="2"/>
 		<property name="resourceElectricParts" value="2"/>
 	</property>
-	<!-- Nope, can't figure that out. Maybe a modder can fix it.
-
-		Edit: After receiving 6+ messages about us asking modders to help us figure out HTML comment tags I will explain that it was a joke.
-		Your willingness to help is appreciated but we are fully capable of adding or removing HTML comments.
-	<property class="UpgradeBlock">
+	<!-- <property class="UpgradeBlock">
 		<property name="ToBlock" value="autoTurretSteelCased"/>
 		<property name="Item" value="resourceForgedSteel"/>
 		<property name="ItemCount" value="10"/>

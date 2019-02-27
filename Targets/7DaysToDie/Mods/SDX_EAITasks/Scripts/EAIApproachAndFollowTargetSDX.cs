@@ -9,27 +9,19 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     private List<Entity> NearbyEntities = new List<Entity>();
     float distanceToEntity = UnityEngine.Random.Range(2f, 5.0f);
-    private float maxChaseTime;
-
-    private bool hasHome;
-
-    private bool isGoingHome;
 
     private Vector3 entityTargetPos;
-
     private Vector3 entityTargetVel;
     private int pathCounter;
 
-    private float homeTimeout;
     private String strControlMechanism = "";
-    private EAIBlockingTargetTask blockTargetTask;
 
-    public override void Init(EntityAlive _theEntity)
-    {
-        base.Init(_theEntity);
-        this.MutexBits = 3;
-        this.executeDelay = 0.1f;
-    }
+    //public override void Init(EntityAlive _theEntity)
+    //{
+    //    base.Init(_theEntity);
+    //    this.MutexBits = 3;
+    //    this.executeDelay = 0.1f;
+    //}
 
     private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
@@ -42,7 +34,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         this.strControlMechanism = _par1;
     }
 
-    public void ConfigureTargetEntity()
+    public virtual void ConfigureTargetEntity()
     {
         this.NearbyEntities.Clear();
         this.theEntity.otherEntitySDX = null;
@@ -57,6 +49,16 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             {
                 // Check if the there's an entity in our area that is allowed to control us.
 
+                // Check if the control mechanism is a cvar
+                if (this.theEntity.Buffs.HasCustomVar(this.strControlMechanism))
+                {
+                    DisplayLog(" I have a cvar for an incentive:" + this.strControlMechanism );
+                    if (this.theEntity.Buffs.GetCustomVar(this.strControlMechanism) == x.entityId)
+                    {
+                        Debug.Log(" My CVAR value is: " + x.entityId);
+                        this.theEntity.otherEntitySDX = x;
+                    }
+                }
                 // first, we check if we are controlled via an activate buff.
                 if (x.Buffs.HasBuff(this.strControlMechanism))
                     this.theEntity.otherEntitySDX = x;
@@ -82,143 +84,55 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.theEntity.Jumping)
             return false;
 
+        if (this.theEntity.Buffs.HasCustomVar(this.strControlMechanism) && this.theEntity.Buffs.GetCustomVar(this.strControlMechanism) == 0)
+            return false;
+
         // If there is an entity in bounds, then let this AI Task roceed. Otherwise, don't do anything with it.
         ConfigureTargetEntity();
 
-        if (this.theEntity is EntityAliveSDX)
-        {
-            EntityAliveSDX aliveTarget = theEntity as EntityAliveSDX;
-            if (aliveTarget.CurrentOrder != EntityAliveSDX.Orders.Follow)
-                return false;
-        }
-            return (this.entityTarget != null);
+        //if (this.theEntity is EntityAliveSDX)
+        //{
+        //    EntityAliveSDX aliveTarget = theEntity as EntityAliveSDX;
+        //    if (aliveTarget.CurrentOrder != EntityAliveSDX.Orders.Follow)
+        //        return false;
+        //}
+
+ 
+        return (this.entityTarget != null);
     }
 
-    public override void Start()
-    {
-        this.entityTargetPos = this.entityTarget.position;
-        this.entityTargetVel = Vector3.zero;
-
-        this.homeTimeout = ((!this.theEntity.IsSleeper) ? this.maxChaseTime : 90f);
-        this.hasHome = (this.homeTimeout > 0f);
-        this.isGoingHome = false;
-
-        // If it doesn't have a chase position, put the entity to sleep where it's standing, if it's not a sleeper.
-        if (this.theEntity.ChaseReturnLocation == Vector3.zero)
-            this.theEntity.ChaseReturnLocation = ((!this.theEntity.IsSleeper) ? this.theEntity.position : this.theEntity.SleeperSpawnPosition);
-        this.pathCounter = 0;
-    }
+    //public override void Start()
+    //{
+    //    this.entityTargetPos = this.entityTarget.position;
+    //    this.entityTargetVel = Vector3.zero;
+    //    this.pathCounter = 0;
+    //}
 
     public override bool Continue()
     {
-        bool result = false;
+        bool result = true;
+
+        // If the entity has a cvar for a control mechanism, and its 0, then just return. 
+        if (this.theEntity.Buffs.HasCustomVar(this.strControlMechanism) && this.theEntity.Buffs.GetCustomVar(this.strControlMechanism) == 0)
+            return false;
+
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
         {
             result = false;
         }
         else
         {
-
             EntityAlive Target = this.theEntity.otherEntitySDX;
-            if (this.isGoingHome)
-            {
-                result = (!Target && this.theEntity.ChaseReturnLocation != Vector3.zero);
-            }
-            else if (!Target)
-            {
+            if (!Target)
                 result = false;
-            }
-            else if (Target != this.entityTarget)
-            {
-                result = false;
-            }
-            // If our master has an attack target, don't follow him anymore.
-            else if (Target.GetAttackTarget() != null)
-            {
-                return false;
-            }
-            else if (this.entityTarget == null)
-            {
-                return false;
-            }
-            else if ( this.theEntity is EntityAliveSDX)
-            {
-                EntityAliveSDX aliveTarget = theEntity as EntityAliveSDX;
-                if (aliveTarget.CurrentOrder != EntityAliveSDX.Orders.Follow)
-                    return false;
-            }
-            else
-            {
-                result = true;
-            }
+        
         }
 
         return result;
     }
 
-    public override void Reset()
-    {
-        this.theEntity.navigator.clearPath();
-        if (this.blockTargetTask != null)
-            this.blockTargetTask.canExecute = false;
-
-    }
-
     public override void Update()
     {
-        if (this.hasHome)
-        {
-            if (this.isGoingHome)
-            {
-                Vector3 vector = this.theEntity.ChaseReturnLocation - this.theEntity.position;
-                float y = vector.y;
-                vector.y = 0f;
-                float sqrMagnitude = vector.sqrMagnitude;
-                if (sqrMagnitude <= 0.09f && Utils.FastAbs(y) < 1.5f)
-                {
-                    Vector3 chaseReturnLocation = this.theEntity.ChaseReturnLocation;
-                    chaseReturnLocation.y = this.theEntity.position.y;
-                    this.theEntity.SetPosition(chaseReturnLocation, true);
-                    this.theEntity.ChaseReturnLocation = Vector3.zero;
-                    if (this.theEntity.IsSleeper)
-                    {
-                        this.theEntity.ResumeSleeperPose();
-                    }
-                    return;
-                }
-                if (--this.pathCounter <= 0 && !PathFinderThread.Instance.IsCalculatingPath(this.theEntity.entityId))
-                {
-                    this.pathCounter = 60;
-                    PathFinderThread.Instance.FindPath(this.theEntity, this.theEntity.ChaseReturnLocation, this.theEntity.GetMoveSpeed(), false, this);
-                }
-                return;
-            }
-            else
-            {
-                this.homeTimeout -= 0.05f;
-                if (this.homeTimeout <= 0f)
-                {
-                    if (this.blockTargetTask == null)
-                    {
-                        List<EAIBlockingTargetTask> targetTasks = this.manager.GetTargetTasks<EAIBlockingTargetTask>();
-                        if (targetTasks != null)
-                        {
-                            this.blockTargetTask = targetTasks[0];
-                        }
-                    }
-                    if (this.blockTargetTask != null)
-                    {
-                        this.blockTargetTask.canExecute = true;
-                    }
-                    this.theEntity.otherEntitySDX = null;
-                    this.theEntity.SetLookPosition(Vector3.zero);
-                    this.theEntity.PlayGiveUpSound();
-                    this.pathCounter = 0;
-                    this.isGoingHome = true;
-                    return;
-                }
-            }
-        }
 
         // No entity, so no need to do anything.
         if (this.entityTarget == null)
@@ -235,7 +149,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         this.theEntity.moveHelper.CalcIfUnreachablePos(position);
 
         float num2 = distanceToEntity * distanceToEntity;
-        float targetXZDistanceSq = this.GetTargetXZDistanceSq(6);
+        float targetXZDistanceSq = base.GetTargetXZDistanceSq(6);
         float num3 = position.y - this.theEntity.position.y;
         float num4 = Utils.FastAbs(num3);
         bool flag = targetXZDistanceSq <= num2 && num4 < 1f;
@@ -245,7 +159,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
         // num is used to determine how close and comfortable the entity approaches you, so let's make sure they respect some personal space
         if (distanceToEntity < 1)
-            distanceToEntity = 4;
+            distanceToEntity = 3;
 
         if (!flag)
         {
@@ -280,53 +194,5 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             this.theEntity.moveHelper.Stop();
             this.pathCounter = 0;
         }
-    }
-
-    private float GetTargetXZDistanceSq(int estimatedTicks)
-    {
-        Vector3 vector = this.entityTarget.position;
-        vector += this.entityTargetVel * (float)estimatedTicks;
-        Vector3 vector2 = this.theEntity.position + this.theEntity.motion * (float)estimatedTicks - vector;
-        vector2.y = 0f;
-        return vector2.sqrMagnitude;
-    }
-
-    private Vector3 GetMoveToLocation(float maxDist)
-    {
-        Vector3 vector = this.entityTarget.position;
-        vector += this.entityTargetVel * 6f;
-        vector = this.entityTarget.world.FindSupportingBlockPos(vector);
-        if (maxDist > 0f)
-        {
-            Vector3 vector2 = new Vector3(this.theEntity.position.x, vector.y, this.theEntity.position.z);
-            Vector3 vector3 = vector - vector2;
-            float magnitude = vector3.magnitude;
-            if (magnitude < 3f)
-            {
-                if (magnitude <= maxDist)
-                {
-                    float num = vector.y - this.theEntity.position.y;
-                    if (num > 1.5f)
-                    {
-                        return vector;
-                    }
-                    return vector2;
-                }
-                else
-                {
-                    vector3 *= maxDist / magnitude;
-                    Vector3 vector4 = vector - vector3;
-                    vector4.y += 0.51f;
-                    Vector3i pos = World.worldToBlockPos(vector4);
-                    int type = this.entityTarget.world.GetBlock(pos).type;
-                    Block block = Block.list[type];
-                    if (!block.IsPathSolid && Physics.Raycast(vector4, Vector3.down, 1.02f, 1082195968))
-                    {
-                        return vector4;
-                    }
-                }
-            }
-        }
-        return vector;
     }
 }

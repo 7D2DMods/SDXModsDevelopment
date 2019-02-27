@@ -149,7 +149,7 @@ generatorBankTip,,Popup Tip,,"The Generator Bank allows you to power your electr
 generatorBankTip_title,,Popup Tip,,Generator Bank,,,,
 gunAssemblyTip,,Popup Tip,EnChanged,To assemble a Gun or Motorized Tool or upgrade it with better parts you must have all the parts in your inventory and have read the schematic. Build it by selecting the part in your inventory and clicking on the “Assemble” action. These recipes will not appear in Crafting menus.,,,,
 gunAssemblyTip_title,,Popup Tip,KeyTrunk FrNone GrNone KgNone SpNone,Item Assembly,Assemblage d'objet,Gegenstand zusammensetzen,,Armado de objeto
-harvestTip,,Popup Tip,EnChanged,Use any bladed tool or weapon like a Bone Shiv to skin an animal. Using a wrench to break down cars or mechanical items for advanced resources. Perks can increase the harvest yield in several areas.,,,,
+harvestTip,,Popup Tip,EnChanged,Use any bladed tool or weapon like a Bone Knife to skin an animal. Using a wrench to break down cars or mechanical items for advanced resources. Perks can increase the harvest yield in several areas.,,,,
 harvestTip_title,,Popup Tip,KeyTrunk FrNone GrNone KgNone SpNone,Harvesting Resources,Récolte des ressources,Rohstoffe abbauen,,Recolección de recursos
 hotWeatherTip,,Popup Tip,EnChanged,"If you are overheating you can combat this by wearing clothing, drinking certain beverages, and getting indoors. Items with a higher heat resist rating are better and offer more protection against hot weather. You can see an item's heat resist rating by inspecting it.",,,,
 hotWeatherTip_title,,Popup Tip,KeyTrunk FrNone GrNone KgNone SpNone,Hot Weather,Températures élevées,Heißes Wetter,,Clima caluroso

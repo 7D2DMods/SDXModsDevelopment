@@ -70,9 +70,8 @@ List of hacks to be removed:
 			<passive_effect name="StaminaMaxModifierOT" operation="base_add" value="100" />
 			<passive_effect name="CarryCapacity" operation="base_set" value="45" />
 			<passive_effect name="ElementalDamageResist" operation="base_add" value="100" tags="cold,heat" />
-			<!--
-			<passive_effect name="PhysicalDamageResist" operation="base_add" value="100"/>
-			-->
+			<passive_effect name="PhysicalDamageResist" operation="base_add" value="200"/>
+
 			<triggered_effect trigger="onSelfBuffUpdate" action="RemoveAllNegativeBuffs" target="self"/>
 			<triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffPerkAbilityUpdate"/>
 			<triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffPerkAbilityUpdate"/>

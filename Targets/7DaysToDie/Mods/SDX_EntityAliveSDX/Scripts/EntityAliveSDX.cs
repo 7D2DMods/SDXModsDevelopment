@@ -21,6 +21,8 @@ class EntityAliveSDX : EntityAlive
     public QuestJournal QuestJournal = new QuestJournal();
     public List<String> lstQuests = new List<String>();
     public Orders currentOrder = Orders.Wander;
+    public EntityAlive BossEntity;
+
     String strMyName = "Bob";
     public System.Random random = new System.Random();
 
@@ -37,6 +39,7 @@ class EntityAliveSDX : EntityAlive
         base.CopyPropertiesFromEntityClass();
         EntityClass entityClass = EntityClass.list[this.entityClass];
 
+        // Read in a list of names then pick one at random.
         if (entityClass.Properties.Values.ContainsKey("Names"))
         {
             string text = entityClass.Properties.Values["Names"];
@@ -88,8 +91,16 @@ class EntityAliveSDX : EntityAlive
     {
         String FoodAmount = ((float)Mathf.RoundToInt(this.Stats.Stamina.ModifiedMax + this.Stats.Entity.Buffs.GetCustomVar("foodAmount"))).ToString() ;
         String WaterAmount = ((float)Mathf.RoundToInt(this.Stats.Water.Value + this.Stats.Entity.Buffs.GetCustomVar("waterAmount"))).ToString();
-        string strOutput = this.strMyName + " The " + this.entityName + " - ID: " + this.entityId + " Health: " + this.Stats.Health.Value + " Stamina: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value + " Food: " + FoodAmount + " Water: " + WaterAmount;
+        String strSanitation = "Disabled.";
+        if (this.Buffs.HasCustomVar("$solidWasteAmount"))
+            strSanitation = this.Buffs.GetCustomVar("$solidWasteAmount").ToString();
+
+    
+        string strOutput = this.strMyName + " The " + this.entityName + " - ID: " + this.entityId + " Health: " + this.Stats.Health.Value;
+        strOutput += " Stamina: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value + " Food: " + FoodAmount + " Water: " + WaterAmount;
+        strOutput += " Sanitation: " + strSanitation;
         strOutput += "\n Current Order: " + CurrentOrder;
+
         strOutput += "\n Active Buffs: ";
         foreach (BuffValue buff in this.Buffs.ActiveBuffs)
             strOutput += "\n\t" + buff.BuffName + " ( Seconds: " + buff.DurationInSeconds + " Ticks: " + buff.DurationInTicks + " )";
@@ -128,13 +139,9 @@ class EntityAliveSDX : EntityAlive
             ItemStack itemStack = this.itemsOnEnterGame[i];
             ItemClass forId = ItemClass.GetForId(itemStack.itemValue.type);
             if (forId.HasQuality)
-            {
                 itemStack.itemValue = new ItemValue(itemStack.itemValue.type, 1, 6, false, default(FastTags), 1f);
-            }
             else
-            {
                 itemStack.count = forId.Stacknumber.Value;
-            }
             this.inventory.SetItem(i, itemStack);
         }
     }
@@ -147,12 +154,13 @@ class EntityAliveSDX : EntityAlive
    
     public override void OnUpdateLive()
     {
+        
         // Non-player entities don't fire all the buffs, so we'll manually fire the water tick,
         this.Stats.Water.Tick(0.5f, 0, false);
 
         // then fire the updatestats over time, which is protected from a IsPlayer check in the base onUpdateLive().
         this.Stats.UpdateStatsOverTime(0.5f);
-      
+        this.Stats.UpdateWeatherStats(0.5f, this.world.worldTime, false);
         base.OnUpdateLive();
 
         
@@ -163,28 +171,7 @@ class EntityAliveSDX : EntityAlive
     {
         return this.strMyName + " the " + this.entityName;
     }
-    public override void OnEntityDeath()
-    {
-        if (this.isEntityRemote)
-            return;
-
-        String strDeath = "";
-        if ( this.entityThatKilledMe == null )
-            strDeath = GetEntityTitle() + " has died. May we rememeber them fondly.";
-        else
-            strDeath = GetEntityTitle() + " has been killed by " + this.entityThatKilledMe.EntityName;
-
-        GameManager.Instance.GameMessage(EnumGameMessages.EntityWasKilled, strDeath, this, this.entityThatKilledMe);
-        DisplayLog(ToString());
-
-        ModEvents.EntityKilled.Invoke(this, this.entityThatKilledMe);
-        if (this.AttachedToEntity)
-        {
-            this.Detach();
-        }
-        this.dropItemOnDeath();
-        this.entityThatKilledMe = null;
-    }
+ 
     protected override void onUnderwaterStateChanged(bool _bUnderwater)
     {
         base.onUnderwaterStateChanged(_bUnderwater);
@@ -195,6 +182,7 @@ class EntityAliveSDX : EntityAlive
         else
             this.Buffs.SetCustomVar("_underwater", 0f, true);
     }
+
     public Orders CurrentOrder
     {
         get
@@ -215,4 +203,6 @@ class EntityAliveSDX : EntityAlive
         Wander = 2,
         Pet = 3
     }
+
+  
 }

@@ -29,7 +29,13 @@ public class EAITaskPatches : IPatcherMod
         var myEntity = module.Types.First(d => d.Name == "EntityAlive");
         myEntity.Fields.Add(new FieldDefinition("otherEntitySDX", FieldAttributes.Public, myEntity));
 
-     
+        var gm = module.Types.First(d => d.Name == "EAIApproachAndAttackTarget");
+        var method = gm.Methods.First(d => d.Name == "GetTargetXZDistanceSq");
+        SetMethodToPublic(method);
+
+        method = gm.Methods.First(d => d.Name == "GetMoveToLocation");
+        SetMethodToPublic(method);
+
         return true;
     }
 

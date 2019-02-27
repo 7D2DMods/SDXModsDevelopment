@@ -74,18 +74,19 @@
 
       <property name="DebugEntity" value="true" />
       
-      <!-- The starting buffs -->
-      <property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck" />
-  
+ 
       <property name="TimeStayAfterDeath" value="1" />
 
       <!--property name="AITask-1" value="FollowOrdersSDX, Mods" /-->
       <!-- if the entity has the following buffs, search for water 20 blocks in all direction -->
-      <property name="AITask-1" value="FindNearestWaterBlockSDX, Mods" param1="buffStatusThirsty1,buffStatusThirsty2,buffStatusHungry1,buffStatusHungry2" param2="20" />
-      <property name="AITask-2" value="WanderSDX, Mods"/>
-      <property name="AITask-3" value="Territorial"/>
-      <property name="AITask-4" value="Look"/>
-      <property name="AITask-5" value="ApproachAndFollowTargetSDX, Mods" param1=""/>
+      <property name="AITask-1" value="Territorial"/>
+      <property name="AITask-2" value="Look"/>
+      
+      <!-- This AI task is tied to a cvar, which is being used to record entity ID that we want to follow -->
+      <property name="AITask-3" value="ApproachAndFollowTargetSDX, Mods" param1="$Mother"/>
+      <property name="AITask-4" value="MaslowLevel1SDX, Mods"/>
+      <property name="AITask-5" value="WanderSDX, Mods"/>
+
       <property name="AITask-6" value=""/>
 
       <property name="Names" value="Rose,Dahlia,Flower,Minnie,Daisy,Darla,Margie,Maggie,Esmeralda,Shelly,Meg,Lois,Jasmine,Bella,Candie,Bessie,Emma,Penelope,Bella,Molly,Clarabelle,Henrietta,Nettie,Annabelle,Gertie,Betty Sue, Ella, Anna,Dorothy,Annie,Honebun,Sweetie,LovaBull,Cupcake,Baby,Cookie,Sunny,SunShine,Cocoa,Muffin,Pinky,Blue,Sugar,Booboo,Princess,Big Mac,Madonna,Bertha,Waffles,Moscow,MooMoo,Mud Pie,Shrimp,Cowlick,Ineda Bunn,Waffles,Hamburger,Brown Cow,Humphry,Heifer,Mickey D" />
@@ -101,10 +102,28 @@
   
 
       <property name="LootListAlive" value="62"/>
+      
+      <!-- The starting buffs -->
+      <property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck;buffAnimalBaby;buffSanitationStatusCheck" />
 
+      <!-- Food items and bins that this entity will eat, if using the right AI Task -->
+			<property name="FoodItems" value="hayBaleBlock,resourceYuccaFibers,foodCropYuccaFruit,foodCornBread,foodCornOnTheCob,foodCornMeal,foodCropCorn,foodCropGraceCorn"/>
+      <property name="FoodBins" value="cntSecureStorageChest,cntStorageChest" />
+      <property name="WaterBins" value="water,waterMoving,waterStaticBucket,waterMovingBucket,terrWaterPOI" />
+      <property name="WaterItems" value="water,waterMoving,waterStaticBucket,waterMovingBucket,terrWaterPOI" />
 
-      <!-- This is the food value it likes best -->
-			<property name="FoodItem" value="hayBaleBlock"/>
+      <property name="ThirstyBuffs" value="buffStatusThirsty1,buffStatusThirsty2" />
+      <property name="HungryBuffs" value="buffStatusHungry1,buffStatusHungry2" />
+
+      <!-- This is used for the Maslow Level 1 script, so that the baby can be identified and follow its mother -->
+      <property name="BabyBuffs" value="buffAnimalBaby" />
+      
+      <!-- Sanitation Buff: Aka, make 'em poop part. Add in  buffSanitationStatusCheck in the Buffs entry here to enable. -->
+      <property name="SanitationBuffs" value="buffStatusSanitation1,buffStatusSanitation2" />
+      <property name="ToiletBlocks" value="cntToilet01,cntToilet02,cntToilet03" />
+      <!-- The poop block! -->
+      <property name="SanitationBlock" value="terrDirt" />
+
       <property name="Incentive" value="buffCowLeader"/>
 
       <!-- This is the item you get from harvesting it -->
@@ -117,7 +136,7 @@
 			<property name="HomeBlock" value="cntCowHomeBlock"/>
       
       <!-- This is the buff that will mark it as a home point -->
-			<property name="HomeBuff" value="buffAnimalStatusCheck"/>
+			<property name="HomeBuff" value="buffHomePoint"/>
     
 		</entity_class>
 

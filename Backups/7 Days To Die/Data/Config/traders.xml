@@ -681,6 +681,12 @@ quality_mod: adjusts the price range of all items with a quality level.
 			<item group="preparedDrink" count="1"/>
 		</trader_item_group>
 
+		<trader_item_group name="foodVending">
+			<item group="cannedfood" count="1"/>
+			<item group="preparedDrink" count="1"/>
+			<!--todo add a18 candy -->
+		</trader_item_group>		
+
 		<trader_item_group name="landMines" count="1">
 			<item name="mineCandyTin" count="1,6"/>
 			<item name="mineHubcap" count="1,5"/>
@@ -1105,7 +1111,7 @@ workstations
 	<!-- Vending Machines found in the world. -->
 	<trader_info id="4" reset_interval="1" override_buy_markup="1.0" allow_sell="false" min_inventory="6" max_inventory="13" min_items_swapped="6" max_items_swapped="13">
 		<trader_items count="10">
-			<item group="foodAll" />
+			<item group="foodVending" />
 		</trader_items>
 	</trader_info>
 
