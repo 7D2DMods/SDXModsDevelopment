@@ -14,14 +14,14 @@ class EAIWanderSDX : EAIWander
     {
         if (this.theEntity.Buffs.HasCustomVar("$CurrentOrder"))
         {
-            if (this.theEntity.Buffs.GetCustomVar("$CurrentOrder") == (float)EntityAliveSDX.Orders.Stay)
+            if (this.theEntity.Buffs.GetCustomVar("$CurrentOrder") == (float)EntityAliveSDX.Orders.Wander)
             {
                 // Order to stay
-                return false;
+                return true;
             }
         }
     
-        return true;
+        return false;
     }
     public override bool CanExecute()
     {

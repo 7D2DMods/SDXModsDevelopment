@@ -127,9 +127,18 @@ class EntityAliveSDX : EntityAlive
 
     public virtual void UpdatePatrolPoints( Vector3 position )
     {
+        DisplayLog(" Checking Potential Patrol Point: " + position);
         Vector3i vector3i = new Vector3i(Utils.Fastfloor(position.x), Utils.Fastfloor(position.y + 2.1f), Utils.Fastfloor(position.z));
-        if (!this.PatrolCoordinates.Contains(vector3i.ToVector3() ))
-            this.PatrolCoordinates.Add(vector3i.ToVector3() );
+        DisplayLog(" Vector3i Equievalent: " + vector3i.ToString());
+        if (!this.PatrolCoordinates.Contains(vector3i.ToVector3()))
+        {
+            DisplayLog(" Vector added to list: " + vector3i.ToString());
+            this.PatrolCoordinates.Add(vector3i.ToVector3());
+        }
+        else
+        {
+            DisplayLog(" Vector NOT added to list.");
+        }
 
     }
     // Reads the buff and quest information
@@ -140,14 +149,23 @@ class EntityAliveSDX : EntityAlive
         this.Buffs.Read(_br);
         this.QuestJournal = new QuestJournal();
         this.QuestJournal.Read(_br);
-        this.PatrolCoordinates.Clear();
-        foreach( String strPatrolPoint in _br.ReadString().Split(';'))
-            this.PatrolCoordinates.Add(StringToVector3(strPatrolPoint));
+       // this.PatrolCoordinates.Clear();
+        //foreach (String strPatrolPoint in _br.ReadString().Split(';'))
+        //{
+        //    DisplayLog(" Potential Patrol Point: " + strPatrolPoint);
+        //    Vector3 temp = StringToVector3(strPatrolPoint);
+        //    if ( temp != Vector3.zero )
+        //        this.PatrolCoordinates.Add( temp );
+        //}
 
     }
 
-    public static Vector3 StringToVector3(string sVector)
+    public Vector3 StringToVector3(string sVector)
     {
+        if (String.IsNullOrEmpty(sVector))
+            return Vector3.zero;
+
+        DisplayLog("String to Vector: " + sVector);
         // Remove the parentheses
         if (sVector.StartsWith("(") && sVector.EndsWith(")"))
         {
@@ -175,8 +193,11 @@ class EntityAliveSDX : EntityAlive
         this.QuestJournal.Write(_bw);
         String strPatrolCoordinates ="";
         foreach (Vector3 temp in this.PatrolCoordinates)
+        {
+            DisplayLog(" Writing Patrol Coordinate: " + temp);
             strPatrolCoordinates = ";" + temp;
-        _bw.Write(strPatrolCoordinates);
+        }
+       // _bw.Write(strPatrolCoordinates);
     }
 
     public void DisplayStats()
