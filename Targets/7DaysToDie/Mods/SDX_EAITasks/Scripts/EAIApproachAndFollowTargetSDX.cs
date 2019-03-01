@@ -100,6 +100,9 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.theEntity.Jumping)
             return false;
 
+        // Change the distance allowed each time. This will give it more of a variety in how close it can get to you.
+        distanceToEntity = UnityEngine.Random.Range(2f, 5.0f);
+
         // If there is an entity in bounds, then let this AI Task roceed. Otherwise, don't do anything with it.
         return ConfigureTargetEntity();
 
@@ -134,12 +137,16 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         EntityAliveSDX myEntity = this.theEntity as EntityAliveSDX;
         if (myEntity)
         {
+            
             // Check if there's a cvar for that incentive, such as $Mother or $Leader.
             if (this.theEntity.Buffs.HasCustomVar("$CurrentOrder"))
             {
                 if (this.theEntity.Buffs.GetCustomVar("$CurrentOrder") == (float)EntityAliveSDX.Orders.SetPatrolPoint)
                 {
-                    myEntity.UpdatePatrolPoints(this.entityTarget.position);
+                    // Make them a lot closer to you when they are following you.
+                    this.distanceToEntity = 1f;
+
+                    myEntity.UpdatePatrolPoints(this.theEntity.world.FindSupportingBlockPos( this.entityTarget.position));
                 }
             }
         }

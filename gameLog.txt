@@ -2,40 +2,41 @@ Initialize engine version: 2018.2.0f2 (787658998520)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
-    Renderer: NVIDIA GeForce GTX 1060 3GB (ID=0x1c02)
+    Renderer: AMD Radeon (TM) R7 M360 (ID=0x6900)
     Vendor:   
-    VRAM:     2988 MB
-    Driver:   24.21.14.1170
+    VRAM:     2039 MB
+    Driver:   24.20.11016.4
 Begin MonoManager ReloadAssembly
-- Completed reload, in  0.091 seconds
+- Completed reload, in  0.302 seconds
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.407400 ms
-2019-02-28T22:12:53 0.003 INF [Steamworks.NET] SteamAPI_Init() ok
-2019-02-28T22:12:53 0.037 INF NET: InitCallbacks
-2019-02-28T22:12:53 0.042 INF Texture quality is set to 1
-2019-02-28T22:12:53 0.042 INF Precaching...
-2019-02-28T22:12:53 0.046 INF Precaching file: 7DaysToDie_Data/resources.assets
-2019-02-28T22:12:53 0.109 INF [EAC] Not loading, not started from launcher
-2019-02-28T22:12:55 2.093 INF Precaching file: 7DaysToDie_Data/sharedassets1.assets
-2019-02-28T22:12:55 2.102 INF Precaching file: Data/Bundles/blocktextureatlases
-2019-02-28T22:12:57 4.165 INF Precaching file: Data/Bundles/terraintextures
-2019-02-28T22:12:58 4.368 INF Precaching done
-2019-02-28T22:13:00 6.483 INF Loading main scene
+UnloadTime: 0.441983 ms
+2019-03-01T15:42:16 0.005 INF [Steamworks.NET] SteamAPI_Init() ok
+2019-03-01T15:42:16 0.070 INF NET: InitCallbacks
+2019-03-01T15:42:16 0.082 INF Texture quality is set to 2
+2019-03-01T15:42:16 0.083 INF Precaching...
+2019-03-01T15:42:16 0.089 INF Precaching file: 7DaysToDie_Data/resources.assets
+2019-03-01T15:42:16 0.173 INF [EAC] Not loading, not started from launcher
+2019-03-01T15:42:17 1.505 INF Precaching file: 7DaysToDie_Data/sharedassets1.assets
+2019-03-01T15:42:17 1.508 INF Precaching file: Data/Bundles/blocktextureatlases
+2019-03-01T15:42:18 2.278 INF Precaching file: Data/Bundles/terraintextures
+2019-03-01T15:42:18 2.360 INF Precaching done
+2019-03-01T15:42:22 6.276 INF Loading main scene
 Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 1.421400 ms
+UnloadTime: 2.929051 ms
 SDX:  SDX detected base game directory as: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\
 SDX:  Could not find sdx config file: ''. Using default settings
 SDX: Mod Engine Started.
 SDX: Finding type refs...
 SDX: Loading mods assembly
-SDX: Loaded!53
+SDX: Loaded!54
 SDX: MecanimSDX
 SDX: NewMecanimSDX
 SDX: EntityAliveSDX
 SDX: EntityAliveSDX+Orders
 SDX: EntityAliveFarmingAnimal
+SDX: BlockJumpPadSDX
 SDX: EntityAnimalHal
 SDX: EntityAnimalHalRanged
 SDX: HalHelperEvents
@@ -77,113 +78,114 @@ SDX: EntityZombieCopSDX
 SDX: EntityZombieCrawlSDX
 SDX: EntityZombieFlockSDX
 SDX: EntityZombieHordeSDX
-SDX: <PrivateImplementationDetails>{F20564EB-0FA4-4442-8E84-2153AE6605AB}
+SDX: <PrivateImplementationDetails>{2E313443-CDDC-459D-9F69-7B03A8BA6B82}
 SDX: QuestActionSpawnEntitySDX+<SpawnEntities>d__0
 SDX: QuestActionReplaceEntitySDX+<SpawnEntities>d__4
-SDX: <PrivateImplementationDetails>{F20564EB-0FA4-4442-8E84-2153AE6605AB}+__StaticArrayInitTypeSize=36
+SDX: <PrivateImplementationDetails>{2E313443-CDDC-459D-9F69-7B03A8BA6B82}+__StaticArrayInitTypeSize=36
 SDX: EntityZombieFlockSDX+<>c__DisplayClass1
 SDX: EntityZombieFlockSDX+<>c__DisplayClass4
 SDX: EntityZombieFlockSDX+<>c__DisplayClass7
 SDX:  SDX is no longer loading bundles
 SDX: Begin Load mod script...
-2019-02-28T22:13:00 6.652 INF Awake
-2019-02-28T22:13:00 6.681 WRN Setting global culture failed!
+2019-03-01T15:42:22 6.525 INF Awake
+2019-03-01T15:42:22 6.592 WRN Setting global culture failed!
 Localization language: English
-2019-02-28T22:13:00 6.712 INF Version: Alpha 17.2 (b27) Compatibility Version: Alpha 17.2, Build: Windows 64 Bit
-2019-02-28T22:13:00 6.712 INF System information:
-2019-02-28T22:13:00 6.712 INF    OS: Windows 10  (10.0.0) 64bit
-2019-02-28T22:13:00 6.712 INF    CPU: Intel(R) Core(TM) i7-7700 CPU @ 3.60GHz (cores: 8)
-2019-02-28T22:13:00 6.712 INF    RAM: 12223 MB
-2019-02-28T22:13:00 6.712 INF    GPU: NVIDIA GeForce GTX 1060 3GB (2988 MB)
-2019-02-28T22:13:00 6.712 INF    Graphics API: Direct3D 11.0 [level 11.1] (shader level 5.0)
-2019-02-28T22:13:00 6.712 INF Last played version: Alpha 17.2
-2019-02-28T22:13:00 6.713 INF Local UTC offset: -4 hours
-2019-02-28T22:13:00 6.713 WRN Setting global culture failed!
-2019-02-28T22:13:00 6.717 INF Command line arguments: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie.exe
-2019-02-28T22:13:00 6.719 INF Not running in Big Picture Mode, no on-screen keyboard available
-2019-02-28T22:13:00 6.719 INF Starting PlayerInputManager...
-2019-02-28T22:13:00 6.728 INF InControl (version 1.6.17 build 9143, native module = False, XInput = True)
+2019-03-01T15:42:23 6.656 INF Version: Alpha 17.2 (b27) Compatibility Version: Alpha 17.2, Build: Windows 64 Bit
+2019-03-01T15:42:23 6.656 INF System information:
+2019-03-01T15:42:23 6.657 INF    OS: Windows 10  (10.0.0) 64bit
+2019-03-01T15:42:23 6.658 INF    CPU: Intel(R) Core(TM) i7-6600U CPU @ 2.60GHz (cores: 4)
+2019-03-01T15:42:23 6.658 INF    RAM: 16210 MB
+2019-03-01T15:42:23 6.659 INF    GPU: AMD Radeon (TM) R7 M360 (2039 MB)
+2019-03-01T15:42:23 6.660 INF    Graphics API: Direct3D 11.0 [level 11.1] (shader level 5.0)
+2019-03-01T15:42:23 6.660 INF Last played version: Alpha 17.2
+2019-03-01T15:42:23 6.660 INF Local UTC offset: -4 hours
+2019-03-01T15:42:23 6.661 WRN Setting global culture failed!
+2019-03-01T15:42:23 6.666 INF Command line arguments: C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie.exe
+2019-03-01T15:42:23 6.672 INF Not running in Big Picture Mode, no on-screen keyboard available
+2019-03-01T15:42:23 6.673 INF Starting PlayerInputManager...
+2019-03-01T15:42:23 6.694 INF InControl (version 1.6.17 build 9143, native module = False, XInput = True)
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/XInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libXInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\libXInputInterface32
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libXInputInterface32
-2019-02-28T22:13:00 6.824 INF Starting UserProfileManager...
-2019-02-28T22:13:00 6.851 INF ApplyAllOptions current screen 1920 x 1080, 60hz, window 1366 x 768, fullscreen False Windowed
-2019-02-28T22:13:00 6.851 INF SetResolution was screen 1920 x 1080, 60hz, window 1366 x 768, fullscreen False Windowed
-2019-02-28T22:13:00 6.851 INF SetResolution to window 1366 x 768, fullscreen False
-2019-02-28T22:13:00 6.913 INF [MODS] Start loading
-2019-02-28T22:13:00 6.915 INF [MODS] Trying to load from AnimationSDX
-2019-02-28T22:13:00 6.944 INF [MODS] Loaded Mod: Animation SDX (2.0)
-2019-02-28T22:13:00 6.944 INF [MODS] Trying to load from Bloom's Animal Husbandry
-2019-02-28T22:13:00 6.945 INF [MODS] Loaded Mod: Bloom's Animal Husbandry (1.0.0)
-2019-02-28T22:13:00 6.946 INF [MODS] Trying to load from Hal's DLL Fixes
-2019-02-28T22:13:00 6.947 INF [MODS] Loaded Mod: Hal's DLL Fixes (1)
-2019-02-28T22:13:00 6.947 INF [MODS] Trying to load from SDX_Buffs
-2019-02-28T22:13:00 6.947 INF [MODS] Loaded Mod: SDX_Buffs (1.0)
-2019-02-28T22:13:00 6.947 INF [MODS] Trying to load from SDX_EAITasks
-2019-02-28T22:13:00 6.948 INF [MODS] Loaded Mod: SDX_EAITasks (1.0)
-2019-02-28T22:13:00 6.949 INF [MODS] Trying to load from SDX_EntityAliveSDX
-2019-02-28T22:13:00 6.956 INF [MODS] Loaded Mod: SDX_EntityAliveSDX (1.0.0.0)
-2019-02-28T22:13:00 6.957 INF [MODS] Trying to load from SDX_Quests
-2019-02-28T22:13:00 6.957 INF [MODS] Loaded Mod: SDX_Quests (1.0)
-2019-02-28T22:13:00 6.957 INF [MODS] Trying to load from SphereII A Better Life
-2019-02-28T22:13:00 6.957 INF [MODS] Loaded Mod: SphereII A Better Life (1.0)
-2019-02-28T22:13:00 6.957 INF [MODS] Trying to load from SphereII Entity Player
-2019-02-28T22:13:00 6.959 INF [MODS] Loaded Mod: SphereII Entity Player (1.0.0.0)
-2019-02-28T22:13:00 6.959 INF [MODS] Trying to load from SphereII Mod Localization Hook
-2019-02-28T22:13:00 6.960 INF [MODS] Loaded Mod: SphereII Mod Localization Hook (1.0.0.0)
-2019-02-28T22:13:00 6.960 INF [MODS] Trying to load from SphereII Music Boxes
-2019-02-28T22:13:00 6.960 INF [MODS] Loaded Mod: SphereII Music Boxes (1.0.0.0)
-2019-02-28T22:13:00 6.960 INF [MODS] Trying to load from SphereII Take And Replace
-2019-02-28T22:13:00 6.961 INF [MODS] Loaded Mod: SphereII_Take_And_Replace (1.0.0.0)
-2019-02-28T22:13:00 6.961 INF [MODS] Trying to load from SphereII Unlock Health Bar
-2019-02-28T22:13:00 6.962 INF [MODS] Loaded Mod: SphereII Unlock Health Bar (1)
-2019-02-28T22:13:00 6.962 INF [MODS] Trying to load from SphereII Wandering Traders
-2019-02-28T22:13:00 6.963 INF [MODS] Loaded Mod: SphereII Wandering Traders (1.0.0)
-2019-02-28T22:13:00 6.963 INF [MODS] Trying to load from Zombie Transmogrifier
-2019-02-28T22:13:00 6.964 INF [MODS] Loaded Mod: Zombie Transmogrifier (1)
-2019-02-28T22:13:00 6.964 INF [MODS] Initializing mod code
-2019-02-28T22:13:00 6.964 INF [MODS] Loading done
-2019-02-28T22:13:00 6.974 INF Loading permissions file at 'C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
-2019-02-28T22:13:00 7.005 INF Loading permissions file done.
-2019-02-28T22:13:00 7.026 WRN Old savegame folder (C:\Users\Jeff\Documents/7 Days To Die) exists but new one (C:\Users\Jeff\AppData\Roaming/7DaysToDie) also exists, not moving
-2019-02-28T22:13:00 7.027 INF Awake done in 375 ms
-2019-02-28T22:13:01 7.686 INF Atlas reset took 650 ms
-2019-02-28T22:13:01 7.687 INF Atlas load took 658 ms
+2019-03-01T15:42:23 6.854 INF Starting UserProfileManager...
+2019-03-01T15:42:23 6.894 INF ApplyAllOptions current screen 1920 x 1080, 60hz, window 1360 x 768, fullscreen False Windowed
+2019-03-01T15:42:23 6.895 INF SetResolution was screen 1920 x 1080, 60hz, window 1360 x 768, fullscreen False Windowed
+2019-03-01T15:42:23 6.895 INF SetResolution to window 1360 x 768, fullscreen False
+2019-03-01T15:42:23 6.974 INF [MODS] Start loading
+2019-03-01T15:42:23 6.977 INF [MODS] Trying to load from AnimationSDX
+2019-03-01T15:42:23 7.041 INF [MODS] Loaded Mod: Animation SDX (2.0)
+2019-03-01T15:42:23 7.041 INF [MODS] Trying to load from Bloom's Animal Husbandry
+2019-03-01T15:42:23 7.042 INF [MODS] Loaded Mod: Bloom's Animal Husbandry (1.0.0)
+2019-03-01T15:42:23 7.042 INF [MODS] Trying to load from Hal's DLL Fixes
+2019-03-01T15:42:23 7.043 INF [MODS] Loaded Mod: Hal's DLL Fixes (1)
+2019-03-01T15:42:23 7.043 INF [MODS] Trying to load from SDX_Buffs
+2019-03-01T15:42:23 7.045 INF [MODS] Loaded Mod: SDX_Buffs (1.0)
+2019-03-01T15:42:23 7.046 INF [MODS] Trying to load from SDX_EAITasks
+2019-03-01T15:42:23 7.050 INF [MODS] Loaded Mod: SDX_EAITasks (1.0)
+2019-03-01T15:42:23 7.051 INF [MODS] Trying to load from SDX_EntityAliveSDX
+2019-03-01T15:42:23 7.052 INF [MODS] Loaded Mod: SDX_EntityAliveSDX (1.0.0.0)
+2019-03-01T15:42:23 7.052 INF [MODS] Trying to load from SDX_Quests
+2019-03-01T15:42:23 7.053 INF [MODS] Loaded Mod: SDX_Quests (1.0)
+2019-03-01T15:42:23 7.053 INF [MODS] Trying to load from SphereII A Better Life
+2019-03-01T15:42:23 7.054 INF [MODS] Loaded Mod: SphereII A Better Life (1.0)
+2019-03-01T15:42:23 7.054 INF [MODS] Trying to load from SphereII Entity Player
+2019-03-01T15:42:23 7.057 INF [MODS] Loaded Mod: SphereII Entity Player (1.0.0.0)
+2019-03-01T15:42:23 7.059 INF [MODS] Trying to load from SphereII Mod Localization Hook
+2019-03-01T15:42:23 7.064 INF [MODS] Loaded Mod: SphereII Mod Localization Hook (1.0.0.0)
+2019-03-01T15:42:23 7.064 INF [MODS] Trying to load from SphereII Music Boxes
+2019-03-01T15:42:23 7.065 INF [MODS] Loaded Mod: SphereII Music Boxes (1.0.0.0)
+2019-03-01T15:42:23 7.065 INF [MODS] Trying to load from SphereII Take And Replace
+2019-03-01T15:42:23 7.066 INF [MODS] Loaded Mod: SphereII_Take_And_Replace (1.0.0.0)
+2019-03-01T15:42:23 7.066 INF [MODS] Trying to load from SphereII Unlock Health Bar
+2019-03-01T15:42:23 7.068 INF [MODS] Loaded Mod: SphereII Unlock Health Bar (1)
+2019-03-01T15:42:23 7.068 INF [MODS] Trying to load from SphereII Wandering Traders
+2019-03-01T15:42:23 7.069 INF [MODS] Loaded Mod: SphereII Wandering Traders (1.0.0)
+2019-03-01T15:42:23 7.069 INF [MODS] Trying to load from SyX Security Bots
+2019-03-01T15:42:23 7.072 INF [MODS] Loaded Mod: SyX Security Bots (1.0.0.0)
+2019-03-01T15:42:23 7.072 INF [MODS] Trying to load from Zombie Transmogrifier
+2019-03-01T15:42:23 7.074 INF [MODS] Loaded Mod: Zombie Transmogrifier (1)
+2019-03-01T15:42:23 7.074 INF [MODS] Initializing mod code
+2019-03-01T15:42:23 7.074 INF [MODS] Loading done
+2019-03-01T15:42:23 7.093 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
+2019-03-01T15:42:23 7.144 INF Loading permissions file done.
+2019-03-01T15:42:23 7.192 WRN Old savegame folder (C:\Users\jkilpatrick\Documents/7 Days To Die) exists but new one (C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie) also exists, not moving
+2019-03-01T15:42:23 7.194 INF Awake done in 669 ms
+2019-03-01T15:42:24 7.782 INF Atlas reset took 576 ms
+2019-03-01T15:42:24 7.782 INF Atlas load took 587 ms
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libc
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/.\libc
 Fallback handler could not load library C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/Mono/libc
-2019-02-28T22:13:01 7.720 INF Reloading serveradmin.xml
-2019-02-28T22:13:01 7.720 INF Loading permissions file at 'C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
-2019-02-28T22:13:01 7.721 INF Loading permissions file done.
+2019-03-01T15:42:24 7.851 INF Reloading serveradmin.xml
+2019-03-01T15:42:24 7.852 INF Loading permissions file at 'C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/serveradmin.xml'
+2019-03-01T15:42:24 7.854 INF Loading permissions file done.
 Unloading 9 unused Assets to reduce memory usage. Loaded Objects now: 3966.
-Total: 7.844500 ms (FindLiveObjects: 0.647600 ms CreateObjectMapping: 0.219400 ms MarkObjects: 6.928000 ms  DeleteObjects: 0.048900 ms)
+Total: 25.665299 ms (FindLiveObjects: 6.490079 ms CreateObjectMapping: 0.237401 ms MarkObjects: 18.819299 ms  DeleteObjects: 0.115601 ms)
 Unloading 1 Unused Serialized files (Serialized files now loaded: 1)
 Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 3966.
-Total: 14.261600 ms (FindLiveObjects: 1.399900 ms CreateObjectMapping: 0.317200 ms MarkObjects: 12.455300 ms  DeleteObjects: 0.088200 ms)
+Total: 13.721174 ms (FindLiveObjects: 2.843353 ms CreateObjectMapping: 0.254176 ms MarkObjects: 10.577696 ms  DeleteObjects: 0.042666 ms)
 Unloading 0 Unused Serialized files (Serialized files now loaded: 1)
 Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 3966.
-Total: 15.154500 ms (FindLiveObjects: 2.533500 ms CreateObjectMapping: 0.274100 ms MarkObjects: 12.328900 ms  DeleteObjects: 0.017100 ms)
-2019-02-28T22:13:02 9.123 INF User joined: sphereii
-UMA Overlay loading took 1537 ms
-UMA Slot loading took 1 ms
-2019-02-28T22:13:07 13.877 INF WorldStaticData.Init() needed 2.273s
-2019-02-28T22:13:09 16.135 INF [Steamworks.NET] Login ok.
-2019-02-28T22:13:10 16.351 INF AchievementManager: Received stats and achievements from Steam
-2019-02-28T22:13:18 25.240 INF NET: Starting server protocols
-2019-02-28T22:13:18 25.254 INF NET: LiteNetLib server started
-2019-02-28T22:13:18 25.254 INF [Steamworks.NET] NET: Server started
+Total: 10.030687 ms (FindLiveObjects: 0.950337 ms CreateObjectMapping: 0.300125 ms MarkObjects: 8.752874 ms  DeleteObjects: 0.026256 ms)
+2019-03-01T15:42:24 8.283 INF User joined: sphereii
+UMA Overlay loading took 562 ms
+UMA Slot loading took 2 ms
+2019-03-01T15:42:28 12.335 INF WorldStaticData.Init() needed 2.539s
+2019-03-01T15:42:31 14.982 INF [Steamworks.NET] Login ok.
+2019-03-01T15:42:31 15.197 INF AchievementManager: Received stats and achievements from Steam
+2019-03-01T15:42:53 37.072 INF NET: Starting server protocols
+2019-03-01T15:42:53 37.104 INF NET: LiteNetLib server started
+2019-03-01T15:42:53 37.104 INF [Steamworks.NET] NET: Server started
 SDX: SDX ModEngine::StartModScripts
-2019-02-28T22:13:18 25.255 INF StartGame
-Unloading 3 Unused Serialized files (Serialized files now loaded: 4)
-2019-02-28T22:13:19 25.700 INF Atlas reset took 413 ms
-Unloading 731 unused Assets to reduce memory usage. Loaded Objects now: 24793.
-Total: 81.735800 ms (FindLiveObjects: 3.522100 ms CreateObjectMapping: 1.622700 ms MarkObjects: 73.721800 ms  DeleteObjects: 2.868900 ms)
-2019-02-28T22:13:20 26.797 INF Atlas got enough free room to fit icons. Old 2221 icons, 8192x4096, now 2229 icons
-2019-02-28T22:13:20 27.123 INF Adding 8 sprites to atlas took 1853 ms
-2019-02-28T22:13:23 30.171 INF Persistent GamePrefs saved
+2019-03-01T15:42:53 37.105 INF StartGame
+2019-03-01T15:42:54 37.677 INF Atlas reset took 544 msUnloading 3 Unused Serialized files (Serialized files now loaded: 4)
+Unloading 731 unused Assets to reduce memory usage. Loaded Objects now: 24791.
+Total: 97.660442 ms (FindLiveObjects: 3.634328 ms CreateObjectMapping: 1.344548 ms MarkObjects: 90.640128 ms  DeleteObjects: 2.039979 ms)
+2019-03-01T15:42:54 37.885 INF Atlas got enough free room to fit icons. Old 2221 icons, 8192x4096, now 2229 icons
+2019-03-01T15:42:54 37.891 INF Adding 8 sprites to atlas took 762 ms
+2019-03-01T15:42:55 38.979 INF Persistent GamePrefs saved
 GamePref.AdminFileName = serveradmin.xml
 GamePref.AirDropFrequency = 72
 GamePref.AirDropMarker = False
@@ -196,9 +198,9 @@ GamePref.BloodMoonEnemyCount = 8
 GamePref.BloodMoonFrequency = 7
 GamePref.BloodMoonRange = 0
 GamePref.BloodMoonWarning = 8
-GamePref.BuildCreate = False
-GamePref.ConnectToServerIP = 98.192.128.220
-GamePref.ConnectToServerPort = 26920
+GamePref.BuildCreate = True
+GamePref.ConnectToServerIP = 162.248.91.42
+GamePref.ConnectToServerPort = 26910
 GamePref.ControlPanelEnabled = False
 GamePref.ControlPanelPort = 8080
 GamePref.CraftTimer = 
@@ -207,7 +209,7 @@ GamePref.CreateLevelName = My Level
 GamePref.CreativeMenuEnabled = False
 GamePref.DayCount = 3
 GamePref.DayLightLength = 18
-GamePref.DayNightLength = 120
+GamePref.DayNightLength = 60
 GamePref.DebugMenuEnabled = False
 GamePref.DebugMenuShowTasks = False
 GamePref.DebugStopEnemiesMoving = False
@@ -219,10 +221,10 @@ GamePref.EnemyDifficulty = 0
 GamePref.EnemySpawnMode = False
 GamePref.FavoriteServersList = 
 GamePref.FragLimit = 20
-GamePref.GameDifficulty = 2
+GamePref.GameDifficulty = 0
 GamePref.GameGuidClient = 
 GamePref.GameMode = GameModeSurvival
-GamePref.GameName = CowTest6
+GamePref.GameName = cow12
 GamePref.GameNameClient = My Game
 GamePref.GameVersion = Alpha 17.2
 GamePref.GameWorld = Navezgane
@@ -246,7 +248,7 @@ GamePref.MaxSpawnedAnimals = 50
 GamePref.MaxSpawnedZombies = 60
 GamePref.MaxUncoveredMapChunksPerPlayer = 524288
 GamePref.NoGraphicsMode = False
-GamePref.OptionsAA = 1
+GamePref.OptionsAA = 0
 GamePref.OptionsAllowController = True
 GamePref.OptionsAmbientVolumeLevel = 0
 GamePref.OptionsAudioOcclusion = False
@@ -257,21 +259,21 @@ GamePref.OptionsDeferredLighting = True
 GamePref.OptionsDOF = False
 GamePref.OptionsDynamicMusicEnabled = False
 GamePref.OptionsDynamicMusicVolume = 0
-GamePref.OptionsFieldOfView = 67
+GamePref.OptionsFieldOfView = 45
 GamePref.OptionsFieldOfViewNew = 65
 GamePref.OptionsForegroundGlobalOpacity = 1
-GamePref.OptionsGamma = 0.4396552
-GamePref.OptionsGraphicsQuality = 1
-GamePref.OptionsGrassDistance = 1
+GamePref.OptionsGamma = 1.551724
+GamePref.OptionsGraphicsQuality = 0
+GamePref.OptionsGrassDistance = 0
 GamePref.OptionsHudOpacity = 1
 GamePref.OptionsHudSize = 2
 GamePref.OptionsImageEffects = True
 GamePref.OptionsInterfaceSensitivity = 0.75
 GamePref.OptionsInvertMouse = False
 GamePref.OptionsJournalPopup = True
-GamePref.OptionsLODDistance = 0.5
+GamePref.OptionsLODDistance = 0
 GamePref.OptionsMicVolumeLevel = 0.75
-GamePref.OptionsMotionBlur = 1
+GamePref.OptionsMotionBlur = 0
 GamePref.OptionsMouseSensitivity = 0.5
 GamePref.OptionsMusicVolumeLevel = 0
 GamePref.OptionsObjectBlur = False
@@ -283,32 +285,32 @@ GamePref.OptionsReflectedShadows = False
 GamePref.OptionsReflectionBounces = 1
 GamePref.OptionsReflectionCullList = Default
 GamePref.OptionsReflectionFarClip = 100
-GamePref.OptionsReflectionQuality = 2
+GamePref.OptionsReflectionQuality = 0
 GamePref.OptionsReflectionRefreshMode = ViaScripting
 GamePref.OptionsReflectionRefreshRate = 0
 GamePref.OptionsReflectionShadowDistance = 0
 GamePref.OptionsReflectionTimeSlicingMode =  Trees ReflectionsOnly Terrain
 GamePref.OptionsResolution = 0
 GamePref.OptionsScreenBoundsValue = 1
-GamePref.OptionsShadowDistance = 1
+GamePref.OptionsShadowDistance = 0
 GamePref.OptionsShowCompass = True
 GamePref.OptionsShowCrosshair = True
-GamePref.OptionsSSAO = True
+GamePref.OptionsSSAO = False
 GamePref.OptionsStabSpawnBlocksOnGround = True
 GamePref.OptionsStreamingMipmapsBudget = 4096
 GamePref.OptionsStreamingMipmapsEnabled = True
-GamePref.OptionsSunShafts = True
+GamePref.OptionsSunShafts = False
 GamePref.OptionsTempCelsius = False
-GamePref.OptionsTextureQuality = 1
+GamePref.OptionsTextureQuality = 2
 GamePref.OptionsTreeDistance = 4
-GamePref.OptionsTreeQuality = 2
-GamePref.OptionsUMATextureQuality = 1
+GamePref.OptionsTreeQuality = 0
+GamePref.OptionsUMATextureQuality = 3
 GamePref.OptionsViewDistance = 6
 GamePref.OptionsVoiceChatEnabled = True
 GamePref.OptionsVoiceVolumeLevel = 0.75
 GamePref.OptionsVsync = 1
-GamePref.OptionsWaterParticleLimiter = 0.5
-GamePref.OptionsWaterQuality = 1
+GamePref.OptionsWaterParticleLimiter = 0
+GamePref.OptionsWaterQuality = 0
 GamePref.OptionsZoomMouseSensitivity = 0.5
 GamePref.PartySharedKillRange = 100
 GamePref.PersistentPlayerProfiles = True
@@ -320,7 +322,7 @@ GamePref.PlayerSafeZoneHours = 7
 GamePref.PlayerSafeZoneLevel = 5
 GamePref.PlayerToken = 
 GamePref.RebuildMap = False
-GamePref.SaveGameFolder = C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves
+GamePref.SaveGameFolder = C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves
 GamePref.SelectionContextMode = 0
 GamePref.SelectionOperationMode = 0
 GamePref.ServerAdminSlots = 0
@@ -335,7 +337,7 @@ GamePref.ServerName = Default Server
 GamePref.ServerPort = 26900
 GamePref.ServerReservedSlots = 0
 GamePref.ServerReservedSlotsPermission = 100
-GamePref.ServerVisibility = 1
+GamePref.ServerVisibility = 0
 GamePref.ServerWebsiteURL = 
 GamePref.ShowFriendPlayerOnMap = True
 GamePref.TelnetEnabled = False
@@ -343,7 +345,7 @@ GamePref.TelnetFailedLoginLimit = 10
 GamePref.TelnetFailedLoginsBlocktime = 10
 GamePref.TelnetPort = 25003
 GamePref.TerminalWindowEnabled = True
-GamePref.UserDataFolder = C:\Users\Jeff\AppData\Roaming/7DaysToDie
+GamePref.UserDataFolder = C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie
 GamePref.WorldGenSeed = 
 GamePref.WorldGenSize = 8192
 GamePref.XPMultiplier = 100
@@ -413,7 +415,7 @@ GameStat.TimeLimitThisRound = 0
 GameStat.TimeOfDayIncPerSec = 20
 GameStat.XPMultiplier = 100
 GameStat.ZombieHordeMeter = False
-2019-02-28T22:13:23 30.224 INF StartAsServer
+2019-03-01T15:42:55 39.086 INF StartAsServer
 SphereII - Localization Gap Solution
 Initializing Localization Block...
 Searching in: C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods
@@ -423,1666 +425,427 @@ Found : C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_D
 Found : C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods\SphereII Take And Replace\Config\Localization.txt
 Searching for ModLocalization - Quests.txt...
 Found : C:/Program Files (x86)/Steam/steamapps/common/7 Days To Die/7DaysToDie_Data/../Mods\SphereII Music Boxes\Config\Localization - Quest.txt
-2019-02-28T22:13:32 38.704 INF Block IDs with mapping
-2019-02-28T22:13:32 38.705 INF BlockIDs from Mapping
-2019-02-28T22:13:33 39.569 INF Item IDs with mapping
-2019-02-28T22:13:33 39.569 INF ItemIDs from Mapping
-2019-02-28T22:13:36 43.320 INF createWorld: Navezgane, CowTest6, GameModeSurvival
-2019-02-28T22:13:37 43.445 INF Started thread ChunkCalc
-2019-02-28T22:13:37 43.445 INF Started thread ChunkRegeneration
-2019-02-28T22:13:37 43.892 INF World.Load: Navezgane
-2019-02-28T22:13:37 43.906 INF BloodMoon SetDay: day 14, last day 7, freq 7, range 0
-2019-02-28T22:13:37 43.906 INF BloodMoon SetDay: day 12, last day 0, freq 7, range 0
-2019-02-28T22:13:52 59.116 INF Started thread GenerateChunks
-2019-02-28T22:13:53 59.819 INF Loading dtm raw file took 327ms
-2019-02-28T22:13:53 60.245 INF Biomes image size w= 3072, h = 3072
-2019-02-28T22:13:55 61.963 INF Loading and creating biomes took 2144ms
-2019-02-28T22:13:58 64.839 INF Loading and parsing of generator took 2875ms
-2019-02-28T22:13:58 65.018 INF Started thread SaveChunks C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/Navezgane/CowTest6\Region
-2019-02-28T22:14:00 67.039 INF AstarManager Init
-2019-02-28T22:14:04 71.244 INF Weather Packages Created FROM BIOMES
-2019-02-28T22:14:05 71.602 INF createWorld() done
-2019-02-28T22:14:05 71.603 INF Loading players.xml
-2019-02-28T22:14:05 71.810 INF Created player with id=171
-2019-02-28T22:14:05 71.915 INF Loaded player
-2019-02-28T22:14:06 72.679 INF Setting for 'DayNightLength' does not match the default (server will go to the modded category): current = 120, default = 60
-2019-02-28T22:14:06 72.679 INF Setting for 'EnemySpawnMode' does not match the default (server will go to the modded category): current = False, default = True
-2019-02-28T22:14:06 73.053 INF OpenSpawnWindow
-2019-02-28T22:14:06 73.057 INF StartGame done
-animalFarmCow: Baby The animalFarmCow - ID: 411 Health: 110 Stamina: 96.24973 Thirst: 86.23547 Food: 96 Water: 86 Sanitation: 39
+2019-03-01T15:43:07 51.276 INF Block IDs with mapping
+2019-03-01T15:43:07 51.277 INF BlockIDs from Mapping
+2019-03-01T15:43:08 52.120 INF Item IDs with mapping
+2019-03-01T15:43:08 52.121 INF ItemIDs from Mapping
+2019-03-01T15:43:13 57.513 INF createWorld: Navezgane, cow12, GameModeSurvival
+2019-03-01T15:43:14 57.676 INF Started thread ChunkRegeneration
+2019-03-01T15:43:14 57.676 INF Started thread ChunkCalc
+2019-03-01T15:43:14 57.889 INF World.Load: Navezgane
+2019-03-01T15:43:14 57.914 INF BloodMoon SetDay: day 49, last day 42, freq 7, range 0
+2019-03-01T15:43:14 57.914 INF BloodMoon SetDay: day 43, last day 0, freq 7, range 0
+2019-03-01T15:43:20 64.267 INF Started thread GenerateChunks
+2019-03-01T15:43:21 65.420 INF Loading dtm raw file took 776ms
+2019-03-01T15:43:22 66.117 INF Biomes image size w= 3072, h = 3072
+2019-03-01T15:43:24 68.124 INF Loading and creating biomes took 2703ms
+2019-03-01T15:43:27 71.408 INF Loading and parsing of generator took 3284ms
+2019-03-01T15:43:27 71.626 INF Started thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow12\Region
+2019-03-01T15:43:30 74.003 INF AstarManager Init
+2019-03-01T15:43:38 82.132 INF Weather Packages Created FROM BIOMES
+2019-03-01T15:43:38 82.643 INF createWorld() done
+2019-03-01T15:43:38 82.644 INF Loading players.xml
+2019-03-01T15:43:39 83.119 INF Created player with id=171
+2019-03-01T15:43:39 83.250 INF Loaded player
+2019-03-01T15:43:40 84.408 INF Setting for 'EnemySpawnMode' does not match the default (server will go to the modded category): current = False, default = True
+2019-03-01T15:43:40 84.408 INF Setting for 'BuildCreate' does not match the default (server will go to the modded category): current = True, default = False
+2019-03-01T15:43:41 84.669 INF OpenSpawnWindow
+2019-03-01T15:43:41 84.675 INF StartGame done
+SphereII:  Stored Patrol Points: ;(1917.5, 62.0, -1896.5);(1917.5, 62.0, -1897.5);(1917.5, 62.0, -1898.5);(1917.5, 62.0, -1899.5);(1917.5, 62.0, -1900.5);(1917.5, 62.0, -1901.5);(1917.5, 62.0, -1902.5);(1917.5, 63.0, -1902.5);(1917.5, 63.0, -1903.5);(1917.5, 63.0, -1904.5);(1917.5, 64.0, -1904.5);(1917.5, 64.0, -1905.5);(1917.5, 65.0, -1905.5);(1918.5, 65.0, -1905.5);(1919.5, 65.0, -1905.5);(1920.5, 65.0, -1905.5);(1921.5, 65.0, -1905.5);(1922.5, 65.0, -1905.5);(1923.5, 65.0, -1905.5);(1924.5, 65.0, -1905.5);(1925.5, 65.0, -1905.5);(1926.5, 65.0, -1905.5);(1926.5, 65.0, -1904.5);(1926.5, 64.0, -1904.5);(1926.5, 64.0, -1903.5);(1927.5, 64.0, -1903.5);(1927.5, 63.0, -1903.5);(1928.5, 63.0, -1903.5);(1928.5, 62.0, -1903.5);(1929.5, 62.0, -1903.5);(1929.5, 62.0, -1902.5);(1929.5, 62.0, -1901.5);(1929.5, 61.0, -1900.5);(1929.5, 62.0, -1899.5);(1929.5, 62.0, -1898.5);(1929.5, 62.0, -1897.5)
+SphereII:  Potential Patrol Point: 
+SphereII:  Potential Patrol Point: (1917.5, 62.0, -1896.5)
+SphereII: String to Vector: (1917.5, 62.0, -1896.5)
+SphereII:  Potential Patrol Point: (1917.5, 62.0, -1897.5)
+SphereII: String to Vector: (1917.5, 62.0, -1897.5)
+SphereII:  Potential Patrol Point: (1917.5, 62.0, -1898.5)
+SphereII: String to Vector: (1917.5, 62.0, -1898.5)
+SphereII:  Potential Patrol Point: (1917.5, 62.0, -1899.5)
+SphereII: String to Vector: (1917.5, 62.0, -1899.5)
+SphereII:  Potential Patrol Point: (1917.5, 62.0, -1900.5)
+SphereII: String to Vector: (1917.5, 62.0, -1900.5)
+SphereII:  Potential Patrol Point: (1917.5, 62.0, -1901.5)
+SphereII: String to Vector: (1917.5, 62.0, -1901.5)
+SphereII:  Potential Patrol Point: (1917.5, 62.0, -1902.5)
+SphereII: String to Vector: (1917.5, 62.0, -1902.5)
+SphereII:  Potential Patrol Point: (1917.5, 63.0, -1902.5)
+SphereII: String to Vector: (1917.5, 63.0, -1902.5)
+SphereII:  Potential Patrol Point: (1917.5, 63.0, -1903.5)
+SphereII: String to Vector: (1917.5, 63.0, -1903.5)
+SphereII:  Potential Patrol Point: (1917.5, 63.0, -1904.5)
+SphereII: String to Vector: (1917.5, 63.0, -1904.5)
+SphereII:  Potential Patrol Point: (1917.5, 64.0, -1904.5)
+SphereII: String to Vector: (1917.5, 64.0, -1904.5)
+SphereII:  Potential Patrol Point: (1917.5, 64.0, -1905.5)
+SphereII: String to Vector: (1917.5, 64.0, -1905.5)
+SphereII:  Potential Patrol Point: (1917.5, 65.0, -1905.5)
+SphereII: String to Vector: (1917.5, 65.0, -1905.5)
+SphereII:  Potential Patrol Point: (1918.5, 65.0, -1905.5)
+SphereII: String to Vector: (1918.5, 65.0, -1905.5)
+SphereII:  Potential Patrol Point: (1919.5, 65.0, -1905.5)
+SphereII: String to Vector: (1919.5, 65.0, -1905.5)
+SphereII:  Potential Patrol Point: (1920.5, 65.0, -1905.5)
+SphereII: String to Vector: (1920.5, 65.0, -1905.5)
+SphereII:  Potential Patrol Point: (1921.5, 65.0, -1905.5)
+SphereII: String to Vector: (1921.5, 65.0, -1905.5)
+SphereII:  Potential Patrol Point: (1922.5, 65.0, -1905.5)
+SphereII: String to Vector: (1922.5, 65.0, -1905.5)
+SphereII:  Potential Patrol Point: (1923.5, 65.0, -1905.5)
+SphereII: String to Vector: (1923.5, 65.0, -1905.5)
+SphereII:  Potential Patrol Point: (1924.5, 65.0, -1905.5)
+SphereII: String to Vector: (1924.5, 65.0, -1905.5)
+SphereII:  Potential Patrol Point: (1925.5, 65.0, -1905.5)
+SphereII: String to Vector: (1925.5, 65.0, -1905.5)
+SphereII:  Potential Patrol Point: (1926.5, 65.0, -1905.5)
+SphereII: String to Vector: (1926.5, 65.0, -1905.5)
+SphereII:  Potential Patrol Point: (1926.5, 65.0, -1904.5)
+SphereII: String to Vector: (1926.5, 65.0, -1904.5)
+SphereII:  Potential Patrol Point: (1926.5, 64.0, -1904.5)
+SphereII: String to Vector: (1926.5, 64.0, -1904.5)
+SphereII:  Potential Patrol Point: (1926.5, 64.0, -1903.5)
+SphereII: String to Vector: (1926.5, 64.0, -1903.5)
+SphereII:  Potential Patrol Point: (1927.5, 64.0, -1903.5)
+SphereII: String to Vector: (1927.5, 64.0, -1903.5)
+SphereII:  Potential Patrol Point: (1927.5, 63.0, -1903.5)
+SphereII: String to Vector: (1927.5, 63.0, -1903.5)
+SphereII:  Potential Patrol Point: (1928.5, 63.0, -1903.5)
+SphereII: String to Vector: (1928.5, 63.0, -1903.5)
+SphereII:  Potential Patrol Point: (1928.5, 62.0, -1903.5)
+SphereII: String to Vector: (1928.5, 62.0, -1903.5)
+SphereII:  Potential Patrol Point: (1929.5, 62.0, -1903.5)
+SphereII: String to Vector: (1929.5, 62.0, -1903.5)
+SphereII:  Potential Patrol Point: (1929.5, 62.0, -1902.5)
+SphereII: String to Vector: (1929.5, 62.0, -1902.5)
+SphereII:  Potential Patrol Point: (1929.5, 62.0, -1901.5)
+SphereII: String to Vector: (1929.5, 62.0, -1901.5)
+SphereII:  Potential Patrol Point: (1929.5, 61.0, -1900.5)
+SphereII: String to Vector: (1929.5, 61.0, -1900.5)
+SphereII:  Potential Patrol Point: (1929.5, 62.0, -1899.5)
+SphereII: String to Vector: (1929.5, 62.0, -1899.5)
+SphereII:  Potential Patrol Point: (1929.5, 62.0, -1898.5)
+SphereII: String to Vector: (1929.5, 62.0, -1898.5)
+SphereII:  Potential Patrol Point: (1929.5, 62.0, -1897.5)
+SphereII: String to Vector: (1929.5, 62.0, -1897.5)
+SphereII: Bob The SphereII - ID: 523 Health: 1000 Stamina: 100 Thirst: 100 Food: 100 Water: 100 Sanitation: Disabled.
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 473.45 Ticks: 9469 )
-	buffstatuscheck ( Seconds: 473.45 Ticks: 9469 )
-	buffanimalbaby ( Seconds: 473.45 Ticks: 9469 )
-	buffsanitationstatuscheck ( Seconds: 473.45 Ticks: 9469 )
-	buffanimalcow ( Seconds: 473.45 Ticks: 9469 )
-	buffperkabilityupdate ( Seconds: 41.4 Ticks: 828 )
-	buffelementsweltering ( Seconds: 41.45 Ticks: 829 )
-	buffelementwet ( Seconds: 1.45 Ticks: 29 )
  Active Quests: 
  Patrol Points: 
+	(1917.5, 62.0, -1896.5)
+	(1917.5, 62.0, -1897.5)
+	(1917.5, 62.0, -1898.5)
+	(1917.5, 62.0, -1899.5)
+	(1917.5, 62.0, -1900.5)
+	(1917.5, 62.0, -1901.5)
+	(1917.5, 62.0, -1902.5)
+	(1917.5, 63.0, -1902.5)
+	(1917.5, 63.0, -1903.5)
+	(1917.5, 63.0, -1904.5)
+	(1917.5, 64.0, -1904.5)
+	(1917.5, 64.0, -1905.5)
+	(1917.5, 65.0, -1905.5)
+	(1918.5, 65.0, -1905.5)
+	(1919.5, 65.0, -1905.5)
+	(1920.5, 65.0, -1905.5)
+	(1921.5, 65.0, -1905.5)
+	(1922.5, 65.0, -1905.5)
+	(1923.5, 65.0, -1905.5)
+	(1924.5, 65.0, -1905.5)
+	(1925.5, 65.0, -1905.5)
+	(1926.5, 65.0, -1905.5)
+	(1926.5, 65.0, -1904.5)
+	(1926.5, 64.0, -1904.5)
+	(1926.5, 64.0, -1903.5)
+	(1927.5, 64.0, -1903.5)
+	(1927.5, 63.0, -1903.5)
+	(1928.5, 63.0, -1903.5)
+	(1928.5, 62.0, -1903.5)
+	(1929.5, 62.0, -1903.5)
+	(1929.5, 62.0, -1902.5)
+	(1929.5, 62.0, -1901.5)
+	(1929.5, 61.0, -1900.5)
+	(1929.5, 62.0, -1899.5)
+	(1929.5, 62.0, -1898.5)
+	(1929.5, 62.0, -1897.5)
  Milk Level: 0
  My Mother is: None
-2019-02-28T22:14:07 74.191 INF [Steamworks.NET] GameServer.Init successful
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Baby The animalFarmCow - ID: 411 Health: 110 Stamina: 96.21473 Thirst: 86.20548 Food: 96 Water: 86 Sanitation: 39
+2019-03-01T15:43:41 85.117 INF [Steamworks.NET] GameServer.Init successful
+SphereII: Bob The SphereII - ID: 523 Health: 1000 Stamina: 100 Thirst: 100 Food: 100 Water: 100 Sanitation: Disabled.
  Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 473.8 Ticks: 9476 )
-	buffstatuscheck ( Seconds: 473.8 Ticks: 9476 )
-	buffanimalbaby ( Seconds: 473.8 Ticks: 9476 )
-	buffsanitationstatuscheck ( Seconds: 473.8 Ticks: 9476 )
-	buffanimalcow ( Seconds: 473.8 Ticks: 9476 )
-	buffperkabilityupdate ( Seconds: 41.75 Ticks: 835 )
-	buffelementsweltering ( Seconds: 41.8 Ticks: 836 )
-	buffelementwet ( Seconds: 1.8 Ticks: 36 )
  Active Quests: 
  Patrol Points: 
+	(1917.5, 62.0, -1896.5)
+	(1917.5, 62.0, -1897.5)
+	(1917.5, 62.0, -1898.5)
+	(1917.5, 62.0, -1899.5)
+	(1917.5, 62.0, -1900.5)
+	(1917.5, 62.0, -1901.5)
+	(1917.5, 62.0, -1902.5)
+	(1917.5, 63.0, -1902.5)
+	(1917.5, 63.0, -1903.5)
+	(1917.5, 63.0, -1904.5)
+	(1917.5, 64.0, -1904.5)
+	(1917.5, 64.0, -1905.5)
+	(1917.5, 65.0, -1905.5)
+	(1918.5, 65.0, -1905.5)
+	(1919.5, 65.0, -1905.5)
+	(1920.5, 65.0, -1905.5)
+	(1921.5, 65.0, -1905.5)
+	(1922.5, 65.0, -1905.5)
+	(1923.5, 65.0, -1905.5)
+	(1924.5, 65.0, -1905.5)
+	(1925.5, 65.0, -1905.5)
+	(1926.5, 65.0, -1905.5)
+	(1926.5, 65.0, -1904.5)
+	(1926.5, 64.0, -1904.5)
+	(1926.5, 64.0, -1903.5)
+	(1927.5, 64.0, -1903.5)
+	(1927.5, 63.0, -1903.5)
+	(1928.5, 63.0, -1903.5)
+	(1928.5, 62.0, -1903.5)
+	(1929.5, 62.0, -1903.5)
+	(1929.5, 62.0, -1902.5)
+	(1929.5, 62.0, -1901.5)
+	(1929.5, 61.0, -1900.5)
+	(1929.5, 62.0, -1899.5)
+	(1929.5, 62.0, -1898.5)
+	(1929.5, 62.0, -1897.5)
  Milk Level: 0
  My Mother is: None
-animalFarmCow: Can Execute? 0
-2019-02-28T22:14:08 74.904 INF MinEventLogMessage: XP gained during the last level:
-2019-02-28T22:14:08 74.904 INF CVarLogValue: $xpFromLootThisLevel == 0
-2019-02-28T22:14:08 74.904 INF CVarLogValue: $xpFromHarvestingThisLevel == 0
-2019-02-28T22:14:08 74.904 INF CVarLogValue: $xpFromKillThisLevel == 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-2019-02-28T22:14:08 75.257 INF [Steamworks.NET] GameServer.LogOn successful, SteamID=90123911341473799
-2019-02-28T22:14:08 75.276 INF [Steamworks.NET] Trying to create Lobby (visibility: k_ELobbyTypeFriendsOnly)
-animalFarmCow: Can Execute? 0
-2019-02-28T22:14:09 75.444 INF [Steamworks.NET] Lobby creation succeeded
-2019-02-28T22:14:09 75.450 INF [Steamworks.NET] Lobby entered: 109775240993386298
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-2019-02-28T22:14:10 77.088 INF MinEventLogMessage: Adding Food
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-2019-02-28T22:14:11 77.587 INF Respawn almost done
-2019-02-28T22:14:11 77.593 INF PlayerSpawnedInWorld (reason: LoadedGame, position: 323, 61, -659): localplayer
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-animalFarmCow: Can Execute? 0
-2019-02-28T22:14:36 103.302 INF Time: 0.98m FPS: 59.98 Heap: 1200.3MB Max: 1200.3MB Chunks: 240 CGO: 155 Ply: 1 Zom: 0 Ent: 2 (2) Items: 0 CO: 1 RSS: 2865.6MB
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector added to list: 324, 63, -673
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.5)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.4)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -672.2)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -672.1)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -671.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -672
-animalFarmCow:  Vector added to list: 324, 63, -672
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -671.7)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -672
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -671.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -672
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -671.4)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -672
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -671.3)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -672
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -671.1)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -672
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -671.0)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -671
-animalFarmCow:  Vector added to list: 324, 63, -671
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -670.8)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -671
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -670.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -671
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -670.5)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -671
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -670.3)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -671
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -670.2)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -671
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -670.0)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -670
-animalFarmCow:  Vector added to list: 324, 63, -670
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -669.8)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -669.7)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -669.5)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -669.4)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -669.2)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -669.0)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -668.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -669
-animalFarmCow:  Vector added to list: 324, 63, -669
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -668.7)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -669
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -668.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -669
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -668.4)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -669
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -668.2)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -669
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -668.1)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -669
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -667.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -668
-animalFarmCow:  Vector added to list: 324, 63, -668
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -667.8)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -668
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -667.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -668
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -667.4)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -668
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -667.3)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -668
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -667.1)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -668
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -667.0)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -667
-animalFarmCow:  Vector added to list: 324, 63, -667
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -666.8)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -666.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -666.5)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -666.3)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -666.2)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -666.0)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -665.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -666
-animalFarmCow:  Vector added to list: 324, 63, -666
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -665.7)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -665.5)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -665.4)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -665.2)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -665.1)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -664.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -665
-animalFarmCow:  Vector added to list: 324, 63, -665
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -664.7)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -665
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -664.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -665
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -664.4)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -665
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -664.3)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -665
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -664.1)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -665
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -663.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -664
-animalFarmCow:  Vector added to list: 324, 63, -664
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -663.8)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -663.6)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -663.5)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -663.3)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -663.1)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -663.0)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -663
-animalFarmCow:  Vector added to list: 324, 63, -663
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -662.8)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -662.7)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -662.5)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -662.3)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -662.2)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -662.0)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -662.0)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector added to list: 324, 63, -662
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.7, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.6, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.4, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.3, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.1, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 324, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (324.0, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 323, 63, -662
-animalFarmCow:  Vector added to list: 323, 63, -662
-animalFarmCow:  Checking Potential Patrol Point: (323.8, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 323, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (323.6, 61.1, -661.8)
-animalFarmCow:  Vector3i Equievalent: 323, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (323.5, 61.1, -661.8)
-animalFarmCow:  Vector3i Equievalent: 323, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (323.3, 61.1, -661.8)
-animalFarmCow:  Vector3i Equievalent: 323, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (323.2, 61.1, -661.8)
-animalFarmCow:  Vector3i Equievalent: 323, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (323.0, 61.1, -661.8)
-animalFarmCow:  Vector3i Equievalent: 323, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (322.8, 61.1, -661.8)
-animalFarmCow:  Vector3i Equievalent: 322, 63, -662
-animalFarmCow:  Vector added to list: 322, 63, -662
-animalFarmCow:  Checking Potential Patrol Point: (322.7, 61.1, -661.8)
-animalFarmCow:  Vector3i Equievalent: 322, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (322.5, 61.1, -661.8)
-animalFarmCow:  Vector3i Equievalent: 322, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (322.4, 61.1, -661.7)
-animalFarmCow:  Vector3i Equievalent: 322, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (322.2, 61.1, -661.7)
-animalFarmCow:  Vector3i Equievalent: 322, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (322.1, 61.1, -661.7)
-animalFarmCow:  Vector3i Equievalent: 322, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (321.9, 61.1, -661.7)
-animalFarmCow:  Vector3i Equievalent: 321, 63, -662
-animalFarmCow:  Vector added to list: 321, 63, -662
-animalFarmCow:  Checking Potential Patrol Point: (321.7, 61.1, -661.7)
-animalFarmCow:  Vector3i Equievalent: 321, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (321.6, 61.1, -661.7)
-animalFarmCow:  Vector3i Equievalent: 321, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (321.4, 61.1, -661.7)
-animalFarmCow:  Vector3i Equievalent: 321, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (321.3, 61.1, -661.6)
-animalFarmCow:  Vector3i Equievalent: 321, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (321.1, 61.1, -661.6)
-animalFarmCow:  Vector3i Equievalent: 321, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (320.9, 61.1, -661.6)
-animalFarmCow:  Vector3i Equievalent: 320, 63, -662
-animalFarmCow:  Vector added to list: 320, 63, -662
-animalFarmCow:  Checking Potential Patrol Point: (320.8, 61.1, -661.6)
-animalFarmCow:  Vector3i Equievalent: 320, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (320.6, 61.1, -661.6)
-animalFarmCow:  Vector3i Equievalent: 320, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (320.5, 61.1, -661.6)
-animalFarmCow:  Vector3i Equievalent: 320, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (320.3, 61.1, -661.6)
-animalFarmCow:  Vector3i Equievalent: 320, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (320.1, 61.1, -661.5)
-animalFarmCow:  Vector3i Equievalent: 320, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (320.0, 61.1, -661.5)
-animalFarmCow:  Vector3i Equievalent: 319, 63, -662
-animalFarmCow:  Vector added to list: 319, 63, -662
-animalFarmCow:  Checking Potential Patrol Point: (319.8, 61.1, -661.5)
-animalFarmCow:  Vector3i Equievalent: 319, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (319.7, 61.1, -661.5)
-animalFarmCow:  Vector3i Equievalent: 319, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (319.5, 61.1, -661.5)
-animalFarmCow:  Vector3i Equievalent: 319, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (319.4, 61.1, -661.5)
-animalFarmCow:  Vector3i Equievalent: 319, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (319.2, 61.1, -661.4)
-animalFarmCow:  Vector3i Equievalent: 319, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (319.0, 61.1, -661.4)
-animalFarmCow:  Vector3i Equievalent: 319, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (318.9, 61.1, -661.4)
-animalFarmCow:  Vector3i Equievalent: 318, 63, -662
-animalFarmCow:  Vector added to list: 318, 63, -662
-animalFarmCow:  Checking Potential Patrol Point: (318.7, 61.1, -661.4)
-animalFarmCow:  Vector3i Equievalent: 318, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (318.6, 61.1, -661.4)
-animalFarmCow:  Vector3i Equievalent: 318, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (318.4, 61.1, -661.4)
-animalFarmCow:  Vector3i Equievalent: 318, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (318.2, 61.1, -661.4)
-animalFarmCow:  Vector3i Equievalent: 318, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (318.1, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 318, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.9, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector added to list: 317, 63, -662
-animalFarmCow:  Checking Potential Patrol Point: (317.8, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.8, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.5)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.6)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.7, 61.1, -661.8)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.6, 61.1, -661.9)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -662
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.6, 61.1, -662.1)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -663
-animalFarmCow:  Vector added to list: 317, 63, -663
-animalFarmCow:  Checking Potential Patrol Point: (317.6, 61.1, -662.2)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.6, 61.1, -662.4)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.6, 61.1, -662.5)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.5, 61.1, -662.7)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.5, 61.1, -662.9)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -663
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.5, 61.1, -663.0)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -664
-animalFarmCow:  Vector added to list: 317, 63, -664
-animalFarmCow:  Checking Potential Patrol Point: (317.5, 61.1, -663.2)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.5, 61.1, -663.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.5, 61.1, -663.5)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.4, 61.1, -663.7)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.4, 61.1, -663.8)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.4, 61.1, -664.0)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -664
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.4, 61.1, -664.1)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -665
-animalFarmCow:  Vector added to list: 317, 63, -665
-animalFarmCow:  Checking Potential Patrol Point: (317.4, 61.1, -664.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -665
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.3, 61.1, -664.4)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -665
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.3, 61.1, -664.6)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -665
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.3, 61.1, -664.8)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -665
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.3, 61.1, -664.9)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -665
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.3, 61.1, -665.1)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -666
-animalFarmCow:  Vector added to list: 317, 63, -666
-animalFarmCow:  Checking Potential Patrol Point: (317.3, 61.1, -665.2)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.3, 61.1, -665.4)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.3, 61.1, -665.5)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.2, 61.1, -665.7)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.2, 61.1, -665.8)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.2, 61.1, -665.9)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -666
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.2, 61.1, -666.1)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -667
-animalFarmCow:  Vector added to list: 317, 63, -667
-animalFarmCow:  Checking Potential Patrol Point: (317.2, 61.1, -666.2)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.2, 61.1, -666.4)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.2, 61.1, -666.5)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.2, 61.1, -666.6)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.2, 61.1, -666.8)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.1, 61.1, -667.0)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -667
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.1, 61.1, -667.1)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -668
-animalFarmCow:  Vector added to list: 317, 63, -668
-animalFarmCow:  Checking Potential Patrol Point: (317.1, 61.1, -667.3)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -668
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.1, 61.1, -667.4)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -668
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.1, 61.1, -667.6)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -668
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.1, 61.1, -667.8)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -668
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.1, 61.1, -667.9)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -668
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.1, 61.1, -668.1)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -669
-animalFarmCow:  Vector added to list: 317, 63, -669
-animalFarmCow:  Checking Potential Patrol Point: (317.0, 61.1, -668.2)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -669
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.0, 61.1, -668.4)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -669
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.0, 61.1, -668.6)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -669
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.0, 61.1, -668.7)
-animalFarmCow:  Vector3i Equievalent: 317, 63, -669
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.0, 61.1, -668.9)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -669
-animalFarmCow:  Vector added to list: 316, 63, -669
-animalFarmCow:  Checking Potential Patrol Point: (317.0, 61.1, -669.0)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -670
-animalFarmCow:  Vector added to list: 316, 63, -670
-animalFarmCow:  Checking Potential Patrol Point: (317.0, 61.1, -669.2)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.0, 61.1, -669.3)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (317.0, 61.1, -669.5)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.9, 61.1, -669.7)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.9, 61.1, -669.8)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.9, 61.1, -670.0)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -670
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.9, 61.1, -670.1)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -671
-animalFarmCow:  Vector added to list: 316, 63, -671
-animalFarmCow:  Checking Potential Patrol Point: (316.9, 61.1, -670.3)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -671
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.9, 61.1, -670.5)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -671
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.9, 61.1, -670.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -671
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.9, 61.1, -670.8)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -671
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.8, 61.1, -670.9)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -671
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.8, 61.1, -671.1)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -672
-animalFarmCow:  Vector added to list: 316, 63, -672
-animalFarmCow:  Checking Potential Patrol Point: (316.8, 61.1, -671.2)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -672
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.8, 61.1, -671.4)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -672
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.8, 61.1, -671.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -672
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.8, 61.1, -671.7)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -672
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.8, 61.1, -671.9)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -672
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.8, 61.1, -672.0)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -673
-animalFarmCow:  Vector added to list: 316, 63, -673
-animalFarmCow:  Checking Potential Patrol Point: (316.7, 61.1, -672.2)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.7, 61.1, -672.4)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.7, 61.1, -672.5)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.7, 61.1, -672.7)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.7, 61.1, -672.8)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.7, 61.1, -673.0)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -673
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.7, 61.1, -673.2)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector added to list: 316, 63, -674
-animalFarmCow:  Checking Potential Patrol Point: (316.7, 61.1, -673.3)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.7, 61.1, -673.5)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.5)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow:  Checking Potential Patrol Point: (316.6, 61.1, -673.6)
-animalFarmCow:  Vector3i Equievalent: 316, 63, -674
-animalFarmCow:  Vector NOT added to list.
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 31  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -673.0)
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -673.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -672.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -671.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -670.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -668.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -667.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -666.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -665.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -664.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -663.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (323.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (322.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (321.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (320.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (319.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (318.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -663.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -664.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -665.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -666.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -667.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -668.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -670.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -671.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -672.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -673.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -674.0)
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 31  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -673.0)
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 31  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -673.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 30  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -672.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 29  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -671.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 28  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -670.0)
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 31  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -673.0)
-2019-02-28T22:15:06 133.279 INF Time: 1.48m FPS: 59.99 Heap: 1121.7MB Max: 1200.3MB Chunks: 240 CGO: 164 Ply: 1 Zom: 0 Ent: 2 (2) Items: 0 CO: 1 RSS: 2881.5MB
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 31  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -673.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 30  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -672.0)
-animalFarmCow: Baby The animalFarmCow - ID: 411 Health: 110 Stamina: 109.92 Thirst: 99.96339 Food: 150 Water: 146 Sanitation: 69 Current Order: Patrol
- Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 532.25 Ticks: 10645 )
-	buffstatuscheck ( Seconds: 532.25 Ticks: 10645 )
-	buffanimalbaby ( Seconds: 532.25 Ticks: 10645 )
-	buffsanitationstatuscheck ( Seconds: 532.25 Ticks: 10645 )
-	buffanimalcow ( Seconds: 532.25 Ticks: 10645 )
-	buffperkabilityupdate ( Seconds: 16.2 Ticks: 324 )
-	buffhealstaminamax ( Seconds: 57.35 Ticks: 1147 )
-	buffhealwatermax ( Seconds: 57.3 Ticks: 1146 )
-	buffwaterstaminaregen ( Seconds: 57.3 Ticks: 1146 )
-	buffelementsweltering ( Seconds: 16.25 Ticks: 325 )
- Active Quests: 
- Patrol Points: 
-	(324.0, 63.0, -673.0)
-	(324.0, 63.0, -672.0)
-	(324.0, 63.0, -671.0)
-	(324.0, 63.0, -670.0)
-	(324.0, 63.0, -669.0)
-	(324.0, 63.0, -668.0)
-	(324.0, 63.0, -667.0)
-	(324.0, 63.0, -666.0)
-	(324.0, 63.0, -665.0)
-	(324.0, 63.0, -664.0)
-	(324.0, 63.0, -663.0)
-	(324.0, 63.0, -662.0)
-	(323.0, 63.0, -662.0)
-	(322.0, 63.0, -662.0)
-	(321.0, 63.0, -662.0)
-	(320.0, 63.0, -662.0)
-	(319.0, 63.0, -662.0)
-	(318.0, 63.0, -662.0)
-	(317.0, 63.0, -662.0)
-	(317.0, 63.0, -663.0)
-	(317.0, 63.0, -664.0)
-	(317.0, 63.0, -665.0)
-	(317.0, 63.0, -666.0)
-	(317.0, 63.0, -667.0)
-	(317.0, 63.0, -668.0)
-	(317.0, 63.0, -669.0)
-	(316.0, 63.0, -669.0)
-	(316.0, 63.0, -670.0)
-	(316.0, 63.0, -671.0)
-	(316.0, 63.0, -672.0)
-	(316.0, 63.0, -673.0)
-	(316.0, 63.0, -674.0)
- Milk Level: 0
- My Mother is: None
-animalFarmCow: Baby The animalFarmCow - ID: 411 Health: 110 Stamina: 109.91 Thirst: 99.96345 Food: 150 Water: 146 Sanitation: 69 Current Order: Patrol
- Active Buffs: 
-	buffanimalstatuscheck ( Seconds: 533.25 Ticks: 10665 )
-	buffstatuscheck ( Seconds: 533.25 Ticks: 10665 )
-	buffanimalbaby ( Seconds: 533.25 Ticks: 10665 )
-	buffsanitationstatuscheck ( Seconds: 533.25 Ticks: 10665 )
-	buffanimalcow ( Seconds: 533.25 Ticks: 10665 )
-	buffperkabilityupdate ( Seconds: 17.2 Ticks: 344 )
-	buffhealstaminamax ( Seconds: 58.35 Ticks: 1167 )
-	buffhealwatermax ( Seconds: 58.3 Ticks: 1166 )
-	buffwaterstaminaregen ( Seconds: 58.3 Ticks: 1166 )
-	buffelementsweltering ( Seconds: 17.25 Ticks: 345 )
- Active Quests: 
- Patrol Points: 
-	(324.0, 63.0, -673.0)
-	(324.0, 63.0, -672.0)
-	(324.0, 63.0, -671.0)
-	(324.0, 63.0, -670.0)
-	(324.0, 63.0, -669.0)
-	(324.0, 63.0, -668.0)
-	(324.0, 63.0, -667.0)
-	(324.0, 63.0, -666.0)
-	(324.0, 63.0, -665.0)
-	(324.0, 63.0, -664.0)
-	(324.0, 63.0, -663.0)
-	(324.0, 63.0, -662.0)
-	(323.0, 63.0, -662.0)
-	(322.0, 63.0, -662.0)
-	(321.0, 63.0, -662.0)
-	(320.0, 63.0, -662.0)
-	(319.0, 63.0, -662.0)
-	(318.0, 63.0, -662.0)
-	(317.0, 63.0, -662.0)
-	(317.0, 63.0, -663.0)
-	(317.0, 63.0, -664.0)
-	(317.0, 63.0, -665.0)
-	(317.0, 63.0, -666.0)
-	(317.0, 63.0, -667.0)
-	(317.0, 63.0, -668.0)
-	(317.0, 63.0, -669.0)
-	(316.0, 63.0, -669.0)
-	(316.0, 63.0, -670.0)
-	(316.0, 63.0, -671.0)
-	(316.0, 63.0, -672.0)
-	(316.0, 63.0, -673.0)
-	(316.0, 63.0, -674.0)
- Milk Level: 0
- My Mother is: None
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 31  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -673.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 30  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -672.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 29  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -671.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 28  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -670.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 27  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -669.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 26  Total List: 32
-animalFarmCow: Heading to: (317.0, 63.0, -669.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 25  Total List: 32
-animalFarmCow: Heading to: (317.0, 63.0, -668.0)
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 31  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -673.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 30  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -672.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 29  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -671.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 28  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -670.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 27  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -669.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 26  Total List: 32
-animalFarmCow: Heading to: (317.0, 63.0, -669.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 25  Total List: 32
-animalFarmCow: Heading to: (317.0, 63.0, -668.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -673.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -672.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -671.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -670.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -668.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -667.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -666.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -665.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -664.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -663.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (323.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (322.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (321.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (320.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (319.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (318.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -663.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -664.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -665.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -666.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -667.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -668.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -670.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -671.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -672.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -673.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -674.0)
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 31  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -673.0)
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 31  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -673.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 30  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -672.0)
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 31  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -673.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 30  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -672.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 29  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -671.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 28  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -670.0)
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow:  Counter: 27  Total List: 32
-animalFarmCow: Heading to: (316.0, 63.0, -669.0)
-animalFarmCow: Can Execute? 32
-animalFarmCow: Entity has CurrentOrder CVAR
-animalFarmCow: Current Order is Patrol
-animalFarmCow: Entity is EntityAliveSDX
-animalFarmCow:  Patrol Points: 32
-animalFarmCow: Before Set Patrol 32
-animalFarmCow: After Set Patrol 32
-animalFarmCow: Seeking Patrol position: (316.0, 63.0, -674.0)
-2019-02-28T22:15:31 157.452 INF Preparing quit
-2019-02-28T22:15:31 157.452 INF Disconnect
-2019-02-28T22:15:31 157.455 INF NET: Stopping server protocols
-2019-02-28T22:15:31 157.459 INF NET: LiteNetLib server stopped
-2019-02-28T22:15:31 157.459 INF [Steamworks.NET] NET: Server stopped
-2019-02-28T22:15:31 157.460 INF [NET] ServerShutdown
-2019-02-28T22:15:31 157.461 INF SaveAndCleanupWorld
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -673.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -672.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -671.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -670.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -668.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -667.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -666.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -665.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -664.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -663.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (323.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (322.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (321.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (320.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (319.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (318.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -663.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -664.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -665.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -666.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -667.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -668.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -670.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -671.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -672.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -673.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -674.0)
-2019-02-28T22:15:31 157.555 INF Saving 80 of chunks took 61ms
-2019-02-28T22:15:31 157.563 INF [Steamworks.NET] Stopping server
-2019-02-28T22:15:31 157.599 INF [Steamworks.NET] Exiting Lobby
-2019-02-28T22:15:31 157.618 INF AstarManager Cleanup
-2019-02-28T22:15:31 157.621 INF World.Unload
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -673.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -672.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -671.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -670.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -668.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -667.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -666.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -665.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -664.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -663.0)
-animalFarmCow:  Writing Patrol Coordinate: (324.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (323.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (322.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (321.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (320.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (319.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (318.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -662.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -663.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -664.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -665.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -666.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -667.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -668.0)
-animalFarmCow:  Writing Patrol Coordinate: (317.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -669.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -670.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -671.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -672.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -673.0)
-animalFarmCow:  Writing Patrol Coordinate: (316.0, 63.0, -674.0)
-2019-02-28T22:15:31 157.656 INF Exited thread GenerateChunks
-2019-02-28T22:15:31 157.685 INF Exited thread SaveChunks C:\Users\Jeff\AppData\Roaming/7DaysToDie/Saves/Navezgane/CowTest6\Region
-2019-02-28T22:15:31 157.905 INF World.Cleanup
-2019-02-28T22:15:31 157.906 INF Exited thread ChunkRegeneration
-2019-02-28T22:15:31 157.912 INF Exited thread ChunkCalc
-2019-02-28T22:15:31 157.915 INF VehicleManager Save
-2019-02-28T22:15:31 157.939 INF Persistent GamePrefs saved
-2019-02-28T22:15:31 158.090 INF Persistent GamePrefs saved
-2019-02-28T22:15:31 158.092 INF Cleanup
-2019-02-28T22:15:31 158.124 INF AchievementManager.Cleanup
-2019-02-28T22:15:32 158.430 INF OnApplicationQuit
-2019-02-28T22:15:32 158.434 INF OnApplicationQuit
-Setting up 4 worker threads for Enlighten.
-  Thread -> id: 88fd4 -> priority: 1 
-  Thread -> id: 89490 -> priority: 1 
-  Thread -> id: 87170 -> priority: 1 
-  Thread -> id: 89420 -> priority: 1 
+2019-03-01T15:43:43 87.119 INF Missing paint ID XML entry: 76 for block 'cobblestoneBlock'
+2019-03-01T15:43:43 87.119 INF Missing paint ID XML entry: 76 for block 'cobblestoneBlock'
+2019-03-01T15:43:49 92.907 INF Respawn almost done
+2019-03-01T15:43:49 92.922 INF PlayerSpawnedInWorld (reason: LoadedGame, position: 1922, 62, -1891): localplayer
+2019-03-01T15:43:50 94.275 INF [Steamworks.NET] GameServer.LogOn successful, SteamID=90123934530749451
+2019-03-01T15:43:50 94.302 INF [Steamworks.NET] Trying to create Lobby (visibility: k_ELobbyTypePrivate)
+2019-03-01T15:43:50 94.538 INF [Steamworks.NET] Lobby creation succeeded
+2019-03-01T15:43:50 94.544 INF [Steamworks.NET] Lobby entered: 109775240993924061
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1896.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1897.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1898.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1899.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1900.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1901.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 64.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 64.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1918.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1919.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1920.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1921.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1922.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1923.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1924.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1925.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 65.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 64.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 64.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1927.5, 64.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1927.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1928.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1928.5, 62.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1901.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 61.0, -1900.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1899.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1898.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1897.5)
+2019-03-01T15:44:09 113.416 INF Executing command 'dm'
+2019-03-01T15:44:10 113.810 INF Executing command 'cm'
+2019-03-01T15:44:10 114.441 INF Time: 1.29m FPS: 22.15 Heap: 1066.4MB Max: 1066.4MB Chunks: 225 CGO: 135 Ply: 1 Zom: 1 Ent: 3 (3) Items: 1 CO: 1 RSS: 3198.7MB
+SphereII:  Patrol Counter: 35 - Total Count: 36
+SphereII:  Patrol Counter: 34 - Total Count: 36
+SphereII:  Patrol Counter: 33 - Total Count: 36
+SphereII:  Patrol Counter: 32 - Total Count: 36
+SphereII:  Patrol Counter: 31 - Total Count: 36
+SphereII:  Patrol Counter: 30 - Total Count: 36
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1896.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1897.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1898.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1899.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1900.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1901.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 64.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 64.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1918.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1919.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1920.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1921.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1922.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1923.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1924.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1925.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 65.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 64.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 64.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1927.5, 64.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1927.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1928.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1928.5, 62.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1901.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 61.0, -1900.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1899.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1898.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1897.5)
+SphereII:  Patrol Counter: 29 - Total Count: 36
+SphereII:  Patrol Counter: 28 - Total Count: 36
+SphereII:  Patrol Counter: 27 - Total Count: 36
+SphereII:  Patrol Counter: 26 - Total Count: 36
+SphereII:  Patrol Counter: 25 - Total Count: 36
+SphereII:  Patrol Counter: 24 - Total Count: 36
+SphereII:  Patrol Counter: 23 - Total Count: 36
+SphereII:  Patrol Counter: 22 - Total Count: 36
+SphereII:  Patrol Counter: 21 - Total Count: 36
+SphereII:  Patrol Counter: 20 - Total Count: 36
+SphereII:  Patrol Counter: 19 - Total Count: 36
+SphereII:  Patrol Counter: 18 - Total Count: 36
+SphereII:  Patrol Counter: 17 - Total Count: 36
+SphereII:  Patrol Counter: 16 - Total Count: 36
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1896.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1897.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1898.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1899.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1900.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1901.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 64.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 64.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1918.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1919.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1920.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1921.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1922.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1923.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1924.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1925.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 65.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 64.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 64.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1927.5, 64.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1927.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1928.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1928.5, 62.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1901.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 61.0, -1900.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1899.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1898.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1897.5)
+2019-03-01T15:44:38 142.503 INF Saving 81 of chunks took 120ms
+2019-03-01T15:44:40 143.884 INF Disconnect
+2019-03-01T15:44:40 143.899 INF NET: Stopping server protocols
+2019-03-01T15:44:40 143.915 INF NET: LiteNetLib server stopped
+2019-03-01T15:44:40 143.916 INF [Steamworks.NET] NET: Server stopped
+2019-03-01T15:44:40 143.916 INF [NET] ServerShutdown
+2019-03-01T15:44:40 143.918 INF SaveAndCleanupWorld
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1896.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1897.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1898.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1899.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1900.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1901.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 64.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 64.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1918.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1919.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1920.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1921.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1922.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1923.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1924.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1925.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 65.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 64.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 64.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1927.5, 64.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1927.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1928.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1928.5, 62.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1901.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 61.0, -1900.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1899.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1898.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1897.5)
+2019-03-01T15:44:40 144.067 INF Saving 78 of chunks took 100ms
+2019-03-01T15:44:40 144.071 INF [Steamworks.NET] Stopping server
+2019-03-01T15:44:40 144.101 INF [Steamworks.NET] Exiting Lobby
+2019-03-01T15:44:40 144.119 INF AstarManager Cleanup
+2019-03-01T15:44:40 144.129 INF World.Unload
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1896.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1897.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1898.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1899.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1900.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1901.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 62.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 63.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 64.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 64.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1917.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1918.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1919.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1920.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1921.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1922.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1923.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1924.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1925.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 65.0, -1905.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 65.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 64.0, -1904.5)
+SphereII:  Writing Patrol Coordinate: (1926.5, 64.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1927.5, 64.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1927.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1928.5, 63.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1928.5, 62.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1903.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1902.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1901.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 61.0, -1900.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1899.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1898.5)
+SphereII:  Writing Patrol Coordinate: (1929.5, 62.0, -1897.5)
+2019-03-01T15:44:40 144.191 INF Exited thread GenerateChunks
+2019-03-01T15:44:40 144.264 INF Exited thread SaveChunks C:\Users\jkilpatrick\AppData\Roaming/7DaysToDie/Saves/Navezgane/cow12\Region
+2019-03-01T15:44:40 144.520 INF World.Cleanup
+2019-03-01T15:44:40 144.523 INF Exited thread ChunkRegeneration
+2019-03-01T15:44:40 144.529 INF Exited thread ChunkCalc
+2019-03-01T15:44:40 144.532 INF VehicleManager Save
+2019-03-01T15:44:40 144.586 INF Persistent GamePrefs saved
+2019-03-01T15:44:43 147.053 INF Preparing quit
+2019-03-01T15:44:43 147.088 INF Persistent GamePrefs saved
+2019-03-01T15:44:43 147.097 INF Cleanup
+2019-03-01T15:44:43 147.128 INF AchievementManager.Cleanup
+2019-03-01T15:44:43 147.447 INF OnApplicationQuit
+2019-03-01T15:44:43 147.450 INF OnApplicationQuit
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 657c -> priority: 1 
+  Thread -> id: 575c -> priority: 1 

@@ -111,6 +111,7 @@
     <Compile Include="Mods\SphereII_TakeAndReplace\Scripts\PickUpAndReplace.cs" />
     <Compile Include="Mods\SphereII_UnlockHealthBar\PatchScripts\UnlockHealthBar.cs" />
     <Compile Include="Mods\SphereII_WanderingTraders\Scripts\EntityWanderingTrader.cs" />
+    <Compile Include="Mods\Blooms_AnimalHusbandry\Scripts\Test.cs" />
     <Compile Include="Mods\ZombieTransmogrifier\PatchScripts\EntityAlive.cs" />
     <Compile Include="Mods\ZombieTransmogrifier\Scripts\EntityFlyingBaseSDX.cs" />
     <Compile Include="Mods\ZombieTransmogrifier\Scripts\EntityGenericSDX.cs" />
@@ -183,6 +184,9 @@
     <None Include="Mods\SphereII_TakeAndReplace\README.md" />
     <None Include="Mods\SphereII_UnlockHealthBar\ReadMe.md" />
     <None Include="Mods\SphereII_WanderingTraders\ReadMe.md" />
+    <None Include="Mods\SyX_SecurityBots\ReadMe.md" />
+    <None Include="Mods\SyX_SecurityBots\Resources\DroneSounds.unity3d" />
+    <None Include="Mods\SyX_SecurityBots\Resources\Spheres.unity3d" />
     <None Include="Mods\ZombieTransmogrifier\ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +275,11 @@
     <Content Include="Mods\SphereII_WanderingTraders\Config\entityclasses.xml" />
     <Content Include="Mods\SphereII_WanderingTraders\mod.xml" />
     <Content Include="Mods\SphereII_WanderingTraders\ModInfo.xml" />
+    <Content Include="Mods\SyX_SecurityBots\Config\entityclasses.xml" />
+    <Content Include="Mods\SyX_SecurityBots\Config\entitygroups.xml" />
+    <Content Include="Mods\SyX_SecurityBots\Config\items.xml" />
+    <Content Include="Mods\SyX_SecurityBots\Config\sounds.xml" />
+    <Content Include="Mods\SyX_SecurityBots\ModInfo.xml" />
     <Content Include="Mods\ZombieTransmogrifier\Config\EntityClasses.xml" />
     <Content Include="Mods\ZombieTransmogrifier\mod.xml" />
     <Content Include="Mods\ZombieTransmogrifier\ModInfo.xml" />

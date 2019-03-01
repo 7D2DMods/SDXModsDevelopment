@@ -101,6 +101,7 @@ class EntityAliveSDX : EntityAlive
             case 4: // Set Patrol Point
                 this.Buffs.SetCustomVar("$Leader", _entityFocusing.entityId, true);
                 this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.SetPatrolPoint, true);
+                this.PatrolCoordinates.Clear(); // Clear the existing point.
                 break;
             case 5: // end patrol Point
                 this.Buffs.SetCustomVar("$Leader", 0, true);
@@ -127,13 +128,16 @@ class EntityAliveSDX : EntityAlive
 
     public virtual void UpdatePatrolPoints( Vector3 position )
     {
-        DisplayLog(" Checking Potential Patrol Point: " + position);
-        Vector3i vector3i = new Vector3i(Utils.Fastfloor(position.x), Utils.Fastfloor(position.y + 2.1f), Utils.Fastfloor(position.z));
-        DisplayLog(" Vector3i Equievalent: " + vector3i.ToString());
-        if (!this.PatrolCoordinates.Contains(vector3i.ToVector3()))
+        // 0 out the the end of the float, then add 0.5 to find the center of hte position.
+        Vector3i vector3i = new Vector3i(Utils.Fastfloor(position.x), Utils.Fastfloor(position.y ), Utils.Fastfloor(position.z));
+        Vector3 vec = vector3i.ToVector3();
+        vec.x += 0.5f;
+        vec.z += 0.5f;
+
+        if (!this.PatrolCoordinates.Contains( vec))
         {
-            DisplayLog(" Vector added to list: " + vector3i.ToString());
-            this.PatrolCoordinates.Add(vector3i.ToVector3());
+            DisplayLog(" Vector added to list: " + vec.ToString());
+            this.PatrolCoordinates.Add(vec);
         }
         else
         {
@@ -149,15 +153,17 @@ class EntityAliveSDX : EntityAlive
         this.Buffs.Read(_br);
         this.QuestJournal = new QuestJournal();
         this.QuestJournal.Read(_br);
-       // this.PatrolCoordinates.Clear();
-        //foreach (String strPatrolPoint in _br.ReadString().Split(';'))
-        //{
-        //    DisplayLog(" Potential Patrol Point: " + strPatrolPoint);
-        //    Vector3 temp = StringToVector3(strPatrolPoint);
-        //    if ( temp != Vector3.zero )
-        //        this.PatrolCoordinates.Add( temp );
-        //}
+        this.PatrolCoordinates.Clear();
+        String strPatrol = _br.ReadString();
+        foreach (String strPatrolPoint in strPatrol.Split(';'))
+        {
+            Vector3 temp = StringToVector3(strPatrolPoint);
+            if (temp != Vector3.zero)
+                this.PatrolCoordinates.Add(temp);
+        }
 
+        if ( this.PatrolCoordinates.Count > 2)
+            this.Buffs.AddCustomVar("$CurrentOrder", (float)Orders.Patrol);
     }
 
     public Vector3 StringToVector3(string sVector)
@@ -193,11 +199,9 @@ class EntityAliveSDX : EntityAlive
         this.QuestJournal.Write(_bw);
         String strPatrolCoordinates ="";
         foreach (Vector3 temp in this.PatrolCoordinates)
-        {
-            DisplayLog(" Writing Patrol Coordinate: " + temp);
-            strPatrolCoordinates = ";" + temp;
-        }
-       // _bw.Write(strPatrolCoordinates);
+            strPatrolCoordinates += ";" + temp;
+
+        _bw.Write(strPatrolCoordinates);
     }
 
     public void DisplayStats()
