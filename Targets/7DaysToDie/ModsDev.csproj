@@ -85,6 +85,7 @@
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndAttackTarget.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndFollowTargetSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIMaslowLevel1SDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIPatrolSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetNearestEntityAsTargetSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionGiveQuestSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionPumpQuestSDX.cs" />

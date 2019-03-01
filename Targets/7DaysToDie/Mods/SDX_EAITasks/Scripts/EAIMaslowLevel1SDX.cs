@@ -15,7 +15,6 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     List<String> lstSanitation = new List<String>();
     List<String> lstSanitationBuffs = new List<String>();
 
-    List<String> lstBabyBuffs = new List<String>();
 
     String strHomeBuff = "";
     String strSanitationBlock = "terrDirt";
@@ -52,8 +51,6 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
         this.lstSanitation = ConfigureEntityClass("ToiletBlocks", entityClass);
         this.lstSanitationBuffs = ConfigureEntityClass("SanitationBuffs", entityClass);
-
-        this.lstBabyBuffs = ConfigureEntityClass("BabyBuffs", entityClass);
 
         if (entityClass.Properties.Values.ContainsKey("SanitationBlock"))
             this.strSanitationBlock = entityClass.Properties.Values["SanitationBlock"];

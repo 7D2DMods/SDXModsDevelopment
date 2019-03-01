@@ -21,6 +21,7 @@ class EntityAliveSDX : EntityAlive
     public QuestJournal QuestJournal = new QuestJournal();
     public List<String> lstQuests = new List<String>();
     public Orders currentOrder = Orders.Wander;
+    public List<Vector3> PatrolCoordinates = new List<Vector3>();
 
     String strMyName = "Bob";
     public System.Random random = new System.Random();
@@ -38,7 +39,10 @@ class EntityAliveSDX : EntityAlive
         Follow = 0,
         Stay = 1,
         Wander = 2,
-        Pet = 3
+        Pet = 3,
+        SetPatrolPoint = 4,
+        EndPatrolPoint = 5,
+        Patrol = 6
     }
 
 
@@ -67,7 +71,9 @@ class EntityAliveSDX : EntityAlive
             new EntityActivationCommand("FollowMe", "talk", true),
             new EntityActivationCommand("StayHere", "talk", true),
             new EntityActivationCommand("HangOut", "talk", true),
-            new EntityActivationCommand("Compliment", "talk", true)
+            new EntityActivationCommand("SetPatrol", "talk", true),
+            new EntityActivationCommand("EndSetPatrol", "talk", true),
+            new EntityActivationCommand("Patrol", "talk", true)
         };
 
         return ActivationCommands;
@@ -92,7 +98,18 @@ class EntityAliveSDX : EntityAlive
                 this.Buffs.SetCustomVar("$Leader", 0, true);
                 this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Wander, true);
                 break;
-            case 4: // Something nice?
+            case 4: // Set Patrol Point
+                this.Buffs.SetCustomVar("$Leader", _entityFocusing.entityId, true);
+                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.SetPatrolPoint, true);
+                break;
+            case 5: // end patrol Point
+                this.Buffs.SetCustomVar("$Leader", 0, true);
+                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Patrol, true);
+                break;
+
+            
+            case 6: // end patrol Point
+                this.Buffs.SetCustomVar("$Leader", 0, true);
                 break;
             default:
                 break;
@@ -107,6 +124,14 @@ class EntityAliveSDX : EntityAlive
         InvokeRepeating("DisplayStats", 0f, 60f);
     }
 
+
+    public virtual void UpdatePatrolPoints( Vector3 position )
+    {
+        Vector3i vector3i = new Vector3i(Utils.Fastfloor(position.x), Utils.Fastfloor(position.y + 2.1f), Utils.Fastfloor(position.z));
+        if (!this.PatrolCoordinates.Contains(vector3i.ToVector3() ))
+            this.PatrolCoordinates.Add(vector3i.ToVector3() );
+
+    }
     // Reads the buff and quest information
     public override void Read(byte _version, BinaryReader _br)
     {
@@ -115,6 +140,30 @@ class EntityAliveSDX : EntityAlive
         this.Buffs.Read(_br);
         this.QuestJournal = new QuestJournal();
         this.QuestJournal.Read(_br);
+        this.PatrolCoordinates.Clear();
+        foreach( String strPatrolPoint in _br.ReadString().Split(';'))
+            this.PatrolCoordinates.Add(StringToVector3(strPatrolPoint));
+
+    }
+
+    public static Vector3 StringToVector3(string sVector)
+    {
+        // Remove the parentheses
+        if (sVector.StartsWith("(") && sVector.EndsWith(")"))
+        {
+            sVector = sVector.Substring(1, sVector.Length - 2);
+        }
+
+        // split the items
+        string[] sArray = sVector.Split(',');
+
+        // store as a Vector3
+        Vector3 result = new Vector3(
+            float.Parse(sArray[0]),
+            float.Parse(sArray[1]),
+            float.Parse(sArray[2]));
+
+        return result;
     }
 
     // Saves the buff and quest information
@@ -124,6 +173,10 @@ class EntityAliveSDX : EntityAlive
         _bw.Write(this.strMyName);
         this.Buffs.Write(_bw, true);
         this.QuestJournal.Write(_bw);
+        String strPatrolCoordinates ="";
+        foreach (Vector3 temp in this.PatrolCoordinates)
+            strPatrolCoordinates = ";" + temp;
+        _bw.Write(strPatrolCoordinates);
     }
 
     public void DisplayStats()
@@ -143,6 +196,9 @@ class EntityAliveSDX : EntityAlive
         strOutput += " Stamina: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value + " Food: " + FoodAmount + " Water: " + WaterAmount;
         strOutput += " Sanitation: " + strSanitation;
 
+        if (this.Buffs.HasCustomVar("$CurrentOrder"))
+            strOutput += " Current Order: " + (Orders)(int)this.Buffs.GetCustomVar("$CurrentOrder");
+
         strOutput += "\n Active Buffs: ";
         foreach (BuffValue buff in this.Buffs.ActiveBuffs)
             strOutput += "\n\t" + buff.BuffName + " ( Seconds: " + buff.DurationInSeconds + " Ticks: " + buff.DurationInTicks + " )";
@@ -151,6 +207,9 @@ class EntityAliveSDX : EntityAlive
         foreach (Quest quest in this.QuestJournal.quests)
             strOutput += "\n\t" + quest.ID + " Current State: " + quest.CurrentState + " Current Phase: " + quest.CurrentPhase;
 
+        strOutput += "\n Patrol Points: ";
+        foreach (Vector3 vec in this.PatrolCoordinates)
+            strOutput += "\n\t" + vec.ToString();
         return strOutput;
     }
 

@@ -74,8 +74,6 @@
  
       <property name="TimeStayAfterDeath" value="1" />
 
-      <!--property name="AITask-1" value="FollowOrdersSDX, Mods" /-->
-      <!-- if the entity has the following buffs, search for water 20 blocks in all direction -->
       <property name="AITask-1" value="Territorial"/>
       <property name="AITask-2" value="Look"/>
       
@@ -85,28 +83,20 @@
       <property name="AITask-3" value="ApproachAndFollowTargetSDX, Mods" param1="$Mother,$Leader,hayBaleBlock,foodCornOnTheCob"/>
       <property name="AITask-4" value="MaslowLevel1SDX, Mods"/>
       <property name="AITask-5" value="WanderSDX, Mods"/>
+      <property name="AITask-6" value="PatrolSDX, Mods"/>
 
       <!-- Uses the same mechanism as ApproachAndFollowTargetSDX to assign leadership. -->
       <!--property name="AITask-6" value="ApproachAndAttackTargetSDX, Mods" param1="$Mother,$Leader"/-->
 
-      <property name="AITask-6" value=""/>
+      <property name="AITask-7" value=""/>
 
       <property name="Names" value="Rose,Dahlia,Flower,Minnie,Daisy,Darla,Margie,Maggie,Esmeralda,Shelly,Meg,Lois,Jasmine,Bella,Candie,Bessie,Emma,Penelope,Bella,Molly,Clarabelle,Henrietta,Nettie,Annabelle,Gertie,Betty Sue, Ella, Anna,Dorothy,Annie,Honebun,Sweetie,LovaBull,Cupcake,Baby,Cookie,Sunny,SunShine,Cocoa,Muffin,Pinky,Blue,Sugar,Booboo,Princess,Big Mac,Madonna,Bertha,Waffles,Moscow,MooMoo,Mud Pie,Shrimp,Cowlick,Ineda Bunn,Waffles,Hamburger,Brown Cow,Humphry,Heifer,Mickey D" />
-      <!--property name="AITask-3" value="Territorial"/-->
-
-      <!--property name="AITask-2" value="FindNearestFoodBlockSDX, Mods" param1="buffStatusHungry1,buffStatusHungry2" param2="campfire" /-->
-      <!-- If you have the param1 buff, or item in hand, it won't attack, but will follow you. -->
-      <!--property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="buffBeastMaster"/-->
-
-      <!-- To find the Home Block, you need a block, plus a buff to keep it close by -->
-      <!-- This allows you to re-use the same block, but have different buffs for different animals -->
-      <!--property name="AITask-4" value="FindHomeBlockSDX, Mods" param1="cntCowHomeBlock" param2="buffHomePoint"/-->
   
       <!-- Loot List Alive lets us display the dialog box for the entity commands -->
       <property name="LootListAlive" value="62"/>
       
       <!-- The starting buffs -->
-      <property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck;buffAnimalBaby;buffSanitationStatusCheck" />
+      <property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck;buffAnimalBaby;buffSanitationStatusCheck;buffAnimalCow" />
 
       <!-- Food items and bins that this entity will eat, if using the right AI Task -->
 			<property name="FoodItems" value="hayBaleBlock,resourceYuccaFibers,foodCropYuccaFruit,foodCornBread,foodCornOnTheCob,foodCornMeal,foodCropCorn,foodCropGraceCorn"/>
@@ -117,16 +107,10 @@
       <property name="ThirstyBuffs" value="buffStatusThirsty1,buffStatusThirsty2" />
       <property name="HungryBuffs" value="buffStatusHungry1,buffStatusHungry2" />
 
-      <!-- This is used for the Maslow Level 1 script, so that the baby can be identified and follow its mother -->
-      <property name="BabyBuffs" value="buffAnimalBaby" />
-      
       <!-- Sanitation Buff: Aka, make 'em poop part. Add in  buffSanitationStatusCheck in the Buffs entry here to enable. -->
       <property name="SanitationBuffs" value="buffStatusSanitation1,buffStatusSanitation2" />
       <property name="ToiletBlocks" value="cntToilet01,cntToilet02,cntToilet03" />
-      <!-- The poop block! -->
-      <property name="SanitationBlock" value="terrDirt" />
-
-      <property name="Incentive" value="buffCowLeader"/>
+      <property name="SanitationBlock" value="terrDirt" /> <!-- Poop block-->
 
       <!-- This is the item you get from harvesting it -->
 			<property name="ProductItem" value="drinkJarMilk"/>

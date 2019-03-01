@@ -16,7 +16,6 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
     private int pathCounter;
 
 
-
     private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
@@ -68,7 +67,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
         if (result)
             this.entityTarget = entity;
-   
+
         return result;
     }
 
@@ -91,6 +90,8 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         }
 
         this.entityTarget = null;
+
+    
         return false;
     }
 
@@ -100,15 +101,15 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             return false;
 
         // If there is an entity in bounds, then let this AI Task roceed. Otherwise, don't do anything with it.
-       return ConfigureTargetEntity();
+        return ConfigureTargetEntity();
 
     }
 
-  
+
 
     public override bool Continue()
     {
-        if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.entityTarget == null)
+        if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
             return false;
 
         return ConfigureTargetEntity();
@@ -116,13 +117,32 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public override void Update()
     {
+        Vector3 position = Vector3.zero;
+        float targetXZDistanceSq = 0f;
 
         // No entity, so no need to do anything.
         if (this.entityTarget == null)
             return;
 
+        // Let the entity keep looking at you, otherwise it may just sping around.
+        this.theEntity.SetLookPosition(this.entityTarget.getHeadPosition());
+
         // Find the location of the entity, and figure out where it's at.
-        Vector3 position = this.entityTarget.position;
+        position = this.entityTarget.position;
+        targetXZDistanceSq = base.GetTargetXZDistanceSq(6);
+
+        EntityAliveSDX myEntity = this.theEntity as EntityAliveSDX;
+        if (myEntity)
+        {
+            // Check if there's a cvar for that incentive, such as $Mother or $Leader.
+            if (this.theEntity.Buffs.HasCustomVar("$CurrentOrder"))
+            {
+                if (this.theEntity.Buffs.GetCustomVar("$CurrentOrder") == (float)EntityAliveSDX.Orders.SetPatrolPoint)
+                {
+                    myEntity.UpdatePatrolPoints(this.entityTarget.position);
+                }
+            }
+        }
         Vector3 a = position - this.entityTargetPos;
         if (a.sqrMagnitude < 1f)
             this.entityTargetVel = this.entityTargetVel * 0.7f + a * 0.3f;
@@ -132,13 +152,12 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         this.theEntity.moveHelper.CalcIfUnreachablePos(position);
 
         float num2 = distanceToEntity * distanceToEntity;
-        float targetXZDistanceSq = base.GetTargetXZDistanceSq(6);
+
         float num3 = position.y - this.theEntity.position.y;
         float num4 = Utils.FastAbs(num3);
         bool flag = targetXZDistanceSq <= num2 && num4 < 1f;
 
-        // Let the entity keep looking at you, otherwise it may just sping around.
-        this.theEntity.SetLookPosition(this.entityTarget.getHeadPosition());
+
 
         // num is used to determine how close and comfortable the entity approaches you, so let's make sure they respect some personal space
         if (distanceToEntity < 1)

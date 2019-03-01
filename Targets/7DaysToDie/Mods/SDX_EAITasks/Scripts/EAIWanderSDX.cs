@@ -1,7 +1,15 @@
 ﻿using System;
-    class EAIWanderSDX : EAIWander
-    {
+using System.Collections.Generic;
+using UnityEngine;
 
+class EAIWanderSDX : EAIWander
+    {
+    private bool blDisplayLog = true;
+    public void DisplayLog(String strMessage)
+    {
+        if (blDisplayLog)
+            Debug.Log(this.theEntity.EntityName + ": " + strMessage);
+    }
     public bool FetchOrders( )
     {
         if (this.theEntity.Buffs.HasCustomVar("$CurrentOrder"))
@@ -12,6 +20,7 @@
                 return false;
             }
         }
+    
         return true;
     }
     public override bool CanExecute()
