@@ -137,8 +137,6 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         EntityAliveSDX myEntity = this.theEntity as EntityAliveSDX;
         if (myEntity)
         {
-            
-            // Check if there's a cvar for that incentive, such as $Mother or $Leader.
             if (this.theEntity.Buffs.HasCustomVar("$CurrentOrder"))
             {
                 if (this.theEntity.Buffs.GetCustomVar("$CurrentOrder") == (float)EntityAliveSDX.Orders.SetPatrolPoint)

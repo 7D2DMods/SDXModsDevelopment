@@ -28,18 +28,6 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
     public float MaxDistanceToSeePlayer = 20f;
     public float HarvestDelay = 10f;
 
-    protected override void Awake()
-    {
-        //BoxCollider component = base.gameObject.GetComponent<BoxCollider>();
-        //if (component == null)
-        //    component = base.gameObject.AddComponent<BoxCollider>();
-        //if (component)
-        //{
-        //    component.center = new Vector3(0f, 0.85f, 0f);
-        //    component.size = new Vector3(2f, 1.6f, 2f);
-        //}
-        base.Awake();
-    }
     public override void CopyPropertiesFromEntityClass()
     {
         base.CopyPropertiesFromEntityClass();
