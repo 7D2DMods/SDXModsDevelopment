@@ -39,12 +39,11 @@ class EntityAliveSDX : EntityAlive
         Follow = 0,
         Stay = 1,
         Wander = 2,
-        Pet = 3,
+        None = 3,
         SetPatrolPoint = 4,
         EndPatrolPoint = 5,
         Patrol = 6
     }
-
 
     // Over-ride for CopyProperties to allow it to read in StartingQuests.
     public override void CopyPropertiesFromEntityClass()
@@ -72,7 +71,6 @@ class EntityAliveSDX : EntityAlive
             new EntityActivationCommand("StayHere", "talk", true),
             new EntityActivationCommand("HangOut", "talk", true),
             new EntityActivationCommand("SetPatrol", "talk", true),
-            new EntityActivationCommand("EndSetPatrol", "talk", true),
             new EntityActivationCommand("Patrol", "talk", true)
         };
 
@@ -81,6 +79,8 @@ class EntityAliveSDX : EntityAlive
 
     public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
     {
+        this.emodel.avatarController.SetBool("IsBusy", true);
+
         switch (_indexInBlockActivationCommands)
         {
             case 0: // Tell me about yourself
@@ -107,11 +107,6 @@ class EntityAliveSDX : EntityAlive
                 this.Buffs.SetCustomVar("$Leader", 0, true);
                 this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Patrol, true);
                 break;
-
-            
-            case 6: // end patrol Point
-                this.Buffs.SetCustomVar("$Leader", 0, true);
-                break;
             default:
                 break;
         }
@@ -125,26 +120,16 @@ class EntityAliveSDX : EntityAlive
         InvokeRepeating("DisplayStats", 0f, 60f);
     }
 
-
+    
     public virtual void UpdatePatrolPoints( Vector3 position )
     {
-        // 0 out the the end of the float, then add 0.5 to find the center of hte position.
-        Vector3i vector3i = new Vector3i(Utils.Fastfloor(position.x), Utils.Fastfloor(position.y ), Utils.Fastfloor(position.z));
-        Vector3 vec = vector3i.ToVector3();
-        vec.x += 0.5f;
-        vec.z += 0.5f;
-
-        if (!this.PatrolCoordinates.Contains( vec))
-        {
-            DisplayLog(" Vector added to list: " + vec.ToString());
-            this.PatrolCoordinates.Add(vec);
-        }
-        else
-        {
-            DisplayLog(" Vector NOT added to list.");
-        }
-
+        position.x = 0.5f + Utils.Fastfloor(position.x);
+        position.z = 0.5f + Utils.Fastfloor(position.z);
+        position.y = Utils.Fastfloor(position.y);
+        if (!this.PatrolCoordinates.Contains(position))
+            this.PatrolCoordinates.Add(position);
     }
+
     // Reads the buff and quest information
     public override void Read(byte _version, BinaryReader _br)
     {
@@ -174,9 +159,7 @@ class EntityAliveSDX : EntityAlive
         DisplayLog("String to Vector: " + sVector);
         // Remove the parentheses
         if (sVector.StartsWith("(") && sVector.EndsWith(")"))
-        {
             sVector = sVector.Substring(1, sVector.Length - 2);
-        }
 
         // split the items
         string[] sArray = sVector.Split(',');
@@ -274,6 +257,31 @@ class EntityAliveSDX : EntityAlive
    
     public override void OnUpdateLive()
     {
+        // Check if there's a player within 10 meters of us. If not, resume wandering.
+        this.emodel.avatarController.SetBool("IsBusy", false);
+
+        List<global::Entity> entitiesInBounds = global::GameManager.Instance.World.GetEntitiesInBounds(this, new Bounds(this.position, Vector3.one * 10f));
+        if (entitiesInBounds.Count > 0)
+        {
+            for (int i = 0; i < entitiesInBounds.Count; i++)
+            {
+                if (entitiesInBounds[i] is EntityPlayer)
+                    this.emodel.avatarController.SetBool("IsBusy", true);
+            }
+
+        }
+
+
+        // Check the state to see if the controller IsBusy or not. If it's not, then let it walk.
+        bool isBusy = false;
+        this.emodel.avatarController.TryGetBool("IsBusy", out isBusy);
+
+        if (IsAlert)
+            isBusy = false;
+
+        if (isBusy == false)
+            base.OnUpdateLive();
+
         // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
         this.Stats.Water.Tick(0.5f, 0, false);
 

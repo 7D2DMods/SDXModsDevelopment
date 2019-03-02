@@ -1,7 +1,7 @@
 <configs>
 	<append xpath="/entity_classes" >
 		<entity_class name="Sphere_Bots" extends="zombieTemplateMale" >
-      <property name="Class" value="EntityAliveFarmingAnimal, Mods" />
+      <property name="Class" value="EntityAliveSDX, Mods" />
       <property name="AvatarController" value="MecanimSDX, Mods" />
 			<property name="SurfaceCategory" value="metal"/>
 			<property name="RootMotion" value="false" />
