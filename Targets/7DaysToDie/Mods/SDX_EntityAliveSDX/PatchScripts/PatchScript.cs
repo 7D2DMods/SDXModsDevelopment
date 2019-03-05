@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 public class EntityAliveSDXPatcher : IPatcherMod
 {
-   
+
 
     // Inorder to update the GetWalk Type, we'll need to mark the GetWalkType to be virtual, so we can over-ride it.
     public bool Patch(ModuleDefinition module)
@@ -17,11 +17,11 @@ public class EntityAliveSDXPatcher : IPatcherMod
         Console.WriteLine("== EntityAlilve Patcher Patcher===");
 
         var gm = module.Types.First(d => d.Name == "EntityStats");
-       var method = gm.Methods.First(d => d.Name == "UpdateWeatherStats");
+        var method = gm.Methods.First(d => d.Name == "UpdateWeatherStats");
         SetMethodToPublic(method);
 
-         gm = module.Types.First(d => d.Name == "EntityAlive");
-         method = gm.Methods.First(d => d.Name == "Attack");
+        gm = module.Types.First(d => d.Name == "EntityAlive");
+        method = gm.Methods.First(d => d.Name == "Attack");
         SetMethodToPublic(method);
         return true;
     }

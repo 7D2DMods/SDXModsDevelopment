@@ -17,7 +17,11 @@ public class ItemActionChange : IPatcherMod
         var method = gm.NestedTypes.First(d => d.Name == "MyInventoryData");
         method.IsNestedPublic = true;
         method.IsPublic = true;
-        
+
+
+        gm = module.Types.First(d => d.Name == "EntityAlive");
+        method = gm.Methods.First(d => d.Name == "Attack");
+        SetMethodToPublic(method);
         return true;
     }
 
