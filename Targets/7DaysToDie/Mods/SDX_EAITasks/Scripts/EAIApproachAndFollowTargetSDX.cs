@@ -76,7 +76,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         this.NearbyEntities.Clear();
 
         // Search in the bounds are to try to find the most appealing entity to follow.
-        Bounds bb = new Bounds(this.theEntity.position, new Vector3(20f, 20f, 20f));
+        Bounds bb = new Bounds(this.theEntity.position, new Vector3(30f, 20f, 30f));
         this.theEntity.world.GetEntitiesInBounds(typeof(EntityAlive), bb, this.NearbyEntities);
         for (int i = this.NearbyEntities.Count - 1; i >= 0; i--)
         {
