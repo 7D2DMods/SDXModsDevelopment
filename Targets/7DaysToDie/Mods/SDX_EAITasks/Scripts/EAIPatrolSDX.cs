@@ -25,9 +25,9 @@ class EAIPatrolSDX : EAIApproachSpot
 
     public bool FetchOrders()
     {
-        if (this.theEntity.Buffs.HasCustomVar("$CurrentOrder"))
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder"))
         {
-            if (this.theEntity.Buffs.GetCustomVar("$CurrentOrder") == (float)EntityAliveSDX.Orders.Patrol)
+            if (this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Patrol)
             {
                 EntityAliveSDX temp = this.theEntity as EntityAliveSDX;
                 if (temp)
@@ -73,13 +73,16 @@ class EAIPatrolSDX : EAIApproachSpot
     public override bool Continue()
     {
         // No order and no patrol. Do reverse ( != checks on these, rather than == as it can leave the entity imprecise.
-        if (!this.theEntity.Buffs.HasCustomVar("$CurrentOrder") || this.theEntity.Buffs.GetCustomVar("$CurrentOrder") != (float)EntityAliveSDX.Orders.Patrol)
+        if (!this.theEntity.Buffs.HasCustomVar("CurrentOrder") || this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Patrol)
+            return false;
+
+        if (this.lstPatrolPoints.Count <= 0)
             return false;
 
         // If there's an attack target, don't patrol anymore.
         if (this.theEntity.GetAttackTarget() != null)
         {
-            this.theEntity.Buffs.SetCustomVar("$CurrentOrder", (float)EntityAliveSDX.Orders.None, true);
+            this.theEntity.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.None, true);
             return false;
         }
         return true;
@@ -87,25 +90,28 @@ class EAIPatrolSDX : EAIApproachSpot
 
     public override void Update()
     {
-            if (nextCheck < Time.time)
-            {
-                if (PatrolPointsCounter == this.lstPatrolPoints.Count - 1)
-                    Retracing = true;
+        if (nextCheck < Time.time)
+        {
+            if (PatrolPointsCounter == this.lstPatrolPoints.Count - 1)
+                Retracing = true;
 
-                if (PatrolPointsCounter == 0)
-                    Retracing = false;
+            if (PatrolPointsCounter == 0)
+                Retracing = false;
 
-                if (Retracing)
-                    PatrolPointsCounter--;
-                else
-                    PatrolPointsCounter++;
+            if (Retracing)
+                PatrolPointsCounter--;
+            else
+                PatrolPointsCounter++;
 
-                this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.lstPatrolPoints[PatrolPointsCounter]);
+            if (this.lstPatrolPoints.Count > PatrolPointsCounter)
+                return;
 
-                nextCheck = Time.time + this.theEntity.GetMoveSpeed();
-                this.theEntity.SetLookPosition(Vector3.forward);
-                this.theEntity.moveHelper.SetMoveTo(this.lstPatrolPoints[PatrolPointsCounter], false);
-            }
+            this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.lstPatrolPoints[PatrolPointsCounter]);
+
+            nextCheck = Time.time + this.theEntity.GetMoveSpeed();
+            this.theEntity.SetLookPosition(Vector3.forward);
+            this.theEntity.moveHelper.SetMoveTo(this.lstPatrolPoints[PatrolPointsCounter], false);
+        }
     }
 
 }

@@ -342,7 +342,7 @@ class EntityAliveSDX : EntityAlive
         // Check if there's a player within 10 meters of us. If not, resume wandering.
         this.emodel.avatarController.SetBool("IsBusy", false);
 
-        List<global::Entity> entitiesInBounds = global::GameManager.Instance.World.GetEntitiesInBounds(this, new Bounds(this.position, Vector3.one * 3f));
+        List<global::Entity> entitiesInBounds = global::GameManager.Instance.World.GetEntitiesInBounds(this, new Bounds(this.position, Vector3.one * 5f));
         if (entitiesInBounds.Count > 0)
         {
             for (int i = 0; i < entitiesInBounds.Count; i++)
