@@ -20,8 +20,8 @@ public class ItemActionChange : IPatcherMod
 
 
         gm = module.Types.First(d => d.Name == "EntityAlive");
-        method = gm.Methods.First(d => d.Name == "Attack");
-        SetMethodToPublic(method);
+        var attackMethod = gm.Methods.First(d => d.Name == "Attack");
+        SetMethodToPublic(attackMethod);
         return true;
     }
 
