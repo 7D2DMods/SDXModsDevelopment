@@ -309,6 +309,15 @@ class EntityAliveSDX : EntityAlive
    
     public override void OnUpdateLive()
     {
+        // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
+        this.Stats.Water.Tick(0.5f, 0, false);
+
+        // then fire the updatestats over time, which is protected from a IsPlayer check in the base onUpdateLive().
+        this.Stats.UpdateStatsOverTime(0.5f);
+
+        // Make the entity sensitive to the environment.
+        this.Stats.UpdateWeatherStats(0.5f, this.world.worldTime, false);
+
         // Check if there's a player within 10 meters of us. If not, resume wandering.
         this.emodel.avatarController.SetBool("IsBusy", false);
 
@@ -333,16 +342,7 @@ class EntityAliveSDX : EntityAlive
 
         if (isBusy == false)
             base.OnUpdateLive();
-
-        // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
-        this.Stats.Water.Tick(0.5f, 0, false);
-
-        // then fire the updatestats over time, which is protected from a IsPlayer check in the base onUpdateLive().
-        this.Stats.UpdateStatsOverTime(0.5f);
-
-        // Make the entity sensitive to the environment.
-        this.Stats.UpdateWeatherStats(0.5f, this.world.worldTime, false);
-        base.OnUpdateLive();
+      
     }
 
    

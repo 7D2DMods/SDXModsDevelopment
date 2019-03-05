@@ -23,6 +23,8 @@ public class EntityAliveSDXPatcher : IPatcherMod
         gm = module.Types.First(d => d.Name == "EntityAlive");
         method = gm.Methods.First(d => d.Name == "Attack");
         SetMethodToPublic(method);
+        SetMethodToVirtual(method);
+
         return true;
     }
 

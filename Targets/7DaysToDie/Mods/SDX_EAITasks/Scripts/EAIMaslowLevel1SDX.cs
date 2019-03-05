@@ -135,6 +135,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (!CheckIncentive(this.lstThirstyBuffs)
             && !CheckIncentive(this.lstHungryBuffs)
             && !CheckIncentive(this.lstSanitationBuffs)
+            && !CheckIncentive(this.lstBedTimeBuffs)
             //&& !CheckIfShelterNeeded()
             )
         {
