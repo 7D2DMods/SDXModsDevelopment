@@ -75,6 +75,11 @@ class EntityAliveSDX : EntityAlive
 
     }
 
+    public override Ray GetLookRay()
+    {
+        Ray result = new Ray(this.position + new Vector3(0f, this.GetEyeHeight() * 1f, 0f), this.GetLookVector());
+        return result;
+    }
     public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
     {
         EntityActivationCommand[] ActivationCommands = new EntityActivationCommand[]
