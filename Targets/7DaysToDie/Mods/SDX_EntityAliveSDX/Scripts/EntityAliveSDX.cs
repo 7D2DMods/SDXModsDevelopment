@@ -119,22 +119,23 @@ class EntityAliveSDX : EntityAlive
                 GameManager.ShowTooltipWithAlert(_entityFocusing as EntityPlayerLocal, this.ToString() + "\n\n\n\n\n", "ui_denied");
                 break;
             case 1: // Follow me
-                this.Buffs.SetCustomVar("$Leader", _entityFocusing.entityId, true);
-                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Follow, true);
+                this.Buffs.SetCustomVar("Leader", _entityFocusing.entityId, true);
+                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
                 break;
             case 2: // Stay Here
-                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Stay, true);
+                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Stay, true);
                 break;
             case 3: // Hang out / wander here
-                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Wander, true);
+                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Wander, true);
                 break;
             case 4: // Set Patrol Point
-                this.Buffs.SetCustomVar("$Leader", _entityFocusing.entityId, true);
-                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.SetPatrolPoint, true);
+                this.Buffs.SetCustomVar("Leader", _entityFocusing.entityId, true);
+                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.SetPatrolPoint, true);
                 this.PatrolCoordinates.Clear(); // Clear the existing point.
                 break;
             case 5: // end patrol Point
-                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Patrol, true);
+                this.Buffs.SetCustomVar("Leader", 0, true);
+                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Patrol, true);
                 break;
             case 6:
                 if ( _entityFocusing is EntityPlayerLocal)
@@ -149,7 +150,9 @@ class EntityAliveSDX : EntityAlive
 
     public virtual bool isTame(EntityAlive _player )
     {
-        if (this.Buffs.HasCustomVar("$Leader") && this.Buffs.GetCustomVar("$Leader") == (float)_player.entityId)
+        if (this.Buffs.HasCustomVar("Leader") && this.Buffs.GetCustomVar("Leader") == (float)_player.entityId)
+            return true;
+        if (this.Buffs.HasCustomVar("Owner") && this.Buffs.GetCustomVar("Owner") == (float)_player.entityId)
             return true;
 
         return false;
@@ -169,8 +172,8 @@ class EntityAliveSDX : EntityAlive
 
                 // Add the stack of currency to the NPC, and set its orders.
                 this.inventory.AddItem(stack);
-                this.Buffs.SetCustomVar("$Leader", _player.entityId, true);
-                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Follow, true);
+                this.Buffs.SetCustomVar("Owner", _player.entityId, true);
+                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
             }
             else
             {
@@ -212,9 +215,9 @@ class EntityAliveSDX : EntityAlive
         }
 
         if (this.PatrolCoordinates.Count > 0)
-            this.Buffs.AddCustomVar("$CurrentOrder", (float)Orders.Patrol);
+            this.Buffs.AddCustomVar("CurrentOrder", (float)Orders.Patrol);
         else
-            this.Buffs.AddCustomVar("$CurrentOrder", (float)Orders.Wander);
+            this.Buffs.AddCustomVar("CurrentOrder", (float)Orders.Wander);
 
         
 
@@ -265,15 +268,15 @@ class EntityAliveSDX : EntityAlive
         String FoodAmount = ((float)Mathf.RoundToInt(this.Stats.Stamina.ModifiedMax + this.Stats.Entity.Buffs.GetCustomVar("foodAmount"))).ToString() ;
         String WaterAmount = ((float)Mathf.RoundToInt(this.Stats.Water.Value + this.Stats.Entity.Buffs.GetCustomVar("waterAmount"))).ToString();
         String strSanitation = "Disabled.";
-        if (this.Buffs.HasCustomVar("$solidWasteAmount"))
-            strSanitation = this.Buffs.GetCustomVar("$solidWasteAmount").ToString();
+        if (this.Buffs.HasCustomVar("solidWasteAmount"))
+            strSanitation = this.Buffs.GetCustomVar("solidWasteAmount").ToString();
 
         string strOutput = this.strMyName + " The " + this.entityName + " - ID: " + this.entityId + " Health: " + this.Stats.Health.Value;
         strOutput += " Stamina: " + this.Stats.Stamina.Value + " Thirst: " + this.Stats.Water.Value + " Food: " + FoodAmount + " Water: " + WaterAmount;
         strOutput += " Sanitation: " + strSanitation;
 
-        if (this.Buffs.HasCustomVar("$CurrentOrder"))
-            strOutput += " Current Order: " + (Orders)(int)this.Buffs.GetCustomVar("$CurrentOrder");
+        if (this.Buffs.HasCustomVar("CurrentOrder"))
+            strOutput += " Current Order: " + (Orders)(int)this.Buffs.GetCustomVar("CurrentOrder");
 
         strOutput += "\n Active Buffs: ";
         foreach (BuffValue buff in this.Buffs.ActiveBuffs)
@@ -339,7 +342,7 @@ class EntityAliveSDX : EntityAlive
         // Check if there's a player within 10 meters of us. If not, resume wandering.
         this.emodel.avatarController.SetBool("IsBusy", false);
 
-        List<global::Entity> entitiesInBounds = global::GameManager.Instance.World.GetEntitiesInBounds(this, new Bounds(this.position, Vector3.one * 10f));
+        List<global::Entity> entitiesInBounds = global::GameManager.Instance.World.GetEntitiesInBounds(this, new Bounds(this.position, Vector3.one * 3f));
         if (entitiesInBounds.Count > 0)
         {
             for (int i = 0; i < entitiesInBounds.Count; i++)
@@ -363,6 +366,28 @@ class EntityAliveSDX : EntityAlive
       
     }
 
-   
-  
+
+
+    protected override void updateSpeedForwardAndStrafe(Vector3 _dist, float _partialTicks)
+    {
+        if (this.isEntityRemote && _partialTicks > 1f)
+        {
+            _dist /= _partialTicks;
+        }
+        this.speedForward *= 0.5f;
+        this.speedStrafe *= 0.5f;
+        this.speedVertical *= 0.5f;
+        if (Mathf.Abs(_dist.x) > 0.001f || Mathf.Abs(_dist.z) > 0.001f)
+        {
+            float num = Mathf.Sin(-this.rotation.y * 3.14159274f / 180f);
+            float num2 = Mathf.Cos(-this.rotation.y * 3.14159274f / 180f);
+            this.speedForward += num2 * _dist.z - num * _dist.x;
+            this.speedStrafe += num2 * _dist.x + num * _dist.z;
+        }
+        if (Mathf.Abs(_dist.y) > 0.001f)
+        {
+            this.speedVertical += _dist.y;
+        }
+        this.SetMovementState();
+    }
 }

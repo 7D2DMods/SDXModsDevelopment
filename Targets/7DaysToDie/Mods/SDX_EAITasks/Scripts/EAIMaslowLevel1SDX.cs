@@ -18,8 +18,8 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     List<String> lstSanitation = new List<String>();
     List<String> lstSanitationBuffs = new List<String>();
 
-    List<String> lstBedTimeBuffs = new List<String>();
     List<String> lstBeds = new List<String>();
+    List<String> lstProductionBuffs = new List<string>();
 
     List<ProductionItem> lstProductionItem = new List<ProductionItem>();
 
@@ -28,7 +28,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
     int MaxDistance = 20;
     public int investigateTicks;
-    List<Vector3> lstWaterBlocks = new List<Vector3>();
+   // List<Vector3> lstWaterBlocks = new List<Vector3>();
 
     public bool hadPath;
     private bool blDisplayLog = true;
@@ -73,11 +73,9 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (entityClass.Properties.Values.ContainsKey("SanitationBlock"))
             this.strSanitationBlock = entityClass.Properties.Values["SanitationBlock"];
 
-        if (entityClass.Properties.Values.ContainsKey("ProductionFinishedBuff"))
-            this.strProductionFinishedBuff = entityClass.Properties.Values["ProductionFinishedBuff"];
-
         this.lstBeds = ConfigureEntityClass("Beds", entityClass);
-        this.lstBedTimeBuffs = ConfigureEntityClass("BedTimeBuffs", entityClass);
+        this.lstProductionBuffs = ConfigureEntityClass("ProductionFinishedBuff", entityClass);
+
 
         if (entityClass.Properties.Classes.ContainsKey("ProductionItems"))
         {
@@ -131,17 +129,21 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (this.theEntity.IsSleeping)
             return false;
 
-        // If there's no buff incentive, don't execute.
-        if (!CheckIncentive(this.lstThirstyBuffs)
-            && !CheckIncentive(this.lstHungryBuffs)
-            && !CheckIncentive(this.lstSanitationBuffs)
-            && !CheckIncentive(this.lstBedTimeBuffs)
-            //&& !CheckIfShelterNeeded()
-            )
+        if ( !CanContinue() )
         {
             this.theEntity.SetInvestigatePosition(Vector3.zero, 0);
             return false;
         }
+        //// If there's no buff incentive, don't execute.
+        //if (!CheckIncentive(this.lstThirstyBuffs)
+        //    && !CheckIncentive(this.lstHungryBuffs)
+        //    && !CheckIncentive(this.lstSanitationBuffs)
+        //    && !CheckIncentive(this.lstBedTimeBuffs)
+        //    //&& !CheckIfShelterNeeded()
+        //    )
+        //{
+            
+        //}
         if (!this.theEntity.HasInvestigatePosition)
         {
             if (CheckForFoodBin())  // Search for food if its hungry.
@@ -150,7 +152,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                 result = true;
             else if (CheckForSanitation())  // Potty time?
                 result = true;
-            else if (CheckForBed())
+            else if (CheckForProductionBuff())
                 result = true;
             else if (CheckForShelter()) // Check for shelder.
                 result = true;
@@ -234,11 +236,16 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         return false;
     }
 
-    public override bool Continue()
+    public bool CanContinue()
     {
         // If there's no buff incentive, or no nearby water block, don't bother looking for water.
-        if (!CheckIncentive(this.lstThirstyBuffs) && !CheckIncentive(this.lstHungryBuffs) && !CheckIncentive(this.lstSanitationBuffs) && !CheckIfShelterNeeded())
+        if (!CheckIncentive(this.lstThirstyBuffs) && !CheckIncentive(this.lstHungryBuffs) && !CheckIncentive(this.lstSanitationBuffs) && !CheckIfShelterNeeded() && !CheckIncentive( this.lstProductionBuffs))
             return false;
+
+        return true;
+    }
+    public override bool Continue()
+    {
 
         PathNavigate navigator = this.theEntity.navigator;
         PathEntity path = navigator.getPath();
@@ -305,10 +312,10 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             float milkLevel = this.GetEntityWater();
             if (milkLevel > 0)
             {
-                if (this.theEntity.Buffs.HasCustomVar("$Mother"))
+                if (this.theEntity.Buffs.HasCustomVar("Mother"))
                 {
                     DisplayLog("Checking For mother");
-                    int MotherID = (int)this.theEntity.Buffs.GetCustomVar("$Mother");
+                    int MotherID = (int)this.theEntity.Buffs.GetCustomVar("Mother");
                     EntityAliveSDX MotherEntity = this.theEntity.world.GetEntity(MotherID) as EntityAliveSDX;
                     if (MotherEntity)
                     {
@@ -381,7 +388,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             }
         }
 
-        if (CheckIncentive(this.lstBedTimeBuffs))
+        if ( CheckIncentive( this.lstProductionBuffs))
         {
             DisplayLog(" I have the bed time buff.");
             if (this.lstBeds.Contains(checkBlock.Block.GetBlockName()))
@@ -396,8 +403,11 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                         DisplayLog(" Adding " + item.item.GetItemId());
                         // Add the item to the loot container, and reset the cvar, if it's available.
                         tileEntityLootContainer.AddItem(new ItemStack(item.item, item.Count));
-                        if (this.theEntity.Buffs.HasBuff(item.cvar))
+                        if (!String.IsNullOrEmpty(item.cvar) && this.theEntity.Buffs.HasBuff(item.cvar))
+                        {
                             this.theEntity.Buffs.CVars[item.cvar] = 0;
+                            this.theEntity.Buffs.RemoveBuff(this.strProductionFinishedBuff, true);
+                        }
                     }
                 }
                 else
@@ -484,9 +494,9 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         return true;
     }
 
-    public virtual bool CheckForBed()
+    public virtual bool CheckForProductionBuff()
     {
-        if (!CheckIncentive(this.lstBedTimeBuffs))
+        if (!CheckIncentive(this.lstProductionBuffs))
             return false;
 
         // If it's an egg producing entity, scan for a bed to hatch.
@@ -590,9 +600,9 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     // This will search for a mother entity to see it can satisfy its thirst from its mother, rather than a traditional water block.
     public virtual float GetEntityWater()
     {
-        if (this.theEntity.Buffs.HasCustomVar("$Mother"))
+        if (this.theEntity.Buffs.HasCustomVar("Mother"))
         {
-            float MotherID = this.theEntity.Buffs.GetCustomVar("$Mother");
+            float MotherID = this.theEntity.Buffs.GetCustomVar("Mother");
             EntityAliveSDX MotherEntity = this.theEntity.world.GetEntity((int)MotherID) as EntityAliveSDX;
             if (MotherEntity)
             {
@@ -651,8 +661,8 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (lstBlocks.Count == 0)
             return Vector3.zero;
 
-        if (!CheckIncentive(this.lstThirstyBuffs))
-            return Vector3.zero;
+        //if (!CheckIncentive(this.lstThirstyBuffs))
+        //    return Vector3.zero;
 
         List<Vector3> localLists = new List<Vector3>();
 

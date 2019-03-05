@@ -26,7 +26,7 @@ public class MinEventActionSpawnBabySDX : MinEventActionRemoveBuff
                     if (NewEntity is EntityAliveSDX)
                     {
                         Debug.Log("Setting Mother ID to Baby: " + entity.entityId + " for " + NewEntity.entityId);
-                        (NewEntity as EntityAliveSDX).Buffs.SetCustomVar("$Mother", entity.entityId, true);
+                        (NewEntity as EntityAliveSDX).Buffs.SetCustomVar("Mother", entity.entityId, true);
                     }
                 }
                 else

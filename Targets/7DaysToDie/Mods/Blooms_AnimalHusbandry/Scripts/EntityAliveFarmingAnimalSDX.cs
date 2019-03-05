@@ -111,9 +111,9 @@ class EntityAliveFarmingAnimalSDX : EntityAliveSDX
             String strEggLevel  = this.Buffs.GetCustomVar("$EggValue").ToString();
             strOutput += "\n Egg Level: " + strEggLevel;
         }
-        if (this.Buffs.HasCustomVar("$Mother"))
+        if (this.Buffs.HasCustomVar("Mother"))
         {
-            int MotherID = (int)this.Buffs.GetCustomVar("$Mother");
+            int MotherID = (int)this.Buffs.GetCustomVar("Mother");
             EntityAliveSDX MotherEntity = this.world.GetEntity(MotherID) as EntityAliveSDX;
             if (MotherEntity)
                 strOutput += "\n My Mother is: " + MotherEntity.EntityName + " ( " + MotherID + " )";

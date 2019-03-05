@@ -74,8 +74,8 @@
 
       <!-- This AI task is tied to a cvar, which is being used to record entity ID that we want to follow -->
       <!-- Param1 can be:  cvar, Buff or the current hand item, such as a block or item name -->
-      <!--  param1="$Mother,$Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
-      <property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="$Mother,$Leader,hayBaleBlock,foodCornOnTheCob"/>
+      <!--  param1="Mother,Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
+      <property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="Mother,Leader,hayBaleBlock,foodCornOnTheCob"/>
       <property name="AITask-5" value="MaslowLevel1SDX, Mods"/>
       <property name="AITask-6" value=""/>
 
@@ -155,8 +155,8 @@
 
     <!-- This AI task is tied to a cvar, which is being used to record entity ID that we want to follow -->
     <!-- Param1 can be:  cvar, Buff or the current hand item, such as a block or item name -->
-    <!--  param1="$Mother,$Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
-    <property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="$Mother,$Leader,hayBaleBlock,foodCornOnTheCob"/>
+    <!--  param1="Mother,Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
+    <property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="Mother,Leader,hayBaleBlock,foodCornOnTheCob"/>
     <property name="AITask-5" value="MaslowLevel1SDX, Mods"/>
     <property name="AITask-6" value=""/>
 
@@ -174,7 +174,6 @@
 
     <!-- Chicken specific. Where the chicken will place its items. -->
     <property name="Beds" value="cntBirdnest" />  <!-- this is where the chicken will go to 'bed' at, or rather, lay an egg -->
-    <property name="BedTimeBuffs" value="buffAnimalChickenEgg" />  <!-- Which buff determines if it needs to go to bed. For a chicken, that's when it needs to lay an egg -->
     <property name="ProductionFinishedBuff" value="buffAnimalChickenEgg" />  <!-- Which buff is on the entity when its produced something -->
 
     <property class="ProductionItems">
