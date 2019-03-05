@@ -291,6 +291,9 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             {
                 // Look at the water, then execute the action on the empty jar.
                 this.theEntity.SetLookPosition(seekPos);
+
+                // This is the actual item we want to drink out of. The above is just to deplete the water source.
+                this.theEntity.inventory.SetBareHandItem(ItemClass.GetItem("drinkJarEmpty", false));
                 if (this.theEntity.inventory.holdingItem.Actions[1] != null)
                 {
                     // We want to deplete the water, so execute the action.
