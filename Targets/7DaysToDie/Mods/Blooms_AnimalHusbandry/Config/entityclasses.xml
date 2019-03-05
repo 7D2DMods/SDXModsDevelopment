@@ -7,7 +7,21 @@
 			<property name="RootMotion" value="false" />
 			<property name="Mass" value="90"/>
 
-			<effect_group name="Base Effects">
+      <!-- which containers to look for food in -->
+      <property name="FoodBins" value="cntSecureStorageChest,cntStorageChest" />
+
+      <!-- what it can drink out of -->
+      <property name="WaterBins" value="water,waterMoving,waterStaticBucket,waterMovingBucket,terrWaterPOI" />
+
+      <!-- Default thirsty and hungry buffs -->
+      <property name="ThirstyBuffs" value="buffStatusThirsty1,buffStatusThirsty2" />
+      <property name="HungryBuffs" value="buffStatusHungry1,buffStatusHungry2" />
+
+      <!-- Sanitation Buff: Aka, make 'em poop part. Add in  buffSanitationStatusCheck in the Buffs entry here to enable. -->
+      <property name="SanitationBuffs" value="buffStatusSanitation1,buffStatusSanitation2" />
+
+      
+      <effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="110"/>
 				<passive_effect name="StaminaMax" operation="base_set" value="110"/>
         <passive_effect name="WaterMax" operation="base_set" value="100" />
@@ -76,23 +90,10 @@
 
       <!-- Food items and bins that this entity will eat, if using the right AI Task -->
 			<property name="FoodItems" value="hayBaleBlock,resourceYuccaFibers,foodCropYuccaFruit,foodCornBread,foodCornOnTheCob,foodCornMeal,foodCropCorn,foodCropGraceCorn"/>
-      <property name="FoodBins" value="cntSecureStorageChest,cntStorageChest" />
       
-      <!-- what it can drink out of -->
-      <property name="WaterBins" value="water,waterMoving,waterStaticBucket,waterMovingBucket,terrWaterPOI" />
-
-      <!-- Default thirsty and hungry buffs -->
-      <property name="ThirstyBuffs" value="buffStatusThirsty1,buffStatusThirsty2" />
-      <property name="HungryBuffs" value="buffStatusHungry1,buffStatusHungry2" />
-
-      <!-- Sanitation Buff: Aka, make 'em poop part. Add in  buffSanitationStatusCheck in the Buffs entry here to enable. -->
-      <property name="SanitationBuffs" value="buffStatusSanitation1,buffStatusSanitation2" />
       <property name="ToiletBlocks" value="cntToilet01,cntToilet02,cntToilet03" />
       <property name="SanitationBlock" value="terrDirt" /> <!-- Poop block. If ToiletBlocks is configured, it'll use those rather than generate this block. -->
 
-      <property name="Beds" value="cntBirdnest" />
-      <property name="BedTimeBuffs" value="buffAnimalChickenEgg" />
-      <property name="ProductionFinishedBuff" value="buffAnimalChickenEgg" />  <!-- Which buff is on the entity when its produced something -->
       
       <!-- This is the block it'll call home -->
 			<property name="HomeBlocks" value="cntCowHomeBlock,hayBaleBlock"/>
@@ -107,8 +108,82 @@
     <entity_class name="zombieFarmCow" extends="animalBear">
       <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
     </entity_class>
-	</append>
 
- 
+  <entity_class name="animalFarmChickenFemale" extends="animalFarm">
+    <property name="Mesh" value="Animals/CHICKEN/chickenPrefab"/>
+    <property name="Prefab" value="NPC"/>
+    <property name="Class" value="EntityAliveFarmingAnimalSDX, Mods" />
+    <property name="AvatarController" value="GameObjectAnimalAnimation"/>
+
+    <property name="Parent" value="Animals"/>
+    <property name="Faction" value="animals"/>
+    <property name="PhysicsBody" value="chicken"/>
+    <property name="Mass" value="15"/>
+    <property name="Weight" value="10"/>
+    <property name="SoundHurt" value="Animals/Chicken/chickenpain"/>
+    <property name="SoundDeath" value="Animals/Chicken/chickendeath"/>
+    <property name="SwimOffset" value="2"/>
+    <property name="HasRagdoll" value="false"/>
+    <property name="HasDeathAnim" value="false"/>
+
+    <!-- Gameplay -->
+    <property name="MoveSpeedPanic" value="1"/>
+    <property name="ExperienceGain" value="173"/>
+    <property name="DeadBodyHitPoints" value="175"/>
+    <drop event="Harvest" name="foodRawMeat" count="0" tool_category="Butcher"/>
+    <drop event="Harvest" name="foodRawMeat" tag="butcherHarvest" count="10"/>
+    
+    <drop event="Harvest" name="resourceFeather" tag="butcherHarvest" count="23"/>
+    <effect_group name="Base Effects">
+      <passive_effect name="HealthMax" operation="base_set" value="10"/>
+      <passive_effect name="HealthMax" operation="perc_add" value="0"/>
+      <!-- Animal HP scale -->
+    </effect_group>
+    
+    <property name="IsMale" value="false"/>
+
+    <!-- Hand item allows them to eat and drink from water sources, much like a player -->
+    <property name="HandItem" value="meleeHandFarmAnimal"/>
+
+    <!-- Test hook -->
+    <property name="TimeStayAfterDeath" value="1" />
+
+    <!-- Territorial hangs out around the home block -->
+    <property name="AITask-1" value="Territorial"/>
+    <property name="AITask-2" value="Look"/>
+    <property name="AITask-3" value="WanderSDX, Mods"/>
+
+    <!-- This AI task is tied to a cvar, which is being used to record entity ID that we want to follow -->
+    <!-- Param1 can be:  cvar, Buff or the current hand item, such as a block or item name -->
+    <!--  param1="$Mother,$Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
+    <property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="$Mother,$Leader,hayBaleBlock,foodCornOnTheCob"/>
+    <property name="AITask-5" value="MaslowLevel1SDX, Mods"/>
+    <property name="AITask-6" value=""/>
+
+    <!-- Random name property. If none are listed, it's called Bob -->
+    <property name="Names" value="Albert Eggstein,Amelia Egghart,Attila the Hen,Big Bird,Chicken Little,Cluck Rogers,Chick Norris,Dixie Chick,Egghead,Foghorn Leghorn,Gandalf the Gray,Goldie Hen,Hen Solo,Henneth Paltrow,Princess Lay-a,Woodstock,Yolko Ono,Beaker,Buck Beak,Griffin,Hedwig,Henrietta,Henny Penny,Iago,Mordecai,Mother Clucker,Pigwidgeon,Pox,Phoenix,Robot Chicken,Zazu,Anastasia,Annie,Arabella,Beatrice,Bessie,Betsy,Edna,Charlotte,Clarabelle,Daisy,Daphne,Dorothy,Dottie,Estelle,Eloise,Felicity,Florence,Francis,Genevieve,Georgia,Geraldine,Gladys,Gloria,Harriet,Holly,Iris,June,Loretta,Maude,Minnie,Matilda,Myrtle,Opal,Pearl,Penelope,Polly,Stella,Sadie,Tillie,Benedict,BBQ,Bon Bon,Buffalo,Burrito,Cacciatore,Cashew,Colonel Sanders,Cordon Bleu,Curry,Custard,Divan,Dumpling,Drumstick,Frenchie,Frittata,Jubilee,Kabob,Kiev,Noodle,Nugget,Omelette,Pattie,Piccata,Pollo,Ranchero,Roast,Schnitzel,Scramble,Sesame,Stu,Taco,Tandoori,Teriyaki" />
+
+    <!-- Loot List Alive lets us display the dialog box for the entity commands. Container doesn't matter. -->
+    <property name="LootListAlive" value="76"/>
+
+    <!-- The starting buffs. Semi-colon delimited! -->
+    <property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck;buffAnimalBaby;buffSanitationStatusCheck;buffAnimalChicken" />
+
+    <!-- Food items and bins that this entity will eat, if using the right AI Task -->
+    <property name="FoodItems" value="foodCornBread,foodCornOnTheCob,foodCornMeal,foodCropCorn,foodCropGraceCorn"/>
+
+    <!-- Chicken specific. Where the chicken will place its items. -->
+    <property name="Beds" value="cntBirdnest" />  <!-- this is where the chicken will go to 'bed' at, or rather, lay an egg -->
+    <property name="BedTimeBuffs" value="buffAnimalChickenEgg" />  <!-- Which buff determines if it needs to go to bed. For a chicken, that's when it needs to lay an egg -->
+    <property name="ProductionFinishedBuff" value="buffAnimalChickenEgg" />  <!-- Which buff is on the entity when its produced something -->
+
+    <property class="ProductionItems">
+      <property name="foodEgg" value="1" param1="$EggValue" /> <!-- which item to product, how many, and if a cvar needs resetting to 0 -->
+      <property name="resourceFeather" value="5"/>
+    </property>
+  </entity_class>
+  </append>
+
+
 
 </configs>

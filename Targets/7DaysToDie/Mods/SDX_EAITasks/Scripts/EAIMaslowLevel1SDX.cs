@@ -21,7 +21,9 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     List<String> lstBedTimeBuffs = new List<String>();
     List<String> lstBeds = new List<String>();
 
-    String strSanitationBlock = "terrDirt";
+    List<ProductionItem> lstProductionItem = new List<ProductionItem>();
+
+    String strSanitationBlock = "";
     String strProductionFinishedBuff = "";
 
     int MaxDistance = 20;
@@ -38,6 +40,14 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     {
         if (blDisplayLog)
             Debug.Log(this.theEntity.EntityName + ": " + this.theEntity.entityId + ": " + strMessage);
+    }
+
+
+    public struct ProductionItem
+    {
+        public ItemValue item;
+        public int Count;
+        public String cvar;
     }
 
     public override void Init(EntityAlive _theEntity)
@@ -69,6 +79,24 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         this.lstBeds = ConfigureEntityClass("Beds", entityClass);
         this.lstBedTimeBuffs = ConfigureEntityClass("BedTimeBuffs", entityClass);
 
+        if (entityClass.Properties.Classes.ContainsKey("ProductionItems"))
+        {
+            DynamicProperties dynamicProperties3 = entityClass.Properties.Classes["ProductionItems"];
+            foreach (KeyValuePair<string, object> keyValuePair in dynamicProperties3.Values.Dict.Dict)
+            {
+                ProductionItem item = new ProductionItem();
+                item.item = ItemClass.GetItem(keyValuePair.Key, false);
+                item.Count = int.Parse(dynamicProperties3.Values[keyValuePair.Key]);
+                
+
+                String strCvar = "Nothing";
+                if (dynamicProperties3.Params1.TryGetValue(keyValuePair.Key, out strCvar))
+                    item.cvar = strCvar;
+
+                this.lstProductionItem.Add(item);
+                DisplayLog("Adding Production Item: " + keyValuePair.Key + " with a count of: " + item.Count + " and will reset: " + strCvar);
+            }
+        }
     }
 
     // helper Method to read the entity class and return a list of values based on the key
@@ -104,9 +132,9 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             return false;
 
         // If there's no buff incentive, don't execute.
-        if (!CheckIncentive(this.lstThirstyBuffs) 
-            && !CheckIncentive(this.lstHungryBuffs) 
-            && !CheckIncentive(this.lstSanitationBuffs) 
+        if (!CheckIncentive(this.lstThirstyBuffs)
+            && !CheckIncentive(this.lstHungryBuffs)
+            && !CheckIncentive(this.lstSanitationBuffs)
             //&& !CheckIfShelterNeeded()
             )
         {
@@ -133,7 +161,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                 result = false;
             }
 
-          
+
         }
 
         // If We can continue, that means we've triggered the hunger or thirst buff. Investigate Position are set int he CheckFor.. methods
@@ -339,23 +367,44 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             {
                 // No Sanitation location? Let it go where you are.
                 this.theEntity.Buffs.CVars["$solidWasteAmount"] = 0;
-                Vector3i sanitationBlock = new Vector3i(this.theEntity.position);
-                this.theEntity.world.SetBlockRPC(sanitationBlock, Block.GetBlockValue(this.strSanitationBlock, false));
+
+                // if there's no block, don't do anything.
+                if (!String.IsNullOrEmpty(strSanitationBlock))
+                {
+                    Vector3i sanitationBlock = new Vector3i(this.theEntity.position);
+                    this.theEntity.world.SetBlockRPC(sanitationBlock, Block.GetBlockValue(this.strSanitationBlock, false));
+                }
             }
         }
 
         if (CheckIncentive(this.lstBedTimeBuffs))
         {
+            DisplayLog(" I have the bed time buff.");
             if (this.lstBeds.Contains(checkBlock.Block.GetBlockName()))
             {
-                    TileEntityLootContainer tileEntityLootContainer = this.theEntity.world.GetTileEntity(Voxel.voxelRayHitInfo.hit.clrIdx, new Vector3i(seekPos)) as TileEntityLootContainer;
-                    if (tileEntityLootContainer != null)
+                DisplayLog(" My target block is in my approved list. ");
+                TileEntityLootContainer tileEntityLootContainer = this.theEntity.world.GetTileEntity(Voxel.voxelRayHitInfo.hit.clrIdx, new Vector3i(seekPos)) as TileEntityLootContainer;
+                if (tileEntityLootContainer != null)
+                {
+                    DisplayLog(" It's a TileEntity. That's good.");
+                    foreach (ProductionItem item in this.lstProductionItem)
                     {
-                        this.theEntity.Buffs.CVars["$EggValue"] = 0;
-                        tileEntityLootContainer.AddItem(new ItemStack(ItemClass.GetItem("foodEgg", true), 1));
-                        tileEntityLootContainer.AddItem(new ItemStack(ItemClass.GetItem("resourceFeather", true), UnityEngine.Random.Range(1, 4)));
+                        DisplayLog(" Adding " + item.item.GetItemId());
+                        // Add the item to the loot container, and reset the cvar, if it's available.
+                        tileEntityLootContainer.AddItem(new ItemStack(item.item, item.Count));
+                        if (this.theEntity.Buffs.HasBuff(item.cvar))
+                            this.theEntity.Buffs.CVars[item.cvar] = 0;
                     }
+                }
+                else
+                    DisplayLog(" Not a tile entity.");
             }
+            else
+                DisplayLog(" Not an approved block: " + checkBlock.Block.GetBlockName());
+        }
+        else
+        {
+            DisplayLog(" No Bed Time buff incentive");
         }
 
 
@@ -365,7 +414,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
 
     // Grab a single item from the storage box, and remmove it.
-    public ItemValue GetItemFromContainer(TileEntityLootContainer tileLootContainer, List<String> lstContents )
+    public ItemValue GetItemFromContainer(TileEntityLootContainer tileLootContainer, List<String> lstContents)
     {
         if (tileLootContainer.items != null)
         {
@@ -392,7 +441,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     }
 
     // This will check if the food item actually exists in the container, before making the trip to it.
-    public bool CheckContents(TileEntityLootContainer tileLootContainer, List<String> lstContents)    
+    public bool CheckContents(TileEntityLootContainer tileLootContainer, List<String> lstContents)
     {
         DisplayLog(" Check Contents of Food bin");
         DisplayLog(" TileEntity: " + tileLootContainer.items.Length);
@@ -413,7 +462,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
         return false;
     }
-  
+
     // Check if the entity needs to poop, and where it should go.
     public virtual bool CheckForSanitation()
     {
@@ -437,7 +486,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             return false;
 
         // If it's an egg producing entity, scan for a bed to hatch.
-        if ( this.theEntity.Buffs.HasBuff(strProductionFinishedBuff))
+        if (this.theEntity.Buffs.HasBuff(strProductionFinishedBuff))
         {
             Vector3 TargetBlock = ScanForTileEntityInList(this.lstBeds, new List<String>());
             if (TargetBlock != Vector3.zero)
@@ -469,7 +518,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             return Vector3.zero;
 
         List<Vector3> localLists = new List<Vector3>();
-       
+
 
         // Otherwise, search for your new home.
         Vector3i blockPosition = this.theEntity.GetBlockPosition();
@@ -496,11 +545,11 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                                 continue;
 
 
-                            if (lstContents.Count > 0 )
+                            if (lstContents.Count > 0)
                             {
                                 if (CheckContents(tileEntity, lstContents))
                                 {
-                                    DisplayLog(" Box has food contents: " + tileEntities.ToString() );
+                                    DisplayLog(" Box has food contents: " + tileEntities.ToString());
                                     localLists.Add(tileEntity.ToWorldPos().ToVector3());
 
                                 }

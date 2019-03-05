@@ -19,7 +19,10 @@ public class EntityAliveSDXPatcher : IPatcherMod
         var gm = module.Types.First(d => d.Name == "EntityStats");
        var method = gm.Methods.First(d => d.Name == "UpdateWeatherStats");
         SetMethodToPublic(method);
-     
+
+         gm = module.Types.First(d => d.Name == "EntityAlive");
+         method = gm.Methods.First(d => d.Name == "Attack");
+        SetMethodToPublic(method);
         return true;
     }
 
