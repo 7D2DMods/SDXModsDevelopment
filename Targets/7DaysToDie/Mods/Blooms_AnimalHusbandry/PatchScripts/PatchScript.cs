@@ -22,6 +22,8 @@ public class ItemActionChange : IPatcherMod
         gm = module.Types.First(d => d.Name == "EntityAlive");
         var attackMethod = gm.Methods.First(d => d.Name == "Attack");
         SetMethodToPublic(attackMethod);
+        SetMethodToVirtual(attackMethod);
+
         return true;
     }
 
