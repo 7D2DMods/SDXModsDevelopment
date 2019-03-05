@@ -29,7 +29,7 @@
         <property name="Sound_start" value="bucketfill_water"/>
       </property>
 
-    
+
       <effect_group name="Regular stamina change">
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="20"/>
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffProcessConsumables"/>
@@ -46,15 +46,17 @@
       <property name="EconomicValue" value="200"/>
       <property name="CraftingSkillGroup" value="craftSkillScience"/>
       <property name="Stacknumber" value="5"/>
-     
+
       <property class="Action1">
-        <property name="Sound_start" value="player_firstAidKit"/>
+        <property name="Class" value="UseOther"/>
+        <property name="Delay" value="1.0"/>
+        <property name="Use_time" value="..."/>
+        <property name="Sound_start" value="player_bandage"/>
       </property>
-
+      
+      
       <effect_group name="Applied to a baby.. you monster!">
-        <!-- If Applied to a baby -->
-        <requirement name="HasBuff" target="other" buff="buffAnimalBaby"/>
-
+         <requirement name="HasBuff" target="other" buff="buffAnimalBaby"/>
         <triggered_effect trigger="onSelfSecondaryActionEnd" action="RemoveBuff" target="other" buff="buffAnimalBaby" />
         <triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" target="other" buff="buffAnimalJuvenile" />
       </effect_group>
@@ -71,9 +73,26 @@
         <triggered_effect trigger="onSelfSecondaryActionEnd" action="RemoveBuff" target="other" buff="buffAnimalPregnant" />
         <triggered_effect trigger="onSelfSecondaryActionEnd" action="AddBuff" target="other" buff="buffAnimalSenior" />
       </effect_group>
-      
-    
+
     </item>
 
+
+
+  </append>
+
+  <append xpath="/items/item[@name='drinkJarEmpty']">
+    <property class="Action0">
+      <property name="Class" value="UseOtherSDX, Mods"/> <!-- Class will completely deplete the target cvar -->
+      <property name="Delay" value="1.0"/>
+      <property name="Use_time" value="..."/>
+      <property name="Create_item" value="drinkJarRiverWater"/>  <!-- give them water for now -->
+      <property name="Sound_start" value="bucketfill_water"/>
+      <property name="TargetCVARs" value="MilkLevel" />
+    </property>
+
+    <effect_group name="Drains entity of Milk level">
+      <requirement name="CVarCompare" cvar="MilkLevel" operation="GT" value="100"/>
+      <triggered_effect trigger="onSelfSecondaryActionEnd" action="ModifyCVar" target="other" cvar="MilkLevel" operation="set" value="0"/>
+   </effect_group>
   </append>
 </configs>

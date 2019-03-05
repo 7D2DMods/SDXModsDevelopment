@@ -22,6 +22,8 @@ class EntityAliveSDX : EntityAlive
     public List<String> lstQuests = new List<String>();
     public Orders currentOrder = Orders.Wander;
     public List<Vector3> PatrolCoordinates = new List<Vector3>();
+    public int HireCost = 1000;
+    public ItemValue HireCurrency = ItemClass.GetItem("casinoCoin", false);
 
     String strMyName = "Bob";
     public System.Random random = new System.Random();
@@ -42,7 +44,8 @@ class EntityAliveSDX : EntityAlive
         None = 3,
         SetPatrolPoint = 4,
         EndPatrolPoint = 5,
-        Patrol = 6
+        Patrol = 6, 
+        Hire = 7
     }
 
     // Over-ride for CopyProperties to allow it to read in StartingQuests.
@@ -60,6 +63,16 @@ class EntityAliveSDX : EntityAlive
             strMyName = Names[index];
         }
 
+        if (entityClass.Properties.Values.ContainsKey("HireCost"))
+            HireCost = int.Parse( entityClass.Properties.Values["HireCost"]);
+        if (entityClass.Properties.Values.ContainsKey("HireCurrency"))
+        {
+            this.HireCurrency = ItemClass.GetItem(entityClass.Properties.Values["HireCurrency"], false);
+            if (this.HireCurrency.IsEmpty())
+                this.HireCurrency = ItemClass.GetItem("casinoCoin", false);
+        }
+
+
     }
 
     public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
@@ -67,11 +80,12 @@ class EntityAliveSDX : EntityAlive
         EntityActivationCommand[] ActivationCommands = new EntityActivationCommand[]
         {
             new EntityActivationCommand("TellMe", "talk", true ),
-            new EntityActivationCommand("FollowMe", "talk", true),
-            new EntityActivationCommand("StayHere", "talk", true),
-            new EntityActivationCommand("HangOut", "talk", true),
-            new EntityActivationCommand("SetPatrol", "talk", true),
-            new EntityActivationCommand("Patrol", "talk", true)
+            new EntityActivationCommand("FollowMe", "talk", isTame( _entityFocusing)),
+            new EntityActivationCommand("StayHere", "talk", isTame( _entityFocusing )),
+            new EntityActivationCommand("HangOut", "talk", isTame( _entityFocusing )),
+            new EntityActivationCommand("SetPatrol", "talk", isTame( _entityFocusing)),
+            new EntityActivationCommand("Patrol", "talk", isTame( _entityFocusing)),
+            new EntityActivationCommand("Hire", "talk", true)
         };
 
         return ActivationCommands;
@@ -91,11 +105,9 @@ class EntityAliveSDX : EntityAlive
                 this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Follow, true);
                 break;
             case 2: // Stay Here
-                this.Buffs.SetCustomVar("$Leader", 0, true);
                 this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Stay, true);
                 break;
             case 3: // Hang out / wander here
-                this.Buffs.SetCustomVar("$Leader", 0, true);
                 this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Wander, true);
                 break;
             case 4: // Set Patrol Point
@@ -104,8 +116,11 @@ class EntityAliveSDX : EntityAlive
                 this.PatrolCoordinates.Clear(); // Clear the existing point.
                 break;
             case 5: // end patrol Point
-                this.Buffs.SetCustomVar("$Leader", 0, true);
                 this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Patrol, true);
+                break;
+            case 6:
+                if ( _entityFocusing is EntityPlayerLocal)
+                    Hire(_entityFocusing as EntityPlayerLocal);
                 break;
             default:
                 break;
@@ -114,6 +129,37 @@ class EntityAliveSDX : EntityAlive
         return true;
     }
 
+    public virtual bool isTame(EntityAlive _player )
+    {
+        if (this.Buffs.HasCustomVar("$Leader") && this.Buffs.GetCustomVar("$Leader") == (float)_player.entityId)
+            return true;
+
+        return false;
+    }
+
+
+    public virtual void Hire(EntityPlayerLocal _player)
+    {
+        LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_player as EntityPlayerLocal);
+        if (null != uiforPlayer)
+        {
+            if (uiforPlayer.xui.PlayerInventory.GetItemCount(this.HireCurrency) > this.HireCost)
+            {
+                // Create the stack of currency
+                ItemStack stack = new ItemStack(this.HireCurrency, this.HireCost);
+                uiforPlayer.xui.PlayerInventory.RemoveItems(new ItemStack[] { stack }, 1);
+
+                // Add the stack of currency to the NPC, and set its orders.
+                this.inventory.AddItem(stack);
+                this.Buffs.SetCustomVar("$Leader", _player.entityId, true);
+                this.Buffs.SetCustomVar("$CurrentOrder", (float)Orders.Follow, true);
+            }
+            else
+            {
+                GameManager.ShowTooltipWithAlert(_player, "You cannot afford me. I want " + this.HireCost + " " + this.HireCurrency, "ui_denied");
+            }
+        }
+    }
     public override void PostInit()
     {
         base.PostInit();
@@ -147,8 +193,13 @@ class EntityAliveSDX : EntityAlive
                 this.PatrolCoordinates.Add(temp);
         }
 
-        if ( this.PatrolCoordinates.Count > 2)
+        if (this.PatrolCoordinates.Count > 0)
             this.Buffs.AddCustomVar("$CurrentOrder", (float)Orders.Patrol);
+        else
+            this.Buffs.AddCustomVar("$CurrentOrder", (float)Orders.Wander);
+
+        
+
     }
 
     public Vector3 StringToVector3(string sVector)
@@ -156,7 +207,6 @@ class EntityAliveSDX : EntityAlive
         if (String.IsNullOrEmpty(sVector))
             return Vector3.zero;
 
-        DisplayLog("String to Vector: " + sVector);
         // Remove the parentheses
         if (sVector.StartsWith("(") && sVector.EndsWith(")"))
             sVector = sVector.Substring(1, sVector.Length - 2);
@@ -218,6 +268,8 @@ class EntityAliveSDX : EntityAlive
         strOutput += "\n Patrol Points: ";
         foreach (Vector3 vec in this.PatrolCoordinates)
             strOutput += "\n\t" + vec.ToString();
+
+        strOutput += "\n\nCurrency: " + this.HireCurrency + " Count: " + this.inventory.GetItemCount(this.HireCurrency, false, -1, -1).ToString();
         return strOutput;
     }
 

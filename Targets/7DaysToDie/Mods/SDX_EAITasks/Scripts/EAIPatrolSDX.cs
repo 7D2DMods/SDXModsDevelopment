@@ -72,7 +72,7 @@ class EAIPatrolSDX : EAIApproachSpot
 
     public override bool Continue()
     {
-        // No order and no patrol
+        // No order and no patrol. Do reverse ( != checks on these, rather than == as it can leave the entity imprecise.
         if (!this.theEntity.Buffs.HasCustomVar("$CurrentOrder") || this.theEntity.Buffs.GetCustomVar("$CurrentOrder") != (float)EntityAliveSDX.Orders.Patrol)
             return false;
 

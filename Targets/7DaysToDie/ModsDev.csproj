@@ -72,7 +72,7 @@
     <Compile Include="Mods\AnimationSDX\PatchScripts\Animations.cs" />
     <Compile Include="Mods\AnimationSDX\Scripts\MecanimSDX.cs" />
     <Compile Include="Mods\AnimationSDX\Scripts\NewMecanimSDX.cs" />
-    <Compile Include="Mods\Blooms_AnimalHusbandry\Scripts\EntityAliveFarmingAnimal.cs" />
+    <Compile Include="Mods\Blooms_AnimalHusbandry\Scripts\EntityAliveFarmingAnimalSDX.cs" />
     <Compile Include="Mods\HalDllUpdates\PatchScripts\PatcherHalDll.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\EntityAnimalHal.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\HalHelperEvents.cs" />
@@ -91,6 +91,8 @@
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionPumpQuestSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIWanderSDX.cs" />
     <Compile Include="Mods\SDX_EntityAliveSDX\PatchScripts\PatchScript.cs" />
+    <Compile Include="Mods\SDX_ItemActions\PatchScripts\ItemActions.cs" />
+    <Compile Include="Mods\SDX_ItemActions\Scripts\ItemActionUseOtherSDX.cs" />
     <Compile Include="Mods\SDX_Quests\PatchScripts\QuestHooks.cs" />
     <Compile Include="Mods\SDX_Quests\Scripts\ObjectiveGotoPOISDX.cs" />
     <Compile Include="Mods\SDX_Quests\Scripts\ObjectiveBuffSDX.cs" />
@@ -132,6 +134,7 @@
     <None Include="Mods\Mods.zip" />
     <None Include="Mods\SDX_EAITasks\README.md" />
     <None Include="Mods\SDX_Buffs\README.md" />
+    <None Include="Mods\SDX_ItemActions\README.md" />
     <None Include="Mods\SDX_Quests\README.md" />
     <None Include="Mods\SphereII_ABetterLife\README.md" />
     <None Include="Mods\SphereII_ABetterLife\Resources\Alcatraz.unity3d" />
@@ -202,6 +205,7 @@
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\entityclasses.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Mods\Blooms_AnimalHusbandry\Config\entitygroups.xml" />
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\items.xml" />
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\Localization.txt" />
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\quests.xml" />
@@ -213,6 +217,7 @@
     <Content Include="Mods\SDX_EAITasks\Config\entityclasses.xml" />
     <Content Include="Mods\SDX_EAITasks\mod.xml" />
     <Content Include="Mods\SDX_Buffs\mod.xml" />
+    <Content Include="Mods\SDX_ItemActions\mod.xml" />
     <Content Include="Mods\SDX_Quests\mod.xml" />
     <Content Include="Mods\SphereII_ABetterLife\Config - Copy\biomes.xml" />
     <Content Include="Mods\SphereII_ABetterLife\Config - Copy\blocks.xml" />
@@ -286,6 +291,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mods\Blooms_AnimalHusbandry\PatchScripts\" />
+    <Folder Include="Mods\SDX_ItemActions\Config\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

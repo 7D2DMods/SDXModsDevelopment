@@ -3,35 +3,58 @@ using System.Xml;
 using UnityEngine;
 public class MinEventActionSpawnBabySDX : MinEventActionRemoveBuff
 {
+    string strSpawnGroup = "";
     public override void Execute(MinEventParams _params)
     {
         for (int j = 0; j < this.targets.Count; j++)
         {
             EntityAliveSDX entity = this.targets[j] as EntityAliveSDX;
-            if (entity )
+            if (entity)
             {
-                int  EntityID = entity.entityClass;
+                int EntityID = entity.entityClass;
 
-                EntityAliveSDX NewEntity = EntityFactory.CreateEntity(EntityID, entity.position, entity.rotation) as EntityAliveSDX;
+                // If the group is set, then use it.
+                if (!string.IsNullOrEmpty(this.strSpawnGroup))
+                    EntityID = EntityGroups.GetRandomFromGroup(this.strSpawnGroup);
+
+                Entity NewEntity = EntityFactory.CreateEntity(EntityID, entity.position, entity.rotation);
                 if (NewEntity)
                 {
-                   
                     NewEntity.SetSpawnerSource(EnumSpawnerSource.StaticSpawner);
                     GameManager.Instance.World.SpawnEntityInWorld(NewEntity);
-
                     Debug.Log("An entity was created: " + NewEntity.ToString());
-
-                    Debug.Log("Setting Mother ID to Baby: " + entity.entityId + " for " + NewEntity.entityId);
-                    NewEntity.Buffs.SetCustomVar("$Mother", entity.entityId, true);
-
+                    if (NewEntity is EntityAliveSDX)
+                    {
+                        Debug.Log("Setting Mother ID to Baby: " + entity.entityId + " for " + NewEntity.entityId);
+                        (NewEntity as EntityAliveSDX).Buffs.SetCustomVar("$Mother", entity.entityId, true);
+                    }
                 }
                 else
                 {
                     Debug.Log(" Could not Spawn baby for: " + entity.EntityName + " : " + entity.entityId);
                 }
+
             }
 
         }
     }
-   
+
+    public override bool ParseXmlAttribute(XmlAttribute _attribute)
+    {
+        bool flag = base.ParseXmlAttribute(_attribute);
+        if (!flag)
+        {
+            string name = _attribute.Name;
+            if (name != null)
+            {
+                if (name == "SpawnGroup")
+                {
+                    this.strSpawnGroup = _attribute.Value;
+                    return true;
+                }
+            }
+        }
+        return flag;
+    }
+
 }

@@ -15,7 +15,7 @@ using UnityEngine;
 using System;
 using System.IO;
 
-class EntityAliveFarmingAnimal : EntityAliveSDX
+class EntityAliveFarmingAnimalSDX : EntityAliveSDX
 {
     public String strFoodItem;
     public String strProductItem;
@@ -39,10 +39,6 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
             this.strProductItem = entityClass.Properties.Values["ProductItem"];
         if (entityClass.Properties.Values.ContainsKey("HarvestItems"))
             this.strHarvestItems = entityClass.Properties.Values["HarvestItems"];
-        if (entityClass.Properties.Values.ContainsKey("HomeBlock"))
-            this.strHomeBlock = entityClass.Properties.Values["HomeBlock"];
-        if (entityClass.Properties.Values.ContainsKey("HomeBuff"))
-            this.strHomeBuff = entityClass.Properties.Values["HomeBuff"];
 
         InvokeRepeating("CheckAnimalEvent", 1f, 60f);
     }
@@ -59,7 +55,7 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
 
     public void CheckAnimalEvent()
     {
-         // Test Hooks
+        // Test Hooks
         DisplayLog(this.ToString());
     }
 
@@ -68,40 +64,66 @@ class EntityAliveFarmingAnimal : EntityAliveSDX
     {
         float size = this.Buffs.GetCustomVar("$sizeScale");
         if (size > 0.0f)
-        {
             this.gameObject.transform.localScale = new Vector3(size, size, size);
-        }
     }
 
 
     public override void OnUpdateLive()
     {
         AdjustSizeForStage();
-    
-            base.OnUpdateLive();
+        base.OnUpdateLive();
     }
 
+    // Farm Animals don't need the complex commands that EntityAliveSDX needs.
+    public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
+    {
+        EntityActivationCommand[] ActivationCommands = new EntityActivationCommand[]
+        {
+            new EntityActivationCommand("TellMe", "talk", true ),
+        };
+        return ActivationCommands;
+    }
+    public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
+    {
+        switch (_indexInBlockActivationCommands)
+        {
+            case 0: // Tell me about yourself
+                GameManager.ShowTooltipWithAlert(_entityFocusing as EntityPlayerLocal, this.ToString() + "\n\n\n\n\n", "ui_denied");
+                break;
+        }
+
+        return true;
+    }
 
     public override string ToString()
     {
         String strOutput = base.ToString();
 
         String strMilkLevel = "0";
-        String strMother = "None";
         if (this.Buffs.HasCustomVar("MilkLevel"))
+        {            
             strMilkLevel = this.Buffs.GetCustomVar("MilkLevel").ToString();
+            strOutput += "\n Milk Level: " + strMilkLevel;
+        }
 
+        if (this.Buffs.HasCustomVar("$EggValue"))
+        {
+            String strEggLevel  = this.Buffs.GetCustomVar("$EggValue").ToString();
+            strOutput += "\n Egg Level: " + strEggLevel;
+        }
         if (this.Buffs.HasCustomVar("$Mother"))
-             strMother = this.Buffs.GetCustomVar("$Mother").ToString();
-
-        strOutput += "\n Milk Level: " + strMilkLevel;
-        strOutput += "\n My Mother is: " + strMother;
+        {
+            int MotherID = (int)this.Buffs.GetCustomVar("$Mother");
+            EntityAliveSDX MotherEntity = this.world.GetEntity(MotherID) as EntityAliveSDX;
+            if (MotherEntity)
+                strOutput += "\n My Mother is: " + MotherEntity.EntityName + " ( " + MotherID + " )";
+        }
+  
         return strOutput;
-       
-      }
+    }
 
 
- 
+
 
     public override bool CanEntityJump()
     {

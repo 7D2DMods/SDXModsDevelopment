@@ -222,6 +222,8 @@
     <!-- This buff contains settings that only the Cow Animals will use. use Requirements and effect groups to set up conditions on when the events fire specifically for the cow. -->
     <buff name="buffAnimalCow" hidden="true">
       <stack-type value="ignore" />
+      <update_rate value="2"/>
+
       <duration value="0" />
       
       <effect_group name="Maturity" >
@@ -229,11 +231,45 @@
         <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar="MilkLevel" operation="add" value="1" />
       </effect_group>
 
+      <!-- if the cow produces for too long, with nothing reducing it, remove the harvestable buff. They should have milked it. -->
+      <effect_group name="Expired Product">
+        <requirement name="CVarCompare" target="self" cvar="MilkLevel" operation="GT" value="1000"/>
+        <triggered_effect trigger="onSelfBuffFinish" action="RemoveBuff" target="self" buff="buffAnimalHarvestable" />
+      </effect_group>
+      
+      
       <effect_group name="AdultHood" >
         <requirement name="HasBuff" buff="buffAnimalAdult" />
         <!-- triggered_effect trigger="onSelfBuffStart" action="GiveQuestSDX, Mods" target="self" quest="farmingAnimal_Cow_Pregnancy" /-->
       </effect_group>
 
+    </buff>
+
+    <!-- This buff contains settings that only the Cow Animals will use. use Requirements and effect groups to set up conditions on when the events fire specifically for the cow. -->
+    <buff name="buffAnimalChicken" hidden="true">
+      <stack-type value="ignore" />
+      <update_rate value="2"/>
+      <duration value="0" />
+
+      <effect_group name="AdultHood" >
+        <requirement name="HasBuff" buff="buffAnimalAdult" />
+        <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar="$EggValue" operation="add" value="1" />
+      </effect_group>
+      <effect_group name="Produced an egg?" >
+        <requirement name="CVarCompare" target="self" cvar="$EggValue" operation="GT" value="100"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="AddBuff" target="self" buff="buffAnimalChickenEgg" />
+      </effect_group>
+
+      <effect_group name="Produced an egg? No" >
+        <requirement name="CVarCompare" target="self" cvar="$EggValue" operation="LT" value="100"/>
+        <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffAnimalChickenEgg" />
+      </effect_group>
+
+    </buff>
+
+    <buff name="buffAnimalChickenEgg" hidden="true">
+      <stack_type value="ignore"/>
+      <duration value="0"/>
     </buff>
 
     <buff name="buffAnimalHarvestable" hidden="true">
@@ -245,7 +281,7 @@
     <!-- Controls the animal's age -->
     <buff name="buffAnimalBaby" hidden="true">
       <stack_type value="ignore"/>
-      <duration value="20000"/>
+      <duration value="1000"/>
       <effect_group>
         <triggered_effect trigger="onSelfBuffStart" action="ModifyCVar" cvar="$sizeScale" operation="set" value="0.3"/>
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalJuvenile" />
@@ -317,7 +353,7 @@
       <effect_group name="Exit Buffs">
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalNewMother" />
         <triggered_effect trigger="onSelfBuffFinish" action="AddBuff" target="self" buff="buffAnimalHarvestable" />
-        <triggered_effect trigger="onSelfBuffFinish" action="SpawnBabySDX, Mods" target="self" />
+        <triggered_effect trigger="onSelfBuffFinish" action="SpawnBabySDX, Mods" target="self" SpawnGroup="farmAnimalsCow" />
       </effect_group>
     </buff>
 
