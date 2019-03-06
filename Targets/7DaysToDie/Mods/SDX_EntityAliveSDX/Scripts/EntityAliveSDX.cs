@@ -173,6 +173,7 @@ class EntityAliveSDX : EntityAlive
                 // Add the stack of currency to the NPC, and set its orders.
                 this.inventory.AddItem(stack);
                 this.Buffs.SetCustomVar("Owner", _player.entityId, true);
+                this.Buffs.SetCustomVar("Leader", _player.entityId, true);
                 this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
             }
             else
@@ -276,7 +277,10 @@ class EntityAliveSDX : EntityAlive
         strOutput += " Sanitation: " + strSanitation;
 
         if (this.Buffs.HasCustomVar("CurrentOrder"))
-            strOutput += " Current Order: " + (Orders)(int)this.Buffs.GetCustomVar("CurrentOrder");
+            strOutput += "\n Current Order: " + (Orders)(int)this.Buffs.GetCustomVar("CurrentOrder");
+
+        if (this.Buffs.HasCustomVar("Leader"))
+            strOutput += "\n Current Leader: " + (Orders)(int)this.Buffs.GetCustomVar("Leader");
 
         strOutput += "\n Active Buffs: ";
         foreach (BuffValue buff in this.Buffs.ActiveBuffs)

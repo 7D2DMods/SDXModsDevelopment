@@ -114,9 +114,15 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
             return false;
 
-        if (pathCounter == 0)
+        if (pathCounter == 0) // briefly pause if you are at the end of the path to let other tasks run
             return false;
 
+
+        if (this.theEntity.GetAttackTarget() != null) // If it has an attack target, break
+            return false;
+
+        if (this.theEntity.GetRevengeTarget() != null) // If something attacks you, break
+            return false;
 
         return ConfigureTargetEntity();
     }
