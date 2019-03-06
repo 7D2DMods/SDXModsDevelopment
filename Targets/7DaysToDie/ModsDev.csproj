@@ -81,11 +81,11 @@
     <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryHourSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryDaySDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\PatchScripts\PatchScript.cs" />
-    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIAnimalBloodMoon.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndAttackTarget.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndFollowTargetSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIMaslowLevel1SDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIPatrolSDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetAsTargetIfHurtSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetNearestEntityAsTargetSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionGiveQuestSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionPumpQuestSDX.cs" />

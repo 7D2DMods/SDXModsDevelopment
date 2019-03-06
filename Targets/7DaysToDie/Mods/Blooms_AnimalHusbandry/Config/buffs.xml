@@ -40,34 +40,38 @@
       </effect_group>
 
       <!-- This NonBlood Moon event counter-acts the BoodMoonEvent below. This will execute when it's not a blood moon -->
+      <!--
       <effect_group name="NonBloodMoonEvent">
         <requirement name="RequirementEveryXDaySDX, Mods" invert="true" value="0"/>
 
         <triggered_effect trigger="onSelfBuffUpdate" action="AnimatorSpeedSDX, Mods" target="self" value="1" />
         <triggered_effect trigger="onSelfBuffRemove" action="RemoveBuff" target="self" buff="buffBloodMoonEffect"/>
       </effect_group>
-
+-->
       <!-- During a Blood Event, the animals will have some adverse affects. Configure them here. This will apply for the entire blood moon event -->
+      <!--
       <effect_group name="BloodMoonEvent">
         <requirement name="RequirementEveryXDaySDX, Mods" value="0"/>
         <triggered_effect trigger="onSelfBuffRemove" action="AddBuff" target="self" buff="buffBloodMoonEffect" />
       </effect_group>
-
+-->
       <!-- Horde night! It's time! -->
+      <!--
       <effect_group name="BloodMoonEventsAt2200">
         <requirement name="RequirementEveryXDaySDX, Mods" value="0"/>
         <requirement name="RequirementEveryXHourSDX, Mods" value="22"/>
         <triggered_effect trigger="onSelfBuffUpdate" action="AnimatorSpeedSDX, Mods" target="self" value="2" />
 
       </effect_group>
-
+-->
       <!-- horde night is approaching. make them jittery -->
+      <!--
       <effect_group name="BloodMoonEventsAt2000">
         <requirement name="RequirementEveryXDaySDX, Mods" value="0"/>
         <requirement name="RequirementEveryXHourSDX, Mods" value="20"/>
         <triggered_effect trigger="onSelfBuffUpdate" action="AnimatorSpeedSDX, Mods" target="self" value="1.3" />
       </effect_group>
-
+-->
 
 
     </buff>
@@ -225,7 +229,7 @@
       <update_rate value="2"/>
 
       <duration value="0" />
-      
+
       <effect_group name="Maturity" >
         <requirement name="HasBuff" buff="buffAnimalHarvestable" />
         <triggered_effect trigger="onSelfBuffUpdate" action="ModifyCVar" target="self" cvar="MilkLevel" operation="add" value="1" />
@@ -236,8 +240,8 @@
         <requirement name="CVarCompare" target="self" cvar="MilkLevel" operation="GT" value="1000"/>
         <triggered_effect trigger="onSelfBuffFinish" action="RemoveBuff" target="self" buff="buffAnimalHarvestable" />
       </effect_group>
-      
-      
+
+
       <effect_group name="AdultHood" >
         <requirement name="HasBuff" buff="buffAnimalAdult" />
         <!-- triggered_effect trigger="onSelfBuffStart" action="GiveQuestSDX, Mods" target="self" quest="farmingAnimal_Cow_Pregnancy" /-->

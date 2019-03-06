@@ -26,7 +26,6 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
     // Allow params to be a comma-delimited list of various incentives, such as item name, buff, or cvar.
     public override void SetParams1(string _par1)
     {
-
         string[] array = _par1.Split(new char[]
         {
                 ','
@@ -115,6 +114,10 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
             return false;
 
+        if (pathCounter == 0)
+            return false;
+
+
         return ConfigureTargetEntity();
     }
 
@@ -161,8 +164,6 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         float num3 = position.y - this.theEntity.position.y;
         float num4 = Utils.FastAbs(num3);
         bool flag = targetXZDistanceSq <= num2 && num4 < 1f;
-
-
 
         // num is used to determine how close and comfortable the entity approaches you, so let's make sure they respect some personal space
         if (distanceToEntity < 1)

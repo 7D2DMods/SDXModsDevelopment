@@ -390,7 +390,6 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
         if ( CheckIncentive( this.lstProductionBuffs))
         {
-            DisplayLog(" I have the bed time buff.");
             if (this.lstBeds.Contains(checkBlock.Block.GetBlockName()))
             {
                 DisplayLog(" My target block is in my approved list. ");

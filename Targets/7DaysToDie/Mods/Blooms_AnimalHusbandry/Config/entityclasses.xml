@@ -77,7 +77,8 @@
       <!--  param1="Mother,Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
       <property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="Mother,Leader,hayBaleBlock,foodCornOnTheCob"/>
       <property name="AITask-5" value="MaslowLevel1SDX, Mods"/>
-      <property name="AITask-6" value=""/>
+      <property name="AITask-6" value="SetAsTargetIfHurtSDX, Mods" />
+      <property name="AITask-7" value=""/>
 
       <!-- Random name property. If none are listed, it's called Bob -->
       <property name="Names" value="Rose,Dahlia,Flower,Minnie,Daisy,Darla,Margie,Maggie,Esmeralda,Shelly,Meg,Lois,Jasmine,Bella,Candie,Bessie,Emma,Penelope,Bella,Molly,Clarabelle,Henrietta,Nettie,Annabelle,Gertie,Betty Sue, Ella, Anna,Dorothy,Annie,Honebun,Sweetie,LovaBull,Cupcake,Baby,Cookie,Sunny,SunShine,Cocoa,Muffin,Pinky,Blue,Sugar,Booboo,Princess,Big Mac,Madonna,Bertha,Waffles,Moscow,MooMoo,Mud Pie,Shrimp,Cowlick,Ineda Bunn,Waffles,Hamburger,Brown Cow,Humphry,Heifer,Mickey D" />

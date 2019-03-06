@@ -26,8 +26,10 @@
       <property name="AITask-4" value="MaslowLevel1SDX, Mods"/>
       <property name="AITask-5" value="WanderSDX, Mods"/>
       <property name="AITask-6" value="PatrolSDX, Mods"/>
-      
-			<property name="MaxTurnSpeed" value="280"/>
+      <property name="AITask-7" value="SetAsTargetIfHurtSDX, Mods" />
+	    <property name="AITask-8" value="ApproachAndAttackTargetSDX, Mods" />
+
+      <property name="MaxTurnSpeed" value="280"/>
 			<property name="MoveSpeed" value="0.25"/>
 			<property name="MoveSpeedAggro" value="1.3, 1.4"/>
 			<property name="MoveSpeedPanic" value="2.0"/>
