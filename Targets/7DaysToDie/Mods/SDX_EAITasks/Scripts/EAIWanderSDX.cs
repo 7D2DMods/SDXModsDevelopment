@@ -12,9 +12,9 @@ class EAIWanderSDX : EAIWander
     }
     public bool FetchOrders( )
     {
-        if (this.theEntity.Buffs.HasCustomVar("$CurrentOrder"))
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder"))
         {
-            if (this.theEntity.Buffs.GetCustomVar("$CurrentOrder") != (float)EntityAliveSDX.Orders.Wander)
+            if (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Wander)
                 return false;
         }
     
@@ -22,7 +22,10 @@ class EAIWanderSDX : EAIWander
     }
     public override bool CanExecute()
     {
-        return FetchOrders()  && base.CanExecute();
+        if (!FetchOrders())
+            return false;
+
+        return base.CanExecute();
     }
 
     public override bool Continue()

@@ -46,7 +46,6 @@
       <property name="AttackIdleIndexes" value="0" />
 
       <property name="AITask-1" value="RangedAttackTarget" param1="1,1,4"/>
-
       <property name="AITask-2" value="ApproachAndFollowTargetSDX, Mods" param1="Mother,Leader,hayBaleBlock,foodCornOnTheCob"/>
       <property name="AITask-3" value="MaslowLevel1SDX, Mods"/>
       <property name="AITask-4" value="WanderSDX, Mods"/>

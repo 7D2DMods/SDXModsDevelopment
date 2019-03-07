@@ -20,7 +20,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
-            Debug.Log(this.theEntity.EntityName + ": " + strMessage);
+            Debug.Log( this.GetType() + " :" + this.theEntity.EntityName + ": " + strMessage);
     }
 
     // Allow params to be a comma-delimited list of various incentives, such as item name, buff, or cvar.
@@ -109,6 +109,9 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             DisplayLog(" I have a revenge Target: " + this.theEntity.GetRevengeTarget());
             return false;
         }
+
+        if (!this.theEntity.Buffs.HasCustomVar("Leader"))
+            return false;
         // Change the distance allowed each time. This will give it more of a variety in how close it can get to you.
         distanceToEntity = UnityEngine.Random.Range(2f, 5.0f);
 
@@ -135,11 +138,21 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             DisplayLog(" I have a revenge Target: " + this.theEntity.GetRevengeTarget());
             return false;
         }
-        return ConfigureTargetEntity();
-    }
 
+        if (this.theEntity.Buffs.HasCustomVar("Leader"))
+        {
+            if ((int)this.theEntity.Buffs.GetCustomVar("Leader") == 0)
+                return false;
+        }
+        else
+            return false;
+        return ConfigureTargetEntity();
+        
+    }
     public override void Update()
     {
+        DisplayLog("Update");
+
         Vector3 position = Vector3.zero;
         float targetXZDistanceSq = 0f;
 
@@ -157,9 +170,9 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         EntityAliveSDX myEntity = this.theEntity as EntityAliveSDX;
         if (myEntity)
         {
-            if (this.theEntity.Buffs.HasCustomVar("$CurrentOrder"))
+            if (this.theEntity.Buffs.HasCustomVar("CurrentOrder"))
             {
-                if (this.theEntity.Buffs.GetCustomVar("$CurrentOrder") == (float)EntityAliveSDX.Orders.SetPatrolPoint)
+                if (this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.SetPatrolPoint)
                 {
                     // Make them a lot closer to you when they are following you.
                     this.distanceToEntity = 1f;

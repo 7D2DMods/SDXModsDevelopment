@@ -24,11 +24,16 @@ class EntityAliveSDX : EntityAlive
     public List<Vector3> PatrolCoordinates = new List<Vector3>();
     public int HireCost = 1000;
     public ItemValue HireCurrency = ItemClass.GetItem("casinoCoin", false);
-
+    public string npcID = "traitorjoel";
     String strMyName = "Bob";
     public System.Random random = new System.Random();
 
     private bool blDisplayLog = true;
+    private List<QuestEntry> questList;
+    private List<Quest> activeQuests;
+    private List<Vector2> usedPOILocations;
+    private List<int> tempTopTierQuests = new List<int>();
+
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog &&  !this.IsDead())
@@ -43,9 +48,8 @@ class EntityAliveSDX : EntityAlive
         Wander = 2,
         None = 3,
         SetPatrolPoint = 4,
-        EndPatrolPoint = 5,
-        Patrol = 6, 
-        Hire = 7
+        Patrol = 5, 
+        Hire = 6
     }
 
     // Over-ride for CopyProperties to allow it to read in StartingQuests.
@@ -113,6 +117,23 @@ class EntityAliveSDX : EntityAlive
     public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
     {
         this.emodel.avatarController.SetBool("IsBusy", true);
+
+        //LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_entityFocusing as EntityPlayerLocal);
+        //QuestEventManager.Current.NPCInteracted(this.entityId);
+        //Quest nextCompletedQuest = (_entityFocusing as EntityPlayerLocal).QuestJournal.GetNextCompletedQuest(null, this.entityId);
+        //this.activeQuests = QuestEventManager.Current.GetQuestList(GameManager.Instance.World, this.entityId, _entityFocusing.entityId);
+        //if (this.activeQuests == null && Steam.Network.IsServer)
+        //{
+        //    this.activeQuests = this.PopulateActiveQuests(_entityFocusing as EntityPlayer, -1);
+        //    QuestEventManager.Current.SetupQuestList(this.entityId, _entityFocusing.entityId, this.activeQuests);
+        //}
+        //    EntityNPC tempNPC = ConvertToNPC();
+        //    tempNPC.questList = this.questList;
+        //    uiforPlayer.xui.Dialog.Respondent = tempNPC;
+        //    uiforPlayer.windowManager.CloseAllOpenWindows(null, false);
+        //    uiforPlayer.windowManager.Open("dialog", true, false, true);
+
+        //return false;
 
         switch (_indexInBlockActivationCommands)
         {
@@ -335,6 +356,13 @@ class EntityAliveSDX : EntityAlive
    
     public override void OnUpdateLive()
     {
+        if (this.questList == null)
+        {
+            this.PopulateQuestList();
+        }
+
+        if (this.Buffs.HasCustomVar("CurrentOrder"))
+            DisplayLog(" Current Order: " + this.Buffs.GetCustomVar("CurrentOrder"));
         // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
         this.Stats.Water.Tick(0.5f, 0, false);
 
@@ -371,8 +399,165 @@ class EntityAliveSDX : EntityAlive
       
     }
 
+    public EntityNPC ConvertToNPC()
+    {
+        EntityNPC newEntity = new EntityNPC();
+        newEntity.npcID = this.npcID;
+        return newEntity;
+    }
 
+    public NPCInfo NPCInfo
+    {
+        get
+        {
+            if (this.npcID != string.Empty)
+            {
+                return NPCInfo.npcInfoList[this.npcID];
+            }
+            return null;
+        }
+    }
 
+    public void PopulateQuestList()
+    {
+        if (this.NPCInfo == null || this.NPCInfo.Quests == null)
+        {
+            return;
+        }
+        this.questList = new List<QuestEntry>();
+        for (int i = 0; i < this.NPCInfo.Quests.Count; i++)
+        {
+                string questID = this.NPCInfo.Quests[i].QuestID;
+
+                QuestClass quest = QuestClass.GetQuest(questID);
+                if (quest.CheckCriteriaQuestGiver(ConvertToNPC()))
+                {
+                    QuestEntry questEntry = this.NPCInfo.Quests[i];
+                    questEntry.QuestID = questID;
+                    this.questList.Add(questEntry);
+                }
+        }
+    }
+    public List<Quest> PopulateActiveQuests(EntityPlayer player, int currentTier )
+    {
+        if (this.questList == null)
+        {
+            this.PopulateQuestList();
+        }
+        bool @bool = GameStats.GetBool(EnumGameStats.EnemySpawnMode);
+        List<Quest> list = new List<Quest>();
+        this.usedPOILocations.Clear();
+        this.tempTopTierQuests.Clear();
+        if (currentTier == -1)
+        {
+            currentTier = player.QuestJournal.GetCurrentFactionTier(0, 0, false);
+        }
+        for (int i = 0; i < this.questList.Count; i++)
+        {
+            QuestClass quest = QuestClass.GetQuest(this.questList[i].QuestID);
+            if ((int)quest.DifficultyTier == currentTier)
+            {
+                this.tempTopTierQuests.Add(i);
+            }
+        }
+        if (this.tempTopTierQuests.Count > 0)
+        {
+            for (int j = 0; j < 100; j++)
+            {
+                int index = UnityEngine.Random.Range(0, this.tempTopTierQuests.Count);
+                QuestEntry questEntry = this.questList[this.tempTopTierQuests[index]];
+                if (UnityEngine.Random.Range(0f, 1f) < questEntry.Prob)
+                {
+                    QuestClass questClass = this.questList[this.tempTopTierQuests[index]].QuestClass;
+                    Quest quest2 = questClass.CreateQuest();
+                    quest2.QuestGiverID = this.entityId;
+                    quest2.SetPositionData(Quest.PositionDataTypes.QuestGiver, this.position);
+                    quest2.SetupTags();
+                    if (@bool || (byte)(quest2.QuestTags & QuestTags.clear) == 0)
+                    {
+                        if (quest2.SetupPosition(ConvertToNPC(), this.usedPOILocations, player.entityId))
+                        {
+                            list.Add(quest2);
+                        }
+                        if (list.Count == 3)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        for (int k = 0; k < 200; k++)
+        {
+            int index2 = UnityEngine.Random.Range(0, this.questList.Count);
+            QuestEntry questEntry2 = this.questList[index2];
+            QuestClass questClass2 = questEntry2.QuestClass;
+            if (UnityEngine.Random.Range(0f, 1f) < questEntry2.Prob)
+            {
+                if ((int)questClass2.DifficultyTier <= currentTier)
+                {
+                    Quest quest3 = questClass2.CreateQuest();
+                    quest3.QuestGiverID = this.entityId;
+                    quest3.SetPositionData(Quest.PositionDataTypes.QuestGiver, this.position);
+                    quest3.SetupTags();
+                    if (@bool || (byte)(quest3.QuestTags & QuestTags.clear) == 0)
+                    {
+                        if (!quest3.NeedsNPCSetPosition || quest3.SetupPosition(ConvertToNPC(), this.usedPOILocations, player.entityId))
+                        {
+                            list.Add(quest3);
+                        }
+                        if (list.Count == 5)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        return list;
+    }
+
+    public void SetActiveQuests(EntityPlayer player, NetPackageNPCQuestList.QuestPacketEntry[] questList)
+    {
+        if (this.activeQuests == null)
+        {
+            this.activeQuests = new List<Quest>();
+        }
+        this.activeQuests.Clear();
+        if (questList != null)
+        {
+            for (int i = 0; i < questList.Length; i++)
+            {
+                QuestClass quest = QuestClass.GetQuest(questList[i].QuestID);
+                Quest quest2 = quest.CreateQuest();
+                quest2.QuestGiverID = this.entityId;
+                quest2.SetPosition(ConvertToNPC(), questList[i].QuestLocation, questList[i].QuestSize);
+                quest2.SetPositionData(Quest.PositionDataTypes.QuestGiver, this.position);
+                quest2.DataVariables.Add("POIName", questList[i].POIName);
+                this.activeQuests.Add(quest2);
+            }
+        }
+    }
+
+    // Token: 0x06003124 RID: 12580 RVA: 0x00159938 File Offset: 0x00157B38
+    public void ClearActiveQuests(int playerID)
+    {
+        try
+        {
+            this.activeQuests.Clear();
+        }
+        catch
+        {
+        }
+        if (Steam.Network.IsServer)
+        {
+            QuestEventManager.Current.ClearQuestList(this.entityId);
+        }
+        else
+        {
+            SingletonMonoBehaviour<ConnectionManager>.Instance.SendToServer(new NetPackageNPCQuestList(this.entityId, playerID), false);
+        }
+    }
     protected override void updateSpeedForwardAndStrafe(Vector3 _dist, float _partialTicks)
     {
         if (this.isEntityRemote && _partialTicks > 1f)
