@@ -15,7 +15,7 @@ class EAIPatrolSDX : EAIApproachSpot
     private Vector3 seekPos;
     private bool hadPath;
     private int investigateTicks;
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
 
     public void DisplayLog(String strMessage)
     {
