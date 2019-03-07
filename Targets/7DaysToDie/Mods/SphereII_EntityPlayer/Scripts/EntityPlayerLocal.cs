@@ -38,40 +38,36 @@ class EntityPlayerSDXLocal : EntityPlayerLocal
             this.vp_FPController.SyncCharacterController();
 
         }
-
-        if ( entityClass.Properties.Values.ContainsKey("FootStepParticle"))
-        {
-            Debug.Log("Initializing foot step particle");
-            this.myFootStepParticleData.fileName = entityClass.Properties.Values["FootStepParticle"];
-            myFootStepParticle = SetParticle(this.myFootStepParticleData);
-            if (myFootStepParticle)
-                Debug.Log("Particle foot step initialized.");
-            else
-                Debug.Log("Particle foot step is NOT initialized");
-        }
-            
-
     }
 
     public override bool IsAttackValid()
     {
-
+        Debug.Log("IsAttack Valid?");
         if (base.IsAttackValid() && this.inventory.holdingItem.Name == "meleeHandPlayer" && this.blSoftHands)
         {
+            Debug.Log(" Yes Attack is valid");
             WorldRayHitInfo executeActionTarget = this.inventory.holdingItem.Actions[0].GetExecuteActionTarget(this.inventory.holdingItemData.actionData[0]);
             if (executeActionTarget == null)
             {
+                Debug.Log(" Execute Action is null");
                 return true;
             }
 
             // If we hit something in our bare hands, get hurt!
             if (executeActionTarget.bHitValid)
             {
+                Debug.Log(" Hit is valid. Doing damage.");
                 DamageSource dmg = new DamageSource(EnumDamageSource.Internal, EnumDamageTypes.Bashing);
                 DamageEntity(dmg, 1, false, 1f);
             }
+            else
+            {
+                Debug.Log(" Hit is NOT valid");
+            }
 
         }
+        else
+            Debug.Log("Attack is not valid.");
 
      
 

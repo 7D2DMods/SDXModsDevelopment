@@ -14,10 +14,16 @@
 			<property name="SoundDeath" value="DroneDie" />
 			<property name="SoundHurt" value="DroneRandom" />
 			<property name="SoundSense" value="DroneRandom" /> 
-			<property name="IsEnemyEntity" value="true"/>
+			<property name="IsEnemyEntity" value="false"/>
+      <property name="LootListAlive" value="62"/>
+      <property name="HandItem" value="handSphereII"/>
+      <property name="EntityType" value="Player"/>
+
+      <property name="Faction" value="trader"/>
+      <property name="Tags" value="entity,npc"/>
+      
       <property name="AITask-1" value="Territorial"/>
       <property name="AITask-2" value="Look"/>
-      <property name="LootListAlive" value="62"/>
 
       <!-- This AI task is tied to a cvar, which is being used to record entity ID that we want to follow -->
       <!-- Param1 can be:  cvar, Buff or the current hand item, such as a block or item name -->
@@ -26,9 +32,19 @@
       <property name="AITask-4" value="MaslowLevel1SDX, Mods"/>
       <property name="AITask-5" value="WanderSDX, Mods"/>
       <property name="AITask-6" value="PatrolSDX, Mods"/>
-	    <property name="AITask-7" value="ApproachAndAttackTargetSDX, Mods" param1="" param2="Leader,Mother"/>  <!-- Param2 is incentive NOT to attack this target -->
-      <property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" />
+      <property name="AITask-7" value="ApproachAndAttackTargetSDX, Mods" param1="" param2="Leader,Mother"/>  <!-- Param2 is incentive NOT to attack this target -->
+      <property name="AITask-8" value="" />
+      <!--property name="AITarget-1" value="SetAsTargetIfLeaderAttackedSDX, Mods" /-->
 
+      <property name="AITarget-1" value="SetAsTargetIfHurt" param1="EntityNPC,EntityPlayer"/>
+      <property name="AITarget-2" value="BlockingTargetTask"/>
+
+      <property name="AITarget-3" value="BlockingTargetTask"/>
+      <property name="AITarget-4" value="SetNearestCorpseAsTarget" param1="EntityZombie"/>
+      <property name="AITarget-5" value="SetNearestEntityAsTarget" param1="EntityZombie,0,EntityNPC,0"/>
+      
+      <property name="AITarget-6" value="" />
+      
       <property name="MaxTurnSpeed" value="280"/>
 			<property name="MoveSpeed" value="0.25"/>
 			<property name="MoveSpeedAggro" value="1.3, 1.4"/>

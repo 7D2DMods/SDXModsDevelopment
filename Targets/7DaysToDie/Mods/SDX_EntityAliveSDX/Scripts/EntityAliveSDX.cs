@@ -109,6 +109,7 @@ class EntityAliveSDX : EntityAlive
         return ActivationCommands;
     }
 
+  
     public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
     {
         this.emodel.avatarController.SetBool("IsBusy", true);
@@ -134,7 +135,7 @@ class EntityAliveSDX : EntityAlive
                 this.PatrolCoordinates.Clear(); // Clear the existing point.
                 break;
             case 5: // end patrol Point
-                this.Buffs.SetCustomVar("Leader", 0, true);
+                this.Buffs.RemoveCustomVar("Leader");
                 this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Patrol, true);
                 break;
             case 6:

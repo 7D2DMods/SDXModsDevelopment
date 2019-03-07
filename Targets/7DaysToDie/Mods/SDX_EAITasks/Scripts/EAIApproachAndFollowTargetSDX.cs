@@ -99,6 +99,16 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.theEntity.Jumping)
             return false;
 
+        if (this.theEntity.GetAttackTarget() != null) // If it has an attack target, break
+        {
+            DisplayLog(" I have an attack Target: " + this.theEntity.GetAttackTarget());
+            return false;
+        }
+        if (this.theEntity.GetRevengeTarget() != null) // If something attacks you, break
+        {
+            DisplayLog(" I have a revenge Target: " + this.theEntity.GetRevengeTarget());
+            return false;
+        }
         // Change the distance allowed each time. This will give it more of a variety in how close it can get to you.
         distanceToEntity = UnityEngine.Random.Range(2f, 5.0f);
 
@@ -106,8 +116,6 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         return ConfigureTargetEntity();
 
     }
-
-
 
     public override bool Continue()
     {
@@ -117,13 +125,16 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         if (pathCounter == 0) // briefly pause if you are at the end of the path to let other tasks run
             return false;
 
-
         if (this.theEntity.GetAttackTarget() != null) // If it has an attack target, break
+        {
+            DisplayLog(" I have an attack Target: " + this.theEntity.GetAttackTarget());
             return false;
-
+        }
         if (this.theEntity.GetRevengeTarget() != null) // If something attacks you, break
+        {
+            DisplayLog(" I have a revenge Target: " + this.theEntity.GetRevengeTarget());
             return false;
-
+        }
         return ConfigureTargetEntity();
     }
 
