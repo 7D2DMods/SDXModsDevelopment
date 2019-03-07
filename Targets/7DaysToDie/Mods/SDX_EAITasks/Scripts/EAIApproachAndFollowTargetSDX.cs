@@ -151,8 +151,6 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
     }
     public override void Update()
     {
-        DisplayLog("Update");
-
         Vector3 position = Vector3.zero;
         float targetXZDistanceSq = 0f;
 
