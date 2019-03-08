@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="EmuNoExceptionHijack" />
+		<Description value="Prevents exception errors from forcing the console to pop up and take control away making the game unplayable" />
+		<Author value="TormentedEmu" />
+		<Version value="1.1" />
+		<Website value="https://github.com/TormentedEmu/A17-7DTD-SDXMods" />
+	</ModInfo>
+</xml>

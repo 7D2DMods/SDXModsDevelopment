@@ -36,8 +36,10 @@ class EAIApproachAndAttackTargetSDX : EAIApproachAndFollowTargetSDX
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
             return false;
 
+        this.entityTarget = this.theEntity.GetAttackTarget();
         if (this.entityTarget == null)
             return false;
+
         if (!this.entityTarget.IsAlive())
             return false;
 

@@ -7,9 +7,13 @@
 		<game_version>17</game_version>
 		<launcher_version></launcher_version>
 	</info>
-	
-	
-	<dependencies>
-		<dependency>Hal's DLL Fixes</dependency>
-	</dependencies>
+
+
+  <dependencies>
+    <dependency>Hal's DLL Fixes</dependency>
+    <dependency>SDX_EAITasks</dependency>
+    <dependency>SDX_Quests</dependency>
+    <dependency>SDX_Buffs</dependency>
+    <dependency>SDX_Diaglog</dependency>
+  </dependencies>
 </mod>

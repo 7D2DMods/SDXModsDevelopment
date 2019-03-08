@@ -68,6 +68,13 @@ class EAIPatrolSDX : EAIApproachSpot
 
     public override bool CanExecute()
     {
+        // If there's an attack target, don't patrol anymore.
+        if (this.theEntity.GetAttackTarget() != null)
+        {
+            DisplayLog(" I have an attack target. No longer patrolling.");
+            return false;
+        }
+
         if (!FetchOrders())
             return false;
 
@@ -98,7 +105,7 @@ class EAIPatrolSDX : EAIApproachSpot
         if (this.theEntity.GetAttackTarget() != null)
         {
             DisplayLog(" I have an attack target. No longer patrolling.");
-            this.theEntity.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.None, true);
+          //  this.theEntity.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.None, true);
             return false;
         }
 
