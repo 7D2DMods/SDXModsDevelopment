@@ -178,6 +178,21 @@ class EAIApproachAndAttackTargetSDX : EAIApproachAndFollowTargetSDX
             this.theEntity.Attack(true);
         }
     }
+
+    public bool CheckFactionForEnemy(EntityAlive Entity)
+    {
+        FactionManager.Relationship myRelationship = FactionManager.Instance.GetRelationshipTier(this.theEntity, Entity);
+        if (myRelationship == FactionManager.Relationship.Hate)
+        {
+            DisplayLog(" I hate this entity: " + Entity.ToString());
+            return true;
+        }
+        else
+            DisplayLog(" My relationship with this " + Entity.ToString() + " is: " + myRelationship.ToString());
+        return false;
+    }
+
+
     public bool CheckSurroundingEntities(EntityAlive leader)
     {
         this.NearbyEntities.Clear();
@@ -190,7 +205,18 @@ class EAIApproachAndAttackTargetSDX : EAIApproachAndFollowTargetSDX
             EntityAlive x = (EntityAlive)this.NearbyEntities[i];
             if (x != this.theEntity)
             {
+                if (!x.IsAlive())
+                    continue;
+
+                if (CheckFactionForEnemy(x))
+                {
+                    DisplayLog(" I have an enemy in range: " + x.ToString());
+                    this.theEntity.SetAttackTarget(x, 1200);
+                    return true;
+                }
                 if (x.GetAttackTarget() == leader)
+
+                    if (x.GetAttackTarget() == leader)
                 {
                     DisplayLog(" My leader is being attacked by " + x.ToString());
                     this.theEntity.SetAttackTarget(x, 1200);
