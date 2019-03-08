@@ -23,7 +23,11 @@ class EAIApproachAndAttackTargetSDX : EAIApproachAndFollowTargetSDX
     {
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.theEntity.Jumping)
             return false;
-     
+
+        this.entityTarget = this.theEntity.GetRevengeTarget();
+        if (this.entityTarget)
+            return true;
+
         this.entityTarget = this.theEntity.GetAttackTarget();   
         if (this.entityTarget == null)
             return false;
@@ -35,6 +39,10 @@ class EAIApproachAndAttackTargetSDX : EAIApproachAndFollowTargetSDX
     {
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
             return false;
+
+        this.entityTarget = this.theEntity.GetRevengeTarget();
+        if (this.entityTarget && this.entityTarget.IsAlive() )
+            return true;
 
         this.entityTarget = this.theEntity.GetAttackTarget();
         if (this.entityTarget == null)
@@ -50,9 +58,8 @@ class EAIApproachAndAttackTargetSDX : EAIApproachAndFollowTargetSDX
     {
      
         if (this.entityTarget == null)
-        {
             return;
-        }
+
         if (this.relocateTicks > 0)
         {
             if (!this.theEntity.navigator.noPathAndNotPlanningOne())

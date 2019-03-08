@@ -37,11 +37,10 @@
       <property name="AITask-7" value="ApproachAndAttackTargetSDX, Mods" param1="" param2="Leader,Mother"/>  <!-- Param2 is incentive NOT to attack this target -->
       <property name="AITask-8" value="" />
       <property name="AITarget-1" value="SetAsTargetIfLeaderAttackedSDX, Mods" />
-      <property name="AITarget-2" value="BlockingTargetTask"/>
-       <property name="AITarget-3" value="SetNearestCorpseAsTarget" param1="EntityZombie"/>
-      <property name="AITarget-4" value="SetNearestEntityAsTarget" param1="EntityZombie,0,EntityNPC,0"/>
+      <property name="AITarget-2" value="SetAsTargetIfHurtSDX, Mods"/>
+      <property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" />
       
-      <property name="AITarget-5" value="" />
+      <property name="AITarget-4" value="" />
       
       <property name="MaxTurnSpeed" value="280"/>
 			<property name="MoveSpeed" value="0.25"/>
