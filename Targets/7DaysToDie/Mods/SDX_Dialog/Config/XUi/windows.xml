@@ -4,10 +4,8 @@
   <remove xpath="/windows/window[@name='windowRespondentName']" />
 
   <append xpath="/windows">
-    <window name="windowRespondentName" depth="0" pos="0,-15" width="1000" height="80" controller="DialogRespondentName">
-
+    <window name="windowRespondentName" depth="0" pos="0,-15" width="1000" height="80" controller="DialogRespondentNameSDX, Mods">
       <texture name="SMXskillListBG" pos="0,-75"    size="1000,80" style="SMX.conversation.trader.background" pivot="center" />
-
       <rect name="content" depth="1" >
         <label name="header.name" pos="0,-10" size="1000,80" style="SMX.general.panel.title" text="{respondentname}" color="[white]" pivot="center" />
       </rect>
@@ -16,7 +14,6 @@
   <!--    // SMX // Conversation Statements Window - NOT CLEANED -->
 
   <remove xpath="/windows/window[@name='windowStatement']" />
-
   <append xpath="/windows">
     <window name="windowStatement" depth="1" pos="0,-100" width="1000" height="150" controller="DialogStatementWindow">
       <rect name="content" depth="1">
@@ -27,22 +24,17 @@
   <!--    // SMX // Conversation Player Window - NOT CLEANED -->
 
   <remove xpath="/windows/window[@name='windowResponses']" />
-
   <append xpath="/windows">
     <window name="windowResponses" depth="0" pos="0,150" controller="CharacterFrameWindow" defaultcolor="[white]" hoveredcolor="[selectedColor]" cursor_area="true">
-
       <texture name="SMXskillListBG" pos="0,-50" size="1000,200" style="SMX.conversation.player.background" pivot="center" />
-
       <label name="characterName" pos="0,75" size="1000,80" style="SMX.general.panel.title" text="" color="[white]" pivot="center" />
       <label depth="2" name="levelNumber" pos="99999,99999" width="80" height="28" text="" color="[lightGrey]" />
-
       <panel name="previewFrame" depth="9" pos="-450,180" width="257" disableautobackground="true" snap="false">
         <rect>
           <texture depth="2" name="playerPreview" material="Materials/Transparent Colored" size="255,702" globalopacity="false"/>
         </rect>
       </panel>
-
-      <grid name="items" pos="-150,0" rows="3" cols="2" width="300" height="120" cell_width="300" cell_height="40" repeat_content="true" arrangement="vertical" controller="DialogResponseList">
+      <grid name="items" pos="-165,30" rows="4" cols="2" width="500" height="150" cell_width="350" cell_height="40" repeat_content="true" arrangement="vertical" controller="DialogResponseList">
         <SMX_response_entry id="0" />
       </grid>
     </window>

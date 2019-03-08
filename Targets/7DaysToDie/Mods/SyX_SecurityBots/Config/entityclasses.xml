@@ -29,7 +29,7 @@
 
       <!-- This AI task is tied to a cvar, which is being used to record entity ID that we want to follow -->
       <!-- Param1 can be:  cvar, Buff or the current hand item, such as a block or item name -->
-      <!--  param1="$Mother,$Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
+      <!--  param1="Mother,Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
       <property name="AITask-3" value="ApproachAndFollowTargetSDX, Mods" param1="Mother,Leader,hayBaleBlock,foodCornOnTheCob"/>
       <property name="AITask-4" value="MaslowLevel1SDX, Mods"/>
       <property name="AITask-5" value="WanderSDX, Mods"/>
@@ -39,7 +39,6 @@
       <property name="AITarget-1" value="SetAsTargetIfLeaderAttackedSDX, Mods" />
       <property name="AITarget-2" value="SetAsTargetIfHurtSDX, Mods"/>
       <property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" />
-      
       <property name="AITarget-4" value="" />
       
       <property name="MaxTurnSpeed" value="280"/>

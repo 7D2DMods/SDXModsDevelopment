@@ -4,7 +4,7 @@ using UnityEngine;
 
 class EAISetAsTargetIfHurtSDX : EAISetAsTargetIfHurt
 {
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)

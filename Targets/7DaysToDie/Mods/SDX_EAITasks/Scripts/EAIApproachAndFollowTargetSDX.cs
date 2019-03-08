@@ -16,7 +16,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
     private int pathCounter;
 
 
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)

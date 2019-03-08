@@ -19,7 +19,10 @@ class EAIApproachAndAttackTargetSDX : EAIApproachAndFollowTargetSDX
 
     public int attackTimeout= 5;
 
-     public override bool CanExecute()
+    private bool blDisplayLog = false;
+
+
+    public override bool CanExecute()
     {
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.theEntity.Jumping)
             return false;

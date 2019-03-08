@@ -73,6 +73,7 @@
     <Compile Include="Mods\AnimationSDX\Scripts\MecanimSDX.cs" />
     <Compile Include="Mods\AnimationSDX\Scripts\NewMecanimSDX.cs" />
     <Compile Include="Mods\Blooms_AnimalHusbandry\Scripts\EntityAliveFarmingAnimalSDX.cs" />
+    <Compile Include="Mods\EmuNoExceptionHijack\PatchScripts\NoExceptionHijack.cs" />
     <Compile Include="Mods\HalDllUpdates\PatchScripts\PatcherHalDll.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\EntityAnimalHal.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\HalHelperEvents.cs" />
@@ -80,13 +81,17 @@
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionSpawnBabySDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryHourSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryDaySDX.cs" />
+    <Compile Include="Mods\SDX_Dialog\PatchScripts\PatchScript.cs" />
+    <Compile Include="Mods\SDX_Dialog\Scripts\DialogRequirementHiredSDX.cs" />
+    <Compile Include="Mods\SDX_Dialog\Scripts\DialogActionExecuteCommandSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\PatchScripts\PatchScript.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndAttackTarget.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndFollowTargetSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIMaslowLevel1SDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIPatrolSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetAsTargetIfHurtSDX.cs" />
-    <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetNearestEntityAsTargetSDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetAsTargetNearestEnemySDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetAsTargetIfLeaderAttackedSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionGiveQuestSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionPumpQuestSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIWanderSDX.cs" />
@@ -131,7 +136,7 @@
     <None Include="Mods\HalDllUpdates\Scripts\BipedAnimations.cs.bak" />
     <None Include="Mods\HalDllUpdates\Scripts\EntityAnimalClown.cs.bak" />
     <None Include="Mods\HalDllUpdates\Scripts\GameObjectAnimalAnimationSDX.cs.bak" />
-    <None Include="Mods\Mods.zip" />
+    <None Include="Mods\SDX_Dialog\ReadMe.md" />
     <None Include="Mods\SDX_EAITasks\README.md" />
     <None Include="Mods\SDX_Buffs\README.md" />
     <None Include="Mods\SDX_ItemActions\README.md" />
@@ -190,6 +195,8 @@
     <None Include="Mods\SyX_SecurityBots\ReadMe.md" />
     <None Include="Mods\SyX_SecurityBots\Resources\DroneSounds.unity3d" />
     <None Include="Mods\SyX_SecurityBots\Resources\Spheres.unity3d" />
+    <None Include="Mods\Xyth_WanderingTraders\Resources\Traders.unity3d" />
+    <None Include="Mods\Xyth_WanderingTraders\Resources\XythAmmo.unity3d" />
     <None Include="Mods\ZombieTransmogrifier\ReadMe.md" />
   </ItemGroup>
   <ItemGroup>
@@ -212,11 +219,24 @@
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\vehicles.xml" />
     <Content Include="Mods\Blooms_AnimalHusbandry\mod.xml" />
     <Content Include="Mods\Blooms_AnimalHusbandry\ModInfo.xml" />
+    <Content Include="Mods\EmuNoExceptionHijack\mod.xml" />
+    <Content Include="Mods\EmuNoExceptionHijack\ModInfo.xml" />
     <Content Include="Mods\HalDllUpdates\mod.xml" />
     <Content Include="Mods\HalDllUpdates\ModInfo.xml" />
-    <Content Include="Mods\SDX_EAITasks\Config\entityclasses.xml" />
+    <Content Include="Mods\SDX_Dialog\Config\dialogs.xml" />
+    <Content Include="Mods\SDX_Dialog\Config\quests.xml" />
+    <Content Include="Mods\SDX_Dialog\Config\XUi\controls.xml" />
+    <Content Include="Mods\SDX_Dialog\Config\XUi\styles.xml" />
+    <Content Include="Mods\SDX_Dialog\Config\XUi\windows.xml" />
+    <Content Include="Mods\SDX_Dialog\Config\XUi\xui.xml" />
+    <Content Include="Mods\SDX_Dialog\mod.xml" />
+    <Content Include="Mods\SDX_Dialog\ModInfo.xml" />
+    <Content Include="Mods\SDX_Dialog\Textures\trader\smx_bulletpoint_icon.png" />
+    <Content Include="Mods\SDX_Dialog\Textures\trader\smx_player_bg.png" />
+    <Content Include="Mods\SDX_Dialog\Textures\trader\smx_trader_bg.png" />
     <Content Include="Mods\SDX_EAITasks\mod.xml" />
     <Content Include="Mods\SDX_Buffs\mod.xml" />
+    <Content Include="Mods\SDX_Dialog\Config\npc.xml" />
     <Content Include="Mods\SDX_ItemActions\mod.xml" />
     <Content Include="Mods\SDX_Quests\mod.xml" />
     <Content Include="Mods\SphereII_ABetterLife\Config - Copy\biomes.xml" />
@@ -285,12 +305,21 @@
     <Content Include="Mods\SyX_SecurityBots\Config\items.xml" />
     <Content Include="Mods\SyX_SecurityBots\Config\sounds.xml" />
     <Content Include="Mods\SyX_SecurityBots\ModInfo.xml" />
+    <Content Include="Mods\Xyth_WanderingTraders\Config\entityclasses.xml" />
+    <Content Include="Mods\Xyth_WanderingTraders\Config\entitygroups.xml" />
+    <Content Include="Mods\Xyth_WanderingTraders\Config\items.xml" />
+    <Content Include="Mods\Xyth_WanderingTraders\Config\Localization.txt" />
+    <Content Include="Mods\Xyth_WanderingTraders\Config\npc.xml" />
+    <Content Include="Mods\Xyth_WanderingTraders\Config\traders.xml" />
+    <Content Include="Mods\Xyth_WanderingTraders\mod.xml" />
+    <Content Include="Mods\Xyth_WanderingTraders\ModInfo.xml" />
     <Content Include="Mods\ZombieTransmogrifier\Config\EntityClasses.xml" />
     <Content Include="Mods\ZombieTransmogrifier\mod.xml" />
     <Content Include="Mods\ZombieTransmogrifier\ModInfo.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mods\Blooms_AnimalHusbandry\PatchScripts\" />
+    <Folder Include="Mods\SDX_EntityAliveSDX\Textures\" />
     <Folder Include="Mods\SDX_ItemActions\Config\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

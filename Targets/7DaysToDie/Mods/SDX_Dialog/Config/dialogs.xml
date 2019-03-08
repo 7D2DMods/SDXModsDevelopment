@@ -4,16 +4,62 @@
     <dialog id="sphere_trader" startstatementid="start">
       <!-- Statements -->
       <statement id="start" text="dialog_trader_statement_start">
-        <response_entry id="background" /> 
+        <response_entry id="background" />
+        <response_entry id="FollowMe" />
+        <response_entry id="ShowMe" />
+        <response_entry id="StayHere" />
+        <response_entry id="Wander" />
+        <response_entry id="SetPatrol" />
+        <response_entry id="Patrol" />
+        <response_entry id="Hire" />
         <response_entry id="done" />
       </statement>
+
+      <response id="Hire" text="Hire me" >
+        <requirement type="HiredSDX, Mods" requirementtype="Hide" value="not"/>
+        <action type="ExecuteCommandSDX, Mods" id="Hire" />
+      </response>
+      
+      <response id="FollowMe" text="Follow me" >
+        <requirement type="HiredSDX, Mods" requirementtype="Hide"/>
+        <action type="ExecuteCommandSDX, Mods" id="FollowMe" />
+      </response>
+
+      <response id="ShowMe" text="Tell me about yourself." >
+        <requirement type="HiredSDX, Mods" requirementtype="Hide" />
+        <action type="ExecuteCommandSDX, Mods" id="ShowMe" />
+      </response>
+
+      <response id="StayHere" text="Stay here" >
+        <requirement type="HiredSDX, Mods" requirementtype="Hide" />
+        <action type="ExecuteCommandSDX, Mods" id="StayHere" />
+      </response>
+
+      <response id="Wander" text="Wander around here" >
+        <requirement type="HiredSDX, Mods" requirementtype="Hide" />
+        <action type="ExecuteCommandSDX, Mods" id="Wander" />
+      </response>
+
+      <response id="SetPatrol" text="Follow me for your patrol route." >
+        <requirement type="HiredSDX, Mods" requirementtype="Hide" />
+        <action type="ExecuteCommandSDX, Mods" id="SetPatrol" />
+      </response>
+
+      <response id="Patrol" text="Patrol your route" >
+        <requirement type="HiredSDX, Mods" requirementtype="Hide" />
+        <action type="ExecuteCommandSDX, Mods" id="Patrol" />
+      </response>
+
+      <statement id="Hire" text="Sure I can help you out. But I am notworking for free.">
+        <response_entry id="nevermind" />
+      </statement>
+
 
       <statement id="background" text="dialog_trader_statement_background">
         <response_entry id="navezgane" />
         <response_entry id="theduke" />
         <response_entry id="cassadores" />
         <response_entry id="noah" />
-
         <response_entry id="nevermind" />
       </statement>
 
@@ -21,7 +67,6 @@
       <statement id="theduke" text="dialog_trader_statement_theduke" nextstatementid="background" />
       <statement id="cassadores" text="dialog_trader_statement_cassadores" nextstatementid="background" />
       <statement id="noah" text="dialog_trader_statement_noah" nextstatementid="background" />
-
       <response id="background" text="dialog_trader_response_background" nextstatementid="background">
       </response>
 

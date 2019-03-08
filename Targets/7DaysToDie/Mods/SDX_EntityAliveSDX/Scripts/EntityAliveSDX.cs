@@ -137,6 +137,7 @@ class EntityAliveSDX : EntityAlive
                 this.activeQuests = this.ConvertToEntityNPC().PopulateActiveQuests(_entityFocusing as EntityPlayer, -1);
                   QuestEventManager.Current.SetupQuestList(this.entityId, _entityFocusing.entityId, this.activeQuests);
             }
+            uiforPlayer.xui.Dialog.otherEntitySDX = this;
             uiforPlayer.xui.Dialog.Respondent = ConvertToEntityNPC();
             uiforPlayer.windowManager.CloseAllOpenWindows(null, false);
             uiforPlayer.windowManager.Open("dialog", true, false, true);
@@ -422,6 +423,7 @@ class EntityAliveSDX : EntityAlive
         entityNPC.npcID = this.npcID;
         entityNPC.position = this.position;
         entityNPC.questList = this.questList;
+        entityNPC.EntityName = this.EntityName;
         return this.entityNPC;
     }
 

@@ -12,18 +12,17 @@ public class SDXDialog : IPatcherMod
     // Inorder to update the GetWalk Type, we'll need to mark the GetWalkType to be virtual, so we can over-ride it.
     public bool Patch(ModuleDefinition module)
     {
-
-        // Search for all the EAI method sin the C#, and toggle the targetEntity or entityTarget to public.         
         Console.WriteLine("== SDX Dialog Patcher Patcher===");
-      
+
         var gm = module.Types.First(d => d.Name == "QuestList");
         foreach (var method in gm.Methods)
-        {
             SetMethodToPublic(method);
-        }
-        
-        
 
+
+        // Dialog has an EntityNPC value for the respondant, and that's failing on some checks. We'll add a new entity that is more general.
+        gm = module.Types.First(d => d.Name == "XUiM_Dialog");
+        var myEntity = module.Types.First(d => d.Name == "EntityAlive");
+        gm.Fields.Add(new FieldDefinition("otherEntitySDX", FieldAttributes.Public, myEntity));
         return true;
     }
 
