@@ -19,6 +19,8 @@
       <property name="HandItem" value="handSphereII"/>
       <property name="EntityType" value="Player"/>
 
+      <property name="NPCID" value="spheretest"/>
+
       <property name="Faction" value="trader"/>
       <property name="Tags" value="entity,npc"/>
       

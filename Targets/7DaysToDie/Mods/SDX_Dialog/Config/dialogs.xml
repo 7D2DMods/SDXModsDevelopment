@@ -1,0 +1,43 @@
+﻿<configs>
+  <append xpath="/dialogs">
+
+    <dialog id="sphere_trader" startstatementid="start">
+      <!-- Statements -->
+      <statement id="start" text="dialog_trader_statement_start">
+        <response_entry id="background" /> 
+        <response_entry id="done" />
+      </statement>
+
+      <statement id="background" text="dialog_trader_statement_background">
+        <response_entry id="navezgane" />
+        <response_entry id="theduke" />
+        <response_entry id="cassadores" />
+        <response_entry id="noah" />
+
+        <response_entry id="nevermind" />
+      </statement>
+
+      <statement id="navezgane" text="dialog_trader_statement_navezgane" nextstatementid="background" />
+      <statement id="theduke" text="dialog_trader_statement_theduke" nextstatementid="background" />
+      <statement id="cassadores" text="dialog_trader_statement_cassadores" nextstatementid="background" />
+      <statement id="noah" text="dialog_trader_statement_noah" nextstatementid="background" />
+
+      <response id="background" text="dialog_trader_response_background" nextstatementid="background">
+      </response>
+
+      <response id="navezgane" text="dialog_trader_response_navezgane" nextstatementid="navezgane" />
+      <response id="theduke" text="dialog_trader_response_theduke" nextstatementid="theduke" />
+      <response id="cassadores" text="dialog_trader_response_cassadores" nextstatementid="cassadores" />
+      <response id="noah" text="dialog_trader_response_noah" nextstatementid="noah" />
+      <response id="whiteriveroutposts" text="dialog_trader_response_whiteriveroutposts" nextstatementid="whiteriveroutposts" />
+      <response id="nevermind" text="dialog_trader_response_nevermind" nextstatementid="start" />
+
+  
+    
+      <response id="done" text="dialog_trader_response_nevermind" />
+
+    </dialog>
+  </append>
+  
+  
+</configs>

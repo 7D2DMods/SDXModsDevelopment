@@ -1,0 +1,11 @@
+﻿<configs>
+  <append xpath="/quests">
+
+    <quest_list id="npcqest">
+      <quest id="test_fetch" />
+
+    </quest_list>
+  </append>
+  
+  
+</configs>

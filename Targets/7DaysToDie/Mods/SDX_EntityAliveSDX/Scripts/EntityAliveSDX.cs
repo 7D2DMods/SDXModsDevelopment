@@ -24,7 +24,7 @@ class EntityAliveSDX : EntityAlive
     public List<Vector3> PatrolCoordinates = new List<Vector3>();
     public int HireCost = 1000;
     public ItemValue HireCurrency = ItemClass.GetItem("casinoCoin", false);
-    public string npcID = "traitorjoel";
+    public string npcID = "";
     String strMyName = "Bob";
     public System.Random random = new System.Random();
 
@@ -34,6 +34,7 @@ class EntityAliveSDX : EntityAlive
     private List<Vector2> usedPOILocations;
     private List<int> tempTopTierQuests = new List<int>();
 
+    bool SphereTest = false;
 
     EntityNPC entityNPC = new EntityNPC();
 
@@ -121,22 +122,32 @@ class EntityAliveSDX : EntityAlive
     {
         this.emodel.avatarController.SetBool("IsBusy", true);
 
-        
-        //LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_entityFocusing as EntityPlayerLocal);
-        //QuestEventManager.Current.NPCInteracted(this.entityId);
-        //Quest nextCompletedQuest = (_entityFocusing as EntityPlayerLocal).QuestJournal.GetNextCompletedQuest(null, this.entityId);
-        //this.activeQuests = QuestEventManager.Current.GetQuestList(GameManager.Instance.World, this.entityId, _entityFocusing.entityId);
-        //if (this.activeQuests == null && Steam.Network.IsServer)
-        //{
-        //    this.activeQuests = this.entityNPC.PopulateActiveQuests(_entityFocusing as EntityPlayer, -1);
-        //    QuestEventManager.Current.SetupQuestList(this.entityId, _entityFocusing.entityId, this.activeQuests);
-        //}
-        //uiforPlayer.xui.Dialog.Respondent = entityNPC;
-        //uiforPlayer.windowManager.CloseAllOpenWindows(null, false);
-        //uiforPlayer.windowManager.Open("dialog", true, false, true);
+        if (SphereTest)
+        {
+            LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_entityFocusing as EntityPlayerLocal);
+            QuestEventManager.Current.NPCInteracted(this.entityId);
+            Quest nextCompletedQuest = (_entityFocusing as EntityPlayerLocal).QuestJournal.GetNextCompletedQuest(null, this.entityId);
+            this.activeQuests = QuestEventManager.Current.GetQuestList(GameManager.Instance.World, this.entityId, _entityFocusing.entityId);
+            if (this.activeQuests == null && Steam.Network.IsServer)
+            {
+                DisplayLog(" No Active Quests");
+                this.entityNPC.PopulateQuestList();
+                this.activeQuests = new List<Quest>();
+                // this.activeQuests = this.entityNPC.PopulateActiveQuests(_entityFocusing as EntityPlayer, -1);
+                QuestEventManager.Current.SetupQuestList(this.entityId, _entityFocusing.entityId, this.activeQuests);
+            }
 
-        //return false;
 
+            DisplayLog(" NPC Info: " + this.entityNPC.npcID);
+
+            DisplayLog(" NPC Info DIalogID " + this.entityNPC.NPCInfo.DialogID);
+            DisplayLog(" NPC Quest Info: " + this.entityNPC.NPCInfo.QuestListName);
+            uiforPlayer.xui.Dialog.Respondent = this.entityNPC;
+            uiforPlayer.windowManager.CloseAllOpenWindows(null, false);
+            uiforPlayer.windowManager.Open("dialog", true, false, true);
+
+            return false;
+        }
         switch (_indexInBlockActivationCommands)
         {
             case 0: // Tell me about yourself
@@ -402,14 +413,38 @@ class EntityAliveSDX : EntityAlive
       
     }
 
+    public EntityNPC ConvertToEntityNPC()
+    {
+        this.entityNPC.npcID = this.npcID;
+
+        return this.entityNPC;
+    }
+
+    public NPCInfo NPCInfo
+    {
+        get
+        {
+
+            foreach( var Temp in NPCInfo.npcInfoList)
+            {
+                DisplayLog("Temp: " + Temp.Key + " Value: " + Temp.Value);
+            }
+            if (this.npcID != string.Empty)
+            {
+                return NPCInfo.npcInfoList[this.npcID];
+            }
+            return null;
+        }
+    }
     public void InitNPC()
     {
 
         entityNPC.questList = new List<QuestEntry>();
-       // entityNPC.PopulateQuestList();
         entityNPC.npcID = this.npcID;
+        entityNPC.position = this.position;
+       // entityNPC.PopulateQuestList();
 
-       
+
     }
 
     protected override void updateSpeedForwardAndStrafe(Vector3 _dist, float _partialTicks)
