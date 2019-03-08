@@ -9,6 +9,7 @@
     greeting_type="nearby"
     stance="Like" voice_set="trader"
     trader_id="1" dialog_id="sphere_trader"
-   />
+    quest_list="npcqest" />
+    
   </append>
 </configs>
