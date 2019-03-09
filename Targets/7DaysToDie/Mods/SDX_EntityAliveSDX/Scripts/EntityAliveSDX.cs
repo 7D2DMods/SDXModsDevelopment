@@ -134,7 +134,7 @@ class EntityAliveSDX : EntityAlive
             if (this.activeQuests == null && Steam.Network.IsServer)
             {
                 DisplayLog("No active Quests");
-                this.activeQuests = this.ConvertToEntityNPC().PopulateActiveQuests(_entityFocusing as EntityPlayer, -1);
+                this.activeQuests = this.PopulateActiveQuests(_entityFocusing as EntityPlayer, -1);
                   QuestEventManager.Current.SetupQuestList(this.entityId, _entityFocusing.entityId, this.activeQuests);
             }
             uiforPlayer.xui.Dialog.otherEntitySDX = this;
@@ -440,6 +440,7 @@ class EntityAliveSDX : EntityAlive
             QuestClass quest = QuestClass.GetQuest(questID);
             if (quest.CheckCriteriaQuestGiver(ConvertToEntityNPC()))
             {
+
                 QuestEntry questEntry = this.NPCInfo.Quests[i];
                 questEntry.QuestID = questID;
                 this.questList.Add(questEntry);
@@ -478,6 +479,7 @@ class EntityAliveSDX : EntityAlive
                 {
                     QuestClass questClass = this.questList[this.tempTopTierQuests[index]].QuestClass;
                     Quest quest2 = questClass.CreateQuest();
+                    quest2.OwnerJournal = player.QuestJournal;
                     quest2.QuestGiverID = this.entityId;
                     quest2.SetPositionData(Quest.PositionDataTypes.QuestGiver, this.position);
                     quest2.SetupTags();
@@ -506,6 +508,8 @@ class EntityAliveSDX : EntityAlive
                 {
                     Quest quest3 = questClass2.CreateQuest();
                     quest3.QuestGiverID = this.entityId;
+                    quest3.OwnerJournal = player.QuestJournal;
+
                     quest3.SetPositionData(Quest.PositionDataTypes.QuestGiver, this.position);
                     quest3.SetupTags();
                     if (@bool || (byte)(quest3.QuestTags & QuestTags.clear) == 0)
@@ -540,6 +544,7 @@ class EntityAliveSDX : EntityAlive
                 QuestClass quest = QuestClass.GetQuest(questList[i].QuestID);
                 Quest quest2 = quest.CreateQuest();
                 quest2.QuestGiverID = this.entityId;
+                quest2.OwnerJournal = player.QuestJournal;
                 quest2.SetPosition(ConvertToEntityNPC(), questList[i].QuestLocation, questList[i].QuestSize);
                 quest2.SetPositionData(Quest.PositionDataTypes.QuestGiver, this.position);
                 quest2.DataVariables.Add("POIName", questList[i].POIName);
