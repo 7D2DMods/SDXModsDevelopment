@@ -1,20 +1,6 @@
 ﻿using UnityEngine;
 public class DialogRequirementHiredSDX : BaseDialogRequirement
 {
-    public override BaseDialogRequirement.RequirementTypes RequirementType
-    {
-        get
-        {
-            return BaseDialogRequirement.RequirementTypes.Admin;
-        }
-    }
-
-    public override void SetupRequirement()
-    {
-        string description = Localization.Get("RequirementAdmin_keyword", Localization.QuestPrefix);
-        base.Description = description;
-    }
-
     public override bool CheckRequirement(EntityPlayer player)
     {
         LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(player as EntityPlayerLocal);
@@ -29,10 +15,12 @@ public class DialogRequirementHiredSDX : BaseDialogRequirement
             EntityAliveSDX myEntity = player.world.GetEntity(respondent.entityId) as EntityAliveSDX;
             if (myEntity != null)
             {
+                bool isTame = false;
                 if ( base.Value.EqualsCaseInsensitive("not"))
-                    return !myEntity.isTame(player);
+                    isTame=  !myEntity.isTame(player);
                 else
-                    return myEntity.isTame(player);
+                    isTame = myEntity.isTame(player);
+                return isTame;
             }
          }
         return false;

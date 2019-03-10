@@ -105,7 +105,13 @@
       </effect_group>
     </buff>
 
-
+    <buff name="buffSkillPoint" >
+      <damage_type value="Dehydration"/>
+      <stack_type value="ignore"/>
+      <effect_group>
+        <triggered_effect trigger="onSelfBuffStart" action="SkillPointSDX, Mods" target="self" value="2"/>
+      </effect_group>
+    </buff>
     <buff name="buffStatusSanitation1" >
       <damage_type value="Dehydration"/>
       <stack_type value="ignore"/>
@@ -130,7 +136,7 @@
         <triggered_effect trigger="onSelfBuffStart" action="RemoveBuff" target="self" buff="buffAnimalFertility" />
       </effect_group>
 
-      <!-- Give the anbimal a chance to fight the infection -->
+      <!-- Give the animal a chance to fight the infection -->
       <effect_group name="Updates">
         <triggered_effect trigger="onSelfBuffUpdate" action="RemoveBuff" target="self" buff="buffInfectedAnimal1" >
           <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="1"/>

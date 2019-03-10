@@ -9,8 +9,15 @@
             {
                 if ( base.xui.Dialog.otherEntitySDX != null )
                 {
-                        value = base.xui.Dialog.otherEntitySDX.EntityName;
+                    EntityAliveSDX myEntity = base.xui.Dialog.otherEntitySDX as EntityAliveSDX;
+                    if (myEntity)
+                    {
+                        if (myEntity.GetHireCost() <= 0)
+                            value = myEntity.EntityName;
+                        else
+                            value = myEntity.EntityName + " ( Hire for " + myEntity.GetHireCost() + " " + myEntity.GetHireCurrency().ItemClass.Name + " )";
                         return true;
+                    }
                 }
                 value = ((!(base.xui.Dialog.Respondent != null)) ? string.Empty : Localization.Get(base.xui.Dialog.Respondent.EntityName, string.Empty));
                return true;

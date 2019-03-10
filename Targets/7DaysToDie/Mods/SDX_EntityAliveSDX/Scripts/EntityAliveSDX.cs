@@ -53,7 +53,8 @@ class EntityAliveSDX : EntityAlive
         None = 3,
         SetPatrolPoint = 4,
         Patrol = 5, 
-        Hire = 6
+        Hire = 6,
+        Loot = 7
     }
 
     // Over-ride for CopyProperties to allow it to read in StartingQuests.
@@ -81,28 +82,12 @@ class EntityAliveSDX : EntityAlive
         }
 
         if (entityClass.Properties.Values.ContainsKey("NPCID"))
-        {
             this.npcID = entityClass.Properties.Values["NPCID"];
-        }
+
+        
     }
 
-    public override Ray GetLookRay()
-    {
-        Ray result = new Ray(this.position + new Vector3(0f, this.GetEyeHeight() * 1f, 0f), this.GetLookVector());
-        return result;
-    }
-    public override Vector3 GetLookVector()
-    {
-        if (this.lookAtPosition.Equals(Vector3.zero))
-        {
-            return base.GetLookVector();
-        }
-        return Vector3.Normalize(this.lookAtPosition - this.getHeadPosition());
-    }
-    public override float GetSeeDistance()
-    {
-        return 80f;
-    }
+   
 
     public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
     {
@@ -142,9 +127,11 @@ class EntityAliveSDX : EntityAlive
             uiforPlayer.windowManager.CloseAllOpenWindows(null, false);
             uiforPlayer.windowManager.Open("dialog", true, false, true);
 
-            
+            this.Progression.SkillPoints += 10;
             return false;
         }
+
+        // This is fall back for non-NPCID
         switch (_indexInBlockActivationCommands)
         {
             case 0: // Tell me about yourself
@@ -190,8 +177,15 @@ class EntityAliveSDX : EntityAlive
         return false;
     }
 
-
-    public virtual void Hire(EntityPlayerLocal _player)
+    public int GetHireCost()
+    {
+        return this.HireCost;
+    }
+    public ItemValue GetHireCurrency()
+    {
+        return this.HireCurrency;
+    }
+    public virtual bool Hire(EntityPlayerLocal _player)
     {
         LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_player as EntityPlayerLocal);
         if (null != uiforPlayer)
@@ -207,12 +201,15 @@ class EntityAliveSDX : EntityAlive
                 this.Buffs.SetCustomVar("Owner", _player.entityId, true);
                 this.Buffs.SetCustomVar("Leader", _player.entityId, true);
                 this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
+
+                return true;
             }
             else
             {
                 GameManager.ShowTooltipWithAlert(_player, "You cannot afford me. I want " + this.HireCost + " " + this.HireCurrency, "ui_denied");
             }
         }
+        return false;
     }
     public override void PostInit()
     {
@@ -232,6 +229,7 @@ class EntityAliveSDX : EntityAlive
             this.PatrolCoordinates.Add(position);
     }
 
+  
     // Reads the buff and quest information
     public override void Read(byte _version, BinaryReader _br)
     {
@@ -328,7 +326,7 @@ class EntityAliveSDX : EntityAlive
         foreach (Vector3 vec in this.PatrolCoordinates)
             strOutput += "\n\t" + vec.ToString();
 
-        strOutput += "\n\nCurrency: " + this.HireCurrency + " Count: " + this.inventory.GetItemCount(this.HireCurrency, false, -1, -1).ToString();
+        strOutput += "\n\nCurrency: " + this.HireCurrency;// + " Faction: " + FactionManager.Instance.GetFaction(this.factionId);
         return strOutput;
     }
 
@@ -529,7 +527,6 @@ class EntityAliveSDX : EntityAlive
         return list;
     }
 
-    // Token: 0x06003123 RID: 12579 RVA: 0x00159874 File Offset: 0x00157A74
     public void SetActiveQuests(EntityPlayer player, NetPackageNPCQuestList.QuestPacketEntry[] questList)
     {
         if (this.activeQuests == null)
@@ -551,6 +548,24 @@ class EntityAliveSDX : EntityAlive
                 this.activeQuests.Add(quest2);
             }
         }
+    }
+
+    public override Ray GetLookRay()
+    {
+        Ray result = new Ray(this.position + new Vector3(0f, this.GetEyeHeight() * 1f, 0f), this.GetLookVector());
+        return result;
+    }
+    public override Vector3 GetLookVector()
+    {
+        if (this.lookAtPosition.Equals(Vector3.zero))
+        {
+            return base.GetLookVector();
+        }
+        return Vector3.Normalize(this.lookAtPosition - this.getHeadPosition());
+    }
+    public override float GetSeeDistance()
+    {
+        return 80f;
     }
     #endregion
     protected override void updateSpeedForwardAndStrafe(Vector3 _dist, float _partialTicks)

@@ -17,7 +17,7 @@
 
       <response id="Hire" text="Hire me" >
         <requirement type="HiredSDX, Mods" requirementtype="Hide" value="not"/>
-        <action type="ExecuteCommandSDX, Mods" id="Hire" />
+        <action type="OpenDialogSDX, Mods" id="Hire" />
       </response>
       
       <response id="FollowMe" text="Follow me" >
@@ -50,12 +50,7 @@
         <action type="ExecuteCommandSDX, Mods" id="Patrol" />
       </response>
 
-      <statement id="Hire" text="Sure I can help you out. But I am notworking for free.">
-        <response_entry id="nevermind" />
-      </statement>
-
-
-      <statement id="background" text="dialog_trader_statement_background">
+         <statement id="background" text="dialog_trader_statement_background">
         <response_entry id="navezgane" />
         <response_entry id="theduke" />
         <response_entry id="cassadores" />
@@ -67,8 +62,8 @@
       <statement id="theduke" text="dialog_trader_statement_theduke" nextstatementid="background" />
       <statement id="cassadores" text="dialog_trader_statement_cassadores" nextstatementid="background" />
       <statement id="noah" text="dialog_trader_statement_noah" nextstatementid="background" />
-      <response id="background" text="dialog_trader_response_background" nextstatementid="background">
-      </response>
+      <response id="background" text="dialog_trader_response_background" nextstatementid="background"/>
+      
 
       <response id="navezgane" text="dialog_trader_response_navezgane" nextstatementid="navezgane" />
       <response id="theduke" text="dialog_trader_response_theduke" nextstatementid="theduke" />
