@@ -49,8 +49,12 @@ public class DialogActionExecuteCommandSDX : DialogActionAddBuff
                         myEntity.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Patrol, true);
                         break;
                     case "Hire":
-                        myEntity.Hire(player as EntityPlayerLocal);
-
+                        bool result = myEntity.Hire(player as EntityPlayerLocal);
+                        if( result )
+                        {
+                            myEntity.Buffs.SetCustomVar("Leader", player.entityId, true);
+                            myEntity.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
+                        }
                         break;
 
                 }
