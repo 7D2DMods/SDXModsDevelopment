@@ -42,6 +42,7 @@
 
       <response id="SetPatrol" text="Follow me for your patrol route." >
         <requirement type="HiredSDX, Mods" requirementtype="Hide" />
+        <requirement type="PatrolSDX, Mods" requirementtype="Hide" />
         <action type="ExecuteCommandSDX, Mods" id="SetPatrol" />
       </response>
 
