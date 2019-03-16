@@ -6,7 +6,7 @@ class EAISetAsTargetIfLeaderAttackedSDX : EAISetAsTargetIfHurt
 {
     private List<Entity> NearbyEntities = new List<Entity>();
 
-    private bool blDisplayLog = false;
+    private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -17,8 +17,10 @@ class EAISetAsTargetIfLeaderAttackedSDX : EAISetAsTargetIfHurt
     {
 
         if (this.theEntity.GetAttackTarget() != null)
+        {
+            DisplayLog(" No Attack Target. Cannot execute");
             return false;
-
+        }
         if (this.theEntity.Buffs.HasCustomVar("Leader"))
         {
             int EntityID = (int)this.theEntity.Buffs.GetCustomVar("Leader");
@@ -36,7 +38,7 @@ class EAISetAsTargetIfLeaderAttackedSDX : EAISetAsTargetIfHurt
                 DisplayLog(" I do not have a leader.");
         }
   
-        return false;
+        return true;
     
     }
 
