@@ -79,6 +79,12 @@ class EAIPatrolSDX : EAIApproachSpot
         if (!FetchOrders())
             return false;
 
+        // if The entity is busy, don't continue patrolling.
+        bool isBusy = false;
+        if (this.theEntity.emodel.avatarController.TryGetBool("IsBusy", out isBusy))
+            if (isBusy)
+                return false;
+
         SetPatrolVectors();
         this.theEntity.SetInvestigatePosition(this.lstPatrolPoints[PatrolPointsCounter], 1200);
         if (this.theEntity.HasInvestigatePosition)
