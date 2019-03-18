@@ -28,7 +28,9 @@ public class EntityAliveSDXPatcher : IPatcherMod
         method = gm.Methods.First(d => d.Name == "SetAttackTarget");
         SetMethodToPublic(method);
         SetMethodToVirtual(method);
-
+        method = gm.Methods.First(d => d.Name == "SetRevengeTarget");
+        SetMethodToPublic(method);
+        SetMethodToVirtual(method);
 
         gm = module.Types.First(d => d.Name == "QuestClass");
         method = gm.Methods.First(d => d.Name == "GetQuest");

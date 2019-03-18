@@ -5,23 +5,19 @@ using UnityEngine;
 class EAISetAsTargetNearestEnemySDX : EAISetAsTargetIfHurt
 {
     private List<Entity> NearbyEntities = new List<Entity>();
+    private List<Entity> NearbyEnemies = new List<Entity>();
 
-    private bool blDisplayLog = false;
+
+    private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
             Debug.Log(this.GetType() + " : " + this.theEntity.EntityName + ": " + this.theEntity.entityId + ": " + strMessage);
     }
-
+ 
     public override bool CanExecute()
     {
-
-        if (this.theEntity.GetAttackTarget() != null)
-            return false;
-
-        if (this.theEntity.GetRevengeTarget() != null)
-            return false;
-        return CheckSurroundingEntities(this.theEntity);
+        return CheckSurroundingEntities();
     }
 
 
@@ -38,65 +34,68 @@ class EAISetAsTargetNearestEnemySDX : EAISetAsTargetIfHurt
         return false;
     }
 
-
-    public override bool Continue()
-    {
-        if (this.theEntity.GetAttackTarget() != null)
-            return false;
-
-        if (this.theEntity.GetRevengeTarget() != null)
-            return false;
-
-        if (CheckSurroundingEntities(this.theEntity))
-            return false;
-
-        return base.Continue();
-    }
-
-    public bool CheckSurroundingEntities(EntityAlive leader)
+    public bool CheckSurroundingEntities()
     {
         this.NearbyEntities.Clear();
+        this.NearbyEntities.Clear();
+
+        EntityAlive leader = null;
+        if (this.theEntity.Buffs.HasCustomVar("Leader"))
+        {
+            DisplayLog(" leader Detected.");
+            int EntityID = (int)this.theEntity.Buffs.GetCustomVar("Leader");
+            leader = this.theEntity.world.GetEntity(EntityID) as EntityAlive;
+
+        }
 
         // Search in the bounds are to try to find the most appealing entity to follow.
-        Bounds bb = new Bounds(this.theEntity.position, new Vector3(30f, 20f, 30f));
+        Bounds bb = new Bounds(this.theEntity.position, new Vector3(this.theEntity.GetSeeDistance(), 20f, this.theEntity.GetSeeDistance()));
         this.theEntity.world.GetEntitiesInBounds(typeof(EntityAlive), bb, this.NearbyEntities);
+        DisplayLog(" Nearby Entities: " + this.NearbyEntities.Count);
         for (int i = this.NearbyEntities.Count - 1; i >= 0; i--)
         {
             EntityAlive x = (EntityAlive)this.NearbyEntities[i];
-            if (x != this.theEntity)
+            if (x != this.theEntity && x.IsAlive())
             {
-                if (!x.IsAlive())
+                if (x == leader )
                     continue;
 
+                DisplayLog("Nearby Entity: " + x.EntityName);
                 if (CheckFactionForEnemy(x))
-                {
-                    DisplayLog(" I have an enemy in range: " + x.ToString());
-                    this.theEntity.SetRevengeTarget(x);
-                    return true;
-                }
-                if (x.GetAttackTarget() == leader)
-                {
-                    DisplayLog(" I am being targetted by " + x.ToString());
-                    this.theEntity.SetRevengeTarget(x);
-                    return true;
-                }
-
-                if (x.GetRevengeTarget() == leader)
-                {
-                    DisplayLog(" I am being avenged by " + x.ToString());
-                    this.theEntity.SetRevengeTarget(x);
-                    return true;
-                }
-
-                if (x.GetDamagedTarget() == leader)
-                {
-                    DisplayLog(" An entity has damaged me " + x.ToString());
-                    this.theEntity.SetRevengeTarget(x);
-                    return true;
-                }
+                    NearbyEnemies.Add(x);
             }
         }
 
+        return NearestEnemy();
+        
+    }
+
+    public bool NearestEnemy()
+    {
+        if (this.NearbyEnemies.Count == 0)
+            return false;
+
+        // Finds the closet block we matched with.
+        EntityAlive closeEnemy = null;
+        float minDist = Mathf.Infinity;
+        Vector3 currentPos = this.theEntity.position;
+        foreach (EntityAlive enemy in NearbyEnemies)
+        {
+            float dist = Vector3.Distance(enemy.position, currentPos);
+            DisplayLog(" Entity: " + enemy.EntityName + "'s distance is: " + dist);
+            if (dist < minDist)
+            {
+                closeEnemy = enemy;
+                minDist = dist;
+            }
+        }
+
+        if (closeEnemy != null)
+        {
+            DisplayLog(" Closes Enemy: " + closeEnemy.ToString() );
+            this.theEntity.SetAttackTarget(closeEnemy, 1200);
+            return true;
+        }
         return false;
     }
 }

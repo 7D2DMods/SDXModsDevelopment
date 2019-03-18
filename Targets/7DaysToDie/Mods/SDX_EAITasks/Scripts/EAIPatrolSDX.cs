@@ -40,20 +40,25 @@ class EAIPatrolSDX : EAIApproachSpot
 
     public void SetPatrolVectors()
     {
-        this.PatrolPointsCounter = 0;
+        // this.PatrolPointsCounter = 0;
+
 
         DisplayLog(" Setting Up Patrol Vectors");
         // If this is an entityAliveSDX, check to see if there's any patrol points.
         EntityAliveSDX myEntity = this.theEntity as EntityAliveSDX;
         if (myEntity)
         {
+
+            // If we already have patrol points, and they are the same as we have, don't reset.
+            if (this.lstPatrolPoints.Count > 0 && this.lstPatrolPoints == myEntity.PatrolCoordinates )
+                return;
+
             DisplayLog(" Patrol Counters: " + myEntity.PatrolCoordinates.Count);
             if (myEntity.PatrolCoordinates.Count > 0)
             {
                 DisplayLog(" Setting up Patrol Coordinates");
                 this.lstPatrolPoints = myEntity.PatrolCoordinates;
                 PatrolPointsCounter = this.lstPatrolPoints.Count - 1;
-                this.theEntity.SetInvestigatePosition(this.lstPatrolPoints[PatrolPointsCounter], 1200);
             }
         }
     }
@@ -63,8 +68,9 @@ class EAIPatrolSDX : EAIApproachSpot
 
         if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Patrol)
             return false;
+
         // If there's an attack target, don't patrol anymore.
-        if (this.theEntity.GetAttackTarget() != null)
+        if (this.theEntity.GetAttackTarget() != null && this.theEntity.GetAttackTarget().IsAlive())
         {
             DisplayLog(" I have an attack target. No longer patrolling.");
             return false;
@@ -74,12 +80,12 @@ class EAIPatrolSDX : EAIApproachSpot
             return false;
 
         SetPatrolVectors();
+        this.theEntity.SetInvestigatePosition(this.lstPatrolPoints[PatrolPointsCounter], 1200);
         if (this.theEntity.HasInvestigatePosition)
         {
             DisplayLog(" I have an intesgation Position. Starting to Patrol");
             return true;
         }
-        DisplayLog(" No Investigation Position");
         return false;
     }
 
@@ -135,6 +141,7 @@ class EAIPatrolSDX : EAIApproachSpot
 
             this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.lstPatrolPoints[PatrolPointsCounter]);
             nextCheck = Time.time + this.theEntity.GetMoveSpeed();
+
             this.theEntity.SetLookPosition(Vector3.forward);
             this.theEntity.moveHelper.SetMoveTo(this.lstPatrolPoints[PatrolPointsCounter], false);
         }

@@ -45,7 +45,6 @@ public class DialogActionExecuteCommandSDX : DialogActionAddBuff
                         myEntity.PatrolCoordinates.Clear(); // Clear the existing point.
                         break;
                     case "Patrol":
-                        myEntity.Buffs.RemoveCustomVar("Leader");
                         myEntity.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Patrol, true);
                         break;
                     case "Hire":
@@ -55,6 +54,9 @@ public class DialogActionExecuteCommandSDX : DialogActionAddBuff
                             myEntity.Buffs.SetCustomVar("Leader", player.entityId, true);
                             myEntity.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
                         }
+                        break;
+                    case "OpenInventory":
+                        GameManager.Instance.TELockServer(0, myEntity.GetBlockPosition(), myEntity.entityId, player.entityId);
                         break;
 
                 }

@@ -25,9 +25,9 @@
         <action type="ExecuteCommandSDX, Mods" id="FollowMe" />
       </response>
 
-      <response id="ShowMe" text="Tell me about yourself." >
+      <response id="ShowMe" text="Show Me your inventory" >
         <requirement type="HiredSDX, Mods" requirementtype="Hide" />
-        <action type="ExecuteCommandSDX, Mods" id="ShowMe" />
+        <action type="ExecuteCommandSDX, Mods" id="OpenInventory" />
       </response>
 
       <response id="StayHere" text="Stay here" >
@@ -42,12 +42,11 @@
 
       <response id="SetPatrol" text="Follow me for your patrol route." >
         <requirement type="HiredSDX, Mods" requirementtype="Hide" />
-        <requirement type="PatrolSDX, Mods" requirementtype="Hide" />
         <action type="ExecuteCommandSDX, Mods" id="SetPatrol" />
       </response>
 
       <response id="Patrol" text="Patrol your route" >
-        <requirement type="HiredSDX, Mods" requirementtype="Hide" />
+        <requirement type="PatrolSDX, Mods" requirementtype="Hide" />        
         <action type="ExecuteCommandSDX, Mods" id="Patrol" />
       </response>
 

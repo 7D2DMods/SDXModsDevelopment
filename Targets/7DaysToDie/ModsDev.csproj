@@ -78,18 +78,22 @@
     <Compile Include="Mods\HalDllUpdates\Scripts\EntityAnimalHal.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\HalHelperEvents.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionAnimatorSDX.cs" />
+    <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionModifySkillSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionSpawnBabySDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryHourSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryDaySDX.cs" />
     <Compile Include="Mods\SDX_Dialog\PatchScripts\PatchScript.cs" />
+    <Compile Include="Mods\SDX_Dialog\Scripts\DialogActionOpenDialogSDX.cs" />
+    <Compile Include="Mods\SDX_Dialog\Scripts\DialogRequirementPatrolSDX.cs" />
     <Compile Include="Mods\SDX_Dialog\Scripts\DialogRequirementHiredSDX.cs" />
     <Compile Include="Mods\SDX_Dialog\Scripts\DialogActionExecuteCommandSDX.cs" />
     <Compile Include="Mods\SDX_Dialog\Scripts\XUiC_DialogHireInformationSDX.cs" />
     <Compile Include="Mods\SDX_Dialog\Scripts\XUiC_DialogRespondentNameSDX.cs" />
+    <Compile Include="Mods\SDX_Dialog\Scripts\XUiC_HireInformationPopupSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\PatchScripts\PatchScript.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndAttackTarget2.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndAttackTarget.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndFollowTargetSDX.cs" />
-    <Compile Include="Mods\SDX_EAITasks\Scripts\EAICreateRecipe.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIMaslowLevel1SDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIPatrolSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetAsTargetIfHurtSDX.cs" />
@@ -112,6 +116,10 @@
     <Compile Include="Mods\SphereII_ABetterLife\Scripts\BlockMortSpawner.cs" />
     <Compile Include="Mods\SphereII_ABetterLife\Scripts\EntitySwimingSDX.cs" />
     <Compile Include="Mods\SDX_EntityAliveSDX\Scripts\EntityAliveSDX.cs" />
+    <Compile Include="Mods\SphereII_AlternativeLevelling\Scripts\RewardBuffSDX.cs" />
+    <Compile Include="Mods\SphereII_XPBarRemoval\PatchScripts\PatchScripts.cs" />
+    <Compile Include="Mods\SphereII_AlternativeLevelling\PatchScripts\PatchScripts.cs" />
+    <Compile Include="Mods\SphereII_AlternativeLevelling\Scripts\MinEventActionSkillPointSDX.cs" />
     <Compile Include="Mods\SphereII_EntityPlayer\Scripts\EntityPlayerLocal.cs" />
     <Compile Include="Mods\SphereII_EntityPlayer\Scripts\EntityPlayerSDX.cs" />
     <Compile Include="Mods\SphereII_ModLocalization\PatchScripts\ModLocalization.cs" />
@@ -181,6 +189,8 @@
     <None Include="Mods\SphereII_ABetterLife\Resources\WaterPlant.unity3d" />
     <None Include="Mods\SphereII_ABetterLife\Resources\WellWalker.unity3d" />
     <None Include="Mods\SDX_EntityAliveSDX\ReadMe.md" />
+    <None Include="Mods\SphereII_XPBarRemoval\ReadMe.md" />
+    <None Include="Mods\SphereII_AlternativeLevelling\ReadMe.md" />
     <None Include="Mods\SphereII_EntityPlayer\ReadMe.md" />
     <None Include="Mods\SphereII_MusicBoxes\README.md" />
     <None Include="Mods\SphereII_MusicBoxes\Resources\ChristmasMusic.unity3d" />
@@ -198,6 +208,10 @@
     <None Include="Mods\SyX_SecurityBots\ReadMe.md" />
     <None Include="Mods\SyX_SecurityBots\Resources\DroneSounds.unity3d" />
     <None Include="Mods\SyX_SecurityBots\Resources\Spheres.unity3d" />
+    <None Include="Mods\Xyth_Bandits\Resources\Bandits.unity3d" />
+    <None Include="Mods\Xyth_Bandits\Resources\XythBanditAmmo.unity3d" />
+    <None Include="Mods\Xyth_NPCs\Resources\Harley.unity3d" />
+    <None Include="Mods\Xyth_NPCs\Resources\HarleySounds.unity3d" />
     <None Include="Mods\Xyth_WanderingTraders\Resources\Traders.unity3d" />
     <None Include="Mods\Xyth_WanderingTraders\Resources\XythAmmo.unity3d" />
     <None Include="Mods\ZombieTransmogrifier\ReadMe.md" />
@@ -237,6 +251,7 @@
     <Content Include="Mods\SDX_Dialog\Textures\trader\smx_bulletpoint_icon.png" />
     <Content Include="Mods\SDX_Dialog\Textures\trader\smx_player_bg.png" />
     <Content Include="Mods\SDX_Dialog\Textures\trader\smx_trader_bg.png" />
+    <Content Include="Mods\SDX_EAITasks\Config\buffs.xml" />
     <Content Include="Mods\SDX_EAITasks\mod.xml" />
     <Content Include="Mods\SDX_Buffs\mod.xml" />
     <Content Include="Mods\SDX_Dialog\Config\npc.xml" />
@@ -266,6 +281,12 @@
     <Content Include="Mods\SDX_EntityAliveSDX\Config\entityclasses.xml" />
     <Content Include="Mods\SDX_EntityAliveSDX\mod.xml" />
     <Content Include="Mods\SDX_EntityAliveSDX\ModInfo.xml" />
+    <Content Include="Mods\SphereII_XPBarRemoval\mod.xml" />
+    <Content Include="Mods\SphereII_XPBarRemoval\ModInfo.xml" />
+    <Content Include="Mods\SphereII_AlternativeLevelling\Config\items.xml" />
+    <Content Include="Mods\SphereII_AlternativeLevelling\Config\progression.xml" />
+    <Content Include="Mods\SphereII_AlternativeLevelling\mod.xml" />
+    <Content Include="Mods\SphereII_AlternativeLevelling\ModInfo.xml" />
     <Content Include="Mods\SphereII_EntityPlayer\Config\entityclasses.xml" />
     <Content Include="Mods\SphereII_EntityPlayer\mod.xml" />
     <Content Include="Mods\SphereII_EntityPlayer\ModInfo.xml" />
@@ -308,6 +329,21 @@
     <Content Include="Mods\SyX_SecurityBots\Config\items.xml" />
     <Content Include="Mods\SyX_SecurityBots\Config\sounds.xml" />
     <Content Include="Mods\SyX_SecurityBots\ModInfo.xml" />
+    <Content Include="Mods\Xyth_Bandits\Config\entityclasses.xml" />
+    <Content Include="Mods\Xyth_Bandits\Config\entitygroups.xml" />
+    <Content Include="Mods\Xyth_Bandits\Config\items.xml" />
+    <Content Include="Mods\Xyth_Bandits\mod.xml" />
+    <Content Include="Mods\Xyth_Bandits\ModInfo.xml" />
+    <Content Include="Mods\Xyth_NPCs\Config\buffs.xml" />
+    <Content Include="Mods\Xyth_NPCs\Config\entityclasses.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Mods\Xyth_NPCs\Config\entitygroups.xml" />
+    <Content Include="Mods\Xyth_NPCs\Config\items.xml" />
+    <Content Include="Mods\Xyth_NPCs\Config\Localization.txt" />
+    <Content Include="Mods\Xyth_NPCs\Config\sounds.xml" />
+    <Content Include="Mods\Xyth_NPCs\mod.xml" />
+    <Content Include="Mods\Xyth_NPCs\ModInfo.xml" />
     <Content Include="Mods\Xyth_WanderingTraders\Config\entityclasses.xml" />
     <Content Include="Mods\Xyth_WanderingTraders\Config\entitygroups.xml" />
     <Content Include="Mods\Xyth_WanderingTraders\Config\items.xml" />
