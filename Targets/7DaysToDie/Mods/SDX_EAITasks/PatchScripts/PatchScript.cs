@@ -34,6 +34,7 @@ public class EAITaskPatches : IPatcherMod
         SetMethodToPublic(method);
 
         method = gm.Methods.First(d => d.Name == "GetMoveToLocation");
+        SetMethodToVirtual(method);
         SetMethodToPublic(method);
 
         return true;

@@ -116,6 +116,11 @@ class EntityAliveSDX : EntityNPC
 
       public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
     {
+        if (this.IsDead() || this.NPCInfo == null)
+        {
+            return new EntityActivationCommand[0];
+        }
+
         return new EntityActivationCommand[]
         {
             new EntityActivationCommand("Greet " + this.EntityName, "talk" , true)
@@ -134,12 +139,12 @@ class EntityAliveSDX : EntityNPC
         return ActivationCommands;
     }
 
-  
+
     public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
     {
         this.emodel.avatarController.SetBool("IsBusy", true);
 
-        if (! String.IsNullOrEmpty( this.npcID ))
+        if (!String.IsNullOrEmpty(this.npcID))
         {
             LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_entityFocusing as EntityPlayerLocal);
             QuestEventManager.Current.NPCInteracted(this.entityId);
@@ -149,14 +154,13 @@ class EntityAliveSDX : EntityNPC
             {
                 DisplayLog("No active Quests");
                 this.activeQuests = this.PopulateActiveQuests(_entityFocusing as EntityPlayer, -1);
-                  QuestEventManager.Current.SetupQuestList(this.entityId, _entityFocusing.entityId, this.activeQuests);
+                QuestEventManager.Current.SetupQuestList(this.entityId, _entityFocusing.entityId, this.activeQuests);
             }
             uiforPlayer.xui.Dialog.otherEntitySDX = this;
             uiforPlayer.xui.Dialog.Respondent = this;
             uiforPlayer.windowManager.CloseAllOpenWindows(null, false);
             uiforPlayer.windowManager.Open("dialog", true, false, true);
 
-            this.Progression.SkillPoints += 10;
             return false;
         }
 
@@ -186,7 +190,7 @@ class EntityAliveSDX : EntityNPC
                 this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Patrol, true);
                 break;
             case 6:
-                if ( _entityFocusing is EntityPlayerLocal)
+                if (_entityFocusing is EntityPlayerLocal)
                     Hire(_entityFocusing as EntityPlayerLocal);
                 break;
             default:
@@ -435,6 +439,7 @@ class EntityAliveSDX : EntityNPC
 
         if (isBusy == false)
         {
+            this.updateTime = Time.time - 2f;
             base.OnUpdateLive();
         }
       

@@ -37,7 +37,7 @@ class EAISetAsTargetNearestEnemySDX : EAISetAsTargetIfHurt
     public bool CheckSurroundingEntities()
     {
         this.NearbyEntities.Clear();
-        this.NearbyEntities.Clear();
+        NearbyEnemies.Clear();
 
         EntityAlive leader = null;
         if (this.theEntity.Buffs.HasCustomVar("Leader"))
@@ -93,7 +93,7 @@ class EAISetAsTargetNearestEnemySDX : EAISetAsTargetIfHurt
         if (closeEnemy != null)
         {
             DisplayLog(" Closes Enemy: " + closeEnemy.ToString() );
-            this.theEntity.SetAttackTarget(closeEnemy, 1200);
+            this.theEntity.SetRevengeTarget(closeEnemy);
             return true;
         }
         return false;
