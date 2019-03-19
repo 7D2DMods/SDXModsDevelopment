@@ -11,6 +11,7 @@
         <response_entry id="Wander" />
         <response_entry id="SetPatrol" />
         <response_entry id="Patrol" />
+        <response_entry id="Loot" />
         <response_entry id="Hire" />
         <response_entry id="done" />
       </statement>
@@ -43,6 +44,11 @@
       <response id="SetPatrol" text="Follow me for your patrol route." >
         <requirement type="HiredSDX, Mods" requirementtype="Hide" />
         <action type="ExecuteCommandSDX, Mods" id="SetPatrol" />
+      </response>
+
+      <response id="Loot" text="Help me loot this joint." >
+        <requirement type="HiredSDX, Mods" requirementtype="Hide" />
+        <action type="ExecuteCommandSDX, Mods" id="Loot" />
       </response>
 
       <response id="Patrol" text="Patrol your route" >

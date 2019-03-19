@@ -27,6 +27,8 @@ public class DialogRequirementPatrolSDX : BaseDialogRequirement
                     Debug.Log(" Patrol Points: " + myEntity.PatrolCoordinates.Count);
                     if (myEntity.PatrolCoordinates.Count > 0)
                         return true;
+                    else
+                        return false;
                 }
 
                 return isTame;

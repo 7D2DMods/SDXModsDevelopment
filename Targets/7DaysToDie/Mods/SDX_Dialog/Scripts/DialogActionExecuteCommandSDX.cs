@@ -58,6 +58,9 @@ public class DialogActionExecuteCommandSDX : DialogActionAddBuff
                     case "OpenInventory":
                         GameManager.Instance.TELockServer(0, myEntity.GetBlockPosition(), myEntity.entityId, player.entityId);
                         break;
+                    case "Loot":
+                        myEntity.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Loot, true);
+                        break;
 
                 }
             }

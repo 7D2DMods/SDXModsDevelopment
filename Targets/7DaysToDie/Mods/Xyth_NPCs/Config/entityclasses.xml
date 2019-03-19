@@ -54,13 +54,13 @@
         <property name="AITask-9" value="WanderSDX, Mods"/>
         <property name="AITask-10" value="Territorial"/>
         <property name="AITask-11" value="MaslowLevel1SDX, Mods"/>
-        <property name="AITask-12" value=""/>
-
+        <property name="AITask-12" value="" />
         <property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>
         <property name="AITarget-2" value="BlockingTargetTask"/>
         <property name="AITarget-3" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/>
         <property name="AITarget-4" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,0"/>
-        <property name="AITarget-5" value="" />
+        <property name="AITarget-5" value="LootLocationSDX, Mods" />
+        <property name="AITarget-6" value="" />
         
 			<property name="SoundHurt" value="Player_Male/player1painlg"/>
 			<property name="SoundHurtSmall" value="Player_Male/player1painsm"/>
