@@ -140,19 +140,20 @@ class EAIPatrolSDX : EAIApproachSpot
         DisplayLog(" Seek Position:" + this.seekPos);
         if (nextCheck < Time.time)
         {
-            if (PatrolPointsCounter == this.lstPatrolPoints.Count - 1)
-                Retracing = true;
+            this.PatrolPointsCounter = (this.PatrolPointsCounter + 1) % this.lstPatrolPoints.Count;
+            //if (PatrolPointsCounter == this.lstPatrolPoints.Count - 1)
+            //    Retracing = true;
 
-            if (PatrolPointsCounter == 0)
-                Retracing = false;
+            //if (PatrolPointsCounter == 0)
+            //    Retracing = false;
 
-            if (Retracing)
-                PatrolPointsCounter--;
-            else
-                PatrolPointsCounter++;
+            //if (Retracing)
+            //    PatrolPointsCounter--;
+            //else
+            //    PatrolPointsCounter++;
 
-            if (this.PatrolPointsCounter >= this.lstPatrolPoints.Count)
-                this.PatrolPointsCounter = this.lstPatrolPoints.Count - 1;
+            //if (this.PatrolPointsCounter >= this.lstPatrolPoints.Count)
+            //    this.PatrolPointsCounter = this.lstPatrolPoints.Count - 1;
 
             DisplayLog(" Patrol Points Counter: " + PatrolPointsCounter + " Patrol Points Count: " + this.lstPatrolPoints.Count);
             DisplayLog(" Vector: " + this.lstPatrolPoints[PatrolPointsCounter].ToString());
