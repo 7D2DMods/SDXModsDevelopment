@@ -7,7 +7,7 @@
 			<property name="Tags" value="entity,npc"/>
 			<property name="LootListAlive" value="62"/>
 			<property name="UseModderUpdate" value="true" />
-			<property name="Mesh" value="#@modfolder(Xyth Wandering Traders):Resources/Traders.unity3d?TraderAmmo_X" />
+			<property name="Mesh" value="#@modfolder:Resources/NPCAmmo.unity3d?NPCAmmo_X" />
 			<property name="AvatarController" value="MecanimSDX, Mods" />
 			<property name="RootMotion" value="false" />
 			<property name="HasRagdoll" value="false" />
@@ -39,10 +39,10 @@
 			<property name="DeathIndexes" value="0" /> 
 			<property name="RunIndexes" value="0" /> 
 			<property name="RandomIndexes" value="4" /> 
-			<property name="WalkIndexes" value="2" /> 
+			<property name="WalkIndexes" value="0" /> 
 			<property name="IdleIndexes" value="0" />  
 			<property name="AttackIdleIndexes" value="0" /> 
-			<property name="AIPathCostScale" value=".9, 1"/>
+			<property name="AIPathCostScale" value=".6, 1"/>
         <property name="AITask-1" value="BreakBlock"/>
         <property name="AITask-2" value="DestroyArea"/>
         <property name="AITask-3" value="PatrolSDX, Mods"/>
@@ -134,7 +134,7 @@
 			  <!-- This is the block it'll call home -->
 					<property name="HomeBlocks" value="pressureplate"/>
 
-        <property name="PatrolSpeed" value="2"/>
+        <property name="PatrolSpeed" value=".5"/>
 
       </entity_class> 	
 	
