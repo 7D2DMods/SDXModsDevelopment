@@ -133,8 +133,10 @@
 			  
 			  <!-- This is the block it'll call home -->
 					<property name="HomeBlocks" value="pressureplate"/>
-			
-		</entity_class> 	
+
+        <property name="PatrolSpeed" value="2"/>
+
+      </entity_class> 	
 	
 	
 		<entity_class name="HarleyNPC">
