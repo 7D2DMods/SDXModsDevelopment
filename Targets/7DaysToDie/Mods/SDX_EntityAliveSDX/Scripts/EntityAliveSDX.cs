@@ -258,14 +258,21 @@ class EntityAliveSDX : EntityNPC
         InvokeRepeating("DisplayStats", 0f, 60f);
     }
 
-
+    List<Vector3> tempList = new List<Vector3>();
     public virtual void UpdatePatrolPoints( Vector3 position )
     {
-        position.x = 0.5f + Utils.Fastfloor(position.x);
-        position.z = 0.5f + Utils.Fastfloor(position.z);
-        position.y = Utils.Fastfloor(position.y);
-        if (!this.PatrolCoordinates.Contains(position))
-            this.PatrolCoordinates.Add(position);
+
+        Vector3 temp = position;
+
+        temp.x = 0.5f + Utils.Fastfloor(position.x);
+        temp.z = 0.5f + Utils.Fastfloor(position.z);
+        temp.y = Utils.Fastfloor(position.y);
+        if (!this.tempList.Contains(temp))
+        {
+            this.tempList.Add(temp);
+            if (!this.PatrolCoordinates.Contains(position))
+                this.PatrolCoordinates.Add(position);
+        }
     }
 
   
