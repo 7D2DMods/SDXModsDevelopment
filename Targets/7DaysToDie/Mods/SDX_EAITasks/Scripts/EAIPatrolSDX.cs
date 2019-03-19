@@ -151,13 +151,17 @@ class EAIPatrolSDX : EAIApproachSpot
             else
                 PatrolPointsCounter++;
 
+            if (this.PatrolPointsCounter >= this.lstPatrolPoints.Count)
+                this.PatrolPointsCounter = this.lstPatrolPoints.Count - 1;
+
             DisplayLog(" Patrol Points Counter: " + PatrolPointsCounter + " Patrol Points Count: " + this.lstPatrolPoints.Count);
             DisplayLog(" Vector: " + this.lstPatrolPoints[PatrolPointsCounter].ToString());
+
 
             this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.lstPatrolPoints[PatrolPointsCounter]);
             nextCheck = Time.time + this.PatrolSpeed;// this.theEntity.GetMoveSpeed();
 
-            this.theEntity.SetLookPosition(Vector3.forward);
+            this.theEntity.SetLookPosition(this.seekPos);
             this.theEntity.moveHelper.SetMoveTo(this.lstPatrolPoints[PatrolPointsCounter], false);
         }
     }
