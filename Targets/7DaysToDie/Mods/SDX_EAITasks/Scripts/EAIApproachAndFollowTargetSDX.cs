@@ -96,6 +96,9 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public override bool CanExecute()
     {
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Stay))
+            return false;
+
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.theEntity.Jumping)
             return false;
 
@@ -110,6 +113,16 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             return false;
         }
 
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Loot)
+        {
+            DisplayLog(" I am looting. Not following the leader.");
+            return false;
+        }
+        // if The entity is busy, don't continue patrolling.
+        bool isBusy = false;
+        if (this.theEntity.emodel.avatarController.TryGetBool("IsBusy", out isBusy))
+            if (isBusy)
+                return false;
         if (!this.theEntity.Buffs.HasCustomVar("Leader"))
             return false;
         // Change the distance allowed each time. This will give it more of a variety in how close it can get to you.
@@ -122,6 +135,9 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public override bool Continue()
     {
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Stay))
+            return false;
+
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
             return false;
 
@@ -139,6 +155,11 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             return false;
         }
 
+        // if The entity is busy, don't continue patrolling.
+        bool isBusy = false;
+        if (this.theEntity.emodel.avatarController.TryGetBool("IsBusy", out isBusy))
+            if (isBusy)
+                return false;
         if (this.theEntity.Buffs.HasCustomVar("Leader"))
         {
             if ((int)this.theEntity.Buffs.GetCustomVar("Leader") == 0)
@@ -208,6 +229,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             if (--this.pathCounter <= 0 && !PathFinderThread.Instance.IsCalculatingPath(this.theEntity.entityId))
             {
                 this.pathCounter = 6 + this.theEntity.GetRandom().Next(10);
+                DisplayLog(" Distance: " + distanceToEntity);
                 Vector3 moveToLocation = this.GetMoveToLocation(distanceToEntity);
                 PathFinderThread.Instance.FindPath(this.theEntity, moveToLocation, this.theEntity.GetMoveSpeedAggro(), true, this);
             }
@@ -220,6 +242,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         {
             if (this.theEntity.navigator.noPathAndNotPlanningOne() && num3 < 2.1f)
             {
+                DisplayLog(" Distance2: " + distanceToEntity);
                 Vector3 moveToLocation2 = this.GetMoveToLocation(distanceToEntity);
                 this.theEntity.moveHelper.SetMoveTo(moveToLocation2, true);
             }

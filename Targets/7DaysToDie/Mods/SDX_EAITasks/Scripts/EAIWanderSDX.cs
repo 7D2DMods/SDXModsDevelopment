@@ -12,11 +12,9 @@ class EAIWanderSDX : EAIWander
     }
     public bool FetchOrders( )
     {
-        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder"))
-        {
-            if (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Wander)
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Wander))
                 return false;
-        }
+        
     
         return true;
     }

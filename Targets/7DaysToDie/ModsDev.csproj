@@ -78,6 +78,7 @@
     <Compile Include="Mods\HalDllUpdates\Scripts\EntityAnimalHal.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\HalHelperEvents.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionAnimatorSDX.cs" />
+    <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionCreateItemSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionModifySkillSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionSpawnBabySDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryHourSDX.cs" />
@@ -91,9 +92,9 @@
     <Compile Include="Mods\SDX_Dialog\Scripts\XUiC_DialogRespondentNameSDX.cs" />
     <Compile Include="Mods\SDX_Dialog\Scripts\XUiC_HireInformationPopupSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\PatchScripts\PatchScript.cs" />
-    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndAttackTarget2.cs" />
-    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndAttackTarget.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndFollowTargetSDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetAsTargetIfPatrolSDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAILootLocationSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIMaslowLevel1SDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIPatrolSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetAsTargetIfHurtSDX.cs" />
@@ -129,7 +130,6 @@
     <Compile Include="Mods\SphereII_TakeAndReplace\Scripts\PickUpAndReplace.cs" />
     <Compile Include="Mods\SphereII_UnlockHealthBar\PatchScripts\UnlockHealthBar.cs" />
     <Compile Include="Mods\SphereII_WanderingTraders\Scripts\EntityWanderingTrader.cs" />
-    <Compile Include="Mods\Blooms_AnimalHusbandry\Scripts\Test.cs" />
     <Compile Include="Mods\ZombieTransmogrifier\PatchScripts\EntityAlive.cs" />
     <Compile Include="Mods\ZombieTransmogrifier\Scripts\EntityFlyingBaseSDX.cs" />
     <Compile Include="Mods\ZombieTransmogrifier\Scripts\EntityGenericSDX.cs" />

@@ -22,6 +22,9 @@ class EAILootLocationSDX : EAIApproachSpot
     }
     public override bool CanExecute()
     {
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Loot))
+            return false;
+
         DisplayLog("CanExecute()");
         EntityAliveSDX entity = this.theEntity as EntityAliveSDX;
         if (entity == null)

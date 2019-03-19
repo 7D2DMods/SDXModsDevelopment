@@ -441,10 +441,14 @@ class EntityAliveSDX : EntityNPC
             }
 
         }
+        switch( currentOrder)
+        {
+            case Orders.Stay:
+                return;
 
-
-        // Check the state to see if the controller IsBusy or not. If it's not, then let it walk.
-        bool isBusy = false;
+        }
+            // Check the state to see if the controller IsBusy or not. If it's not, then let it walk.
+            bool isBusy = false;
         this.emodel.avatarController.TryGetBool("IsBusy", out isBusy);
 
         if (IsAlert)
