@@ -143,7 +143,7 @@ class EntityAliveSDX : EntityNPC
     public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
     {
         this.emodel.avatarController.SetBool("IsBusy", true);
-
+        this.SetLookPosition(_entityFocusing.getHeadPosition());
         if (!String.IsNullOrEmpty(this.npcID))
         {
             LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_entityFocusing as EntityPlayerLocal);
@@ -405,7 +405,8 @@ class EntityAliveSDX : EntityNPC
    
     public override void OnUpdateLive()
     {
-        
+
+     
         // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
         this.Stats.Water.Tick(0.5f, 0, false);
 
@@ -424,7 +425,12 @@ class EntityAliveSDX : EntityNPC
             for (int i = 0; i < entitiesInBounds.Count; i++)
             {
                 if (entitiesInBounds[i] is EntityPlayer)
+                {
                     this.emodel.avatarController.SetBool("IsBusy", true);
+                    this.SetLookPosition(entitiesInBounds[i].getHeadPosition());
+                    this.RotateTo(entitiesInBounds[i], 30f, 30f);
+                    return;
+                }
             }
 
         }
@@ -436,6 +442,8 @@ class EntityAliveSDX : EntityNPC
 
         if (IsAlert)
             isBusy = false;
+    
+
 
         if (isBusy == false)
         {
