@@ -17,12 +17,21 @@ class EAIPatrolSDX : EAIApproachSpot
     private int investigateTicks;
     private bool blDisplayLog = true;
     EntityAliveSDX entityAlive;
+    private float PatrolSpeed = 2f;
+
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
             Debug.Log(this.GetType() + " : " + this.theEntity.EntityName + ": " + strMessage);
     }
 
+    public override void Init(EntityAlive _theEntity)
+    {
+        base.Init(_theEntity);
+        EntityClass entityClass = EntityClass.list[_theEntity.entityClass];
+        if (entityClass.Properties.Values.ContainsKey("PatrolSpeed"))
+            this.PatrolSpeed = int.Parse(entityClass.Properties.Values["PatrolSpeed"]);
+    }
     public bool FetchOrders()
     {
         DisplayLog(" Fetch Orders");
@@ -146,7 +155,7 @@ class EAIPatrolSDX : EAIApproachSpot
             DisplayLog(" Vector: " + this.lstPatrolPoints[PatrolPointsCounter].ToString());
 
             this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.lstPatrolPoints[PatrolPointsCounter]);
-            nextCheck = Time.time + this.theEntity.GetMoveSpeed();
+            nextCheck = Time.time + this.PatrolSpeed;// this.theEntity.GetMoveSpeed();
 
             this.theEntity.SetLookPosition(Vector3.forward);
             this.theEntity.moveHelper.SetMoveTo(this.lstPatrolPoints[PatrolPointsCounter], false);
