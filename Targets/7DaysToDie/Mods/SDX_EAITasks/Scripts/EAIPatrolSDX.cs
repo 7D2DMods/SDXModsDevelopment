@@ -30,7 +30,7 @@ class EAIPatrolSDX : EAIApproachSpot
         base.Init(_theEntity);
         EntityClass entityClass = EntityClass.list[_theEntity.entityClass];
         if (entityClass.Properties.Values.ContainsKey("PatrolSpeed"))
-            this.PatrolSpeed = int.Parse(entityClass.Properties.Values["PatrolSpeed"]);
+            this.PatrolSpeed = float.Parse(entityClass.Properties.Values["PatrolSpeed"]);
     }
     public bool FetchOrders()
     {
