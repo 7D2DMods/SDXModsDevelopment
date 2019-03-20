@@ -135,9 +135,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public override bool Continue()
     {
-        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Stay))
-            return false;
-
+    
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
             return false;
 
@@ -160,6 +158,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         if (this.theEntity.emodel.avatarController.TryGetBool("IsBusy", out isBusy))
             if (isBusy)
                 return false;
+
         if (this.theEntity.Buffs.HasCustomVar("Leader"))
         {
             if ((int)this.theEntity.Buffs.GetCustomVar("Leader") == 0)
@@ -167,6 +166,10 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         }
         else
             return false;
+
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Follow))
+            return false;
+
         return ConfigureTargetEntity();
         
     }
