@@ -74,10 +74,13 @@ class EAIPatrolSDX : EAIApproachSpot
 
     public override bool CanExecute()
     {
-
+        this.theEntity.emodel.avatarController.SetBool("IsPatrolling", false);
         if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Patrol)
-            return false;
+        {
 
+
+            return false;
+        }
         // If there's an attack target, don't patrol anymore.
         if (this.theEntity.GetAttackTarget() != null && this.theEntity.GetAttackTarget().IsAlive())
         {
@@ -101,8 +104,11 @@ class EAIPatrolSDX : EAIApproachSpot
         if (this.theEntity.HasInvestigatePosition)
         {
             DisplayLog(" I have an intesgation Position. Starting to Patrol");
+            this.theEntity.emodel.avatarController.SetBool("IsPatrolling", true);
             return true;
         }
+
+
         return false;
     }
 
