@@ -52,11 +52,6 @@ class EAIPatrolSDX : EAIApproachSpot
         DisplayLog(" Setting Up Patrol Vectors");
         if (entityAliveSDX)
         {
-
-            // If we already have patrol points, and they are the same as we have, don't reset.
-            if (this.lstPatrolPoints.Count > 0 && this.lstPatrolPoints == entityAliveSDX.PatrolCoordinates )
-                return;
-
             DisplayLog(" Patrol Counters: " + entityAliveSDX.PatrolCoordinates.Count);
             if (entityAliveSDX.PatrolCoordinates.Count > 0)
             {
@@ -64,6 +59,11 @@ class EAIPatrolSDX : EAIApproachSpot
                 this.lstPatrolPoints = entityAliveSDX.PatrolCoordinates;
                 PatrolPointsCounter = this.lstPatrolPoints.Count - 1;
                 this.seekPos = this.lstPatrolPoints[PatrolPointsCounter];
+            }
+            else
+            {
+                PatrolPointsCounter = 0;
+                this.lstPatrolPoints.Clear();
             }
         }
     }
