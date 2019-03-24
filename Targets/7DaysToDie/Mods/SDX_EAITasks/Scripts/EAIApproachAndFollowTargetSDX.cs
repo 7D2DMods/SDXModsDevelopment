@@ -16,7 +16,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
     private int pathCounter;
 
 
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -96,7 +96,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public override bool CanExecute()
     {
-        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Stay))
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Follow))
             return false;
 
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.theEntity.Jumping)
@@ -113,7 +113,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             return false;
         }
 
-        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Loot)
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder")  && this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Loot)
         {
             DisplayLog(" I am looting. Not following the leader.");
             return false;
@@ -135,7 +135,12 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public override bool Continue()
     {
-    
+        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Follow))
+            return false;
+
+        if ( this.theEntity.Buffs.HasCustomVar("CurrentOrder") && this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Wander))
+            return false;
+
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
             return false;
 
@@ -167,8 +172,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         else
             return false;
 
-        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Follow))
-            return false;
+  
 
         return ConfigureTargetEntity();
         
@@ -234,7 +238,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
                 this.pathCounter = 6 + this.theEntity.GetRandom().Next(10);
                 DisplayLog(" Distance: " + distanceToEntity);
                 Vector3 moveToLocation = this.GetMoveToLocation(distanceToEntity);
-                PathFinderThread.Instance.FindPath(this.theEntity, moveToLocation, this.theEntity.GetMoveSpeedAggro(), true, this);
+                PathFinderThread.Instance.FindPath(this.theEntity, moveToLocation, this.theEntity.GetMoveSpeed(), true, this);
             }
         }
         if (this.theEntity.Climbing)

@@ -39,6 +39,12 @@ public class EntityAliveSDXPatcher : IPatcherMod
         gm = module.Types.First(d => d.Name == "PrefabLODManager");
         var field = gm.Fields.First(d => d.Name == "prefabsAroundNear");
         SetFieldToPublic(field);
+
+
+        gm = module.Types.First(d => d.Name == "GameManager");
+        method = gm.Methods.First(d => d.Name == "lootContainerOpened");
+        SetMethodToPublic(method);
+        SetMethodToVirtual(method);
         return true;
 
     }

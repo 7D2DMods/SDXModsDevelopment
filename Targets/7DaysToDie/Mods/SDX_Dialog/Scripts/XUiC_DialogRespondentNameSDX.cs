@@ -15,7 +15,7 @@
                         if (myEntity.GetHireCost() <= 0)
                             value = myEntity.EntityName;
                         else
-                            value = myEntity.EntityName + " ( Hire for " + myEntity.GetHireCost() + " " + myEntity.GetHireCurrency().ItemClass.Name + " )";
+                            value = myEntity.EntityName;// + " ( Hire for " + myEntity.GetHireCost() + " " + myEntity.GetHireCurrency().ItemClass.Name + " )";
                         return true;
                     }
                 }

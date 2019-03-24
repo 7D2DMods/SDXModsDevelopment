@@ -93,11 +93,8 @@ class EntityAliveSDX : EntityNPC
     public override bool Attack(bool _bAttackReleased)
     {
         if (!_bAttackReleased && !this.IsAttackValid())
-        {
-            DisplayLog("Attack is not valid.");
-            return false;
-        }
-     
+             return false;
+      
         this.attackingTime = 60;
         if (this.inventory.holdingItem != null)
             DisplayLog("holding item: " + this.inventory.holdingItem.GetItemName());
@@ -142,6 +139,7 @@ class EntityAliveSDX : EntityNPC
 
     public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
     {
+
         this.emodel.avatarController.SetBool("IsBusy", true);
         this.SetLookPosition(_entityFocusing.getHeadPosition());
         if (!String.IsNullOrEmpty(this.npcID))
@@ -164,42 +162,138 @@ class EntityAliveSDX : EntityNPC
             return false;
         }
 
-        // This is fall back for non-NPCID
-        switch (_indexInBlockActivationCommands)
-        {
-            case 0: // Tell me about yourself
-                GameManager.ShowTooltipWithAlert(_entityFocusing as EntityPlayerLocal, this.ToString() + "\n\n\n\n\n", "ui_denied");
-                break;
-            case 1: // Follow me
-                this.Buffs.SetCustomVar("Leader", _entityFocusing.entityId, true);
-                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
-                break;
-            case 2: // Stay Here
-                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Stay, true);
-                break;
-            case 3: // Hang out / wander here
-                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Wander, true);
-                break;
-            case 4: // Set Patrol Point
-                this.Buffs.SetCustomVar("Leader", _entityFocusing.entityId, true);
-                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.SetPatrolPoint, true);
-                this.PatrolCoordinates.Clear(); // Clear the existing point.
-                break;
-            case 5: // end patrol Point
-                this.Buffs.RemoveCustomVar("Leader");
-                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Patrol, true);
-                break;
-            case 6:
-                if (_entityFocusing is EntityPlayerLocal)
-                    Hire(_entityFocusing as EntityPlayerLocal);
-                break;
-            default:
-                break;
-        }
+        //// This is fall back for non-NPCID
+        //switch (_indexInBlockActivationCommands)
+        //{
+        //    case 0: // Tell me about yourself
+        //        this.ExecuteCMD("ShowMe", _entityFocusing as EntityPlayer);
+
+        //    //    GameManager.ShowTooltipWithAlert(_entityFocusing as EntityPlayerLocal, this.ToString() + "\n\n\n\n\n", "ui_denied");
+        //        break;
+        //    case 1: // Follow me
+        //        this.ExecuteCMD("FollowMe", _entityFocusing as EntityPlayer);
+        //        //this.Buffs.SetCustomVar("Leader", _entityFocusing.entityId, true);
+        //        //this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
+        //        break;
+        //    case 2: // Stay Here
+        //        this.ExecuteCMD("StayHere", _entityFocusing as EntityPlayer);
+
+        //      //  this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Stay, true);
+        //        break;
+        //    case 3: // Hang out / wander here
+        //        this.ExecuteCMD("Wander", _entityFocusing as EntityPlayer);
+
+        //      //  this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Wander, true);
+        //        break;
+        //    case 4: // Set Patrol Point
+        //        this.ExecuteCMD("SetPatrol", _entityFocusing as EntityPlayer);
+
+        //        //this.Buffs.SetCustomVar("Leader", _entityFocusing.entityId, true);
+        //        //this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.SetPatrolPoint, true);
+        //        //this.PatrolCoordinates.Clear(); // Clear the existing point.
+        //        break;
+        //    case 5: // end patrol Point
+        //        this.ExecuteCMD("Patrol", _entityFocusing as EntityPlayer);
+
+        //        //this.Buffs.RemoveCustomVar("Leader");
+        //        //this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Patrol, true);
+        //        break;
+        //    case 6:
+        //        this.ExecuteCMD("Hire", _entityFocusing as EntityPlayer);
+
+        //        if (_entityFocusing is EntityPlayerLocal)
+        //            Hire(_entityFocusing as EntityPlayerLocal);
+        //        break;
+        //    default:
+        //        break;
+        //}
 
         return true;
     }
 
+    public virtual bool ExecuteCMD( String strCommand, EntityPlayer player )
+    {
+        Debug.Log(GetType().ToString() + " : Command: " + strCommand);
+        LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(player as EntityPlayerLocal);
+
+        switch (strCommand)
+        {
+            case "ShowMe":
+                GameManager.ShowTooltipWithAlert(player as EntityPlayerLocal, this.ToString() + "\n\n\n\n\n", "ui_denied");
+                break;
+            case "FollowMe":
+                this.Buffs.SetCustomVar("Leader", player.entityId, true);
+                this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
+                this.moveSpeed = player.moveSpeed;
+                this.moveSpeedAggro = player.moveSpeedAggro;
+                break;
+            case "StayHere":
+                this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Stay, true);
+                break;
+            case "Wander":
+                this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Wander, true);
+                break;
+            case "SetPatrol":
+                this.Buffs.SetCustomVar("Leader", player.entityId, true);
+                this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.SetPatrolPoint, true);
+                this.PatrolCoordinates.Clear(); // Clear the existing point.
+                break;
+            case "Patrol":
+                this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Patrol, true);
+                break;
+            case "Hire":
+                bool result = this.Hire(player as EntityPlayerLocal);
+                if (result)
+                {
+                    this.Buffs.SetCustomVar("Leader", player.entityId, true);
+                    this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
+                }
+                break;
+            case "OpenInventory":
+                GameManager.Instance.TELockServer(0, this.GetBlockPosition(), this.entityId, player.entityId);
+                uiforPlayer.windowManager.CloseAllOpenWindows(null, false);
+                if (this.lootContainer == null)
+                    DisplayLog(" Loot Container is null");
+
+                DisplayLog(" Get Open Time");
+                DisplayLog("Loot Container: " + this.lootContainer.ToString());
+                this.lootContainer.lootListIndex = 62;
+                DisplayLog(" Loot List: " + this.lootContainer.lootListIndex);
+                
+                DisplayLog( this.lootContainer.GetOpenTime().ToString());
+                
+               // TileEntity tileEntity;
+                //Entity entity = this.world.GetEntity(this.entityId);
+                //if (entity.lootContainer == null)
+                //{
+                //    int lootList = entity.GetLootList();
+                //    if (lootList != 0)
+                //    {
+                //        entity.lootContainer = new TileEntityLootContainer(null);
+                //        entity.lootContainer.entityId = entity.entityId;
+                //        entity.lootContainer.lootListIndex = lootList;
+                //        entity.lootContainer.SetContainerSize(LootContainer.lootList[lootList].size, true);
+                //    }
+                //}
+                //if (this.entityId != -1)
+                //{
+                //    Debug.Log(" My entity ID is not -1");
+                //    tileEntity = this.world.GetTileEntity(this.entityId);
+                //    if (tileEntity != null)
+                //    {
+                        GameManager.Instance.lootContainerOpened((TileEntityLootContainer)this.lootContainer, uiforPlayer, player.entityId);
+                 //   }
+              //  }
+
+                break;
+            case "Loot":
+                this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Loot, true);
+                break;
+
+        }
+        return true;
+    
+    }
     public virtual bool isTame(EntityAlive _player )
     {
         if (this.Buffs.HasCustomVar("Leader") && this.Buffs.GetCustomVar("Leader") == (float)_player.entityId)
@@ -223,14 +317,14 @@ class EntityAliveSDX : EntityNPC
         LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_player as EntityPlayerLocal);
         if (null != uiforPlayer)
         {
-            if (uiforPlayer.xui.PlayerInventory.GetItemCount(this.HireCurrency) > this.HireCost)
+            if (uiforPlayer.xui.PlayerInventory.GetItemCount(this.HireCurrency) >= this.HireCost)
             {
                 // Create the stack of currency
                 ItemStack stack = new ItemStack(this.HireCurrency, this.HireCost);
                 uiforPlayer.xui.PlayerInventory.RemoveItems(new ItemStack[] { stack }, 1);
 
                 // Add the stack of currency to the NPC, and set its orders.
-             //   this.inventory.AddItem(stack);
+                this.bag.AddItem(stack);
                 this.Buffs.SetCustomVar("Owner", _player.entityId, true);
                 this.Buffs.SetCustomVar("Leader", _player.entityId, true);
                 this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
@@ -256,6 +350,22 @@ class EntityAliveSDX : EntityNPC
             DefaultTraderID = this.NPCInfo.TraderID;
 
         InvokeRepeating("DisplayStats", 0f, 60f);
+
+        // Check if there's a loot container or not already attached to store its stuff.
+        DisplayLog(" Checking Entity's Loot Container");
+        if (this.lootContainer == null)
+        {
+            DisplayLog(" Entity does not have a loot container. Creating one.");
+            int lootList = this.GetLootList();
+            DisplayLog(" Loot list is: " + lootList);
+            this.lootContainer = new TileEntityLootContainer(null);
+            this.lootContainer.entityId = this.entityId;
+            this.lootContainer.SetContainerSize(new Vector2i(8, 6), true);
+
+            // If the loot list is available, set the container to that size.
+            if (lootList != 0)
+                this.lootContainer.SetContainerSize(LootContainer.lootList[lootList].size, true);
+        }
     }
 
     List<Vector3> tempList = new List<Vector3>();
@@ -426,20 +536,23 @@ class EntityAliveSDX : EntityNPC
         // Check if there's a player within 10 meters of us. If not, resume wandering.
         this.emodel.avatarController.SetBool("IsBusy", false);
 
-        List<global::Entity> entitiesInBounds = global::GameManager.Instance.World.GetEntitiesInBounds(this, new Bounds(this.position, Vector3.one * 5f));
-        if (entitiesInBounds.Count > 0)
+        if (this.GetAttackTarget() == null || this.GetRevengeTarget() == null)
         {
-            for (int i = 0; i < entitiesInBounds.Count; i++)
+            List<global::Entity> entitiesInBounds = global::GameManager.Instance.World.GetEntitiesInBounds(this, new Bounds(this.position, Vector3.one * 5f));
+            if (entitiesInBounds.Count > 0)
             {
-                if (entitiesInBounds[i] is EntityPlayer)
+                for (int i = 0; i < entitiesInBounds.Count; i++)
                 {
-                    this.emodel.avatarController.SetBool("IsBusy", true);
-                    this.SetLookPosition(entitiesInBounds[i].getHeadPosition());
-                    this.RotateTo(entitiesInBounds[i], 30f, 30f);
-                    return;
+                    if (entitiesInBounds[i] is EntityPlayer)
+                    {
+                        this.emodel.avatarController.SetBool("IsBusy", true);
+                        this.SetLookPosition(entitiesInBounds[i].getHeadPosition());
+                        this.RotateTo(entitiesInBounds[i], 30f, 30f);
+                        return;
+                    }
                 }
-            }
 
+            }
         }
         switch( currentOrder)
         {
@@ -464,171 +577,7 @@ class EntityAliveSDX : EntityNPC
       
     }
 
-    //#region NPC_Code
-    //public NPCInfo NPCInfo
-    //{
-    //    get
-    //    {
-    //        if (this.npcID != string.Empty)
-    //            return NPCInfo.npcInfoList[this.npcID];
-
-    //        return null;
-    //    }
-    //}
-
-    //public EntityNPC ConvertToEntityNPC()
-    //{
-    //    entityNPC.entityId = this.entityId;
-    //    entityNPC.npcID = this.npcID;
-    //    entityNPC.position = this.position;
-    //    entityNPC.questList = this.questList;
-    //    entityNPC.EntityName = this.EntityName;
-    //    return this.entityNPC;
-    //}
-
-    //public void PopulateQuestList()
-    //{
-    //    if (this.NPCInfo == null || this.NPCInfo.Quests == null)
-    //    {
-    //        return;
-    //    }
-    //    this.questList = new List<QuestEntry>();
-    //    for (int i = 0; i < this.NPCInfo.Quests.Count; i++)
-    //    {
-    //        string questID = this.NPCInfo.Quests[i].QuestID;
-    //        QuestClass quest = QuestClass.GetQuest(questID);
-    //        if (quest.CheckCriteriaQuestGiver(ConvertToEntityNPC()))
-    //        {
-
-    //            QuestEntry questEntry = this.NPCInfo.Quests[i];
-    //            questEntry.QuestID = questID;
-    //            this.questList.Add(questEntry);
-    //        }
-    //    }
-    //}
-    //public List<Quest> PopulateActiveQuests(EntityPlayer player, int currentTier)
-    //{
-    //    if (this.questList == null)
-    //    {
-    //        this.PopulateQuestList();
-    //    }
-    //    bool @bool = GameStats.GetBool(EnumGameStats.EnemySpawnMode);
-    //    List<Quest> list = new List<Quest>();
-    //    this.usedPOILocations.Clear();
-    //    this.tempTopTierQuests.Clear();
-    //    if (currentTier == -1)
-    //    {
-    //        currentTier = player.QuestJournal.GetCurrentFactionTier(0, 0, false);
-    //    }
-    //    for (int i = 0; i < this.questList.Count; i++)
-    //    {
-    //        QuestClass quest = QuestClass.GetQuest(this.questList[i].QuestID);
-    //        if ((int)quest.DifficultyTier == currentTier)
-    //        {
-    //            this.tempTopTierQuests.Add(i);
-    //        }
-    //    }
-    //    if (this.tempTopTierQuests.Count > 0)
-    //    {
-    //        for (int j = 0; j < 100; j++)
-    //        {
-    //            int index = UnityEngine.Random.Range(0, this.tempTopTierQuests.Count);
-    //            QuestEntry questEntry = this.questList[this.tempTopTierQuests[index]];
-    //            if (UnityEngine.Random.Range(0f, 1f) < questEntry.Prob)
-    //            {
-    //                QuestClass questClass = this.questList[this.tempTopTierQuests[index]].QuestClass;
-    //                Quest quest2 = questClass.CreateQuest();
-    //                quest2.OwnerJournal = player.QuestJournal;
-    //                quest2.QuestGiverID = this.entityId;
-    //                quest2.SetPositionData(Quest.PositionDataTypes.QuestGiver, this.position);
-    //                quest2.SetupTags();
-    //                if (@bool || (byte)(quest2.QuestTags & QuestTags.clear) == 0)
-    //                {
-    //                    if (quest2.SetupPosition(ConvertToEntityNPC(), this.usedPOILocations, player.entityId))
-    //                    {
-    //                        list.Add(quest2);
-    //                    }
-    //                    if (list.Count == 3)
-    //                    {
-    //                        break;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //    for (int k = 0; k < 200; k++)
-    //    {
-    //        int index2 = UnityEngine.Random.Range(0, this.questList.Count);
-    //        QuestEntry questEntry2 = this.questList[index2];
-    //        QuestClass questClass2 = questEntry2.QuestClass;
-    //        if (UnityEngine.Random.Range(0f, 1f) < questEntry2.Prob)
-    //        {
-    //            if ((int)questClass2.DifficultyTier <= currentTier)
-    //            {
-    //                Quest quest3 = questClass2.CreateQuest();
-    //                quest3.QuestGiverID = this.entityId;
-    //                quest3.OwnerJournal = player.QuestJournal;
-
-    //                quest3.SetPositionData(Quest.PositionDataTypes.QuestGiver, this.position);
-    //                quest3.SetupTags();
-    //                if (@bool || (byte)(quest3.QuestTags & QuestTags.clear) == 0)
-    //                {
-    //                    if (!quest3.NeedsNPCSetPosition || quest3.SetupPosition(ConvertToEntityNPC(), this.usedPOILocations, player.entityId))
-    //                    {
-    //                        list.Add(quest3);
-    //                    }
-    //                    if (list.Count == 5)
-    //                    {
-    //                        break;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //    return list;
-    //}
-
-    //public void SetActiveQuests(EntityPlayer player, NetPackageNPCQuestList.QuestPacketEntry[] questList)
-    //{
-    //    if (this.activeQuests == null)
-    //    {
-    //        this.activeQuests = new List<Quest>();
-    //    }
-    //    this.activeQuests.Clear();
-    //    if (questList != null)
-    //    {
-    //        for (int i = 0; i < questList.Length; i++)
-    //        {
-    //            QuestClass quest = QuestClass.GetQuest(questList[i].QuestID);
-    //            Quest quest2 = quest.CreateQuest();
-    //            quest2.QuestGiverID = this.entityId;
-    //            quest2.OwnerJournal = player.QuestJournal;
-    //            quest2.SetPosition(ConvertToEntityNPC(), questList[i].QuestLocation, questList[i].QuestSize);
-    //            quest2.SetPositionData(Quest.PositionDataTypes.QuestGiver, this.position);
-    //            quest2.DataVariables.Add("POIName", questList[i].POIName);
-    //            this.activeQuests.Add(quest2);
-    //        }
-    //    }
-    //}
-
-    //public override Ray GetLookRay()
-    //{
-    //    Ray result = new Ray(this.position + new Vector3(0f, this.GetEyeHeight() * 1f, 0f), this.GetLookVector());
-    //    return result;
-    //}
-    //public override Vector3 GetLookVector()
-    //{
-    //    if (this.lookAtPosition.Equals(Vector3.zero))
-    //    {
-    //        return base.GetLookVector();
-    //    }
-    //    return Vector3.Normalize(this.lookAtPosition - this.getHeadPosition());
-    //}
-    //public override float GetSeeDistance()
-    //{
-    //    return 80f;
-    //}
-    //#endregion
+   
 
     public void ToggleTraderID(bool Restore)
     {

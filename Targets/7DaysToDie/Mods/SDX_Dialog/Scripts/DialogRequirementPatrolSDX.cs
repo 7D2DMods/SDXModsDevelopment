@@ -23,9 +23,7 @@ public class DialogRequirementPatrolSDX : BaseDialogRequirement
 
                 if ( isTame)
                 {
-                    Debug.Log("Entity is tame. Should I show patrol?");
-                    Debug.Log(" Patrol Points: " + myEntity.PatrolCoordinates.Count);
-                    if (myEntity.PatrolCoordinates.Count > 0)
+                     if (myEntity.PatrolCoordinates.Count > 0)
                         return true;
                     else
                         return false;

@@ -15,7 +15,7 @@ class EAIPatrolSDX : EAIApproachSpot
     private Vector3 seekPos;
     private bool hadPath;
     private int investigateTicks;
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     EntityAliveSDX entityAlive;
     private float PatrolSpeed = 2f;
 
@@ -171,6 +171,8 @@ class EAIPatrolSDX : EAIApproachSpot
             nextCheck = Time.time + this.PatrolSpeed;// this.theEntity.GetMoveSpeed();
 
             this.theEntity.SetLookPosition(this.seekPos);
+            this.theEntity.RotateTo( this.seekPos.x, this.seekPos.y, this.seekPos.z,  30f, 30f);
+
             this.theEntity.moveHelper.SetMoveTo(this.lstPatrolPoints[PatrolPointsCounter], false);
         }
     }

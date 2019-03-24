@@ -84,9 +84,9 @@ class EAILootLocationSDX : EAIApproachSpot
         {
             DisplayLog("I'm at the loot container.");
             CheckContainer();
-     
-            this.theEntity.SetInvestigatePosition(Vector3.zero, 0);
-            return false;
+            return FindNearestContainer();
+            //this.theEntity.SetInvestigatePosition(Vector3.zero, 0);
+            //return false;
         }
         return true;
     }
@@ -116,6 +116,7 @@ class EAILootLocationSDX : EAIApproachSpot
             DisplayLog(" Looted Container.");
         else
             DisplayLog("Did not loot the container.");
+
 
         return false;
 
@@ -204,26 +205,51 @@ class EAILootLocationSDX : EAIApproachSpot
         Vector3i blockPos = tileLootContainer.ToWorldPos();
         this.lstTileContainers.Remove(tileLootContainer);
 
+        DisplayLog(" Loot List: " + tileLootContainer.lootListIndex);
+        if (tileLootContainer.lootListIndex <= 0)
+            return;
+        if (tileLootContainer.bTouched)
+            return;
+
+        tileLootContainer.bTouched = true;
+        tileLootContainer.bWasTouched = true;
+
         DisplayLog("Checking Loot Container");
         if (tileLootContainer.items != null)
         {
-            ItemStack[] array = tileLootContainer.items;
-            DisplayLog(" Loot Container has this many items: " + tileLootContainer.items.Length);
-            tileLootContainer.bWasTouched = tileLootContainer.bTouched;
-            this.theEntity.world.GetGameManager().TELockServer(Voxel.voxelRayHitInfo.hit.clrIdx, blockPos, tileLootContainer.entityId, this.theEntity.entityId);
 
+
+            BlockValue block = this.theEntity.world.GetBlock(blockPos);
+            String lootContainerName = Localization.Get(Block.list[block.type].GetBlockName(), string.Empty);
+            theEntity.SetLookPosition(blockPos.ToVector3());
+
+            DisplayLog(" Loot container is: " + lootContainerName);
+            DisplayLog(" Loot Container has this many Slots: " + tileLootContainer.items.Length);
+
+            EntityPlayer player = null;
+            if (this.theEntity.Buffs.HasCustomVar("Leader"))
+                player = theEntity.world.GetEntity((int)this.theEntity.Buffs.GetCustomVar("Leader")) as EntityPlayerLocal;
+
+            theEntity.MinEventContext.TileEntity = tileLootContainer;
+            theEntity.FireEvent(MinEventTypes.onSelfOpenLootContainer);
+            UnityEngine.Random.State state = UnityEngine.Random.state;
+            UnityEngine.Random.InitState((int)(GameManager.Instance.World.worldTime % 2147483647UL));
+            ItemStack[] array = LootContainer.lootList[tileLootContainer.lootListIndex].Spawn(tileLootContainer.items.Length, EffectManager.GetValue(PassiveEffects.LootGamestage, null, (float)player.PartyGameStage, player, null, default(FastTags), true, true, true, true), 0f);
+            UnityEngine.Random.state = state;
             for (int i = 0; i < array.Length; i++)
             {
-                if (array[i].IsEmpty()) // nothing in the slot
-                    continue;
 
-                DisplayLog(" Adding Item: " + array[i].itemValue.ToString());
-                this.theEntity.inventory.AddItem(array[i]);
-                DisplayLog(" Removing ITem");
-                tileLootContainer.RemoveItem(array[i].itemValue);
+                if (this.theEntity.lootContainer.AddItem(array[i].Clone()))
+                {
+                    DisplayLog("Removing item from loot container: " + array[i].itemValue.ItemClass.Name);
+                }
+                else
+                {
+                    DisplayLog(" Could Not add Item to NPC inventory. " + tileLootContainer.items[i].itemValue.ToString());
+                }
 
             }
-            this.theEntity.world.GetGameManager().TEUnlockServer(Voxel.voxelRayHitInfo.hit.clrIdx, blockPos, tileLootContainer.entityId);
+            theEntity.FireEvent(MinEventTypes.onSelfLootContainer);
 
         }
 
