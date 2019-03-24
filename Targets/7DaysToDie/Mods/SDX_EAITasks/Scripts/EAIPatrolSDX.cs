@@ -6,19 +6,16 @@ class EAIPatrolSDX : EAIApproachSpot
 {
     private List<Vector3> lstPatrolPoints = new List<Vector3>();
     private int PatrolPointsCounter = 0;
-    private bool Retracing = false;
 
     private float nextCheck = 0;
-    public float CheckDelay = 2f;
-
-    private Vector3 investigatePos;
     private Vector3 seekPos;
-    private bool hadPath;
-    private int investigateTicks;
-    private bool blDisplayLog = false;
-    EntityAliveSDX entityAlive;
+    
+    private EntityAliveSDX entityAliveSDX;
+
+    // Controls the delay in between movements.
     private float PatrolSpeed = 2f;
 
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -31,16 +28,17 @@ class EAIPatrolSDX : EAIApproachSpot
         EntityClass entityClass = EntityClass.list[_theEntity.entityClass];
         if (entityClass.Properties.Values.ContainsKey("PatrolSpeed"))
             this.PatrolSpeed = float.Parse(entityClass.Properties.Values["PatrolSpeed"]);
+
+        entityAliveSDX = (_theEntity as EntityAliveSDX);
     }
     public bool FetchOrders()
     {
         DisplayLog(" Fetch Orders");
-
-        entityAlive = this.theEntity as EntityAliveSDX;
-        if (entityAlive)
+    
+        if (entityAliveSDX)
         {
-            DisplayLog(" Patrol Points: " + entityAlive.PatrolCoordinates.Count);
-            if (entityAlive.PatrolCoordinates.Count > 2)
+            DisplayLog(" Patrol Points: " + entityAliveSDX.PatrolCoordinates.Count);
+            if (entityAliveSDX.PatrolCoordinates.Count > 2)
                 return true;
         }
 
@@ -50,23 +48,19 @@ class EAIPatrolSDX : EAIApproachSpot
     public void SetPatrolVectors()
     {
         // this.PatrolPointsCounter = 0;
-
-
         DisplayLog(" Setting Up Patrol Vectors");
-        // If this is an entityAliveSDX, check to see if there's any patrol points.
-        EntityAliveSDX myEntity = this.theEntity as EntityAliveSDX;
-        if (myEntity)
+        if (entityAliveSDX)
         {
 
             // If we already have patrol points, and they are the same as we have, don't reset.
-            if (this.lstPatrolPoints.Count > 0 && this.lstPatrolPoints == myEntity.PatrolCoordinates )
+            if (this.lstPatrolPoints.Count > 0 && this.lstPatrolPoints == entityAliveSDX.PatrolCoordinates )
                 return;
 
-            DisplayLog(" Patrol Counters: " + myEntity.PatrolCoordinates.Count);
-            if (myEntity.PatrolCoordinates.Count > 0)
+            DisplayLog(" Patrol Counters: " + entityAliveSDX.PatrolCoordinates.Count);
+            if (entityAliveSDX.PatrolCoordinates.Count > 0)
             {
                 DisplayLog(" Setting up Patrol Coordinates");
-                this.lstPatrolPoints = myEntity.PatrolCoordinates;
+                this.lstPatrolPoints = entityAliveSDX.PatrolCoordinates;
                 PatrolPointsCounter = this.lstPatrolPoints.Count - 1;
             }
         }
@@ -74,65 +68,50 @@ class EAIPatrolSDX : EAIApproachSpot
 
     public override bool CanExecute()
     {
-        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Patrol)
+        DisplayLog("CanExecute() Start");
+        bool result = false;
+        if (entityAliveSDX)
         {
-
-
-            return false;
-        }
-        // If there's an attack target, don't patrol anymore.
-        if (this.theEntity.GetAttackTarget() != null && this.theEntity.GetAttackTarget().IsAlive())
-        {
-            DisplayLog(" I have an attack target. No longer patrolling.");
-            return false;
+            result = entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.Patrol);
+            DisplayLog("CanExecute() Follow Task? " + result);
         }
 
         // if The entity is busy, don't continue patrolling.
         bool isBusy = false;
         if (this.theEntity.emodel.avatarController.TryGetBool("IsBusy", out isBusy))
             if (isBusy)
-                return false;
+                return true;
 
         if (!FetchOrders())
-            return false;
-
-     
+            result = false;
 
         SetPatrolVectors();
+
         this.theEntity.SetInvestigatePosition(this.lstPatrolPoints[PatrolPointsCounter], 1200);
         if (this.theEntity.HasInvestigatePosition)
         {
             DisplayLog(" I have an intesgation Position. Starting to Patrol");
             this.theEntity.emodel.avatarController.SetTrigger("IsPatrolling");
-
-            return true;
+            result = true;
         }
 
-
-        return false;
+        DisplayLog("CanExecute() End: " + result);
+        return result;
     }
 
     public override bool Continue()
     {
         // No order and no patrol. Do reverse ( != checks on these, rather than == as it can leave the entity imprecise.
-        if (!this.theEntity.Buffs.HasCustomVar("CurrentOrder") || this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Patrol)
-        {
-            DisplayLog(" Current Order is Not Patrol.");
-            return false;
-        }
+        bool result = false;
+        if (entityAliveSDX)
+            result = entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.Patrol);
+
         if (this.lstPatrolPoints.Count <= 0)
         {
             DisplayLog(" Patrol Point Count is too low.");
-            return false;
+            result  =false;
         }
-        // If there's an attack target, don't patrol anymore.
-        if (this.theEntity.GetAttackTarget() != null)
-        {
-            DisplayLog(" I have an attack target. No longer patrolling.");
-            //  this.theEntity.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.None, true);
-            return false;
-        }
-
+   
         // if The entity is busy, don't continue patrolling.
         bool isBusy = false;
         if (this.theEntity.emodel.avatarController.TryGetBool("IsBusy", out isBusy))
@@ -140,7 +119,7 @@ class EAIPatrolSDX : EAIApproachSpot
                 return false;
 
         DisplayLog(" Continueing to Patrol");
-        return true;
+        return result;
     }
 
     public override void Update()
@@ -149,23 +128,9 @@ class EAIPatrolSDX : EAIApproachSpot
         if (nextCheck < Time.time)
         {
             this.PatrolPointsCounter = (this.PatrolPointsCounter + 1) % this.lstPatrolPoints.Count;
-            //if (PatrolPointsCounter == this.lstPatrolPoints.Count - 1)
-            //    Retracing = true;
-
-            //if (PatrolPointsCounter == 0)
-            //    Retracing = false;
-
-            //if (Retracing)
-            //    PatrolPointsCounter--;
-            //else
-            //    PatrolPointsCounter++;
-
-            //if (this.PatrolPointsCounter >= this.lstPatrolPoints.Count)
-            //    this.PatrolPointsCounter = this.lstPatrolPoints.Count - 1;
 
             DisplayLog(" Patrol Points Counter: " + PatrolPointsCounter + " Patrol Points Count: " + this.lstPatrolPoints.Count);
             DisplayLog(" Vector: " + this.lstPatrolPoints[PatrolPointsCounter].ToString());
-
 
             this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.lstPatrolPoints[PatrolPointsCounter]);
             nextCheck = Time.time + this.PatrolSpeed;// this.theEntity.GetMoveSpeed();

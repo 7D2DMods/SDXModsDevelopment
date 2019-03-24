@@ -14,6 +14,7 @@ class EAISetAsTargetIfLeaderAttackedSDX : EAISetAsTargetIfHurt
         if (blDisplayLog)
             Debug.Log(this.GetType() + " : " + this.theEntity.EntityName + ": " + this.theEntity.entityId + ": " + strMessage);
     }
+
     public override bool CanExecute()
     {
         DisplayLog(" CanExecute() ");
@@ -24,10 +25,7 @@ class EAISetAsTargetIfLeaderAttackedSDX : EAISetAsTargetIfHurt
             result = true;
         }
         return result;
-
     }
-
-
 
     public bool CheckSurroundingEntities()
     {

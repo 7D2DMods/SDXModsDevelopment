@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
+
+//         <triggered_effect trigger = "onSelfBuffFinish" action="SpawnBabySDX, Mods" target="self" SpawnGroup="farmAnimalsCow" />
+
 public class MinEventActionSpawnBabySDX : MinEventActionRemoveBuff
 {
     string strSpawnGroup = "";

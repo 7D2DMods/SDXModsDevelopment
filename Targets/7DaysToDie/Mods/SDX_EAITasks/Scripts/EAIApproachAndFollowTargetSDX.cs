@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 {
-
     List<String> lstIncentives = new List<String>();
     private List<Entity> NearbyEntities = new List<Entity>();
     float distanceToEntity = UnityEngine.Random.Range(2f, 5.0f);
@@ -15,12 +14,19 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
     private Vector3 entityTargetVel;
     private int pathCounter;
 
-
+    public EntityAliveSDX entityAliveSDX;
+    
     private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
             Debug.Log( this.GetType() + " :" + this.theEntity.EntityName + ": " + strMessage);
+    }
+
+    public override void Init(EntityAlive _theEntity)
+    {
+        base.Init(_theEntity);
+        entityAliveSDX = (_theEntity as EntityAliveSDX);
     }
 
     // Allow params to be a comma-delimited list of various incentives, such as item name, buff, or cvar.
@@ -38,42 +44,20 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         }
     }
 
-    // Checks a list of buffs to see if there's an incentive for it to execute.
-    public virtual bool CheckIncentive(EntityAlive entity)
-    {
-        bool result = false;
-        foreach (String strIncentive in this.lstIncentives)
-        {
-            // Check if the entity that is looking at us has the right buff for us to follow.
-            if (entity.Buffs.HasBuff(strIncentive))
-                result = true;
-
-            // Check if there's a cvar for that incentive, such as $Mother or $Leader.
-            if (this.theEntity.Buffs.HasCustomVar(strIncentive))
-            {
-                if (this.theEntity.Buffs.GetCustomVar(strIncentive) == entity.entityId)
-                    result = true;
-            }
-
-            // Then we check if the control mechanism is an item being held.
-            if (entity.inventory.holdingItem.Name == strIncentive)
-                result = true;
-
-            // if we are true here, it means we found a match to our entity.
-            if (result)
-                break;
-        }
-
-        if (result)
-            this.entityTarget = entity;
-
-        return result;
-    }
-
     public virtual bool ConfigureTargetEntity()
     {
         this.NearbyEntities.Clear();
 
+        if (this.entityAliveSDX == null)
+        {
+            if (this.theEntity is EntityAliveSDX)
+                this.entityAliveSDX = (this.theEntity as EntityAliveSDX);
+            else
+            {
+                DisplayLog(" Not an EntityAliveSDX");
+                return false;
+            }
+        }
         // Search in the bounds are to try to find the most appealing entity to follow.
         Bounds bb = new Bounds(this.theEntity.position, new Vector3(30f, 20f, 30f));
         this.theEntity.world.GetEntitiesInBounds(typeof(EntityAlive), bb, this.NearbyEntities);
@@ -82,101 +66,84 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             EntityAlive x = (EntityAlive)this.NearbyEntities[i];
             if (x != this.theEntity)
             {
+
                 // Check the entity against the incentives
-                if (CheckIncentive(x))
+                if (entityAliveSDX.CheckIncentive(this.lstIncentives, x))
+                {
+                    this.entityTarget = x;
                     return true;
+                }
             }
         }
 
         this.entityTarget = null;
-
-    
         return false;
     }
 
     public override bool CanExecute()
     {
-        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Follow))
-            return false;
-
-        if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None || this.theEntity.Jumping)
-            return false;
-
-        if (this.theEntity.GetAttackTarget() != null) // If it has an attack target, break
+        DisplayLog("CanExecute() Start");
+        bool result = false;
+        if (entityAliveSDX)
         {
-            DisplayLog(" I have an attack Target: " + this.theEntity.GetAttackTarget());
-            return false;
+            result = entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.Follow);
+            DisplayLog("CanExecute() Follow Task? " + result);
+            // Since SetPatrol also uses this method, we'll add an extra check.
+            if (result == false)
+            {
+                result = entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.SetPatrolPoint);
+                DisplayLog(" CanExecute() Set Patrol Point? " + result);
+            }
         }
-        if (this.theEntity.GetRevengeTarget() != null) // If something attacks you, break
-        {
-            DisplayLog(" I have a revenge Target: " + this.theEntity.GetRevengeTarget());
-            return false;
-        }
-
-        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder")  && this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Loot)
-        {
-            DisplayLog(" I am looting. Not following the leader.");
-            return false;
-        }
-        // if The entity is busy, don't continue patrolling.
-        bool isBusy = false;
-        if (this.theEntity.emodel.avatarController.TryGetBool("IsBusy", out isBusy))
-            if (isBusy)
-                return false;
         if (!this.theEntity.Buffs.HasCustomVar("Leader"))
-            return false;
+        {
+            DisplayLog("CanExecute() No Leader");
+            result = false;
+        }
         // Change the distance allowed each time. This will give it more of a variety in how close it can get to you.
         distanceToEntity = UnityEngine.Random.Range(2f, 5.0f);
 
         // If there is an entity in bounds, then let this AI Task roceed. Otherwise, don't do anything with it.
-        return ConfigureTargetEntity();
+        if (result)
+        {
+            result = ConfigureTargetEntity();
+            DisplayLog("CanExecute() Configure Target Result: " + result);
+        }
+        
+        DisplayLog("CanExecute() End: " + result);
+        return result;
 
     }
 
     public override bool Continue()
     {
-        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Follow))
-            return false;
-
-        if ( this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.Wander))
-            return false;
-
-        if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != EnumEntityStunType.None)
-            return false;
-
+        DisplayLog("Continue() Start");
+        bool result = false;
+        if (entityAliveSDX)
+        {
+            result = entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.Follow);
+            if (result == false)
+            {
+                // Since SetPatrol also uses this method, we'll add an extra check.
+                result = entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.SetPatrolPoint);
+            }
+        }
         if (pathCounter == 0) // briefly pause if you are at the end of the path to let other tasks run
-            return false;
-
-        if (this.theEntity.GetAttackTarget() != null) // If it has an attack target, break
-        {
-            DisplayLog(" I have an attack Target: " + this.theEntity.GetAttackTarget());
-            return false;
-        }
-        if (this.theEntity.GetRevengeTarget() != null) // If something attacks you, break
-        {
-            DisplayLog(" I have a revenge Target: " + this.theEntity.GetRevengeTarget());
-            return false;
-        }
-
-        // if The entity is busy, don't continue patrolling.
-        bool isBusy = false;
-        if (this.theEntity.emodel.avatarController.TryGetBool("IsBusy", out isBusy))
-            if (isBusy)
-                return false;
+            result = false;
 
         if (this.theEntity.Buffs.HasCustomVar("Leader"))
-        {
             if ((int)this.theEntity.Buffs.GetCustomVar("Leader") == 0)
-                return false;
-        }
+               result = false;
         else
-            return false;
+            result = false;
 
-  
-
-        return ConfigureTargetEntity();
+        if ( result )
+            result = ConfigureTargetEntity();
+        DisplayLog("Continue() End: " + result);
+        return result;
         
     }
+
     public override void Update()
     {
         Vector3 position = Vector3.zero;
@@ -193,18 +160,13 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         position = this.entityTarget.position;
         targetXZDistanceSq = base.GetTargetXZDistanceSq(6);
 
-        EntityAliveSDX myEntity = this.theEntity as EntityAliveSDX;
-        if (myEntity)
+        if (entityAliveSDX)
         {
-            if (this.theEntity.Buffs.HasCustomVar("CurrentOrder"))
+            if (entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.SetPatrolPoint))
             {
-                if (this.theEntity.Buffs.GetCustomVar("CurrentOrder") == (float)EntityAliveSDX.Orders.SetPatrolPoint)
-                {
-                    // Make them a lot closer to you when they are following you.
-                    this.distanceToEntity = 1f;
-
-                    myEntity.UpdatePatrolPoints(this.theEntity.world.FindSupportingBlockPos( this.entityTarget.position));
-                }
+                // Make them a lot closer to you when they are following you.
+                this.distanceToEntity = 1f;
+                entityAliveSDX.UpdatePatrolPoints(this.theEntity.world.FindSupportingBlockPos(this.entityTarget.position));
             }
         }
         Vector3 a = position - this.entityTargetPos;
@@ -212,7 +174,6 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             this.entityTargetVel = this.entityTargetVel * 0.7f + a * 0.3f;
 
         this.entityTargetPos = position;
-
         this.theEntity.moveHelper.CalcIfUnreachablePos(position);
 
         float num2 = distanceToEntity * distanceToEntity;
@@ -242,9 +203,8 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             }
         }
         if (this.theEntity.Climbing)
-        {
             return;
-        }
+
         if (!flag)
         {
             if (this.theEntity.navigator.noPathAndNotPlanningOne() && num3 < 2.1f)

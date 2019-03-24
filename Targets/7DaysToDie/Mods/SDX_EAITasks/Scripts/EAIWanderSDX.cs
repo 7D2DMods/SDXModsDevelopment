@@ -14,8 +14,6 @@ class EAIWanderSDX : EAIWander
     {
         if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Wander))
                 return false;
-        
-    
         return true;
     }
     public override bool CanExecute()
@@ -31,6 +29,7 @@ class EAIWanderSDX : EAIWander
         if (!FetchOrders())
             return false;
 
+        // if an entity gets 'stuck' on a block, it just starts attacking it. Kind of aggressive.
         if (this.theEntity.moveHelper.BlockedTime <= 1f)
             return false;
 

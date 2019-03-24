@@ -16,7 +16,7 @@ using UnityEngine;
 using System;
 using System.IO;
 
-class EntityAliveSDX : EntityNPC
+public class EntityAliveSDX : EntityNPC
 {
     public QuestJournal QuestJournal = new QuestJournal();
     public List<String> lstQuests = new List<String>();
@@ -47,6 +47,48 @@ class EntityAliveSDX : EntityNPC
             Debug.Log(this.entityName + ": " + strMessage);
     }
 
+    public virtual bool CheckIncentive(List<String> lstIncentives, EntityAlive entity )
+    {
+        bool result = false;
+        foreach (String strIncentive in lstIncentives)
+        {
+            DisplayLog(" Checking Incentive: " + strIncentive);
+            // Check if the entity that is looking at us has the right buff for us to follow.
+            if (this.Buffs.HasBuff(strIncentive))
+                result = true;
+
+            // Check if there's a cvar for that incentive, such as $Mother or $Leader.
+            if (this.Buffs.HasCustomVar(strIncentive))
+            {
+                DisplayLog(" Incentive: " + strIncentive + " Value: " + this.Buffs.GetCustomVar(strIncentive));
+                if ((int)this.Buffs.GetCustomVar(strIncentive) == entity.entityId)
+                    result = true;
+            }
+
+            // Then we check if the control mechanism is an item being held.
+            if (inventory.holdingItem.Name == strIncentive)
+                result = true;
+
+            // if we are true here, it means we found a match to our entity.
+            if (result)
+                break;
+        }
+        return result;
+    }
+    public bool CanExecuteTask( Orders order)
+    {
+        // If we don't match our current order, don't execute
+        if (this.Buffs.HasCustomVar("CurrentOrder") && this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
+            return false;
+
+        // If we have an attack or revenge target, don't execute task
+        if (this.GetAttackTarget() != null || this.GetRevengeTarget() != null)
+            return false;
+        if (this.sleepingOrWakingUp || this.bodyDamage.CurrentStun != EnumEntityStunType.None || this.Jumping)
+            return false;
+
+        return true;
+    }
     // These are the orders, used in cvars for the EAI Tasks. They are casted as floats.
     public enum Orders
     {
