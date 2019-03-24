@@ -52,6 +52,9 @@ class EAIPatrolSDX : EAIApproachSpot
         DisplayLog(" Setting Up Patrol Vectors");
         if (entityAliveSDX)
         {
+            if (this.lstPatrolPoints == entityAliveSDX.PatrolCoordinates)
+                return;
+
             DisplayLog(" Patrol Counters: " + entityAliveSDX.PatrolCoordinates.Count);
             if (entityAliveSDX.PatrolCoordinates.Count > 0)
             {
@@ -59,11 +62,6 @@ class EAIPatrolSDX : EAIApproachSpot
                 this.lstPatrolPoints = entityAliveSDX.PatrolCoordinates;
                 PatrolPointsCounter = this.lstPatrolPoints.Count - 1;
                 this.seekPos = this.lstPatrolPoints[PatrolPointsCounter];
-            }
-            else
-            {
-                PatrolPointsCounter = 0;
-                this.lstPatrolPoints.Clear();
             }
         }
     }
@@ -122,46 +120,54 @@ class EAIPatrolSDX : EAIApproachSpot
             if (isBusy)
                 return false;
 
+        //float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
+        //if (sqrMagnitude2 > 5)
+        //{
+        //    GetNextPosition();
+        //    this.theEntity.SetInvestigatePosition(this.seekPos, 600);
+        //    return false;
+        //}
+
         DisplayLog(" Continueing to Patrol");
         return result;
     }
 
     bool blReverse = true;
+
+    public void GetNextPosition()
+    {
+        if (this.PatrolPointsCounter == this.lstPatrolPoints.Count - 1)
+            blReverse = true;
+
+        if (this.PatrolPointsCounter == 0)
+            blReverse = false;
+
+        if (blReverse)
+            this.PatrolPointsCounter--;
+        else
+            this.PatrolPointsCounter++;
+        //this.PatrolPointsCounter = (this.PatrolPointsCounter + 1) % this.lstPatrolPoints.Count;
+
+
+        DisplayLog(" Patrol Points Counter: " + PatrolPointsCounter + " Patrol Points Count: " + this.lstPatrolPoints.Count);
+        DisplayLog(" Vector: " + this.lstPatrolPoints[PatrolPointsCounter].ToString());
+
+        this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.lstPatrolPoints[PatrolPointsCounter]);
+        this.theEntity.SetLookPosition(this.seekPos);
+
+        this.theEntity.moveHelper.SetMoveTo(this.lstPatrolPoints[PatrolPointsCounter], false);
+
+    }
     public override void Update()
     {
         //DisplayLog(" Seek Position:" + this.seekPos);
         float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
         Debug.Log(" Magnitude:" + sqrMagnitude2);
-        if (sqrMagnitude2 <= 2f)
-        {
-        //if (nextCheck < Time.time)
-       // {
-            if (this.PatrolPointsCounter == this.lstPatrolPoints.Count - 1)
-                blReverse = true;
+        
+        if (sqrMagnitude2 <= 3f)
+            GetNextPosition();
 
-            if (this.PatrolPointsCounter == 0)
-                blReverse = false;
-
-            if (blReverse)
-                this.PatrolPointsCounter--;
-            else
-                this.PatrolPointsCounter++;
-            //this.PatrolPointsCounter = (this.PatrolPointsCounter + 1) % this.lstPatrolPoints.Count;
-
-            
-            DisplayLog(" Patrol Points Counter: " + PatrolPointsCounter + " Patrol Points Count: " + this.lstPatrolPoints.Count);
-            DisplayLog(" Vector: " + this.lstPatrolPoints[PatrolPointsCounter].ToString());
-
-            this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.lstPatrolPoints[PatrolPointsCounter]);
-
-            nextCheck = Time.time + this.PatrolSpeed;// this.theEntity.GetMoveSpeed();
-
-            //this.theEntity.RotateTo( this.seekPos.x, this.seekPos.y + 2, this.seekPos.z,  30f, 30f);
-            this.theEntity.SetLookPosition( this.seekPos);
-
-            this.theEntity.moveHelper.SetMoveTo(this.lstPatrolPoints[PatrolPointsCounter], false);
-            updatePath();
-        }
+        updatePath();
     }
 
     public override void updatePath()
