@@ -4,12 +4,15 @@ class ObjectiveBuffSDX : BaseObjective
 {
     String strBuff = "";
     
+    // method to clone the Objective
     public override BaseObjective Clone()
     {
         ObjectiveBuffSDX objectiveBuff = new ObjectiveBuffSDX();
         this.CopyValues(objectiveBuff);
         return objectiveBuff;
     }
+
+    // Helper to the clone
     protected void CopyValues(ObjectiveBuffSDX objective)
     {
         objective.ID = this.ID;
@@ -49,7 +52,7 @@ class ObjectiveBuffSDX : BaseObjective
         }
 
         // If the entity is *something*, check to see if it has the objective buff, and pass to completion.
-        if (myEntity != null)
+        if (myEntity != null) 
         {
             // Check if it has the desired buff.
             base.Complete = myEntity.Buffs.HasBuff(this.strBuff);

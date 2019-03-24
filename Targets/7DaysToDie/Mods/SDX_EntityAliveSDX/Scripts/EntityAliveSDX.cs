@@ -52,7 +52,7 @@ public class EntityAliveSDX : EntityNPC
         bool result = false;
         foreach (String strIncentive in lstIncentives)
         {
-            DisplayLog(" Checking Incentive: " + strIncentive);
+          //  DisplayLog(" Checking Incentive: " + strIncentive);
             // Check if the entity that is looking at us has the right buff for us to follow.
             if (this.Buffs.HasBuff(strIncentive))
                 result = true;
@@ -60,7 +60,7 @@ public class EntityAliveSDX : EntityNPC
             // Check if there's a cvar for that incentive, such as $Mother or $Leader.
             if (this.Buffs.HasCustomVar(strIncentive))
             {
-                DisplayLog(" Incentive: " + strIncentive + " Value: " + this.Buffs.GetCustomVar(strIncentive));
+               // DisplayLog(" Incentive: " + strIncentive + " Value: " + this.Buffs.GetCustomVar(strIncentive));
                 if ((int)this.Buffs.GetCustomVar(strIncentive) == entity.entityId)
                     result = true;
             }

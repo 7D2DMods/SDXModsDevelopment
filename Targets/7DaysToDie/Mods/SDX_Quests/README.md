@@ -1,36 +1,43 @@
 SDX_Quests
 ==========
+The follow classes have been added to allow more fine tuning of the Quest system, by introducing new Objectives and action types.
 
-ObjectiveBuffSDX:
-	
-	This new Objective type allows you to set a condition on a buff before continueing. In the below example, in order to transition from Phase 1 to Phase 2, the entity must have the buff called "buffAnimalAdult".
+BuffSDX, Mods:
+==============	
 
+This new Objective type allows you to set a condition on a buff before continueing. In the below example, in order to transition from Phase 1 to Phase 2, the entity must have the buff called "buffAnimalAdult".
+
+Example Usage:
 	  <objective type="BuffSDX, Mods">
         <property name="phase" value="1" />
         <property name="buff" value="buffAnimalAdult" />
       </objective>
 
 
-	The ObjectiveBuffSDX was working on an Update call, so it was happening too much in the run of a second. Since buffs are usually longer, and don't require such an agressive check, the following event was added
-
-QuestActionSpawnEntitySDX:
+SpawnEntitySDX, Mods
+====================
 
 	This QuestAction allows you to spawn an entity, spawning it beside the SharedOwnerID's entity. Unlike SpawnEnemy, it won't automatically set the player or spawn entity trigger as ane enemy. Like SpawnEnemy, it can accept comma delimited entities in the id="animalFarmCow,zombieArlene".
 		
+Example Usage:
       <!-- This will spawn in an zombieBear entity during Phase 3 -->
       <action type="SpawnEntitySDX, Mods" id="zombieBear" value="1" phase="3" />
 
-RewardItemSDX:
+ItemSDX, Mods:
+==============
 
 	This RewardItem allows you to give an Item to the SharedOwnerID entity.
 
+Example Usage:
 		<reward type="ItemSDX, Mods" id="casinoCoin" value="1" />
 
-RewardQuestSDX:
 
+QuestSDX, Mods:
+===============
 	This RewardQuest allows you to give a Quest to the SharedOwnerID entity.
 
-	    <reward type="QuestSDX, Mods" id="buffProgression_Quest" />
+Example Usage:
+    <reward type="QuestSDX, Mods" id="buffProgression_Quest" />
 
 
 Here's an example of a Quest line that works based on buff progression

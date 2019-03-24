@@ -37,6 +37,11 @@ public class EAITaskPatches : IPatcherMod
         SetMethodToVirtual(method);
         SetMethodToPublic(method);
 
+
+        gm = module.Types.First(d => d.Name == "EAIApproachSpot");
+        method = gm.Methods.First(d => d.Name == "updatePath");
+        SetMethodToPublic(method);
+        SetMethodToVirtual(method);
         return true;
     }
 

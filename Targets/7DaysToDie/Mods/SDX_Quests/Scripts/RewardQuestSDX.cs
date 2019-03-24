@@ -19,6 +19,8 @@ class RewardQuestSDX : RewardQuest
         }
         return QuestClass.s_Quests[questID];
     }
+
+
     public override void GiveReward(EntityPlayer player)
     {
         Quest quest = QuestClass.CreateQuest(base.ID);

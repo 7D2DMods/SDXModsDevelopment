@@ -9,13 +9,14 @@ class EAIPatrolSDX : EAIApproachSpot
 
     private float nextCheck = 0;
     private Vector3 seekPos;
-    
+    private int pathRecalculateTicks;
+
     private EntityAliveSDX entityAliveSDX;
 
     // Controls the delay in between movements.
     private float PatrolSpeed = 2f;
 
-    private bool blDisplayLog = false;
+    private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -62,6 +63,7 @@ class EAIPatrolSDX : EAIApproachSpot
                 DisplayLog(" Setting up Patrol Coordinates");
                 this.lstPatrolPoints = entityAliveSDX.PatrolCoordinates;
                 PatrolPointsCounter = this.lstPatrolPoints.Count - 1;
+                this.seekPos = this.lstPatrolPoints[PatrolPointsCounter];
             }
         }
     }
@@ -74,6 +76,8 @@ class EAIPatrolSDX : EAIApproachSpot
         {
             result = entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.Patrol);
             DisplayLog("CanExecute() Follow Task? " + result);
+            if (result == false)
+                return false;
         }
 
         // if The entity is busy, don't continue patrolling.
@@ -122,25 +126,56 @@ class EAIPatrolSDX : EAIApproachSpot
         return result;
     }
 
+    bool blReverse = true;
     public override void Update()
     {
-        DisplayLog(" Seek Position:" + this.seekPos);
-        if (nextCheck < Time.time)
+        //DisplayLog(" Seek Position:" + this.seekPos);
+        float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
+        Debug.Log(" Magnitude:" + sqrMagnitude2);
+        if (sqrMagnitude2 <= 2f)
         {
-            this.PatrolPointsCounter = (this.PatrolPointsCounter + 1) % this.lstPatrolPoints.Count;
+        //if (nextCheck < Time.time)
+       // {
+            if (this.PatrolPointsCounter == this.lstPatrolPoints.Count - 1)
+                blReverse = true;
 
+            if (this.PatrolPointsCounter == 0)
+                blReverse = false;
+
+            if (blReverse)
+                this.PatrolPointsCounter--;
+            else
+                this.PatrolPointsCounter++;
+            //this.PatrolPointsCounter = (this.PatrolPointsCounter + 1) % this.lstPatrolPoints.Count;
+
+            
             DisplayLog(" Patrol Points Counter: " + PatrolPointsCounter + " Patrol Points Count: " + this.lstPatrolPoints.Count);
             DisplayLog(" Vector: " + this.lstPatrolPoints[PatrolPointsCounter].ToString());
 
             this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.lstPatrolPoints[PatrolPointsCounter]);
+
             nextCheck = Time.time + this.PatrolSpeed;// this.theEntity.GetMoveSpeed();
 
-            this.theEntity.SetLookPosition(this.seekPos);
-            this.theEntity.RotateTo( this.seekPos.x, this.seekPos.y, this.seekPos.z,  30f, 30f);
+            //this.theEntity.RotateTo( this.seekPos.x, this.seekPos.y + 2, this.seekPos.z,  30f, 30f);
+            this.theEntity.SetLookPosition( this.seekPos);
 
             this.theEntity.moveHelper.SetMoveTo(this.lstPatrolPoints[PatrolPointsCounter], false);
+            updatePath();
         }
     }
 
+    public override void updatePath()
+    {
+        if (this.theEntity.IsScoutZombie)
+        {
+            AstarManager.Instance.AddLocationLine(this.theEntity.position, this.seekPos, 32);
+        }
+        if (GamePath.PathFinderThread.Instance.IsCalculatingPath(this.theEntity.entityId))
+        {
+            return;
+        }
+        this.pathRecalculateTicks = 40 + this.theEntity.GetRandom().Next(20);
+        GamePath.PathFinderThread.Instance.FindPath(this.theEntity, this.seekPos, this.theEntity.GetMoveSpeed(), true, this);
+    }
 }
 

@@ -16,7 +16,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public EntityAliveSDX entityAliveSDX;
     
-    private bool blDisplayLog = false;
+    private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -155,6 +155,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
         // Let the entity keep looking at you, otherwise it may just sping around.
         this.theEntity.SetLookPosition(this.entityTarget.getHeadPosition());
+        this.theEntity.RotateTo(this.entityTarget.position.x, this.entityTarget.position.y + 2, this.entityTarget.position.z, 30f, 30f);
 
         // Find the location of the entity, and figure out where it's at.
         position = this.entityTarget.position;
