@@ -120,7 +120,7 @@ class EAIPatrolSDX : EAIApproachSpot
         if (this.lstPatrolPoints.Count <= 0)
         {
             DisplayLog(" Patrol Point Count is too low.");
-            result  =false;
+            result = false;
         }
    
         // if The entity is busy, don't continue patrolling.
@@ -129,6 +129,7 @@ class EAIPatrolSDX : EAIApproachSpot
             if (isBusy)
                 return false;
 
+      
         DisplayLog(" Continueing to Patrol");
         return result;
     }
@@ -162,8 +163,7 @@ class EAIPatrolSDX : EAIApproachSpot
     public override void Update()
     {
         float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
-        Debug.Log(" Magnitude:" + sqrMagnitude2);
-        
+       
         if (sqrMagnitude2 <= 3f)
             GetNextPosition();
 

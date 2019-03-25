@@ -27,8 +27,12 @@ public class EntityAliveSDX : EntityNPC
     public ItemValue HireCurrency = ItemClass.GetItem("casinoCoin", false);
     int DefaultTraderID = 0;
 
+    public Vector3 GuardPosition = Vector3.zero;
+
     String strSoundAccept = "";
     String strSoundReject = "";
+
+    private bool bWentThroughDoor = false;
 
     // Update Time for NPC's onUpdateLive(). If the time is greater than update time, it'll do a trader area check, opening and closing. Something we don't want.
     private float updateTime = Time.time - 2f;
@@ -72,6 +76,17 @@ public class EntityAliveSDX : EntityNPC
         }
         return result;
     }
+
+
+    public float GetFloatValue(String strProperty)
+    {
+        float result = 0f;
+        EntityClass entityClass = EntityClass.list[this.entityClass];
+        if (entityClass.Properties.Values.ContainsKey(strProperty))
+            entityClass.Properties.ParseFloat(EntityClass.PropMoveSpeed, ref result);
+        return result;
+    }
+
     public bool CanExecuteTask(Orders order)
     {
         // If we don't match our current order, don't execute
@@ -129,16 +144,53 @@ public class EntityAliveSDX : EntityNPC
 
     }
 
+    Vector3i lastDoorOpen;
+
+
+   
     public override bool Attack(bool _bAttackReleased)
     {
         if (!_bAttackReleased && !this.IsAttackValid())
             return false;
 
+        if (this.getMoveHelper().BlockedTime > 0.5f)
+        {
+            Vector3i blockPosition = this.GetBlockPosition();
+            Vector3i TargetBlockPosition = new Vector3i();
+            int MaxDistance = 2;
+            for (var x = (int)blockPosition.x - MaxDistance; x <= blockPosition.x + MaxDistance; x++)
+            {
+                for (var z = (int)blockPosition.z - MaxDistance; z <= blockPosition.z + MaxDistance; z++)
+                {
+                    TargetBlockPosition.x = x;
+                    TargetBlockPosition.y = Utils.Fastfloor(this.position.y + 1);
+                    TargetBlockPosition.z = z;
+
+                    DisplayLog(" Target Block: " + TargetBlockPosition + " Block: " + this.world.GetBlock(TargetBlockPosition).Block.GetBlockName() + " My Position: " + this.GetBlockPosition());
+                    BlockValue blockValue = this.world.GetBlock(TargetBlockPosition);
+                    if (Block.list[blockValue.type].HasTag(BlockTags.Door) && !Block.list[blockValue.type].HasTag(BlockTags.Window))
+                    {
+                        DisplayLog(" At a door, trying to open");
+                        BlockDoor targetDoor = (Block.list[blockValue.type] as BlockDoor);
+
+                        Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(TargetBlockPosition);
+                        targetDoor.OnBlockActivated(this.world, chunk.ClrIdx, TargetBlockPosition, blockValue, null);
+                        this.lastDoorOpen = TargetBlockPosition;
+                        this.bWentThroughDoor = false;
+                        this.attackingTime = 60;
+                        return false;
+                    }
+                }
+            }
+        }
+            
         this.attackingTime = 60;
         if (this.inventory.holdingItem != null)
             DisplayLog("holding item: " + this.inventory.holdingItem.GetItemName());
         else
             DisplayLog("No holding item");
+
+
         ItemAction itemAction = this.inventory.holdingItem.Actions[0];
         if (itemAction != null)
         {
@@ -255,6 +307,10 @@ public class EntityAliveSDX : EntityNPC
         Debug.Log(GetType().ToString() + " : Command: " + strCommand);
         LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(player as EntityPlayerLocal);
 
+        // restore it's movement speeds to defaults. We give a speed boost to match the player's speed if he follows you.
+        this.moveSpeed = GetFloatValue("MoveSpeed");
+        this.moveSpeedAggro = GetFloatValue("MoveSpeedAggro");
+
         switch (strCommand)
         {
             case "ShowMe":
@@ -269,6 +325,14 @@ public class EntityAliveSDX : EntityNPC
                 break;
             case "StayHere":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Stay, true);
+                this.SetInvestigatePosition(this.position, 600);
+                this.GuardPosition = this.position;
+                break;
+            case "GuardHere":
+                this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Stay, true);
+                this.SetInvestigatePosition(player.position, 600);
+                this.SetLookPosition(player.GetLookVector());
+                this.GuardPosition = this.position;
                 break;
             case "Wander":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Wander, true);
@@ -276,6 +340,8 @@ public class EntityAliveSDX : EntityNPC
             case "SetPatrol":
                 this.Buffs.SetCustomVar("Leader", player.entityId, true);
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.SetPatrolPoint, true);
+                this.moveSpeed = player.moveSpeed;
+                this.moveSpeedAggro = player.moveSpeedAggro;
                 this.PatrolCoordinates.Clear(); // Clear the existing point.
                 break;
             case "Patrol":
@@ -287,6 +353,9 @@ public class EntityAliveSDX : EntityNPC
                 {
                     this.Buffs.SetCustomVar("Leader", player.entityId, true);
                     this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
+                    this.moveSpeed = player.moveSpeed;
+                    this.moveSpeedAggro = player.moveSpeedAggro;
+
                 }
                 break;
             case "OpenInventory":
@@ -426,7 +495,8 @@ public class EntityAliveSDX : EntityNPC
         else
             this.Buffs.AddCustomVar("CurrentOrder", (float)Orders.Wander);
 
-
+        String strGuardPosition = _br.ReadString();
+        this.GuardPosition = StringToVector3(strGuardPosition);
 
     }
 
@@ -463,6 +533,7 @@ public class EntityAliveSDX : EntityNPC
             strPatrolCoordinates += ";" + temp;
 
         _bw.Write(strPatrolCoordinates);
+        _bw.Write(this.GuardPosition.ToString());
     }
 
     public void DisplayStats()
@@ -524,26 +595,32 @@ public class EntityAliveSDX : EntityNPC
         this.QuestJournal.AddQuest(NewQuest);
     }
 
-    //protected virtual void SetupStartingItems()
-    //{
-    //    for (int i = 0; i < this.itemsOnEnterGame.Count; i++)
-    //    {
-    //        ItemStack itemStack = this.itemsOnEnterGame[i];
-    //        ItemClass forId = ItemClass.GetForId(itemStack.itemValue.type);
-    //        if (forId.HasQuality)
-    //            itemStack.itemValue = new ItemValue(itemStack.itemValue.type, 1, 6, false, default(FastTags), 1f);
-    //        else
-    //            itemStack.count = forId.Stacknumber.Value;
-    //        this.inventory.SetItem(i, itemStack);
-    //    }
-    //}
-
     public override void OnUpdateLive()
     {
 
+        if (!this.bWentThroughDoor)
+        {
+            float num = (float)((double)((float)this.lastDoorOpen.x + 0.5f) - (double)this.position.x);
+            float num2 = (float)((double)((float)this.lastDoorOpen.z + 0.5f) - (double)this.position.z);
+            float num3 = num * num + num2 * num2;
+            if (num3 < 0f)
+            {
+                DisplayLog(" Went through the door.");
+                this.bWentThroughDoor = true;
 
-        // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
-        this.Stats.Water.Tick(0.5f, 0, false);
+                BlockValue blockValue = this.world.GetBlock(lastDoorOpen);
+                if (Block.list[blockValue.type].HasTag(BlockTags.Door) && !Block.list[blockValue.type].HasTag(BlockTags.Window))
+                {
+                    DisplayLog(" At a door, trying to close");
+                    BlockDoor targetDoor = (Block.list[blockValue.type] as BlockDoor);
+
+                    Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(lastDoorOpen);
+                    targetDoor.OnBlockActivated(this.world, chunk.ClrIdx, lastDoorOpen, blockValue, null);
+                    this.lastDoorOpen = Vector3i.zero;
+                }
+            }
+        }// Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
+            this.Stats.Water.Tick(0.5f, 0, false);
 
         // then fire the updatestats over time, which is protected from a IsPlayer check in the base onUpdateLive().
         this.Stats.UpdateStatsOverTime(0.5f);
@@ -572,20 +649,18 @@ public class EntityAliveSDX : EntityNPC
 
             }
         }
-        switch (currentOrder)
-        {
-            case Orders.Stay:
-                return;
 
-        }
+        if (this.lastDoorOpen != Vector3i.zero)
+            if ((this.position + Vector3.back + Vector3.back) == this.lastDoorOpen.ToVector3())
+            {
+
+            }
         // Check the state to see if the controller IsBusy or not. If it's not, then let it walk.
         bool isBusy = false;
         this.emodel.avatarController.TryGetBool("IsBusy", out isBusy);
 
         if (IsAlert)
             isBusy = false;
-
-
 
         if (isBusy == false)
         {
@@ -594,7 +669,6 @@ public class EntityAliveSDX : EntityNPC
         }
 
     }
-
 
 
     public void ToggleTraderID(bool Restore)

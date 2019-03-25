@@ -8,6 +8,7 @@
         <response_entry id="FollowMe" />
         <response_entry id="ShowMe" />
         <response_entry id="StayHere" />
+        <response_entry id="GuardHere" />
         <response_entry id="Wander" />
         <response_entry id="SetPatrol" />
         <response_entry id="Patrol" />
@@ -36,6 +37,11 @@
         <action type="ExecuteCommandSDX, Mods" id="StayHere" />
       </response>
 
+       <response id="GuardHere" text="Guard here" >
+        <requirement type="HiredSDX, Mods" requirementtype="Hide" />
+        <action type="ExecuteCommandSDX, Mods" id="GuardHere" />
+      </response>
+      
       <response id="Wander" text="Wander around here" >
         <requirement type="HiredSDX, Mods" requirementtype="Hide" />
         <action type="ExecuteCommandSDX, Mods" id="Wander" />

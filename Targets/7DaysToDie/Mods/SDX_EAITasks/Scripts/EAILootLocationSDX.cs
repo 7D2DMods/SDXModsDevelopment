@@ -90,10 +90,8 @@ class EAILootLocationSDX : EAIApproachSpot
         if (sqrMagnitude2 <= 2f || (path != null && path.isFinished()))
         {
             DisplayLog("I'm at the loot container: " + sqrMagnitude2 );
-            CheckContainer();
+            CheckContainer(); 
             result= FindNearestContainer();
-            //this.theEntity.SetInvestigatePosition(Vector3.zero, 0);
-            //return false;
         }
         DisplayLog("Continue() End: " + result);
         return result;
@@ -110,7 +108,11 @@ class EAILootLocationSDX : EAIApproachSpot
         if (!Voxel.voxelRayHitInfo.bHitValid)
             return false; // Missed the target. Overlooking?
 
-        DisplayLog(" Looking at: " + this.seekPos + " My position is: " + this.theEntity.position);
+        float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
+        if (sqrMagnitude2 <= 2f)
+            return false; // too far away from it
+
+            DisplayLog(" Looking at: " + this.seekPos + " My position is: " + this.theEntity.position);
         TileEntityLootContainer tileEntityLootContainer = this.theEntity.world.GetTileEntity(Voxel.voxelRayHitInfo.hit.clrIdx, new Vector3i(seekPos)) as TileEntityLootContainer;
         if (tileEntityLootContainer == null)
         {
@@ -121,7 +123,10 @@ class EAILootLocationSDX : EAIApproachSpot
 
         GetItemFromContainer(tileEntityLootContainer);
         if (tileEntityLootContainer.IsEmpty())
+        {
             DisplayLog(" Looted Container.");
+            return true;
+        }
         else
             DisplayLog("Did not loot the container.");
 
