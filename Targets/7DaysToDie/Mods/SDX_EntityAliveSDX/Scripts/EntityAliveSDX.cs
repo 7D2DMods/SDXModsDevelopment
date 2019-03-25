@@ -20,39 +20,36 @@ public class EntityAliveSDX : EntityNPC
 {
     public QuestJournal QuestJournal = new QuestJournal();
     public List<String> lstQuests = new List<String>();
+
     public Orders currentOrder = Orders.Wander;
     public List<Vector3> PatrolCoordinates = new List<Vector3>();
     public int HireCost = 1000;
     public ItemValue HireCurrency = ItemClass.GetItem("casinoCoin", false);
-    //  public string npcID = "";
     int DefaultTraderID = 0;
+
+    String strSoundAccept = "";
+    String strSoundReject = "";
 
     // Update Time for NPC's onUpdateLive(). If the time is greater than update time, it'll do a trader area check, opening and closing. Something we don't want.
     private float updateTime = Time.time - 2f;
 
+    // Default name
     String strMyName = "Bob";
     public System.Random random = new System.Random();
 
     private bool blDisplayLog = true;
-  //  public List<QuestEntry> questList = new List<QuestEntry>();
-  //  public List<Quest> activeQuests = new List<Quest>();
-  //  public List<Vector2> usedPOILocations = new List<Vector2>();
- //   public List<int> tempTopTierQuests = new List<int>();
-
- //   EntityNPC entityNPC = new EntityNPC();
-
     public void DisplayLog(String strMessage)
     {
-        if (blDisplayLog &&  !this.IsDead())
+        if (blDisplayLog && !this.IsDead())
             Debug.Log(this.entityName + ": " + strMessage);
     }
 
-    public virtual bool CheckIncentive(List<String> lstIncentives, EntityAlive entity )
+    public virtual bool CheckIncentive(List<String> lstIncentives, EntityAlive entity)
     {
         bool result = false;
         foreach (String strIncentive in lstIncentives)
         {
-          //  DisplayLog(" Checking Incentive: " + strIncentive);
+            //  DisplayLog(" Checking Incentive: " + strIncentive);
             // Check if the entity that is looking at us has the right buff for us to follow.
             if (this.Buffs.HasBuff(strIncentive))
                 result = true;
@@ -60,7 +57,7 @@ public class EntityAliveSDX : EntityNPC
             // Check if there's a cvar for that incentive, such as $Mother or $Leader.
             if (this.Buffs.HasCustomVar(strIncentive))
             {
-               // DisplayLog(" Incentive: " + strIncentive + " Value: " + this.Buffs.GetCustomVar(strIncentive));
+                // DisplayLog(" Incentive: " + strIncentive + " Value: " + this.Buffs.GetCustomVar(strIncentive));
                 if ((int)this.Buffs.GetCustomVar(strIncentive) == entity.entityId)
                     result = true;
             }
@@ -75,7 +72,7 @@ public class EntityAliveSDX : EntityNPC
         }
         return result;
     }
-    public bool CanExecuteTask( Orders order)
+    public bool CanExecuteTask(Orders order)
     {
         // If we don't match our current order, don't execute
         if (this.Buffs.HasCustomVar("CurrentOrder") && this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
@@ -97,7 +94,7 @@ public class EntityAliveSDX : EntityNPC
         Wander = 2,
         None = 3,
         SetPatrolPoint = 4,
-        Patrol = 5, 
+        Patrol = 5,
         Hire = 6,
         Loot = 7
     }
@@ -118,7 +115,7 @@ public class EntityAliveSDX : EntityNPC
         }
 
         if (entityClass.Properties.Values.ContainsKey("HireCost"))
-            HireCost = int.Parse( entityClass.Properties.Values["HireCost"]);
+            HireCost = int.Parse(entityClass.Properties.Values["HireCost"]);
         if (entityClass.Properties.Values.ContainsKey("HireCurrency"))
         {
             this.HireCurrency = ItemClass.GetItem(entityClass.Properties.Values["HireCurrency"], false);
@@ -129,14 +126,14 @@ public class EntityAliveSDX : EntityNPC
         //if (entityClass.Properties.Values.ContainsKey("NPCID"))
         //    this.npcID = entityClass.Properties.Values["NPCID"];
 
-        
+
     }
 
     public override bool Attack(bool _bAttackReleased)
     {
         if (!_bAttackReleased && !this.IsAttackValid())
-             return false;
-      
+            return false;
+
         this.attackingTime = 60;
         if (this.inventory.holdingItem != null)
             DisplayLog("holding item: " + this.inventory.holdingItem.GetItemName());
@@ -153,7 +150,7 @@ public class EntityAliveSDX : EntityNPC
         return true;
     }
 
-      public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
+    public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
     {
         if (this.IsDead() || this.NPCInfo == null)
         {
@@ -253,7 +250,7 @@ public class EntityAliveSDX : EntityNPC
         return true;
     }
 
-    public virtual bool ExecuteCMD( String strCommand, EntityPlayer player )
+    public virtual bool ExecuteCMD(String strCommand, EntityPlayer player)
     {
         Debug.Log(GetType().ToString() + " : Command: " + strCommand);
         LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(player as EntityPlayerLocal);
@@ -268,6 +265,7 @@ public class EntityAliveSDX : EntityNPC
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
                 this.moveSpeed = player.moveSpeed;
                 this.moveSpeedAggro = player.moveSpeedAggro;
+
                 break;
             case "StayHere":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Stay, true);
@@ -301,31 +299,9 @@ public class EntityAliveSDX : EntityNPC
                 DisplayLog("Loot Container: " + this.lootContainer.ToString());
                 this.lootContainer.lootListIndex = 62;
                 DisplayLog(" Loot List: " + this.lootContainer.lootListIndex);
-                
-                DisplayLog( this.lootContainer.GetOpenTime().ToString());
-                
-               // TileEntity tileEntity;
-                //Entity entity = this.world.GetEntity(this.entityId);
-                //if (entity.lootContainer == null)
-                //{
-                //    int lootList = entity.GetLootList();
-                //    if (lootList != 0)
-                //    {
-                //        entity.lootContainer = new TileEntityLootContainer(null);
-                //        entity.lootContainer.entityId = entity.entityId;
-                //        entity.lootContainer.lootListIndex = lootList;
-                //        entity.lootContainer.SetContainerSize(LootContainer.lootList[lootList].size, true);
-                //    }
-                //}
-                //if (this.entityId != -1)
-                //{
-                //    Debug.Log(" My entity ID is not -1");
-                //    tileEntity = this.world.GetTileEntity(this.entityId);
-                //    if (tileEntity != null)
-                //    {
-                        GameManager.Instance.lootContainerOpened((TileEntityLootContainer)this.lootContainer, uiforPlayer, player.entityId);
-                 //   }
-              //  }
+
+                DisplayLog(this.lootContainer.GetOpenTime().ToString());
+                GameManager.Instance.lootContainerOpened((TileEntityLootContainer)this.lootContainer, uiforPlayer, player.entityId);
 
                 break;
             case "Loot":
@@ -334,9 +310,9 @@ public class EntityAliveSDX : EntityNPC
 
         }
         return true;
-    
+
     }
-    public virtual bool isTame(EntityAlive _player )
+    public virtual bool isTame(EntityAlive _player)
     {
         if (this.Buffs.HasCustomVar("Leader") && this.Buffs.GetCustomVar("Leader") == (float)_player.entityId)
             return true;
@@ -381,7 +357,7 @@ public class EntityAliveSDX : EntityNPC
         return false;
     }
 
-   
+
     public override void PostInit()
     {
         base.PostInit();
@@ -411,7 +387,7 @@ public class EntityAliveSDX : EntityNPC
     }
 
     List<Vector3> tempList = new List<Vector3>();
-    public virtual void UpdatePatrolPoints( Vector3 position )
+    public virtual void UpdatePatrolPoints(Vector3 position)
     {
 
         Vector3 temp = position;
@@ -427,7 +403,7 @@ public class EntityAliveSDX : EntityNPC
         }
     }
 
-  
+
     // Reads the buff and quest information
     public override void Read(byte _version, BinaryReader _br)
     {
@@ -450,7 +426,7 @@ public class EntityAliveSDX : EntityNPC
         else
             this.Buffs.AddCustomVar("CurrentOrder", (float)Orders.Wander);
 
-        
+
 
     }
 
@@ -482,7 +458,7 @@ public class EntityAliveSDX : EntityNPC
         _bw.Write(this.strMyName);
         this.Buffs.Write(_bw, true);
         this.QuestJournal.Write(_bw);
-        String strPatrolCoordinates ="";
+        String strPatrolCoordinates = "";
         foreach (Vector3 temp in this.PatrolCoordinates)
             strPatrolCoordinates += ";" + temp;
 
@@ -496,7 +472,7 @@ public class EntityAliveSDX : EntityNPC
 
     public override string ToString()
     {
-        String FoodAmount = ((float)Mathf.RoundToInt(this.Stats.Stamina.ModifiedMax + this.Stats.Entity.Buffs.GetCustomVar("foodAmount"))).ToString() ;
+        String FoodAmount = ((float)Mathf.RoundToInt(this.Stats.Stamina.ModifiedMax + this.Stats.Entity.Buffs.GetCustomVar("foodAmount"))).ToString();
         String WaterAmount = ((float)Mathf.RoundToInt(this.Stats.Water.Value + this.Stats.Entity.Buffs.GetCustomVar("waterAmount"))).ToString();
         String strSanitation = "Disabled.";
         if (this.Buffs.HasCustomVar("solidWasteAmount"))
@@ -533,7 +509,7 @@ public class EntityAliveSDX : EntityNPC
         // Don't give duplicate quests.
         foreach (Quest quest in this.QuestJournal.quests)
         {
-            if (quest.ID == strQuest.ToLower() )
+            if (quest.ID == strQuest.ToLower())
                 return;
         }
 
@@ -561,11 +537,11 @@ public class EntityAliveSDX : EntityNPC
     //        this.inventory.SetItem(i, itemStack);
     //    }
     //}
-   
+
     public override void OnUpdateLive()
     {
 
-     
+
         // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
         this.Stats.Water.Tick(0.5f, 0, false);
 
@@ -596,19 +572,19 @@ public class EntityAliveSDX : EntityNPC
 
             }
         }
-        switch( currentOrder)
+        switch (currentOrder)
         {
             case Orders.Stay:
                 return;
 
         }
-            // Check the state to see if the controller IsBusy or not. If it's not, then let it walk.
-            bool isBusy = false;
+        // Check the state to see if the controller IsBusy or not. If it's not, then let it walk.
+        bool isBusy = false;
         this.emodel.avatarController.TryGetBool("IsBusy", out isBusy);
 
         if (IsAlert)
             isBusy = false;
-    
+
 
 
         if (isBusy == false)
@@ -616,10 +592,10 @@ public class EntityAliveSDX : EntityNPC
             this.updateTime = Time.time - 2f;
             base.OnUpdateLive();
         }
-      
+
     }
 
-   
+
 
     public void ToggleTraderID(bool Restore)
     {

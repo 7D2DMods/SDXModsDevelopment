@@ -16,7 +16,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public EntityAliveSDX entityAliveSDX;
     
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -139,6 +139,12 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
         if ( result )
             result = ConfigureTargetEntity();
+
+        if (result)
+        {
+
+            this.theEntity.SetInvestigatePosition(this.theEntity.world.GetEntity((int)this.theEntity.Buffs.GetCustomVar("Leader")).position, 600);
+        }
         DisplayLog("Continue() End: " + result);
         return result;
         
@@ -200,7 +206,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
                 this.pathCounter = 6 + this.theEntity.GetRandom().Next(10);
                 DisplayLog(" Distance: " + distanceToEntity);
                 Vector3 moveToLocation = this.GetMoveToLocation(distanceToEntity);
-                PathFinderThread.Instance.FindPath(this.theEntity, moveToLocation, this.theEntity.GetMoveSpeed(), true, this);
+                PathFinderThread.Instance.FindPath(this.theEntity, moveToLocation, this.theEntity.GetMoveSpeedAggro(), true, this);
             }
         }
         if (this.theEntity.Climbing)

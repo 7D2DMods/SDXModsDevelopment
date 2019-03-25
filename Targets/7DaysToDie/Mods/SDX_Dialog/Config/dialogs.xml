@@ -16,7 +16,7 @@
         <response_entry id="done" />
       </statement>
 
-      <response id="Hire" text="Hire me" >
+      <response id="Hire" text="I am interested in hiring you." >
         <requirement type="HiredSDX, Mods" requirementtype="Hide" value="not"/>
         <action type="OpenDialogSDX, Mods" id="Hire" />
       </response>

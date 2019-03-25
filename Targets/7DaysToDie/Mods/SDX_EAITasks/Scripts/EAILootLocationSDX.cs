@@ -11,59 +11,65 @@ class EAILootLocationSDX : EAIApproachSpot
     private Vector3 seekPos;
     private bool hadPath;
     private int investigateTicks;
+    private EntityAliveSDX entityAliveSDX;
 
     PrefabInstance prefab;
     List<TileEntityLootContainer> lstTileContainers = new List<TileEntityLootContainer>();
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
             Debug.Log(this.GetType() + " :" + this.theEntity.EntityName + ": " + strMessage);
     }
+
+
+    public override void Init(EntityAlive _theEntity)
+    {
+        base.Init(_theEntity);
+        entityAliveSDX = (_theEntity as EntityAliveSDX);
+    }
     public override bool CanExecute()
     {
-        if (this.theEntity.Buffs.HasCustomVar("CurrentOrder") && (this.theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Loot))
-            return false;
-
         DisplayLog("CanExecute()");
-        EntityAliveSDX entity = this.theEntity as EntityAliveSDX;
-        if (entity == null)
+        bool result = false;
+        if (entityAliveSDX)
         {
-            DisplayLog(" I am not an EntityAliveSDX");
-            return false;
+            result = entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.Loot);
+            DisplayLog("CanExecute() Loot Task? " + result);
+            if (result == false)
+                return false;
         }
-        if (this.theEntity.GetAttackTarget() != null || this.theEntity.GetRevengeTarget() != null)
-        {
-            DisplayLog(" I have an attack target or a revenger target. Not looting.");
-            return false;
-        }
-
-        if (this.theEntity.HasInvestigatePosition)
-            return true;
 
         if (FindBoundsOfPrefab())
         {
+            DisplayLog(" Within the Bounds of a Prefab");
             ScanForTileEntityInList();
-            return FindNearestContainer();
+            DisplayLog(" Searching for closes container: " + this.lstTileContainers.Count);
+            result = FindNearestContainer();
         }
-        return false;
+
+        DisplayLog("CanExecute() End: " + result);
+        return result;
     }
 
 
     public override bool Continue()
     {
-        if (this.theEntity.GetAttackTarget() != null || this.theEntity.GetRevengeTarget() != null)
+        DisplayLog("CanContinue()");
+        bool result = false;
+        if (entityAliveSDX)
         {
-            DisplayLog(" I have an attack target or Revenge Target. Not Looting.");
-            return false;
+            result = entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.Loot);
+            DisplayLog("CanContinue() Loot Task? " + result);
+            if (result == false)
+                return false;
         }
-        if (theEntity.Buffs.HasCustomVar("CurrentOrder") && (theEntity.Buffs.GetCustomVar("CurrentOrder") != (float)EntityAliveSDX.Orders.Loot))
-            return false;
-
+        
         PathNavigate navigator = this.theEntity.navigator;
         PathEntity path = navigator.getPath();
         if (this.hadPath && path == null)
         {
+            DisplayLog(" Not Path to continue looting.");
             return false;
         }
         if (++this.investigateTicks > 40)
@@ -75,6 +81,7 @@ class EAILootLocationSDX : EAIApproachSpot
             float sqrMagnitude = (this.investigatePos - this.theEntity.InvestigatePosition).sqrMagnitude;
             if (sqrMagnitude >= 4f)
             {
+                DisplayLog(" Too far away from my investigate Position: " + sqrMagnitude);
                 return false;
             }
         }
@@ -82,13 +89,14 @@ class EAILootLocationSDX : EAIApproachSpot
         float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
         if (sqrMagnitude2 <= 2f || (path != null && path.isFinished()))
         {
-            DisplayLog("I'm at the loot container.");
+            DisplayLog("I'm at the loot container: " + sqrMagnitude2 );
             CheckContainer();
-            return FindNearestContainer();
+            result= FindNearestContainer();
             //this.theEntity.SetInvestigatePosition(Vector3.zero, 0);
             //return false;
         }
-        return true;
+        DisplayLog("Continue() End: " + result);
+        return result;
     }
 
     public bool CheckContainer()
@@ -144,9 +152,9 @@ class EAILootLocationSDX : EAIApproachSpot
 
     public void ScanForTileEntityInList()
     {
-        // Otherwise, search for your new home.
+        DisplayLog("ScanForTileEntityInList()");
         Vector3i blockPosition = this.theEntity.GetBlockPosition();
-        List<TileEntityLootContainer> LocalContainers = new List<TileEntityLootContainer>();
+
         var minX = prefab.boundingBoxPosition.x;
         var maxX = prefab.boundingBoxPosition.x + prefab.boundingBoxSize.x - 1;
 
@@ -179,8 +187,16 @@ class EAILootLocationSDX : EAIApproachSpot
                         {
                             BlockValue block = theEntity.world.GetBlock(tileEntity.ToWorldPos());
                             if (tileEntity.bTouched)
+                            {
+                                DisplayLog(" This tile Entity has already been touched: " + tileEntities.ToString());
                                 continue;
+                            }
 
+                            if (Block.list[block.type].HasTag(BlockTags.Door))
+                            {
+                                DisplayLog(" This tile entity is a door. ignoring.");
+                                continue;
+                            }
                             DisplayLog(" Loot Container: " + tileEntity.ToString());
                             this.lstTileContainers.Add(tileEntity);
                         }
@@ -217,8 +233,6 @@ class EAILootLocationSDX : EAIApproachSpot
         DisplayLog("Checking Loot Container");
         if (tileLootContainer.items != null)
         {
-
-
             BlockValue block = this.theEntity.world.GetBlock(blockPos);
             String lootContainerName = Localization.Get(Block.list[block.type].GetBlockName(), string.Empty);
             theEntity.SetLookPosition(blockPos.ToVector3());
@@ -238,7 +252,6 @@ class EAILootLocationSDX : EAIApproachSpot
             UnityEngine.Random.state = state;
             for (int i = 0; i < array.Length; i++)
             {
-
                 if (this.theEntity.lootContainer.AddItem(array[i].Clone()))
                 {
                     DisplayLog("Removing item from loot container: " + array[i].itemValue.ItemClass.Name);
@@ -246,6 +259,12 @@ class EAILootLocationSDX : EAIApproachSpot
                 else
                 {
                     DisplayLog(" Could Not add Item to NPC inventory. " + tileLootContainer.items[i].itemValue.ToString());
+                    if (theEntity is EntityAliveSDX)
+                    {
+                        (theEntity as EntityAliveSDX).ExecuteCMD("Follow", player);
+                        return;
+                    }
+
                 }
 
             }

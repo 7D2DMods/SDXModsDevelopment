@@ -16,7 +16,7 @@ class EAIPatrolSDX : EAIApproachSpot
     // Controls the delay in between movements.
     private float PatrolSpeed = 2f;
 
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -32,19 +32,19 @@ class EAIPatrolSDX : EAIApproachSpot
 
         entityAliveSDX = (_theEntity as EntityAliveSDX);
     }
-    public bool FetchOrders()
-    {
-        DisplayLog(" Fetch Orders");
+    //public bool FetchOrders()
+    //{
+    //    DisplayLog(" Fetch Orders");
     
-        if (entityAliveSDX)
-        {
-            DisplayLog(" Patrol Points: " + entityAliveSDX.PatrolCoordinates.Count);
-            if (entityAliveSDX.PatrolCoordinates.Count > 2)
-                return true;
-        }
+    //    if (entityAliveSDX)
+    //    {
+    //        DisplayLog(" Patrol Points: " + entityAliveSDX.PatrolCoordinates.Count);
+    //        if (entityAliveSDX.PatrolCoordinates.Count > 2)
+    //            return true;
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
     public void SetPatrolVectors()
     {
@@ -84,10 +84,19 @@ class EAIPatrolSDX : EAIApproachSpot
             if (isBusy)
                 return true;
 
-        if (!FetchOrders())
-            result = false;
+        //if (!FetchOrders())
+        //    result = false;
 
         SetPatrolVectors();
+
+        if (entityAliveSDX.PatrolCoordinates.Count > 0)
+        {
+
+            if (PatrolPointsCounter > entityAliveSDX.PatrolCoordinates.Count - 1)
+                PatrolPointsCounter = entityAliveSDX.PatrolCoordinates.Count - 1;
+        }
+        else
+            return false;
 
         this.theEntity.SetInvestigatePosition(this.lstPatrolPoints[PatrolPointsCounter], 1200);
         if (this.theEntity.HasInvestigatePosition)
@@ -119,14 +128,6 @@ class EAIPatrolSDX : EAIApproachSpot
         if (this.theEntity.emodel.avatarController.TryGetBool("IsBusy", out isBusy))
             if (isBusy)
                 return false;
-
-        //float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
-        //if (sqrMagnitude2 > 5)
-        //{
-        //    GetNextPosition();
-        //    this.theEntity.SetInvestigatePosition(this.seekPos, 600);
-        //    return false;
-        //}
 
         DisplayLog(" Continueing to Patrol");
         return result;
@@ -160,7 +161,6 @@ class EAIPatrolSDX : EAIApproachSpot
     }
     public override void Update()
     {
-        //DisplayLog(" Seek Position:" + this.seekPos);
         float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
         Debug.Log(" Magnitude:" + sqrMagnitude2);
         
