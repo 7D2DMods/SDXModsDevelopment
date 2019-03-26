@@ -128,6 +128,12 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
                 result = entityAliveSDX.CanExecuteTask(EntityAliveSDX.Orders.SetPatrolPoint);
             }
         }
+
+        if (this.theEntity.getMoveHelper().BlockedTime > 2)
+        {
+            DisplayLog(" Blocked Time: " + this.theEntity.getMoveHelper().BlockedTime);
+            this.theEntity.SetInvestigatePosition(this.entityTarget.position, 500);
+        }
         if (pathCounter == 0) // briefly pause if you are at the end of the path to let other tasks run
             result = false;
 

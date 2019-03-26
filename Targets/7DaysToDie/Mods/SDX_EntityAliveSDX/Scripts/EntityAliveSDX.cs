@@ -148,21 +148,10 @@ public class EntityAliveSDX : EntityNPC
     private float nextCheck = 0;
     public float CheckDelay = 5f;
 
-
-    public Vector3i CheckDoor()
-    {
-    //    if ( this.lastDoorOpen == Vector3i.zero)
-        {
- 
-        }
-
-        return Vector3i.zero;
-    }
     public void OpenDoor()
     {
         if (nextCheck < Time.time)
         {
-
             nextCheck = Time.time + CheckDelay;
             Vector3i blockPosition = this.GetBlockPosition();
             Vector3i TargetBlockPosition = new Vector3i();
@@ -173,29 +162,29 @@ public class EntityAliveSDX : EntityNPC
                 for (var z = (int)blockPosition.z - MaxDistance; z <= blockPosition.z + MaxDistance; z++)
                 {
                     TargetBlockPosition.x = x;
-                    TargetBlockPosition.y = Utils.Fastfloor(this.position.y + 1);
+                    TargetBlockPosition.y = Utils.Fastfloor(this.position.y);
                     TargetBlockPosition.z = z;
 
-                    //     DisplayLog(" Target Block: " + TargetBlockPosition + " Block: " + this.world.GetBlock(TargetBlockPosition).Block.GetBlockName() + " My Position: " + this.GetBlockPosition());
+                    // DisplayLog(" Target Block: " + TargetBlockPosition + " Block: " + this.world.GetBlock(TargetBlockPosition).Block.GetBlockName() + " My Position: " + this.GetBlockPosition());
                     BlockValue blockValue = this.world.GetBlock(TargetBlockPosition);
                     if (Block.list[blockValue.type].HasTag(BlockTags.Door) && !Block.list[blockValue.type].HasTag(BlockTags.Window))
                     {
                         DisplayLog(" I found a door.");
                         this.lastDoorOpen = TargetBlockPosition;
                         BlockDoor targetDoor = (Block.list[blockValue.type] as BlockDoor);
-                        DisplayLog(" Is Door Open? " + BlockDoor.IsDoorOpen(blockValue.meta));
-                      //     if (!BlockDoor.IsDoorOpen(blockValue.meta))
-                        {
-                            Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(TargetBlockPosition);
-                            targetDoor.OnBlockActivated(this.world, chunk.ClrIdx, TargetBlockPosition, blockValue, null);
+                        bool isDoorOpen = BlockDoor.IsDoorOpen(blockValue.meta);
+                        if (isDoorOpen)
+                            this.lastDoorOpen = Vector3i.zero;
+                        else
+                            this.lastDoorOpen = TargetBlockPosition;
 
-                                
-                            // DisplayLog(" Is Door Open now? " + BlockDoor.IsDoorOpen(blockValue.meta));
-                            //nextCheck = Time.time + 3;
-                            //  return this.lastDoorOpen;
-                        }
-                        //else
-                        //    DisplayLog(" Door was already open.");
+                        this.emodel.avatarController.SetBool("OpenDoor", !isDoorOpen); // we want the opposite of what it is, so if its open, we want it close
+                        this.emodel.avatarController.SetTrigger("OpenDoor");
+                        DisplayLog(" Is Door Open? " + BlockDoor.IsDoorOpen(blockValue.meta));
+
+                        Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(TargetBlockPosition);
+                        targetDoor.OnBlockActivated(this.world, 0, TargetBlockPosition, blockValue, null);
+
                     }
                 }
             }
@@ -214,10 +203,9 @@ public class EntityAliveSDX : EntityNPC
         if (this.attackTarget == null)
         {
             OpenDoor();
-                return true;
-
+            return true;
         }
-        
+
         if (this.inventory.holdingItem != null)
             DisplayLog("holding item: " + this.inventory.holdingItem.GetItemName());
         else
@@ -630,8 +618,10 @@ public class EntityAliveSDX : EntityNPC
 
     public override void OnUpdateLive()
     {
+        if (this.lastDoorOpen != Vector3i.zero)
+            OpenDoor();
 
-      //  OpenDoor();
+        //  OpenDoor();
         //OpenDoor();
         //if (this.lastDoorOpen != Vector3i.zero && !this.bWentThroughDoor)
         //{
