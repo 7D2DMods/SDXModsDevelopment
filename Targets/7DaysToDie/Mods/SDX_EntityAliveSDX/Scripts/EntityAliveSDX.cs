@@ -150,40 +150,49 @@ public class EntityAliveSDX : EntityNPC
    
     public override bool Attack(bool _bAttackReleased)
     {
+
+
+   //     DisplayLog(" Blocked Time: " + this.getMoveHelper().BlockedTime);
+   //   //  if (this.getMoveHelper().BlockedTime > 0.5f)
+   ////   if ( !this.bWentThroughDoor )
+   //     {
+   //         DisplayLog("Attack(): I am blocked. Checking to see if it's a door.");
+   //         Vector3i blockPosition = this.GetBlockPosition();
+   //         Vector3i TargetBlockPosition = new Vector3i();
+   //         int MaxDistance = 2;
+   //         for (var x = (int)blockPosition.x - MaxDistance; x <= blockPosition.x + MaxDistance; x++)
+   //         {
+   //             for (var z = (int)blockPosition.z - MaxDistance; z <= blockPosition.z + MaxDistance; z++)
+   //             {
+   //                 TargetBlockPosition.x = x;
+   //                 TargetBlockPosition.y = Utils.Fastfloor(this.position.y + 1);
+   //                 TargetBlockPosition.z = z;
+
+   //                 DisplayLog(" Target Block: " + TargetBlockPosition + " Block: " + this.world.GetBlock(TargetBlockPosition).Block.GetBlockName() + " My Position: " + this.GetBlockPosition());
+   //                 BlockValue blockValue = this.world.GetBlock(TargetBlockPosition);
+   //                 if (Block.list[blockValue.type].HasTag(BlockTags.Door) && !Block.list[blockValue.type].HasTag(BlockTags.Window))
+   //                 {
+   //                     DisplayLog(" At a door, trying to open it");
+   //                     BlockDoor targetDoor = (Block.list[blockValue.type] as BlockDoor);
+   //                     DisplayLog(" Is Door Open? " + BlockDoor.IsDoorOpen(blockValue.meta));
+   //                     if (!BlockDoor.IsDoorOpen(blockValue.meta))
+   //                     {
+   //                         Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(TargetBlockPosition);
+   //                         targetDoor.OnBlockActivated(0, this.world, chunk.ClrIdx, TargetBlockPosition, blockValue, null);
+   //                         this.lastDoorOpen = TargetBlockPosition;
+   //                         this.bWentThroughDoor = false;
+   //                         this.attackingTime = 60;
+   //                         return false;
+   //                     }
+
+   //                 }
+   //             }
+   //         }
+   //     }
+
         if (!_bAttackReleased && !this.IsAttackValid())
             return false;
 
-        if (this.getMoveHelper().BlockedTime > 0.5f)
-        {
-            Vector3i blockPosition = this.GetBlockPosition();
-            Vector3i TargetBlockPosition = new Vector3i();
-            int MaxDistance = 2;
-            for (var x = (int)blockPosition.x - MaxDistance; x <= blockPosition.x + MaxDistance; x++)
-            {
-                for (var z = (int)blockPosition.z - MaxDistance; z <= blockPosition.z + MaxDistance; z++)
-                {
-                    TargetBlockPosition.x = x;
-                    TargetBlockPosition.y = Utils.Fastfloor(this.position.y + 1);
-                    TargetBlockPosition.z = z;
-
-                    DisplayLog(" Target Block: " + TargetBlockPosition + " Block: " + this.world.GetBlock(TargetBlockPosition).Block.GetBlockName() + " My Position: " + this.GetBlockPosition());
-                    BlockValue blockValue = this.world.GetBlock(TargetBlockPosition);
-                    if (Block.list[blockValue.type].HasTag(BlockTags.Door) && !Block.list[blockValue.type].HasTag(BlockTags.Window))
-                    {
-                        DisplayLog(" At a door, trying to open");
-                        BlockDoor targetDoor = (Block.list[blockValue.type] as BlockDoor);
-
-                        Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(TargetBlockPosition);
-                        targetDoor.OnBlockActivated(this.world, chunk.ClrIdx, TargetBlockPosition, blockValue, null);
-                        this.lastDoorOpen = TargetBlockPosition;
-                        this.bWentThroughDoor = false;
-                        this.attackingTime = 60;
-                        return false;
-                    }
-                }
-            }
-        }
-            
         this.attackingTime = 60;
         if (this.inventory.holdingItem != null)
             DisplayLog("holding item: " + this.inventory.holdingItem.GetItemName());
@@ -598,28 +607,42 @@ public class EntityAliveSDX : EntityNPC
     public override void OnUpdateLive()
     {
 
-        if (!this.bWentThroughDoor)
-        {
-            float num = (float)((double)((float)this.lastDoorOpen.x + 0.5f) - (double)this.position.x);
-            float num2 = (float)((double)((float)this.lastDoorOpen.z + 0.5f) - (double)this.position.z);
-            float num3 = num * num + num2 * num2;
-            if (num3 < 0f)
-            {
-                DisplayLog(" Went through the door.");
-                this.bWentThroughDoor = true;
+        //if (this.lastDoorOpen != Vector3i.zero && !this.bWentThroughDoor)
+        //{
+        //    DisplayLog(" I have opened a door, but have not gone through it. Checking.");
+        //    float num = (float)((double)((float)this.lastDoorOpen.x + 0.5f) - (double)this.position.x);
+        //    float num2 = (float)((double)((float)this.lastDoorOpen.z + 0.5f) - (double)this.position.z);
+        //    float num3 = num * num + num2 * num2;
+        //    float sqrMagnitude = (this.lastDoorOpen.ToVector3() - this.position).sqrMagnitude;
+        //    DisplayLog(" Magnitude: " + sqrMagnitude);
+        //    DisplayLog("num3: " + num3);
+        //    DisplayLog(" LastDoor Open: " + this.lastDoorOpen);
+        //    DisplayLog(" My Position: " + this.position);
 
-                BlockValue blockValue = this.world.GetBlock(lastDoorOpen);
-                if (Block.list[blockValue.type].HasTag(BlockTags.Door) && !Block.list[blockValue.type].HasTag(BlockTags.Window))
-                {
-                    DisplayLog(" At a door, trying to close");
-                    BlockDoor targetDoor = (Block.list[blockValue.type] as BlockDoor);
+        //    //if (sqrMagnitude > 1f)
+        //    //{
 
-                    Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(lastDoorOpen);
-                    targetDoor.OnBlockActivated(this.world, chunk.ClrIdx, lastDoorOpen, blockValue, null);
-                    this.lastDoorOpen = Vector3i.zero;
-                }
-            }
-        }// Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
+        //    //    if (num3 < 0f)
+        //    //    {
+        //    //        DisplayLog(" Went through the door.");
+        //    //        this.bWentThroughDoor = true;
+
+        //    //        BlockValue blockValue = this.world.GetBlock(lastDoorOpen);
+        //    //        if (Block.list[blockValue.type].HasTag(BlockTags.Door) && !Block.list[blockValue.type].HasTag(BlockTags.Window))
+        //    //        {
+        //    //            DisplayLog(" At a door, trying to close");
+        //    //            BlockDoor targetDoor = (Block.list[blockValue.type] as BlockDoor);
+
+        //    //            Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(lastDoorOpen);
+        //    //            targetDoor.OnBlockActivated(this.world, chunk.ClrIdx, lastDoorOpen, blockValue, null);
+        //    //            this.lastDoorOpen = Vector3i.zero;
+        //    //        }
+        //    //    }
+        //    //}
+          
+        //}
+        
+        // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
             this.Stats.Water.Tick(0.5f, 0, false);
 
         // then fire the updatestats over time, which is protected from a IsPlayer check in the base onUpdateLive().
