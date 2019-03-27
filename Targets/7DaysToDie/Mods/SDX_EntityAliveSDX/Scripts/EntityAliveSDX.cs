@@ -138,9 +138,6 @@ public class EntityAliveSDX : EntityNPC
                 this.HireCurrency = ItemClass.GetItem("casinoCoin", false);
         }
 
-        //if (entityClass.Properties.Values.ContainsKey("NPCID"))
-        //    this.npcID = entityClass.Properties.Values["NPCID"];
-
 
     }
 
@@ -336,6 +333,9 @@ public class EntityAliveSDX : EntityNPC
         {
             case "ShowMe":
                 GameManager.ShowTooltipWithAlert(player as EntityPlayerLocal, this.ToString() + "\n\n\n\n\n", "ui_denied");
+                break;
+            case "ShowAffection":
+                GameManager.ShowTooltipWithAlert(player as EntityPlayerLocal, "You gentle scratch and stroke the side of the animal.", "");
                 break;
             case "FollowMe":
                 this.Buffs.SetCustomVar("Leader", player.entityId, true);
