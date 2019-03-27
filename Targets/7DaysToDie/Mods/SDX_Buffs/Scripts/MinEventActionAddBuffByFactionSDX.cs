@@ -4,7 +4,7 @@ using System.Xml;
 
 //        <triggered_effect trigger = "onSelfBuffUpdate" action="AddBuffByFactionSDX, Mods" target="selfAOE" range="4" buff="buffAnimalFertility"  />
 //        <triggered_effect trigger = "onSelfBuffUpdate" action="AddBuffByFactionSDX, Mods" target="selfAOE" range="4" mustmatch="true" buff="buffAnimalFertility"  />
-public class MinEventActionAddBuffByEntitySDX : MinEventActionBuffModifierBase
+public class MinEventActionAddBuffByFactionSDX : MinEventActionBuffModifierBase
 {
 
     bool MustMatch = false;
