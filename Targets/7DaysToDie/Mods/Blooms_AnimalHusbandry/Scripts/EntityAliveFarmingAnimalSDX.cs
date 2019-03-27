@@ -1,5 +1,5 @@
 ﻿/*
- * Class: EntityAliveSDX
+ * Class: EntityAliveFarmingAnimal
  * Author:  sphereii 
  * Category: Entity
  * Description:
@@ -20,16 +20,8 @@ class EntityAliveFarmingAnimalSDX : EntityAliveSDX
     public String strFoodItem;
     public String strProductItem;
     public String strHarvestItems;
-    public String strHomeBlock;
-    public String strHomeBuff;
-
-    // how far the animal will wander from its Home position.
-    public int MaxDistanceFromHome = 15;
-    public float MaxDistanceToSeePlayer = 20f;
-    public float HarvestDelay = 10f;
 
     
-
     public override void CopyPropertiesFromEntityClass()
     {
         this.npcID = "animalFarm";
@@ -77,27 +69,6 @@ class EntityAliveFarmingAnimalSDX : EntityAliveSDX
         AdjustSizeForStage();
         base.OnUpdateLive();
     }
-
-    //// Farm Animals don't need the complex commands that EntityAliveSDX needs.
-    //public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
-    //{
-    //    EntityActivationCommand[] ActivationCommands = new EntityActivationCommand[]
-    //    {
-    //        new EntityActivationCommand("TellMe", "talk", true )
-    //    };
-    //    return ActivationCommands;
-    //}
-    //public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
-    //{
-    //    switch (_indexInBlockActivationCommands)
-    //    {
-    //        case 0: // Tell me about yourself
-    //            GameManager.ShowTooltipWithAlert(_entityFocusing as EntityPlayerLocal, this.ToString() + "\n\n\n\n\n", "ui_denied");
-    //            break;
-    //    }
-
-    //    return true;
-    //}
 
     public override string ToString()
     {
