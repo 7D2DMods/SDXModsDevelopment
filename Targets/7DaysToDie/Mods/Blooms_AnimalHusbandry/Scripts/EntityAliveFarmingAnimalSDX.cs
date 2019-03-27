@@ -28,9 +28,12 @@ class EntityAliveFarmingAnimalSDX : EntityAliveSDX
     public float MaxDistanceToSeePlayer = 20f;
     public float HarvestDelay = 10f;
 
+    
 
     public override void CopyPropertiesFromEntityClass()
     {
+        this.npcID = "animalFarm";
+        
         base.CopyPropertiesFromEntityClass();
         EntityClass entityClass = EntityClass.list[this.entityClass];
 

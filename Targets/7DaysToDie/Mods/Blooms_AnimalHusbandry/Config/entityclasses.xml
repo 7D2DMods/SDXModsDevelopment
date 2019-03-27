@@ -6,7 +6,6 @@
 			<property name="AvatarController" value="MecanimSDX, Mods" />
 			<property name="RootMotion" value="false" />
 			<property name="Mass" value="90"/>
-      <property name="NPCID" value="animalFarm"/>
 
       <!-- which containers to look for food in -->
       <property name="FoodBins" value="cntSecureStorageChest,cntStorageChest" />
