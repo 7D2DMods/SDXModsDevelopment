@@ -44,24 +44,22 @@
 		<property name="AttackIdleIndexes" value="0" /> 
 		<property name="AIPathCostScale" value=".7, 1"/>
 		<property name="AITask-1" value="BreakBlock"/>
-		<property name="AITask-2" value="DestroyArea"/> 
-		<property name="AITask-3" value="PatrolSDX, Mods"/>
-		<property name="AITask-4" value="RangedAttackTarget" param1="1,1,4"/>
-		<property name="AITask-5" value="ApproachAndAttackTarget" param1="Entity,0"/>
-		<property name="AITask-6" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/>
-		<property name="AITask-7" value="ApproachSpot"/>
-		<property name="AITask-8" value="MaslowLevel1SDX, Mods"/>
-		<property name="AITask-9" value="Look"/>
+		<property name="AITask-2" value="Territorial"/>
+		<property name="AITask-3" value="RangedAttackTarget" param1="1,1,4"/> 
+		<property name="AITask-4" value="MaslowLevel1SDX, Mods"/>
+		<property name="AITask-5" value="PatrolSDX, Mods"/>
+		<property name="AITask-6" value="ApproachAndAttackTarget" param1="Entity,0"/>
+		<property name="AITask-7" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/>
+		<property name="AITask-8" value="ApproachSpot"/>
+		<property name="AITask-9" value="Look"/> 
 		<property name="AITask-10" value="WanderSDX, Mods"/>
-		<property name="AITask-11" value="Territorial"/>
-		<property name="AITask-12" value="" />
+		<property name="AITask-11" value="" />
 		<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>
-		<property name="AITarget-2" value="BlockingTargetTask"/>
+		<property name="AITarget-2" value="BlockingTargetTask"/> 
 		<property name="AITarget-3" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/>
 		<property name="AITarget-4" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,0"/>
 		<property name="AITarget-5" value="LootLocationSDX, Mods" />
 		<property name="AITarget-6" value="" />
-	
 		<property name="SoundHurt" value="Player_Male/player1painlg"/>
 		<property name="SoundHurtSmall" value="Player_Male/player1painsm"/>
 		<property name="SoundDeath" value="Player_Male/player1death"/>
@@ -134,8 +132,6 @@
 		  <!-- This is the block it'll call home -->
 		<property name="HomeBlocks" value="pressureplate"/>
 
-		<property name="PatrolSpeed" value=".4"/>
-
 	</entity_class> 	
 	<entity_class name="NPCFarmer" >
 		<property name='Class' value='EntityAliveSDX, Mods' />
@@ -156,12 +152,12 @@
 		<property name="Weight" value="70"/>
 		<property name="Prefab" value="NPC"/>
 		<property name="IsEnemyEntity" value="false"/> 
-		<property name="HandItem" value="handHarley"/> 
+		<property name="HandItem" value="handFarmer"/> 
 		<property name="RightHandJointName" value="Muzzle" />
 		<property name="SwimOffset" value="-2"/>
 		<property name="MoveSpeed" value="0.3"/> 
-		<property name="MoveSpeedAggro" value="1.4,.8"/> 
-		<property name="MoveSpeedPanic" value=".8"/>
+		<property name="MoveSpeedAggro" value="1.4,1.4"/> 
+		<property name="MoveSpeedPanic" value="1.4"/>
 		<property name="PainResistPerHit" value=".70"/>
 		<property name="MaxViewAngle" value="220"/>
 		<property name="MaxTurnSpeed" value="180"/>
@@ -181,19 +177,17 @@
 		<property name="AttackIdleIndexes" value="0" /> 
 		<property name="AIPathCostScale" value=".7, 1"/>
 		<property name="AITask-1" value="BreakBlock"/>
-		<property name="AITask-2" value="DestroyArea"/> 
-		<property name="AITask-3" value="PatrolSDX, Mods"/>
-<!--			<property name="AITask-4" value="RangedAttackTarget" param1="1,1,4"/> -->
-		<property name="AITask-4" value="ApproachAndAttackTarget" param1="Entity,0"/>
-		<property name="AITask-5" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/>
-		<property name="AITask-6" value="ApproachSpot"/>
-		<property name="AITask-7" value="MaslowLevel1SDX, Mods"/>
-		<property name="AITask-8" value="Look"/>
+		<property name="AITask-2" value="Territorial"/>
+		<property name="AITask-3" value="MaslowLevel1SDX, Mods"/>
+		<property name="AITask-4" value="PatrolSDX, Mods"/>
+		<property name="AITask-5" value="ApproachAndAttackTarget" param1="Entity,0"/>
+		<property name="AITask-6" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/>
+		<property name="AITask-7" value="ApproachSpot"/>
+		<property name="AITask-8" value="Look"/> 
 		<property name="AITask-9" value="WanderSDX, Mods"/>
-		<property name="AITask-10" value="Territorial"/>
-		<property name="AITask-11" value="" />
+		<property name="AITask-10" value="" />
 		<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>
-		<property name="AITarget-2" value="BlockingTargetTask"/>
+		<property name="AITarget-2" value="BlockingTargetTask"/> 
 		<property name="AITarget-3" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/>
 		<property name="AITarget-4" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,0"/>
 		<property name="AITarget-5" value="LootLocationSDX, Mods" />
@@ -270,12 +264,10 @@
 		  
 		  <!-- This is the block it'll call home -->
 				<property name="HomeBlocks" value="pressureplate"/>
-			<property name="PatrolSpeed" value=".4"/>
 	</entity_class> 			  
-	  
-	 
 		<entity_class name="NPCBaker" >
 			<property name='Class' value='EntityAliveSDX, Mods' />
+			<property name="IsChunkObserver" value="true"/>
 			<property name="NPCID" value="spheretest"/>
 			<property name="Faction" value="trader"/>
 			<property name="Tags" value="entity,npc"/>
@@ -297,8 +289,8 @@
 			<property name="RightHandJointName" value="Muzzle" />
 			<property name="SwimOffset" value="-2"/>
 			<property name="MoveSpeed" value="0.3"/> 
-			<property name="MoveSpeedAggro" value="1.4,.8"/> 
-			<property name="MoveSpeedPanic" value=".8"/>
+			<property name="MoveSpeedAggro" value="1.4,1.4"/> 
+			<property name="MoveSpeedPanic" value="1.4"/>
 			<property name="PainResistPerHit" value=".70"/>
 			<property name="MaxViewAngle" value="220"/>
 			<property name="MaxTurnSpeed" value="180"/>
@@ -316,29 +308,24 @@
 			<property name="WalkIndexes" value="0" /> 
 			<property name="IdleIndexes" value="0" />  
 			<property name="AttackIdleIndexes" value="0" /> 
-			<property name="AIPathCostScale" value=".7, 1"/>
+			<property name="AIPathCostScale" value=".9, 1"/>
 			<property name="AITask-1" value="BreakBlock"/>
-			<property name="AITask-2" value="DestroyArea"/> 
-			<property name="AITask-3" value="PatrolSDX, Mods"/>
-<!--			<property name="AITask-4" value="RangedAttackTarget" param1="1,1,4"/> -->
-			<property name="AITask-4" value="ApproachAndAttackTarget" param1="Entity,0"/>
-			<property name="AITask-5" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/>
-			<property name="AITask-6" value="ApproachSpot"/>
-			<property name="AITask-7" value="MaslowLevel1SDX, Mods"/>
-			<property name="AITask-8" value="Look"/>
+			<property name="AITask-2" value="Territorial"/>
+			<property name="AITask-3" value="MaslowLevel1SDX, Mods"/>
+			<property name="AITask-4" value="PatrolSDX, Mods"/>
+			<property name="AITask-5" value="ApproachAndAttackTarget" param1="Entity,0"/>
+			<property name="AITask-6" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/>
+			<property name="AITask-7" value="ApproachSpot"/>
+			<property name="AITask-8" value="Look"/> 
 			<property name="AITask-9" value="WanderSDX, Mods"/>
-			<property name="AITask-10" value="Territorial"/>
-      <property name="AITask-11" value="" />
-
-      <property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>
-      
-			<property name="AITarget-2" value="BlockingTargetTask"/>
+			<property name="AITask-10" value="" />
+			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>
+			<property name="AITarget-2" value="BlockingTargetTask"/> 
 			<property name="AITarget-3" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/>
 			<property name="AITarget-4" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,0"/>
 			<property name="AITarget-5" value="LootLocationSDX, Mods" />
 			<property name="AITarget-6" value="" />
-        
-			<property name="SoundHurt" value="Player_Male/player1painlg"/>
+ 			<property name="SoundHurt" value="Player_Male/player1painlg"/>
 			<property name="SoundHurtSmall" value="Player_Male/player1painsm"/>
 			<property name="SoundDeath" value="Player_Male/player1death"/>
 			<property name="SoundStamina" value="Player_Male/player1stamina"/>
@@ -351,7 +338,7 @@
 			<property name="SoundPlayerLandThump" value="PlayerLandThump"/>
 			<property name="TimeStayAfterDeath" value="5"/>
 			<property name="DeadBodyHitPoints" value="1000"/>
-			<property name="JumpMaxDistance" value="3.0"/>
+			<property name="JumpMaxDistance" value="2.0"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="800"/>
 				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
@@ -383,7 +370,7 @@
 			<property name="LootDropProb" value="1.0"/> 
 			<property name="LootDropEntityClass" value="EntityLootContainerTraderPack"/>	
 			<property name="MapIcon" value="ui_game_symbol_bullet_point"/>
-
+			<property name="CompassIcon" value="ui_game_symbol_bullet_point"/>
 			<property name="Names" value="Meg,Bill,Mickey D" />		
 			  <property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck;buffSanitationStatusCheck" />
 
@@ -409,9 +396,7 @@
 			  
 			  <!-- This is the block it'll call home -->
 					<property name="HomeBlocks" value="pressureplate"/>
-        <property name="PatrolSpeed" value=".4"/>
       </entity_class> 		
-     	
 		<entity_class name="NPCHarleyQuinn" >
 			<property name='Class' value='EntityAliveSDX, Mods' />
 			<property name="NPCID" value="spheretest"/>
@@ -455,25 +440,22 @@
 			<property name="AttackIdleIndexes" value="2" /> 
 			<property name="AIPathCostScale" value=".7, 1"/>
 			<property name="AITask-1" value="BreakBlock"/>
-			<property name="AITask-2" value="DestroyArea"/> 
-			<property name="AITask-3" value="PatrolSDX, Mods"/>
-<!--			<property name="AITask-4" value="RangedAttackTarget" param1="1,1,4"/> -->
-			<property name="AITask-4" value="ApproachAndAttackTarget" param1="Entity,0"/>
-			<property name="AITask-5" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/>
-			<property name="AITask-6" value="ApproachSpot"/>
-			<property name="AITask-7" value="MaslowLevel1SDX, Mods"/>
-			<property name="AITask-8" value="Look"/>
+			<property name="AITask-2" value="Territorial"/>
+			<property name="AITask-3" value="MaslowLevel1SDX, Mods"/>
+			<property name="AITask-4" value="PatrolSDX, Mods"/>
+			<property name="AITask-5" value="ApproachAndAttackTarget" param1="Entity,0"/>
+			<property name="AITask-6" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/>
+			<property name="AITask-7" value="ApproachSpot"/>
+			<property name="AITask-8" value="Look"/> 
 			<property name="AITask-9" value="WanderSDX, Mods"/>
-			<property name="AITask-10" value="Territorial"/>
-			<property name="AITask-11" value="" />
+			<property name="AITask-10" value="" />
 			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>
-			<property name="AITarget-2" value="BlockingTargetTask"/>
+			<property name="AITarget-2" value="BlockingTargetTask"/> 
 			<property name="AITarget-3" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/>
 			<property name="AITarget-4" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,0"/>
 			<property name="AITarget-5" value="LootLocationSDX, Mods" />
 			<property name="AITarget-6" value="" />
-        
-			<property name="SoundRandomTime" value="60.0"/> 
+  			<property name="SoundRandomTime" value="60.0"/> 
 			<property name="SoundRandom" value="HarleyRandom"/>
 <!--			<property name="SoundAlertTime" value="25.0"/> -->
 			<property name="SoundAlert" value="HarleyAlert" />
@@ -545,7 +527,6 @@
 			  
 			  <!-- This is the block it'll call home -->
 					<property name="HomeBlocks" value="pressureplate"/>
-        <property name="PatrolSpeed" value=".4"/>
-      </entity_class> 			
+       </entity_class> 			
 	</append>
 </configs>
