@@ -46,7 +46,7 @@ public class MinEventActionAddBuffByFactionSDX : MinEventActionBuffModifierBase
             {
                 if (name == "mustmatch")
                 {
-                    if (_attribute.Value == "true ")
+                    if (_attribute.Value == "true")
                         MustMatch = true;
                     else
                         MustMatch = false;
