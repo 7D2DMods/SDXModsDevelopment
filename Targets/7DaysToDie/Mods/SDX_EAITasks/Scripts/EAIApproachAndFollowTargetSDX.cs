@@ -16,7 +16,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public EntityAliveSDX entityAliveSDX;
     
-    private bool blDisplayLog = false;
+    private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -129,7 +129,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             }
         }
 
-        if (this.theEntity.getMoveHelper().BlockedTime > 2)
+        if (this.theEntity.getMoveHelper().BlockedTime > 1)
         {
             DisplayLog(" Blocked Time: " + this.theEntity.getMoveHelper().BlockedTime);
             this.theEntity.SetInvestigatePosition(this.entityTarget.position, 500);

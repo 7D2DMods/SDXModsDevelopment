@@ -60,6 +60,12 @@ class EAISetAsTargetNearestEnemySDX : EAISetAsTargetIfHurt
                 if (x == leader )
                     continue;
 
+                if (!this.theEntity.CanSee(x.position))
+                {
+                    DisplayLog(" I know an entity is there, but I can't see it.");
+                    continue;
+                }
+
                 DisplayLog("Nearby Entity: " + x.EntityName);
                 if (CheckFactionForEnemy(x))
                     NearbyEnemies.Add(x);
