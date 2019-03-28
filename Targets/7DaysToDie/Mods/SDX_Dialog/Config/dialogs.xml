@@ -4,7 +4,6 @@
     <dialog id="sphere_trader" startstatementid="start">
       <!-- Statements -->
       <statement id="start" text="dialog_trader_statement_start">
-        <response_entry id="background" />
         <response_entry id="FollowMe" />
         <response_entry id="ShowMe" />
         <response_entry id="StayHere" />

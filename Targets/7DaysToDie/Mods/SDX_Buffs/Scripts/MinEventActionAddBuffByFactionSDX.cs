@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Xml;
-
+using UnityEngine;
 
 //        <triggered_effect trigger = "onSelfBuffUpdate" action="AddBuffByFactionSDX, Mods" target="selfAOE" range="4" buff="buffAnimalFertility"  />
 //        <triggered_effect trigger = "onSelfBuffUpdate" action="AddBuffByFactionSDX, Mods" target="selfAOE" range="4" mustmatch="true" buff="buffAnimalFertility"  />
@@ -17,6 +17,9 @@ public class MinEventActionAddBuffByFactionSDX : MinEventActionBuffModifierBase
             {
                 for (int j = 0; j < this.targets.Count; j++)
                 {
+                    Debug.Log(" Target: " + targets[j].EntityName + " Faction: " + targets[j].factionId);
+                    Debug.Log(" Self: " + _params.Self.EntityName + " Faction: " + _params.Self.factionId);
+
                     // Check to make sure that the faction is the same
                     if (MustMatch)
                     {
