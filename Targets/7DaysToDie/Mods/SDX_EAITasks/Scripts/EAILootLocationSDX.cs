@@ -87,7 +87,7 @@ class EAILootLocationSDX : EAIApproachSpot
         }
 
         float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
-        if (sqrMagnitude2 <= 2f || (path != null && path.isFinished()))
+        if (sqrMagnitude2 < 1f || (path != null && path.isFinished()))
         {
             DisplayLog("I'm at the loot container: " + sqrMagnitude2 );
             CheckContainer(); 
@@ -109,7 +109,7 @@ class EAILootLocationSDX : EAIApproachSpot
             return false; // Missed the target. Overlooking?
 
         float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
-        if (sqrMagnitude2 <= 2f)
+        if (sqrMagnitude2 > 1f)
             return false; // too far away from it
 
             DisplayLog(" Looking at: " + this.seekPos + " My position is: " + this.theEntity.position);
