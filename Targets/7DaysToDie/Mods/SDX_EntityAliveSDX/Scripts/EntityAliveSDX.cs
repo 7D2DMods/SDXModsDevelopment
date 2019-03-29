@@ -148,7 +148,7 @@ public class EntityAliveSDX : EntityNPC
     private float nextCheck = 0;
     public float CheckDelay = 5f;
 
-    public void OpenDoor()
+    public bool OpenDoor()
     {
         if (nextCheck < Time.time)
         {
@@ -189,14 +189,15 @@ public class EntityAliveSDX : EntityNPC
                         if (tileEntitySecureDoor == null )
                         {
                             DisplayLog(" Not a door.");
-                            return;
+                            return false;
                         }
                         if (tileEntitySecureDoor.IsLocked())
                         {
                             DisplayLog(" The Door is locked.");
-                            return;
+                            return false;
                         }
                         targetDoor.OnBlockActivated(this.world, 0, TargetBlockPosition, blockValue, null);
+                        return true;
 
                     }
                 }
@@ -234,8 +235,9 @@ public class EntityAliveSDX : EntityNPC
         // Check if there's a door in our way, then open it.
         if (this.attackTarget == null)
         {
-            OpenDoor();
-            return true;
+            // If a door is found, try to open it. If it returns false, start attacking it.
+            if (  OpenDoor() )
+                return true;
         }
 
         ItemAction itemAction = this.inventory.holdingItem.Actions[0];
