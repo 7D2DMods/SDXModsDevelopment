@@ -16,7 +16,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public EntityAliveSDX entityAliveSDX;
     
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -46,6 +46,9 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
 
     public virtual bool ConfigureTargetEntity()
     {
+        if (this.entityTarget != null)
+            return true;
+
         this.NearbyEntities.Clear();
 
         if (this.entityAliveSDX == null)
@@ -129,10 +132,12 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             }
         }
 
-        if (this.theEntity.getMoveHelper().BlockedTime > 1)
+        if (this.theEntity.getMoveHelper().BlockedTime > 2)
         {
             DisplayLog(" Blocked Time: " + this.theEntity.getMoveHelper().BlockedTime);
-            this.theEntity.SetInvestigatePosition(this.entityTarget.position, 500);
+            //PathFinderThread.Instance.FindPath(this.theEntity, this.entityTarget.position, this.theEntity.GetMoveSpeedAggro(), true, this);
+            this.theEntity.getMoveHelper().SetMoveTo(this.entityTarget.position, false);
+           //this.theEntity.SetInvestigatePosition(this.entityTarget.position, 500);
             return false;
 
         }
@@ -151,7 +156,7 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         if (result)
         {
 
-            this.theEntity.SetInvestigatePosition(this.theEntity.world.GetEntity((int)this.theEntity.Buffs.GetCustomVar("Leader")).position, 600);
+            //this.theEntity.SetInvestigatePosition(this.theEntity.world.GetEntity((int)this.theEntity.Buffs.GetCustomVar("Leader")).position, 600);
         }
         DisplayLog("Continue() End: " + result);
         return result;
@@ -191,17 +196,17 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
         this.entityTargetPos = position;
         this.theEntity.moveHelper.CalcIfUnreachablePos(position);
 
-        float num2 = distanceToEntity * distanceToEntity;
+        //float num2 = distanceToEntity * distanceToEntity;
 
-        float num3 = position.y - this.theEntity.position.y;
-        float num4 = Utils.FastAbs(num3);
-        bool flag = targetXZDistanceSq <= num2 && num4 < 1f;
+        //float num3 = position.y - this.theEntity.position.y;
+        //float num4 = Utils.FastAbs(num3);
+        //bool flag = targetXZDistanceSq <= num2 && num4 < 1f;
 
         // num is used to determine how close and comfortable the entity approaches you, so let's make sure they respect some personal space
         if (distanceToEntity < 1)
             distanceToEntity = 3;
 
-        if (!flag)
+      //  if (!flag)
         {
             if (!PathFinderThread.Instance.IsCalculatingPath(this.theEntity.entityId))
             {
@@ -213,27 +218,29 @@ public class EAIApproachAndFollowTargetSDX : EAIApproachAndAttackTarget
             {
                 this.pathCounter = 6 + this.theEntity.GetRandom().Next(10);
                 DisplayLog(" Distance: " + distanceToEntity);
-                Vector3 moveToLocation = this.GetMoveToLocation(distanceToEntity);
-                PathFinderThread.Instance.FindPath(this.theEntity, moveToLocation, this.theEntity.GetMoveSpeedAggro(), true, this);
+                // Vector3 moveToLocation = this.GetMoveToLocation(distanceToEntity);
+                //  PathFinderThread.Instance.FindPath(this.theEntity, moveToLocation, this.theEntity.GetMoveSpeedAggro(), true, this);
+                PathFinderThread.Instance.FindPath(this.theEntity, this.entityTarget.position, this.theEntity.GetMoveSpeedAggro(), true, this);
             }
         }
         if (this.theEntity.Climbing)
             return;
 
-        if (!flag)
+       // if (!flag)
         {
-            if (this.theEntity.navigator.noPathAndNotPlanningOne() && num3 < 2.1f)
+            if (this.theEntity.navigator.noPathAndNotPlanningOne())
             {
                 DisplayLog(" Distance2: " + distanceToEntity);
                 Vector3 moveToLocation2 = this.GetMoveToLocation(distanceToEntity);
-                this.theEntity.moveHelper.SetMoveTo(moveToLocation2, true);
+                //this.theEntity.moveHelper.SetMoveTo(moveToLocation2, true);
+                PathFinderThread.Instance.FindPath(this.theEntity, this.entityTarget.position, this.theEntity.GetMoveSpeedAggro(), true, this);
             }
         }
-        else
-        {
-            this.theEntity.navigator.clearPath();
-            this.theEntity.moveHelper.Stop();
-            this.pathCounter = 0;
-        }
+        //else
+        //{
+        //    this.theEntity.navigator.clearPath();
+        //    this.theEntity.moveHelper.Stop();
+        //    this.pathCounter = 0;
+        //}
     }
 }

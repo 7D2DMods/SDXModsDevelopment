@@ -90,12 +90,15 @@ public class EntityAliveSDX : EntityNPC
     public bool CanExecuteTask(Orders order)
     {
         // If we don't match our current order, don't execute
-        if (this.Buffs.HasCustomVar("CurrentOrder") && this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
-            return false;
-
+        if (this.Buffs.HasCustomVar("CurrentOrder"))
+        {
+            if (this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
+                return false;
+        }
         // If we have an attack or revenge target, don't execute task
         if (this.GetAttackTarget() != null || this.GetRevengeTarget() != null)
             return false;
+
         if (this.sleepingOrWakingUp || this.bodyDamage.CurrentStun != EnumEntityStunType.None || this.Jumping)
             return false;
 
@@ -175,7 +178,6 @@ public class EntityAliveSDX : EntityNPC
                         else
                             this.lastDoorOpen = TargetBlockPosition;
 
-                        this.emodel.avatarController.SetBool("OpenDoor", !isDoorOpen); // we want the opposite of what it is, so if its open, we want it close
                         this.emodel.avatarController.SetTrigger("OpenDoor");
                         DisplayLog(" Is Door Open? " + BlockDoor.IsDoorOpen(blockValue.meta));
 
@@ -188,6 +190,23 @@ public class EntityAliveSDX : EntityNPC
         }
     }
 
+    public override void SetAttackTarget(EntityAlive _attackTarget, int _attackTargetTime)
+    {
+        // if there's no attack target, that means the entity is gone. If it was staying in a position, return to it.
+        if (_attackTarget == null)
+        {
+            if (CanExecuteTask(Orders.Stay))
+                this.SetInvestigatePosition(this.GuardPosition, 60);
+        }
+
+        // Reset the movement speed when an attack target is set
+        this.moveSpeed = GetFloatValue("MoveSpeed");
+        this.moveSpeedAggro = GetFloatValue("MoveSpeedAggro");
+
+        base.SetAttackTarget(_attackTarget, _attackTargetTime);
+    }
+
+    // Since the entity will attack anything that gets in its way, throttle it so we can do some extra checks.
     public override bool Attack(bool _bAttackReleased)
     {
 
@@ -197,24 +216,17 @@ public class EntityAliveSDX : EntityNPC
         DisplayLog("Attack():");
 
         this.attackingTime = 60;
+
+        // Check if there's a door in our way, then open it.
         if (this.attackTarget == null)
         {
             OpenDoor();
             return true;
         }
 
-        if (this.inventory.holdingItem != null)
-            DisplayLog("holding item: " + this.inventory.holdingItem.GetItemName());
-        else
-            DisplayLog("No holding item");
-
-
         ItemAction itemAction = this.inventory.holdingItem.Actions[0];
         if (itemAction != null)
-        {
-            DisplayLog(" Executing ActionData 0");
             itemAction.ExecuteAction(this.inventory.holdingItemData.actionData[0], _bAttackReleased);
-        }
 
         DisplayLog("Attack!");
         return true;
@@ -222,35 +234,28 @@ public class EntityAliveSDX : EntityNPC
 
     public override EntityActivationCommand[] GetActivationCommands(Vector3i _tePos, EntityAlive _entityFocusing)
     {
+        // Don't allow you to interact with it when its dead.
         if (this.IsDead() || this.NPCInfo == null)
-        {
             return new EntityActivationCommand[0];
-        }
 
         return new EntityActivationCommand[]
         {
             new EntityActivationCommand("Greet " + this.EntityName, "talk" , true)
         };
-        EntityActivationCommand[] ActivationCommands = new EntityActivationCommand[]
-        {
-            new EntityActivationCommand("TellMe", "talk", true ),
-            new EntityActivationCommand("FollowMe", "talk", isTame( _entityFocusing)),
-            new EntityActivationCommand("StayHere", "talk", isTame( _entityFocusing )),
-            new EntityActivationCommand("HangOut", "talk", isTame( _entityFocusing )),
-            new EntityActivationCommand("SetPatrol", "talk", isTame( _entityFocusing)),
-            new EntityActivationCommand("Patrol", "talk", isTame( _entityFocusing)),
-            new EntityActivationCommand("Hire", "talk", true)
-        };
-
-        return ActivationCommands;
+      
+      
     }
 
 
     public override bool OnEntityActivated(int _indexInBlockActivationCommands, Vector3i _tePos, EntityAlive _entityFocusing)
     {
-
+        // set the IsBusy flag, so it won't wander away when you are talking to it.
         this.emodel.avatarController.SetBool("IsBusy", true);
+
+        // Look at the entity that is talking to you.
         this.SetLookPosition(_entityFocusing.getHeadPosition());
+
+        // initialize the trader dialog system
         if (!String.IsNullOrEmpty(this.npcID))
         {
             LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_entityFocusing as EntityPlayerLocal);
@@ -270,53 +275,6 @@ public class EntityAliveSDX : EntityNPC
 
             return false;
         }
-
-        //// This is fall back for non-NPCID
-        //switch (_indexInBlockActivationCommands)
-        //{
-        //    case 0: // Tell me about yourself
-        //        this.ExecuteCMD("ShowMe", _entityFocusing as EntityPlayer);
-
-        //    //    GameManager.ShowTooltipWithAlert(_entityFocusing as EntityPlayerLocal, this.ToString() + "\n\n\n\n\n", "ui_denied");
-        //        break;
-        //    case 1: // Follow me
-        //        this.ExecuteCMD("FollowMe", _entityFocusing as EntityPlayer);
-        //        //this.Buffs.SetCustomVar("Leader", _entityFocusing.entityId, true);
-        //        //this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
-        //        break;
-        //    case 2: // Stay Here
-        //        this.ExecuteCMD("StayHere", _entityFocusing as EntityPlayer);
-
-        //      //  this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Stay, true);
-        //        break;
-        //    case 3: // Hang out / wander here
-        //        this.ExecuteCMD("Wander", _entityFocusing as EntityPlayer);
-
-        //      //  this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Wander, true);
-        //        break;
-        //    case 4: // Set Patrol Point
-        //        this.ExecuteCMD("SetPatrol", _entityFocusing as EntityPlayer);
-
-        //        //this.Buffs.SetCustomVar("Leader", _entityFocusing.entityId, true);
-        //        //this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.SetPatrolPoint, true);
-        //        //this.PatrolCoordinates.Clear(); // Clear the existing point.
-        //        break;
-        //    case 5: // end patrol Point
-        //        this.ExecuteCMD("Patrol", _entityFocusing as EntityPlayer);
-
-        //        //this.Buffs.RemoveCustomVar("Leader");
-        //        //this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Patrol, true);
-        //        break;
-        //    case 6:
-        //        this.ExecuteCMD("Hire", _entityFocusing as EntityPlayer);
-
-        //        if (_entityFocusing is EntityPlayerLocal)
-        //            Hire(_entityFocusing as EntityPlayerLocal);
-        //        break;
-        //    default:
-        //        break;
-        //}
-
         return true;
     }
 
@@ -346,12 +304,10 @@ public class EntityAliveSDX : EntityNPC
                 break;
             case "StayHere":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Stay, true);
-                this.SetInvestigatePosition(this.position, 600);
                 this.GuardPosition = this.position;
                 break;
             case "GuardHere":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Stay, true);
-                this.SetInvestigatePosition(player.position, 600);
                 this.SetLookPosition(player.GetLookVector());
                 this.GuardPosition = this.position;
                 break;
@@ -452,6 +408,7 @@ public class EntityAliveSDX : EntityNPC
     {
         base.PostInit();
 
+        // disable god mode, since that's enabled by default in the NPC
         this.IsGodMode.Value = false;
 
         if (this.NPCInfo != null)
@@ -476,15 +433,19 @@ public class EntityAliveSDX : EntityNPC
         }
     }
 
+    // We use a tempList to store the patrol coordinates of each vector, but centered over the block. This allows us to check to make sure each
+    // vector we are storing is on a new block, and not just  10.2 and 10.4. This helps smooth out the entity's walk. However, we do want accurate patrol points,
+    // so we store the accurate patrol positions for the entity.
     List<Vector3> tempList = new List<Vector3>();
     public virtual void UpdatePatrolPoints(Vector3 position)
     {
 
+        // Center the x and z values of the passed in blocks for a unique check.
         Vector3 temp = position;
-
         temp.x = 0.5f + Utils.Fastfloor(position.x);
         temp.z = 0.5f + Utils.Fastfloor(position.z);
         temp.y = Utils.Fastfloor(position.y);
+
         if (!this.tempList.Contains(temp))
         {
             this.tempList.Add(temp);
@@ -621,43 +582,7 @@ public class EntityAliveSDX : EntityNPC
         if (this.lastDoorOpen != Vector3i.zero)
             OpenDoor();
 
-        //  OpenDoor();
-        //OpenDoor();
-        //if (this.lastDoorOpen != Vector3i.zero && !this.bWentThroughDoor)
-        //{
-        //    DisplayLog(" I have opened a door, but have not gone through it. Checking.");
-        //    float num = (float)((double)((float)this.lastDoorOpen.x + 0.5f) - (double)this.position.x);
-        //    float num2 = (float)((double)((float)this.lastDoorOpen.z + 0.5f) - (double)this.position.z);
-        //    float num3 = num * num + num2 * num2;
-        //    float sqrMagnitude = (this.lastDoorOpen.ToVector3() - this.position).sqrMagnitude;
-        //    DisplayLog(" Magnitude: " + sqrMagnitude);
-        //    DisplayLog("num3: " + num3);
-        //    DisplayLog(" LastDoor Open: " + this.lastDoorOpen);
-        //    DisplayLog(" My Position: " + this.position);
-
-        //    //if (sqrMagnitude > 1f)
-        //    //{
-
-        //    //    if (num3 < 0f)
-        //    //    {
-        //    //        DisplayLog(" Went through the door.");
-        //    //        this.bWentThroughDoor = true;
-
-        //    //        BlockValue blockValue = this.world.GetBlock(lastDoorOpen);
-        //    //        if (Block.list[blockValue.type].HasTag(BlockTags.Door) && !Block.list[blockValue.type].HasTag(BlockTags.Window))
-        //    //        {
-        //    //            DisplayLog(" At a door, trying to close");
-        //    //            BlockDoor targetDoor = (Block.list[blockValue.type] as BlockDoor);
-
-        //    //            Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(lastDoorOpen);
-        //    //            targetDoor.OnBlockActivated(this.world, chunk.ClrIdx, lastDoorOpen, blockValue, null);
-        //    //            this.lastDoorOpen = Vector3i.zero;
-        //    //        }
-        //    //    }
-        //    //}
-
-        //}
-
+     
         // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
         this.Stats.Water.Tick(0.5f, 0, false);
 
