@@ -170,8 +170,11 @@ public class EntityAliveSDX : EntityNPC
                     if (Block.list[blockValue.type].HasTag(BlockTags.Door) && !Block.list[blockValue.type].HasTag(BlockTags.Window))
                     {
                         DisplayLog(" I found a door.");
+
                         this.lastDoorOpen = TargetBlockPosition;
                         BlockDoor targetDoor = (Block.list[blockValue.type] as BlockDoor);
+                        
+
                         bool isDoorOpen = BlockDoor.IsDoorOpen(blockValue.meta);
                         if (isDoorOpen)
                             this.lastDoorOpen = Vector3i.zero;
@@ -182,6 +185,17 @@ public class EntityAliveSDX : EntityNPC
                         DisplayLog(" Is Door Open? " + BlockDoor.IsDoorOpen(blockValue.meta));
 
                         Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(TargetBlockPosition);
+                        TileEntitySecureDoor tileEntitySecureDoor = (TileEntitySecureDoor)this.world.GetTileEntity(0, TargetBlockPosition);
+                        if (tileEntitySecureDoor == null )
+                        {
+                            DisplayLog(" Not a door.");
+                            return;
+                        }
+                        if (tileEntitySecureDoor.IsLocked())
+                        {
+                            DisplayLog(" The Door is locked.");
+                            return;
+                        }
                         targetDoor.OnBlockActivated(this.world, 0, TargetBlockPosition, blockValue, null);
 
                     }
