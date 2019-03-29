@@ -203,6 +203,7 @@ public class EntityAliveSDX : EntityNPC
                 }
             }
         }
+        return false;
     }
 
     public override void SetAttackTarget(EntityAlive _attackTarget, int _attackTargetTime)
