@@ -129,12 +129,12 @@ class EAILootLocationSDX : EAIApproachSpot
         }
 
         
-        Debug.Log(" Starting: " + "IsLooting");
-        this.theEntity.emodel.avatarController.SetBool("IsLooting", true);
-        CoroutineJobTasks job = new CoroutineJobTasks();
-        job.Start();
-        Debug.Log(" Ending " + "IsLooting");
-        this.theEntity.emodel.avatarController.SetBool("IsLooting", false);
+        //Debug.Log(" Starting: " + "IsLooting");
+        //this.theEntity.emodel.avatarController.SetBool("IsLooting", true);
+        //CoroutineJobTasks job = new CoroutineJobTasks();
+        //job.Start();
+        //Debug.Log(" Ending " + "IsLooting");
+        //this.theEntity.emodel.avatarController.SetBool("IsLooting", false);
 
 
         //job.ConfigureRoutine(this.theEntity, "IsLooting", 5f);
