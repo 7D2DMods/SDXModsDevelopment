@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using GamePath;
 
 class EAILootLocationSDX : EAIApproachSpot
@@ -15,7 +16,7 @@ class EAILootLocationSDX : EAIApproachSpot
 
     PrefabInstance prefab;
     List<TileEntityLootContainer> lstTileContainers = new List<TileEntityLootContainer>();
-    private bool blDisplayLog = false;
+    private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -87,7 +88,8 @@ class EAILootLocationSDX : EAIApproachSpot
         }
 
         float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
-        if (sqrMagnitude2 < 1f || (path != null && path.isFinished()))
+        DisplayLog(" Seek Position: " + this.seekPos + " My Location: " + this.theEntity.position + " Magnitude: " + sqrMagnitude2 );
+        if (sqrMagnitude2 < 3f || (path != null && path.isFinished()))
         {
             DisplayLog("I'm at the loot container: " + sqrMagnitude2 );
             CheckContainer(); 
@@ -103,16 +105,21 @@ class EAILootLocationSDX : EAIApproachSpot
 
         Ray lookRay = new Ray(this.theEntity.position, theEntity.GetLookVector());
         if (!Voxel.Raycast(this.theEntity.world, lookRay, Constants.cDigAndBuildDistance, -538480645, 4095, 0f))
+        {
+            DisplayLog(" Ray cast is invalid");
             return false; // Not seeing the target.
-
+        }
         if (!Voxel.voxelRayHitInfo.bHitValid)
+        {
+            DisplayLog(" Look cast is not valid.");
             return false; // Missed the target. Overlooking?
-
-        float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
-        if (sqrMagnitude2 > 1f)
-            return false; // too far away from it
-
-            DisplayLog(" Looking at: " + this.seekPos + " My position is: " + this.theEntity.position);
+        }
+    //    float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
+        //if (sqrMagnitude2 > 1f)
+        //{
+        //    return false; // too far away from it
+        //}
+        DisplayLog(" Looking at: " + this.seekPos + " My position is: " + this.theEntity.position);
         TileEntityLootContainer tileEntityLootContainer = this.theEntity.world.GetTileEntity(Voxel.voxelRayHitInfo.hit.clrIdx, new Vector3i(seekPos)) as TileEntityLootContainer;
         if (tileEntityLootContainer == null)
         {
@@ -120,6 +127,18 @@ class EAILootLocationSDX : EAIApproachSpot
             return false;
 
         }
+
+        
+        Debug.Log(" Starting: " + "IsLooting");
+        this.theEntity.emodel.avatarController.SetBool("IsLooting", true);
+        CoroutineJobTasks job = new CoroutineJobTasks();
+        job.Start();
+        Debug.Log(" Ending " + "IsLooting");
+        this.theEntity.emodel.avatarController.SetBool("IsLooting", false);
+
+
+        //job.ConfigureRoutine(this.theEntity, "IsLooting", 5f);
+        //job.StartCoroutine("Start");
 
         GetItemFromContainer(tileEntityLootContainer);
         if (tileEntityLootContainer.IsEmpty())
@@ -132,6 +151,17 @@ class EAILootLocationSDX : EAIApproachSpot
 
 
         return false;
+
+    }
+
+    IEnumerator Loot()
+    {
+        DisplayLog(" Starting Looting...");
+        this.theEntity.emodel.avatarController.SetBool("IsLooting", true);
+        yield return new WaitForSeconds(10);
+        DisplayLog(" End Looting...");
+        this.theEntity.emodel.avatarController.SetBool("IsLooting", false);
+
 
     }
     public bool FindBoundsOfPrefab()
@@ -158,6 +188,7 @@ class EAILootLocationSDX : EAIApproachSpot
     public void ScanForTileEntityInList()
     {
         DisplayLog("ScanForTileEntityInList()");
+        this.lstTileContainers.Clear();
         Vector3i blockPosition = this.theEntity.GetBlockPosition();
 
         var minX = prefab.boundingBoxPosition.x;
@@ -302,9 +333,10 @@ class EAILootLocationSDX : EAIApproachSpot
             return false;
 
         this.theEntity.SetInvestigatePosition(tMin, 1200);
-        DisplayLog(" Investigate Pos: " + this.investigatePos + " Current Seek Time: " + investigateTicks + " Max Seek Time: " + this.theEntity.GetInvestigatePositionTicks() + " Seek Position: " + this.seekPos + " Target Block: " + this.theEntity.world.GetBlock(new Vector3i(this.investigatePos)).Block.GetBlockName());
         this.investigatePos = this.theEntity.InvestigatePosition;
         this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.investigatePos);
+        this.investigateTicks = 600;
+        DisplayLog(" Investigate Pos: " + this.investigatePos + " Current Seek Time: " + investigateTicks + " Max Seek Time: " + this.theEntity.GetInvestigatePositionTicks() + " Seek Position: " + this.seekPos + " Target Block: " + this.theEntity.world.GetBlock(new Vector3i(this.investigatePos)).Block.GetBlockName());
         return true;
     }
 
