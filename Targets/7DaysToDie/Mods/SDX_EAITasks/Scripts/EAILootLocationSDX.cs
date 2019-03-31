@@ -37,6 +37,7 @@ class EAILootLocationSDX : EAIApproachSpot
     }
     public override bool CanExecute()
     {
+        return false;
         DisplayLog("CanExecute()");
         bool result = false;
         if (entityAliveSDX)
