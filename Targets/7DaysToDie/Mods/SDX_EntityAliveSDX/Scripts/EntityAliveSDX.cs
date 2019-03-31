@@ -217,7 +217,14 @@ public class EntityAliveSDX : EntityNPC
 
         // Reset the movement speed when an attack target is set
         this.moveSpeed = GetFloatValue("MoveSpeed");
-        this.moveSpeedAggro = GetFloatValue("MoveSpeedAggro");
+
+        Vector2 vector;
+        vector.x = this.moveSpeed;
+        vector.y = this.moveSpeed;
+        EntityClass entityClass = EntityClass.list[this.entityClass];
+        entityClass.Properties.ParseVec(EntityClass.PropMoveSpeedAggro, ref vector);
+        this.moveSpeedAggro = vector.x;
+        this.moveSpeedAggroMax = vector.y;
 
         base.SetAttackTarget(_attackTarget, _attackTargetTime);
     }

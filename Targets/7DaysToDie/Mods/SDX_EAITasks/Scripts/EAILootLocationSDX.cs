@@ -4,7 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using GamePath;
-
+/****************************
+ * 
+ * This class is functional, in that it'll help you to loot locations, but its not well tuned. the AI will take the zombie around unique paths to get otherwise
+ * close loot boxes. As such this class isn't enabled by default.
+ */
 class EAILootLocationSDX : EAIApproachSpot
 {
     private Vector3 investigatePos;
@@ -17,6 +21,8 @@ class EAILootLocationSDX : EAIApproachSpot
     PrefabInstance prefab;
     List<TileEntityLootContainer> lstTileContainers = new List<TileEntityLootContainer>();
     private bool blDisplayLog = true;
+    private int pathRecalculateTicks;
+
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -77,23 +83,31 @@ class EAILootLocationSDX : EAIApproachSpot
         {
             this.investigateTicks = 0;
             if (!this.theEntity.HasInvestigatePosition)
-                FindNearestContainer();
+                result = FindNearestContainer();
 
-            float sqrMagnitude = (this.investigatePos - this.theEntity.InvestigatePosition).sqrMagnitude;
-            if (sqrMagnitude >= 4f)
-            {
-                DisplayLog(" Too far away from my investigate Position: " + sqrMagnitude);
-                return false;
-            }
+            //float sqrMagnitude = (this.investigatePos - this.theEntity.InvestigatePosition).sqrMagnitude;
+            //if (sqrMagnitude > 4f)
+            //{
+            //    DisplayLog(" Too far away from my investigate Position: " + sqrMagnitude);
+            //    return false;
+            //}
         }
 
         float sqrMagnitude2 = (this.seekPos - this.theEntity.position).sqrMagnitude;
         DisplayLog(" Seek Position: " + this.seekPos + " My Location: " + this.theEntity.position + " Magnitude: " + sqrMagnitude2 );
-        if (sqrMagnitude2 < 3f || (path != null && path.isFinished()))
+        if (sqrMagnitude2 < 4f )
         {
             DisplayLog("I'm at the loot container: " + sqrMagnitude2 );
             CheckContainer(); 
             result= FindNearestContainer();
+        }
+        else if (path != null && path.isFinished())
+            result = FindNearestContainer();
+
+        DisplayLog(" Blocked Time: " + this.theEntity.getMoveHelper().BlockedTime);
+        if (this.theEntity.getMoveHelper().BlockedTime > 2)
+        {
+            
         }
         DisplayLog("Continue() End: " + result);
         return result;
@@ -233,7 +247,7 @@ class EAILootLocationSDX : EAIApproachSpot
                                 DisplayLog(" This tile entity is a door. ignoring.");
                                 continue;
                             }
-                            DisplayLog(" Loot Container: " + tileEntity.ToString());
+                            DisplayLog(" Loot Container: " + tileEntity.ToString() + " Distance: " + Vector3.Distance(tileEntity.ToWorldPos().ToVector3(), this.theEntity.position));
                             this.lstTileContainers.Add(tileEntity);
                         }
                     }
@@ -320,25 +334,100 @@ class EAILootLocationSDX : EAIApproachSpot
         foreach (TileEntityLootContainer block in this.lstTileContainers)
         {
             float dist = Vector3.Distance(block.ToWorldPos().ToVector3(), currentPos);
+            DisplayLog(" FindNearestContainer(): " + this.theEntity.world.GetBlock(block.ToWorldPos()).Block.GetBlockName() + " Distance: " + dist );
             if (dist < minDist)
             {
                 tMin = block.ToWorldPos().ToVector3();
                 minDist = dist;
             }
-
-
         }
 
         if (tMin == Vector3.zero)
             return false;
 
-        this.theEntity.SetInvestigatePosition(tMin, 1200);
-        this.investigatePos = this.theEntity.InvestigatePosition;
-        this.seekPos = this.theEntity.world.FindSupportingBlockPos(this.investigatePos);
-        this.investigateTicks = 600;
+
+
+       // this.theEntity.SetInvestigatePosition(tMin, 60);
+        this.investigatePos = tMin;
+        this.seekPos = tMin;// this.theEntity.world.FindSupportingBlockPos(this.investigatePos);
+        this.investigateTicks = 60;
+//        this.theEntity.getMoveHelper().SetMoveTo( tMin, false);
+        //PathFinderThread.Instance.FindPath(this.theEntity, this.seekPos, this.theEntity.GetMoveSpeedAggro(), true, this);
         DisplayLog(" Investigate Pos: " + this.investigatePos + " Current Seek Time: " + investigateTicks + " Max Seek Time: " + this.theEntity.GetInvestigatePositionTicks() + " Seek Position: " + this.seekPos + " Target Block: " + this.theEntity.world.GetBlock(new Vector3i(this.investigatePos)).Block.GetBlockName());
         return true;
     }
 
+    public virtual Vector3 GetMoveToLocation(float maxDist)
+    {
+        Vector3 vector = this.seekPos;
+       // vector = this.theEntity.world.FindSupportingBlockPos(vector);
+        if (maxDist > 0f)
+        {
+            Vector3 vector2  = new Vector3( this.theEntity.position.x, this.theEntity.position.y, this.theEntity.position.z);
+            Vector3 vector3 = vector - vector2;
+            float magnitude = vector3.magnitude;
+            if (magnitude < 3f)
+            {
+                if (magnitude <= maxDist)
+                {
+                    float num = vector.y - this.theEntity.position.y;
+                    if (num > 1.5f)
+                    {
+                        return vector;
+                    }
+                    return vector2;
+                }
+                else
+                {
+                    vector3 *= maxDist / magnitude;
+                    Vector3 vector4 = vector - vector3;
+                    vector4.y += 0.51f;
+                    global::Vector3i pos = global::World.worldToBlockPos(vector4);
+                    int type = this.theEntity.world.GetBlock(pos).type;
+                    global::Block block = global::Block.list[type];
+                    if (!block.IsPathSolid && Physics.Raycast(vector4, Vector3.down, 1.02f, 1082195968))
+                    {
+                        return vector4;
+                    }
+                }
+            }
+        }
+        return vector;
+    }
+    public override void Update()
+    {
+        GamePath.PathEntity path = this.theEntity.navigator.getPath();
+        if (path != null)
+        {
+            this.hadPath = true;
+            this.theEntity.moveHelper.CalcIfUnreachablePos(this.seekPos);
+        }
+        Vector3 lookPosition = this.investigatePos;
+        lookPosition.y += 0.8f;
+        this.theEntity.SetLookPosition(lookPosition);
+        if (--this.pathRecalculateTicks <= 0)
+        {
+            this.updatePath();
+        }
+    }
+
+    // Token: 0x06002E3B RID: 11835 RVA: 0x001422B4 File Offset: 0x001404B4
+    private new void updatePath()
+    {
+        if (this.theEntity.IsScoutZombie)
+        {
+            global::AstarManager.Instance.AddLocationLine(this.theEntity.position, this.seekPos, 32);
+        }
+        if (GamePath.PathFinderThread.Instance.IsCalculatingPath(this.theEntity.entityId))
+        {
+            return;
+        }
+        this.pathRecalculateTicks = 40 + this.theEntity.GetRandom().Next(20);
+
+        DisplayLog(" Finding a path to " + this.seekPos);
+        Vector3 moveToLocation = this.GetMoveToLocation(0f);
+        this.seekPos = moveToLocation;
+        GamePath.PathFinderThread.Instance.FindPath(this.theEntity, moveToLocation, this.theEntity.GetMoveSpeedAggro(), false, this);
+    }
 }
 
