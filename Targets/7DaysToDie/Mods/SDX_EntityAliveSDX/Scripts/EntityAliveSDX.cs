@@ -86,7 +86,7 @@ public class EntityAliveSDX : EntityNPC
             entityClass.Properties.ParseFloat(EntityClass.PropMoveSpeed, ref result);
         return result;
     }
-        
+
     public bool CanExecuteTask(Orders order)
     {
         // If we don't match our current order, don't execute
@@ -185,7 +185,7 @@ public class EntityAliveSDX : EntityNPC
 
                         this.lastDoorOpen = TargetBlockPosition;
                         BlockDoor targetDoor = (Block.list[blockValue.type] as BlockDoor);
-                        
+
 
                         bool isDoorOpen = BlockDoor.IsDoorOpen(blockValue.meta);
                         if (isDoorOpen)
@@ -198,7 +198,7 @@ public class EntityAliveSDX : EntityNPC
 
                         Chunk chunk = (Chunk)((World)this.world).GetChunkFromWorldPos(TargetBlockPosition);
                         TileEntitySecureDoor tileEntitySecureDoor = (TileEntitySecureDoor)this.world.GetTileEntity(0, TargetBlockPosition);
-                        if (tileEntitySecureDoor == null )
+                        if (tileEntitySecureDoor == null)
                         {
                             DisplayLog(" Not a door.");
                             return false;
@@ -218,14 +218,8 @@ public class EntityAliveSDX : EntityNPC
         return false;
     }
 
-    public override void SetAttackTarget(EntityAlive _attackTarget, int _attackTargetTime)
+    public void RestoreSpeed()
     {
-        // if there's no attack target, that means the entity is gone. If it was staying in a position, return to it.
-        if (_attackTarget == null)
-        {
-      
-        }
-
         // Reset the movement speed when an attack target is set
         this.moveSpeed = GetFloatValue("MoveSpeed");
 
@@ -237,6 +231,10 @@ public class EntityAliveSDX : EntityNPC
         this.moveSpeedAggro = vector.x;
         this.moveSpeedAggroMax = vector.y;
 
+    }
+    public override void SetAttackTarget(EntityAlive _attackTarget, int _attackTargetTime)
+    {
+        RestoreSpeed();
         base.SetAttackTarget(_attackTarget, _attackTargetTime);
     }
 
@@ -255,7 +253,7 @@ public class EntityAliveSDX : EntityNPC
         if (this.attackTarget == null)
         {
             // If a door is found, try to open it. If it returns false, start attacking it.
-            if (  OpenDoor() )
+            if (OpenDoor())
                 return true;
         }
 
@@ -277,8 +275,8 @@ public class EntityAliveSDX : EntityNPC
         {
             new EntityActivationCommand("Greet " + this.EntityName, "talk" , true)
         };
-      
-      
+
+
     }
 
 
@@ -306,7 +304,21 @@ public class EntityAliveSDX : EntityNPC
             uiforPlayer.xui.Dialog.otherEntitySDX = this;
             uiforPlayer.xui.Dialog.Respondent = this;
             uiforPlayer.windowManager.CloseAllOpenWindows(null, false);
-            uiforPlayer.windowManager.Open("dialog", true, false, true);
+
+
+            // Allow some flexibility in window names. First check if a dialog_entityName exists, so  dialog_NPCBaker would have a different dialog window than a Guard
+            // You can also filter by faction name too
+            String strDefaultWindow;
+            String strFactioName = FactionManager.Instance.GetFaction(this.factionId).Name;
+            if (uiforPlayer.windowManager.Contains("dialog_" + entityName))
+                strDefaultWindow = "dialog_" + entityName;
+            else if (uiforPlayer.windowManager.Contains("dialog_" + strFactioName))
+                strDefaultWindow = "dialog_" + strFactioName;
+            else
+                strDefaultWindow = "dialog";
+
+            DisplayLog(" Opening Dialog Window Group: " + strDefaultWindow);
+            uiforPlayer.windowManager.Open(strDefaultWindow, true, false, true);
 
             return false;
         }
@@ -318,9 +330,8 @@ public class EntityAliveSDX : EntityNPC
         Debug.Log(GetType().ToString() + " : Command: " + strCommand);
         LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(player as EntityPlayerLocal);
 
-        // restore it's movement speeds to defaults. We give a speed boost to match the player's speed if he follows you.
-        this.moveSpeed = GetFloatValue("MoveSpeed");
-        this.moveSpeedAggro = GetFloatValue("MoveSpeedAggro");
+        // Restore it's walk speed to default.
+        RestoreSpeed();
 
         switch (strCommand)
         {
@@ -363,13 +374,6 @@ public class EntityAliveSDX : EntityNPC
                 break;
             case "Hire":
                 bool result = this.Hire(player as EntityPlayerLocal);
-                if (result)
-                {
-                    this.Buffs.SetCustomVar("Leader", player.entityId, true);
-                    this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
-                    this.moveSpeed = player.moveSpeed;
-                    this.moveSpeedAggro = player.moveSpeedAggro;
-                }
                 break;
             case "OpenInventory":
                 GameManager.Instance.TELockServer(0, this.GetBlockPosition(), this.entityId, player.entityId);
@@ -412,6 +416,23 @@ public class EntityAliveSDX : EntityNPC
     {
         return this.HireCurrency;
     }
+
+    public void SetOwner(EntityPlayerLocal player)
+    {
+        this.Buffs.SetCustomVar("Owner", player.entityId, true);
+        this.Buffs.SetCustomVar("Leader", player.entityId, true);
+        this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
+        //DisplayLog(" Original Faction: " + this.factionId);
+        //DisplayLog(" Player Faction: " + player.factionId);
+
+        //this.factionId = player.factionId;
+        //DisplayLog(" Faction now assigned to: " + this.factionId);
+
+        // Match the player's speed if its set to follow
+        this.moveSpeed = player.moveSpeed;
+        this.moveSpeedAggro = player.moveSpeedAggro;
+
+    }
     public virtual bool Hire(EntityPlayerLocal _player)
     {
         LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_player as EntityPlayerLocal);
@@ -425,10 +446,7 @@ public class EntityAliveSDX : EntityNPC
 
                 // Add the stack of currency to the NPC, and set its orders.
                 this.bag.AddItem(stack);
-                this.Buffs.SetCustomVar("Owner", _player.entityId, true);
-                this.Buffs.SetCustomVar("Leader", _player.entityId, true);
-                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
-
+                SetOwner(_player);
                 return true;
             }
             else
@@ -510,12 +528,10 @@ public class EntityAliveSDX : EntityNPC
 
         if (this.PatrolCoordinates.Count > 0)
             this.Buffs.AddCustomVar("CurrentOrder", (float)Orders.Patrol);
-        else
-            this.Buffs.AddCustomVar("CurrentOrder", (float)Orders.Wander);
 
         String strGuardPosition = _br.ReadString();
         this.GuardPosition = StringToVector3(strGuardPosition);
-
+        this.factionId = _br.ReadByte();
     }
 
     public Vector3 StringToVector3(string sVector)
@@ -552,6 +568,7 @@ public class EntityAliveSDX : EntityNPC
 
         _bw.Write(strPatrolCoordinates);
         _bw.Write(this.GuardPosition.ToString());
+        _bw.Write(this.factionId);
     }
 
     public void DisplayStats()
@@ -589,7 +606,7 @@ public class EntityAliveSDX : EntityNPC
         foreach (Vector3 vec in this.PatrolCoordinates)
             strOutput += "\n\t" + vec.ToString();
 
-        strOutput += "\n\nCurrency: " + this.HireCurrency;// + " Faction: " + FactionManager.Instance.GetFaction(this.factionId);
+        strOutput += "\n\nCurrency: " + this.HireCurrency + " Faction: " + this.factionId;
         return strOutput;
     }
 
@@ -618,7 +635,7 @@ public class EntityAliveSDX : EntityNPC
         if (this.lastDoorOpen != Vector3i.zero)
             OpenDoor();
 
-     
+
         // Non-player entities don't fire all the buffs or stats, so we'll manually fire the water tick,
         this.Stats.Water.Tick(0.5f, 0, false);
 
@@ -670,7 +687,52 @@ public class EntityAliveSDX : EntityNPC
 
     }
 
+    public bool IsInParty(int entityID)
+    {
+        // This is the entity that is trying to attack me.
+        Entity entityTarget = this.world.GetEntity(entityID);
+        if (entityTarget == null)
+            return false;
 
+        // Find my master / leader
+        EntityPlayerLocal localPlayer;
+        if (this.Buffs.HasCustomVar("Leader"))
+        {
+            // Find out who the leader is.
+            int PlayerID = (int)this.Buffs.GetCustomVar("Leader");
+            localPlayer = this.world.GetEntity(PlayerID) as EntityPlayerLocal;
+            if (localPlayer == null)
+                return false;
+        }
+        else
+        {
+            // no leader? You are on your own.
+            return false;
+        }
+
+        // Let's check if a player is being hurt.
+        if (entityTarget is EntityPlayer)
+        {
+            // If another player, who is part of my leader's party hurts me, ignore it.
+            if (localPlayer.Party.ContainsMember(entityTarget as EntityPlayer))
+                return true;
+        }
+        else if (entityTarget is EntityAliveSDX) // Check if its a non-player, and see if their leader is in my party.
+        {
+            if ((entityTarget as EntityAliveSDX).Buffs.HasCustomVar("Leader"))
+            {
+                int leader = (int)(entityTarget as EntityAliveSDX).Buffs.GetCustomVar("Leader");
+                EntityPlayerLocal entLeader = this.world.GetEntity(leader) as EntityPlayerLocal;
+                if (localPlayer.Party.ContainsMember(entLeader ))
+                    return true;
+            }
+
+        }
+
+
+        return false;
+
+    }
     public void ToggleTraderID(bool Restore)
     {
         if (this.NPCInfo == null)
@@ -684,6 +746,10 @@ public class EntityAliveSDX : EntityNPC
     }
     public override int DamageEntity(DamageSource _damageSource, int _strength, bool _criticalHit, float _impulseScale)
     {
+        // If the attacking entity is connected to a party, then don't accept the damage.
+        if (IsInParty(_damageSource.getEntityId()))
+            return 0;
+
         // If we are being attacked, let the state machine know it can fight back
         this.emodel.avatarController.SetBool("IsBusy", false);
 
