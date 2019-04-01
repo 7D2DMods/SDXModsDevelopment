@@ -422,11 +422,9 @@ public class EntityAliveSDX : EntityNPC
         this.Buffs.SetCustomVar("Owner", player.entityId, true);
         this.Buffs.SetCustomVar("Leader", player.entityId, true);
         this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.Follow, true);
-        //DisplayLog(" Original Faction: " + this.factionId);
-        //DisplayLog(" Player Faction: " + player.factionId);
+
 
         //this.factionId = player.factionId;
-        //DisplayLog(" Faction now assigned to: " + this.factionId);
 
         // Match the player's speed if its set to follow
         this.moveSpeed = player.moveSpeed;
@@ -692,7 +690,10 @@ public class EntityAliveSDX : EntityNPC
         // This is the entity that is trying to attack me.
         Entity entityTarget = this.world.GetEntity(entityID);
         if (entityTarget == null)
+        {
+            DisplayLog("IsInParty(): Entity Is Null");
             return false;
+        }
 
         // Find my master / leader
         EntityPlayerLocal localPlayer;
@@ -702,10 +703,14 @@ public class EntityAliveSDX : EntityNPC
             int PlayerID = (int)this.Buffs.GetCustomVar("Leader");
             localPlayer = this.world.GetEntity(PlayerID) as EntityPlayerLocal;
             if (localPlayer == null)
+            {
+                DisplayLog("IsInParty(): I have a leader, but that leader is not an EntityPlayerLocal");
                 return false;
+            }
         }
         else
         {
+            DisplayLog("IsInParty(): No leader.");
             // no leader? You are on your own.
             return false;
         }
@@ -715,21 +720,31 @@ public class EntityAliveSDX : EntityNPC
         {
             // If another player, who is part of my leader's party hurts me, ignore it.
             if (localPlayer.Party.ContainsMember(entityTarget as EntityPlayer))
+            {
+                DisplayLog("IsInParty():  Enemy that attacked me is a player, but is party of my leader's party. Forgiving friendly fire.");
                 return true;
+            }
         }
         else if (entityTarget is EntityAliveSDX) // Check if its a non-player, and see if their leader is in my party.
         {
             if ((entityTarget as EntityAliveSDX).Buffs.HasCustomVar("Leader"))
             {
+                DisplayLog("IsInParty(): The attacking entity has a leader. Checking Party status...");
                 int leader = (int)(entityTarget as EntityAliveSDX).Buffs.GetCustomVar("Leader");
-                EntityPlayerLocal entLeader = this.world.GetEntity(leader) as EntityPlayerLocal;
-                if (localPlayer.Party.ContainsMember(entLeader ))
+                if (leader == localPlayer.entityId)
+                {
+                    DisplayLog("IsInParty(): We have the same leader. Forgiving.");
                     return true;
+                }
+
+                EntityPlayerLocal entLeader = this.world.GetEntity(leader) as EntityPlayerLocal;
+                if (localPlayer.Party.ContainsMember(entLeader))
+                {
+                    DisplayLog("IsInParty(): The attacking entity has a leader and is party of my leader's party. Forgiving.");
+                    return true;
+                }
             }
-
         }
-
-
         return false;
 
     }
