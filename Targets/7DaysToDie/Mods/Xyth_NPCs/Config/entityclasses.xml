@@ -48,7 +48,7 @@
 			<property name="AITask-2" value="Territorial"/>
 			<property name="AITask-3" value="MaslowLevel1SDX, Mods"/> <!-- Param1? -->
 			<property name="AITask-4" value="PatrolSDX, Mods"/> <!-- No params -->
-			<property name="AITask-5" value="ApproachAndAttackTarget" param1="Entity,0" param2=""  /> <!-- param1 base class? -->
+			<property name="AITask-5" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> <!-- param1 base class? -->
 			<property name="AITask-6" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> <!-- Param1 for what to follow -->
 			<property name="AITask-7" value="ApproachSpot"/>
 			<property name="AITask-8" value="Look"/> 
