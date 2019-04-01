@@ -48,6 +48,9 @@ class EAISetAsTargetNearestEnemySDX : EAISetAsTargetIfHurt
 
         }
 
+        float originalView = this.theEntity.GetMaxViewAngle();
+        this.theEntity.SetMaxViewAngle(180f);
+
         // Search in the bounds are to try to find the most appealing entity to follow.
         Bounds bb = new Bounds(this.theEntity.position, new Vector3(this.theEntity.GetSeeDistance(), 20f, this.theEntity.GetSeeDistance()));
         this.theEntity.world.GetEntitiesInBounds(typeof(EntityAlive), bb, this.NearbyEntities);
@@ -72,6 +75,7 @@ class EAISetAsTargetNearestEnemySDX : EAISetAsTargetIfHurt
             }
         }
 
+        this.theEntity.SetMaxViewAngle(originalView);
         return NearestEnemy();
         
     }

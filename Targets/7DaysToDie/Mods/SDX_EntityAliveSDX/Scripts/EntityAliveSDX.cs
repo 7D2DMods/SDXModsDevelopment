@@ -86,12 +86,20 @@ public class EntityAliveSDX : EntityNPC
             entityClass.Properties.ParseFloat(EntityClass.PropMoveSpeed, ref result);
         return result;
     }
-
+        
     public bool CanExecuteTask(Orders order)
     {
         // If we don't match our current order, don't execute
         if (this.Buffs.HasCustomVar("CurrentOrder"))
         {
+            if (this.Buffs.GetCustomVar("CurrentOrder") == (float)Orders.Stay)
+            {
+                DisplayLog("Moving back to guard position.");
+                if (this.GuardPosition != Vector3.zero)
+                    this.getMoveHelper().SetMoveTo(this.GuardPosition, false);
+                return false;
+            }
+
             if (this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
                 return false;
         }
@@ -101,6 +109,10 @@ public class EntityAliveSDX : EntityNPC
 
         if (this.sleepingOrWakingUp || this.bodyDamage.CurrentStun != EnumEntityStunType.None || this.Jumping)
             return false;
+
+        if (this.Buffs.GetCustomVar("CurrentOrder") == (float)Orders.Stay)
+            if (this.GuardPosition != Vector3.zero && this.position != this.GuardPosition)
+                this.getMoveHelper().SetMoveTo(this.GuardPosition, false);
 
         return true;
     }
@@ -211,8 +223,7 @@ public class EntityAliveSDX : EntityNPC
         // if there's no attack target, that means the entity is gone. If it was staying in a position, return to it.
         if (_attackTarget == null)
         {
-            if (CanExecuteTask(Orders.Stay))
-                this.SetInvestigatePosition(this.GuardPosition, 60);
+      
         }
 
         // Reset the movement speed when an attack target is set
@@ -329,11 +340,13 @@ public class EntityAliveSDX : EntityNPC
             case "StayHere":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Stay, true);
                 this.GuardPosition = this.position;
+                this.getMoveHelper().SetMoveTo(this.position, false);
                 break;
             case "GuardHere":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Stay, true);
                 this.SetLookPosition(player.GetLookVector());
                 this.GuardPosition = this.position;
+                this.getMoveHelper().SetMoveTo(this.position, false);
                 break;
             case "Wander":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Wander, true);
@@ -356,7 +369,6 @@ public class EntityAliveSDX : EntityNPC
                     this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
                     this.moveSpeed = player.moveSpeed;
                     this.moveSpeedAggro = player.moveSpeedAggro;
-
                 }
                 break;
             case "OpenInventory":
