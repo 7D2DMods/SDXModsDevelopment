@@ -11,12 +11,13 @@ using UnityEngine;
 class ObjectiveGotoPOISDX : ObjectiveRandomPOIGoto
 {
     String strPOIname = "";
-    
+
     public override BaseObjective Clone()
     {
-        ObjectiveGotoPOISDX objectiveBuff = new ObjectiveGotoPOISDX();
-        this.CopyValues(objectiveBuff);
-        return objectiveBuff;
+        ObjectiveGotoPOISDX objectiveGotoPOI = new ObjectiveGotoPOISDX();
+        this.CopyValues(objectiveGotoPOI);
+        objectiveGotoPOI.strPOIname = this.strPOIname;
+        return objectiveGotoPOI;
     }
 
 
@@ -33,8 +34,8 @@ class ObjectiveGotoPOISDX : ObjectiveRandomPOIGoto
         }
     }
 
-    
-    protected override Vector3 GetPosition(EntityNPC ownerNPC, List<Vector2> usedPOILocations, int entityIDforQuests )
+
+    protected override Vector3 GetPosition(EntityNPC ownerNPC, List<Vector2> usedPOILocations, int entityIDforQuests)
     {
         if (base.OwnerQuest.GetPositionData(out this.position, Quest.PositionDataTypes.POIPosition))
         {
@@ -96,7 +97,7 @@ class ObjectiveGotoPOISDX : ObjectiveRandomPOIGoto
         {
             int index = UnityEngine.Random.Range(0, poiPrefabs.Count);
             PrefabInstance prefabInstance = poiPrefabs[index];
-            if (prefabInstance.prefab.bSleeperVolumes && prefabInstance.prefab.PrefabName == strPOIname)
+            if (prefabInstance.prefab.bSleeperVolumes && prefabInstance.filename == this.strPOIname)
             {
                 Vector2 vector2 = new Vector2((float)prefabInstance.boundingBoxPosition.x, (float)prefabInstance.boundingBoxPosition.z);
                 if (usedPOILocations == null || !usedPOILocations.Contains(vector2))
@@ -121,19 +122,19 @@ class ObjectiveGotoPOISDX : ObjectiveRandomPOIGoto
         return null;
     }
 
-public override void ParseProperties(DynamicProperties properties)
-{
-    base.ParseProperties(properties);
-
-    if (properties.Values.ContainsKey("PrefabName"))
-        this.strPOIname = properties.Values["PrefabName"];
-}
-
-protected override bool useUpdateLoop
-{
-    get
+    public override void ParseProperties(DynamicProperties properties)
     {
-        return true;
+        if (properties.Values.ContainsKey("PrefabName"))
+            this.strPOIname = properties.Values["PrefabName"];
+        base.ParseProperties(properties);
+
     }
-}
+
+    protected override bool useUpdateLoop
+    {
+        get
+        {
+            return true;
+        }
+    }
 }
