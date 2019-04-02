@@ -89,30 +89,42 @@ public class EntityAliveSDX : EntityNPC
 
     public bool CanExecuteTask(Orders order)
     {
+   
+
         // If we don't match our current order, don't execute
         if (this.Buffs.HasCustomVar("CurrentOrder"))
         {
+          
+
             if (this.Buffs.GetCustomVar("CurrentOrder") == (float)Orders.Stay)
             {
                 DisplayLog("Moving back to guard position.");
-                if (this.GuardPosition != Vector3.zero)
+                // If we have an attack or revenge target, don't execute task
+                if (this.GetAttackTarget() != null && this.GetAttackTarget().IsAlive() )
+                    return false;
+
+                if (this.GetRevengeTarget() != null && this.GetRevengeTarget().IsAlive())
+                    return false;
+
+                if (this.GuardPosition != Vector3.zero && this.GuardPosition != this.position)
                     this.getMoveHelper().SetMoveTo(this.GuardPosition, false);
+
                 return false;
             }
-
             if (this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
                 return false;
+
         }
+
         // If we have an attack or revenge target, don't execute task
-        if (this.GetAttackTarget() != null || this.GetRevengeTarget() != null)
+        if (this.GetAttackTarget() != null && this.GetAttackTarget().IsAlive())
+            return false;
+
+        if (this.GetRevengeTarget() != null && this.GetRevengeTarget().IsAlive())
             return false;
 
         if (this.sleepingOrWakingUp || this.bodyDamage.CurrentStun != EnumEntityStunType.None || this.Jumping)
             return false;
-
-        if (this.Buffs.GetCustomVar("CurrentOrder") == (float)Orders.Stay)
-            if (this.GuardPosition != Vector3.zero && this.position != this.GuardPosition)
-                this.getMoveHelper().SetMoveTo(this.GuardPosition, false);
 
         return true;
     }
@@ -351,13 +363,13 @@ public class EntityAliveSDX : EntityNPC
             case "StayHere":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Stay, true);
                 this.GuardPosition = this.position;
-                this.getMoveHelper().SetMoveTo(this.position, false);
+                this.getMoveHelper().Stop();
                 break;
             case "GuardHere":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Stay, true);
                 this.SetLookPosition(player.GetLookVector());
                 this.GuardPosition = this.position;
-                this.getMoveHelper().SetMoveTo(this.position, false);
+                this.getMoveHelper().Stop();
                 break;
             case "Wander":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Wander, true);
