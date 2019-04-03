@@ -299,42 +299,44 @@ public class EntityAliveSDX : EntityNPC
 
         // Look at the entity that is talking to you.
         this.SetLookPosition(_entityFocusing.getHeadPosition());
+        base.OnEntityActivated(_indexInBlockActivationCommands, _tePos, _entityFocusing);
 
-        // initialize the trader dialog system
-        if (!String.IsNullOrEmpty(this.npcID))
-        {
-            LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_entityFocusing as EntityPlayerLocal);
-            QuestEventManager.Current.NPCInteracted(this.entityId);
-            Quest nextCompletedQuest = (_entityFocusing as EntityPlayerLocal).QuestJournal.GetNextCompletedQuest(null, this.entityId);
-            this.activeQuests = QuestEventManager.Current.GetQuestList(GameManager.Instance.World, this.entityId, _entityFocusing.entityId);
-            if (this.activeQuests == null && Steam.Network.IsServer)
-            {
-                DisplayLog("No active Quests");
-                this.activeQuests = this.PopulateActiveQuests(_entityFocusing as EntityPlayer, -1);
-                QuestEventManager.Current.SetupQuestList(this.entityId, _entityFocusing.entityId, this.activeQuests);
-            }
-            uiforPlayer.xui.Dialog.otherEntitySDX = this;
-            uiforPlayer.xui.Dialog.Respondent = this;
-            uiforPlayer.windowManager.CloseAllOpenWindows(null, false);
-
-
-            // Allow some flexibility in window names. First check if a dialog_entityName exists, so  dialog_NPCBaker would have a different dialog window than a Guard
-            // You can also filter by faction name too
-            String strDefaultWindow;
-            String strFactioName = FactionManager.Instance.GetFaction(this.factionId).Name;
-            if (uiforPlayer.windowManager.Contains("dialog_" + entityName))
-                strDefaultWindow = "dialog_" + entityName;
-            else if (uiforPlayer.windowManager.Contains("dialog_" + strFactioName))
-                strDefaultWindow = "dialog_" + strFactioName;
-            else
-                strDefaultWindow = "dialog";
-
-            DisplayLog(" Opening Dialog Window Group: " + strDefaultWindow);
-            uiforPlayer.windowManager.Open(strDefaultWindow, true, false, true);
-
-            return false;
-        }
         return true;
+        //// initialize the trader dialog system
+        //if (!String.IsNullOrEmpty(this.npcID))
+        //{
+        //    LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_entityFocusing as EntityPlayerLocal);
+        //    QuestEventManager.Current.NPCInteracted(this.entityId);
+        //    Quest nextCompletedQuest = (_entityFocusing as EntityPlayerLocal).QuestJournal.GetNextCompletedQuest(null, this.entityId);
+        //    this.activeQuests = QuestEventManager.Current.GetQuestList(GameManager.Instance.World, this.entityId, _entityFocusing.entityId);
+        //    if (this.activeQuests == null && Steam.Network.IsServer)
+        //    {
+        //        DisplayLog("No active Quests");
+        //        this.activeQuests = this.PopulateActiveQuests(_entityFocusing as EntityPlayer, -1);
+        //        QuestEventManager.Current.SetupQuestList(this.entityId, _entityFocusing.entityId, this.activeQuests);
+        //    }
+        //    uiforPlayer.xui.Dialog.otherEntitySDX = this;
+        //    uiforPlayer.xui.Dialog.Respondent = this;
+        //    uiforPlayer.windowManager.CloseAllOpenWindows(null, false);
+
+
+        //    // Allow some flexibility in window names. First check if a dialog_entityName exists, so  dialog_NPCBaker would have a different dialog window than a Guard
+        //    // You can also filter by faction name too
+        //    String strDefaultWindow;
+        //    String strFactioName = FactionManager.Instance.GetFaction(this.factionId).Name;
+        //    if (uiforPlayer.windowManager.Contains("dialog_" + entityName))
+        //        strDefaultWindow = "dialog_" + entityName;
+        //    else if (uiforPlayer.windowManager.Contains("dialog_" + strFactioName))
+        //        strDefaultWindow = "dialog_" + strFactioName;
+        //    else
+        //        strDefaultWindow = "dialog";
+
+        //    DisplayLog(" Opening Dialog Window Group: " + strDefaultWindow);
+        //    uiforPlayer.windowManager.Open(strDefaultWindow, true, false, true);
+
+        //    return false;
+        //}
+        //return true;
     }
 
     public virtual bool ExecuteCMD(String strCommand, EntityPlayer player)
