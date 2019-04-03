@@ -10,6 +10,18 @@
     stance="Like" voice_set="trader"
     trader_id="1" dialog_id="animalFarm"
      />
-    
+
+    <npc_info
+ id="spheretest2"
+ name="NPC"
+ name_key="npc_traitorJoel"
+ faction="whiteriver"
+ portrait="npc_joel"
+ greeting_type="nearby"
+ stance="Like" voice_set="trader"
+ trader_id="1" dialog_id="sphere_trader"
+  quest_list="test_SDX"       />
+
+
   </append>
 </configs>

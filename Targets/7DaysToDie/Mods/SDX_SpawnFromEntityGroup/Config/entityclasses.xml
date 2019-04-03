@@ -1,0 +1,27 @@
+<configs>
+	<append xpath="/entity_classes">
+
+    <entity_class name="EntityGroupSpawner" extends="invisibleAnimal">
+      <property name="Class" value="EntityAliveEventSpawnerSDX, Mods"/>
+
+      <property class="SpawnSettings" >
+        <property name="Leader" value="farmanimalCowMale" /> <!-- Entity -->
+        <property name="Followers" value="farmanimalCows" param1="2" />  <!-- Entity Group-->
+      </property>
+
+      <property class="SpawnSettings" >
+        <property name="Leader" value="farmanimalCowMale" />  <!-- Entity -->
+        <property name="Followers" value="farmanimalCowsFemale, farmanimalCowMale, farmanimalCowBaby" /> <!-- Entity list -->
+      </property>
+
+      <property class="SpawnSettings" >
+        <property name="Leader" value="farmanimalCowMale" /> <!-- entity -->
+        <property name="Follower-1" value="farmanimalCowsFemale" param1="2-4" /> <!-- enitty with spawn num range -->
+        <property name="Follower-2" value="farmanimalCowsBaby" param1="1-2" />  <!-- enitty with spawn num range -->
+      </property>
+
+      <property name="EntityGroup" value="farmAnimalsCow"/>
+      <property name="MaxSpawn" value="4" />
+    </entity_class>
+  </append>
+</configs>
