@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-class RewardNPCSDX : RewardItem
+class RewardGiveNPCSDX : RewardItem
 {
-    //		<reward type="NPCSDX, Mods" id="entityGroup"  />  // Spawns in an entity from the group to be your NPC
-    //		<reward type="NPCSDX, Mods"  />  // Hires the current NPC
+    //		<reward type="GiveNPCSDX, Mods" id="entityGroup"  />  // Spawns in an entity from the group to be your NPC
+    //		<reward type="GiveNPCSDX, Mods"  />  // Hires the current NPC
     public override void GiveReward(EntityPlayer player)
     {
         if (string.IsNullOrEmpty(base.ID))
