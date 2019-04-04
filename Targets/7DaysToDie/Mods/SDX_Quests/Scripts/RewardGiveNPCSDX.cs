@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-class RewardGiveNPCSDX : RewardItem
+class RewardGiveNPCSDX : RewardExp
 {
     //		<reward type="GiveNPCSDX, Mods" id="entityGroup"  />  // Spawns in an entity from the group to be your NPC
     //		<reward type="GiveNPCSDX, Mods"  />  // Hires the current NPC
