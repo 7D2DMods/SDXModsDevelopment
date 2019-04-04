@@ -48,6 +48,7 @@ class ObjectiveGotoPOISDX : ObjectiveRandomPOIGoto
             base.CurrentValue = 2;
             return this.position;
         }
+
         EntityAlive entityAlive = ownerNPC;
 
         if (ownerNPC == null)
@@ -90,38 +91,6 @@ class ObjectiveGotoPOISDX : ObjectiveRandomPOIGoto
         return Vector3.zero;
     }
 
-    public virtual PrefabInstance GetRandomPOINearWorldPos(Vector2 worldPos, int minSearchDistance, int maxSearchDistance, QuestTags questTag, byte difficulty, List<Vector2> usedPOILocations, int entityIDforQuests)
-    {
-        List<PrefabInstance> poiPrefabs = GameManager.Instance.World.ChunkClusters[0].ChunkProvider.GetDynamicPrefabDecorator().GetPOIPrefabs();
-        Vector2 vector = new Vector2(-0.1f, -0.1f);
-        for (int i = 0; i < 1000; i++)
-        {
-            int index = UnityEngine.Random.Range(0, poiPrefabs.Count);
-            PrefabInstance prefabInstance = poiPrefabs[index];
-            if (prefabInstance.prefab.bSleeperVolumes && prefabInstance.filename == this.strPOIname)
-            {
-                Vector2 vector2 = new Vector2((float)prefabInstance.boundingBoxPosition.x, (float)prefabInstance.boundingBoxPosition.z);
-                if (usedPOILocations == null || !usedPOILocations.Contains(vector2))
-                {
-                    QuestEventManager.POILockoutReasonTypes poilockoutReasonTypes = QuestEventManager.Current.CheckForPOILockouts(entityIDforQuests, vector2);
-                    if (poilockoutReasonTypes != QuestEventManager.POILockoutReasonTypes.None)
-                    {
-                        Debug.Log("Quest POI Locked Out: " + prefabInstance.filename + " for " + poilockoutReasonTypes.ToStringCached<QuestEventManager.POILockoutReasonTypes>());
-                    }
-                    else
-                    {
-                        Vector2 b = new Vector2((float)prefabInstance.boundingBoxPosition.x + (float)prefabInstance.boundingBoxSize.x / 2f, (float)prefabInstance.boundingBoxPosition.z + (float)prefabInstance.boundingBoxSize.z / 2f);
-                        float sqrMagnitude = (worldPos - b).sqrMagnitude;
-                        if (sqrMagnitude < (float)maxSearchDistance && sqrMagnitude > (float)minSearchDistance)
-                        {
-                            return prefabInstance;
-                        }
-                    }
-                }
-            }
-        }
-        return null;
-    }
 
     public override void ParseProperties(DynamicProperties properties)
     {
