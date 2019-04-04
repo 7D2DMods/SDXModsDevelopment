@@ -54,7 +54,8 @@ class ObjectiveGotoPOISDX : ObjectiveRandomPOIGoto
             entityAlive = base.OwnerQuest.OwnerJournal.OwnerPlayer;
         if (Steam.Network.IsServer)
         {
-            PrefabInstance randomPOINearWorldPos = GetRandomPOINearWorldPos(new Vector2(entityAlive.position.x, entityAlive.position.z), 1000, 50000000, base.OwnerQuest.QuestTags, base.OwnerQuest.QuestClass.DifficultyTier, usedPOILocations, entityIDforQuests);
+            //PrefabInstance randomPOINearWorldPos = GetRandomPOINearWorldPos(new Vector2(entityAlive.position.x, entityAlive.position.z), 1000, 50000000, base.OwnerQuest.QuestTags, base.OwnerQuest.QuestClass.DifficultyTier, usedPOILocations, entityIDforQuests);
+            PrefabInstance randomPOINearWorldPos = GameManager.Instance.World.ChunkClusters[0].ChunkProvider.GetDynamicPrefabDecorator().GetPOIPrefabs().Find( instance => instance.filename == this.strPOIname);
             if (randomPOINearWorldPos != null)
             {
                 Vector2 vector = new Vector2((float)randomPOINearWorldPos.boundingBoxPosition.x + (float)randomPOINearWorldPos.boundingBoxSize.x / 2f, (float)randomPOINearWorldPos.boundingBoxPosition.z + (float)randomPOINearWorldPos.boundingBoxSize.z / 2f);

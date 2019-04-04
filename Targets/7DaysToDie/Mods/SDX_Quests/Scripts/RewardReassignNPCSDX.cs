@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿    using UnityEngine;
 using System.Collections.Generic;
-class RewardReassignNPCSDX : RewardItem
+class RewardReassignNPCSDX : BaseReward
 {
     // If the QuestNPC has other NPCs that have assigned it as their leader, this class will transfer the leadership flag to the player.
     //		<reward type="ReassignNPCSDX, Mods"  /> 
