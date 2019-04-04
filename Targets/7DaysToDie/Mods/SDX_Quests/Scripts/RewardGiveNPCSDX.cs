@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-class RewardGiveNPCSDX : RewardExp
+class RewardGiveNPCSDX : BaseReward
 {
     //		<reward type="GiveNPCSDX, Mods" id="entityGroup"  />  // Spawns in an entity from the group to be your NPC
     //		<reward type="GiveNPCSDX, Mods"  />  // Hires the current NPC
@@ -7,11 +7,9 @@ class RewardGiveNPCSDX : RewardExp
     {
         if (string.IsNullOrEmpty(base.ID))
         {
-            Debug.Log(" Searching for NPC Entity ID: " + base.OwnerQuest.QuestGiverID);
             EntityAliveSDX questNPC = GameManager.Instance.World.Entities.dict[base.OwnerQuest.QuestGiverID] as EntityAliveSDX;
             if (questNPC)
             {
-                Debug.Log(" Assigning " + questNPC.EntityName + " to " + player.entityId);
                 questNPC.SetOwner(player as EntityPlayerLocal);
             }
             else
@@ -21,11 +19,32 @@ class RewardGiveNPCSDX : RewardExp
         }
         else   // Try to spawn in a new NPC from the NPC Group
         {
-            Debug.Log(" Spawning From Entity Group: " + base.ID);
             SpawnFromGroup(base.ID, player);
         }
     }
 
+    public override BaseReward Clone()
+    {
+        RewardGiveNPCSDX rewardNPC = new RewardGiveNPCSDX();
+        base.CopyValues(rewardNPC);
+        return rewardNPC;
+    }
+
+    public override void SetupReward()
+    {
+        base.Description = Localization.Get("RewardGiveNPCSDX_keyword", Localization.QuestPrefix);
+        this.SetupValueText();
+        base.Icon = "ui_game_symbol_trophy";
+    }
+
+    public override string GetRewardText()
+    {
+        return "I'll join you.";
+    }
+    private void SetupValueText()
+    {
+        base.ValueText = "Value Test";
+    }
     public void SpawnFromGroup( string strEntityGroup, EntityPlayer player )
     {
         int EntityID = 0;
@@ -38,16 +57,13 @@ class RewardGiveNPCSDX : RewardExp
         if (EntityID == -1)
             return; // failed
 
-        Debug.Log("Spawning From Group..." + strEntityGroup + " - " + EntityID);
         Entity NewEntity = EntityFactory.CreateEntity(EntityID, player.position, player.rotation);
         if (NewEntity)
         {
             NewEntity.SetSpawnerSource(EnumSpawnerSource.StaticSpawner);
             GameManager.Instance.World.SpawnEntityInWorld(NewEntity);
-            Debug.Log("An entity was created: " + NewEntity.ToString());
             if (NewEntity is EntityAliveSDX)
             {
-                Debug.Log(" Assigning new NPC to Player: " + (NewEntity as EntityAliveSDX).EntityName + " Player: " + player.EntityName);
                 (NewEntity as EntityAliveSDX).SetOwner(player as EntityPlayerLocal);
             }
                 

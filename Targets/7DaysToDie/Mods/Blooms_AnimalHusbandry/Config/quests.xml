@@ -96,14 +96,14 @@
       <objective type="RallyPoint">
         <property name="phase" value="2" />
       </objective>
-      <!--
+      
       <objective type="FetchFromContainer">
         <property name="phase" value="3" />
         <property name="quest_item_ID" value="1" />
         <property name="item_count" value="1" />
         <property name="default_container" value="cntFetchQuestSatchel" />
       </objective>
--->
+
       <objective type="POIStayWithin">
         <property name="phase" value="3" />
         <property name="radius" value="25" />
