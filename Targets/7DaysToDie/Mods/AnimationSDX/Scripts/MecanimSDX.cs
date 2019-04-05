@@ -4,7 +4,7 @@ using System.Reflection;
 using SDX.Payload;
 using UnityEngine;
 
-class MecanimSDX : AvatarController
+class MecanimSDX : AvatarZombie01Controller
 {
     // If set to true, logging will be very verbose for troubleshooting
     private readonly bool blDisplayLog = false;
