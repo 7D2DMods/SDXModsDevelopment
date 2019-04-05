@@ -27,7 +27,7 @@ public class MinEventActionGiveQuestSDX : MinEventActionRemoveBuff
                     continue;
 
                 Quest myQuest = QuestClass.CreateQuest(this.strQuest);
-                myQuest.QuestGiverID = Playerentity.entityId;
+                myQuest.QuestGiverID = -1;
                 Playerentity.QuestJournal.AddQuest( myQuest);
                 
             }
