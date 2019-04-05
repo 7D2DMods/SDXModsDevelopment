@@ -16,13 +16,13 @@ class EntityAliveEventSpawnerSDX : EntityAlive
             Debug.Log(this.GetType() + " : " + strMessage);
     }
 
-    public override void Init(int _entityClass)
-    {
-        base.Init(_entityClass);
+     public override void Init(int _entityClass)
+        {
+    
+       base.Init(_entityClass);
 
-        // base.Awake();
-        this.entityClass = _entityClass;
-    DisplayLog("EntityClass: " + _entityClass);
+            this.entityClass = _entityClass;
+    DisplayLog("EntityClass: " + this.entityClass);
 
         EntityClass entityClass = EntityClass.list[this.entityClass];
         if (entityClass.Properties.Classes.ContainsKey("SpawnSettings"))
@@ -100,9 +100,11 @@ class EntityAliveEventSpawnerSDX : EntityAlive
     {
         // Grab a random position.
         Vector3 transformPos;
-        if (!this.world.GetRandomSpawnPositionMinMaxToPosition(this.position, 2, 6, 2, true, out transformPos, false))
+        if (!this.world.GetRandomSpawnPositionMinMaxToPosition(this.world.GetPrimaryPlayer().position, 2, 6, 2, true, out transformPos, false))
+        {
+            DisplayLog(" No position available");
             return;
-
+        }
         DisplayLog(" Spawn Entity: " + EntityID);
         Entity NewEntity = EntityFactory.CreateEntity(EntityID, transformPos);
         if (NewEntity)
