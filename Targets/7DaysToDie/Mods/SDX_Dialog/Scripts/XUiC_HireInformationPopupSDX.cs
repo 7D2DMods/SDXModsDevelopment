@@ -27,7 +27,10 @@ class XUiC_HireInformationPopupSDX : XUiController
         {
             EntityAliveSDX myEntity = uiforPlayer.entityPlayer.world.GetEntity(respondent.entityId) as EntityAliveSDX;
             if (myEntity != null)
+            {
                 this.hireInformationLabel.Text = "Hire " + myEntity.EntityName + " for " + myEntity.GetHireCost() + " " + myEntity.GetHireCurrency().ItemClass.GetLocalizedItemName() + "?";
+            }
+       
         }
 
         base.OnOpen();

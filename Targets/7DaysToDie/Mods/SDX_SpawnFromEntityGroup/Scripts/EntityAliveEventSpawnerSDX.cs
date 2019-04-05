@@ -4,29 +4,37 @@ using UnityEngine;
 class EntityAliveEventSpawnerSDX : EntityAlive
 {
     public String strEntityGroup = "";
-    public int MaxSpawn = 0;
+    public int MaxSpawn = 1;
 
     String strLeaderEntity = "";
     int LeaderEntityID = -1;
 
-    private bool blDisplayLog = false;
+    private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
-            Debug.Log(this.GetType() + " :" + this.EntityName + ": " + strMessage);
+            Debug.Log(this.GetType() + " : " + strMessage);
     }
 
-    protected override void Awake()
+    public override void Init(int _entityClass)
     {
-        base.Awake();
+        base.Init(_entityClass);
+
+        // base.Awake();
+        this.entityClass = _entityClass;
+    DisplayLog("EntityClass: " + _entityClass);
+
         EntityClass entityClass = EntityClass.list[this.entityClass];
         if (entityClass.Properties.Classes.ContainsKey("SpawnSettings"))
         {
+            DisplayLog(" Found Spawn Settings.. reading...");
             DynamicProperties dynamicProperties3 = entityClass.Properties.Classes["SpawnSettings"];
             foreach (KeyValuePair<string, object> keyValuePair in dynamicProperties3.Values.Dict.Dict)
             {
+                DisplayLog("Key: " + keyValuePair.Key);
                 if (keyValuePair.Key == "Leader")
                 {
+                    DisplayLog(" Found a Leader");
                     this.strLeaderEntity = dynamicProperties3.Values[keyValuePair.Key];
                     this.LeaderEntityID = EntityClass.FromString(this.strLeaderEntity);
                     SpawnEntity(this.LeaderEntityID);
@@ -34,6 +42,7 @@ class EntityAliveEventSpawnerSDX : EntityAlive
                 }
                 else if ( keyValuePair.Key == "Followers")
                 {
+                    DisplayLog("Found Followers");
                     // if it contains commas, it's individual entities.
                     String strValue = dynamicProperties3.Values[keyValuePair.Key];
                     if ( strValue.Contains(","))
@@ -50,6 +59,7 @@ class EntityAliveEventSpawnerSDX : EntityAlive
                 }
                 else if ( keyValuePair.Key.StartsWith("Follower-"))
                 {
+                    DisplayLog(" Found A Follower");
                     String strValue = dynamicProperties3.Values[keyValuePair.Key];
                     int minCount = 1;
                     int maxCount = 1;
@@ -60,8 +70,16 @@ class EntityAliveEventSpawnerSDX : EntityAlive
                     
                     SpawnFromGroup(strValue, int.Parse(Count.ToString() ));
                 }
+                else
+                {
+                    DisplayLog("Found nothing?");
+                }
 
             }
+        }
+        else
+        {
+            DisplayLog(" No Spawn settings found.");
         }
     }
 
@@ -71,6 +89,7 @@ class EntityAliveEventSpawnerSDX : EntityAlive
 
         for (int x = 0; x < this.MaxSpawn; x++)
         {
+            DisplayLog(" Spawning from : " + strGroup);
             EntityID = EntityGroups.GetRandomFromGroup(strGroup);
             SpawnEntity(EntityID);
         }
@@ -84,6 +103,7 @@ class EntityAliveEventSpawnerSDX : EntityAlive
         if (!this.world.GetRandomSpawnPositionMinMaxToPosition(this.position, 2, 6, 2, true, out transformPos, false))
             return;
 
+        DisplayLog(" Spawn Entity: " + EntityID);
         Entity NewEntity = EntityFactory.CreateEntity(EntityID, transformPos);
         if (NewEntity)
         {
