@@ -81,6 +81,8 @@ class EntityAliveEventSpawnerSDX : EntityAlive
         {
             DisplayLog(" No Spawn settings found.");
         }
+
+        this.MarkToUnload();
     }
 
     public void SpawnFromGroup( String strGroup, int Count )

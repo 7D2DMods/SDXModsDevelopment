@@ -65,7 +65,7 @@ class EAISetAsTargetNearestEnemySDX : EAISetAsTargetIfHurt
 
                 if (!this.theEntity.CanSee(x.position))
                 {
-                    DisplayLog(" I know an entity is there, but I can't see it.");
+                    DisplayLog(" I know an entity is there, but I can't see it: " + x.EntityName);
                     continue;
                 }
 

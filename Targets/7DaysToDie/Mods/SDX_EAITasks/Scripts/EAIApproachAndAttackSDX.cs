@@ -21,6 +21,13 @@ class EAIApproachAndAttackSDX : EAIApproachAndAttackTarget
     private int relocateTicks;
     private float maxChaseTime;
 
+    private bool blDisplayLog = false;
+
+    public void DisplayLog(String strMessage)
+    {
+        if (blDisplayLog)
+            Debug.Log(this.GetType() + " : " + this.theEntity.EntityName + ": " + this.theEntity.entityId + ": " + strMessage);
+    }
     public override void Start()
     {
         this.entityTargetPos = this.entityTarget.position;
@@ -44,12 +51,16 @@ class EAIApproachAndAttackSDX : EAIApproachAndAttackTarget
     {
         this.entityTarget = this.theEntity.GetAttackTarget();
         if (this.entityTarget == null)
+        {
+            DisplayLog(" Entity Target is null ");
             return false;
-
+        }
         if (!this.entityTarget.IsAlive())
+        {
+            DisplayLog(" My Target Entity is dead.");
             return false;
-
-        return base.CanExecute();
+        }
+        return true;// base.CanExecute();
     }
     public override bool Continue()
     {
