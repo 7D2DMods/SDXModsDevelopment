@@ -39,6 +39,18 @@ class EAIApproachAndAttackSDX : EAIApproachAndAttackTarget
   
         this.attackTimeout = 5;
     }
+
+    public override bool CanExecute()
+    {
+        this.entityTarget = this.theEntity.GetAttackTarget();
+        if (this.entityTarget == null)
+            return false;
+
+        if (!this.entityTarget.IsAlive())
+            return false;
+
+        return base.CanExecute();
+    }
     public override bool Continue()
     {
         if (this.theEntity.sleepingOrWakingUp || this.theEntity.bodyDamage.CurrentStun != global::EnumEntityStunType.None)

@@ -94,11 +94,13 @@ public class EntityAliveSDX : EntityNPC
         // If we don't match our current order, don't execute
         if (this.Buffs.HasCustomVar("CurrentOrder"))
         {
-          
-
+            DisplayLog(" Current Oorder: " + this.Buffs.GetCustomVar("CurrentOrder") + " Checking Order: " + order);
+            if (this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
+                return false;
             if (this.Buffs.GetCustomVar("CurrentOrder") == (float)Orders.Stay)
             {
-                DisplayLog("Moving back to guard position.");
+     
+
                 // If we have an attack or revenge target, don't execute task
                 if (this.GetAttackTarget() != null && this.GetAttackTarget().IsAlive() )
                     return false;
@@ -111,8 +113,8 @@ public class EntityAliveSDX : EntityNPC
 
                 return true;
             }
-            if (this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
-                return false;
+
+ 
 
         }
 
