@@ -21,7 +21,7 @@ class XUiC_HireInformationPopupSDX : XUiController
         // The respondent is an EntityNPC, and we don't have that. Check for the patch scripted otherEntitySDX.
         Entity respondent = uiforPlayer.xui.Dialog.Respondent;
         if (respondent == null)
-            respondent = uiforPlayer.xui.Dialog.otherEntitySDX;
+               respondent = uiforPlayer.xui.Dialog.otherEntitySDX;
 
         if (respondent != null)
         {
@@ -30,9 +30,8 @@ class XUiC_HireInformationPopupSDX : XUiController
             {
                 this.hireInformationLabel.Text = "Hire " + myEntity.EntityName + " for " + myEntity.GetHireCost() + " " + myEntity.GetHireCurrency().ItemClass.GetLocalizedItemName() + "?";
             }
-       
         }
-
+      
         base.OnOpen();
        
     }

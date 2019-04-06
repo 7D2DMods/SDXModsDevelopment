@@ -299,9 +299,14 @@ public class EntityAliveSDX : EntityNPC
 
         // Look at the entity that is talking to you.
         this.SetLookPosition(_entityFocusing.getHeadPosition());
+
+        // Add a reference for the dialog otherEntitySDX to the UI, since the respondent doesn't always carry forward
+        LocalPlayerUI uiforPlayer = LocalPlayerUI.GetUIForPlayer(_entityFocusing as EntityPlayerLocal);
+        uiforPlayer.xui.Dialog.otherEntitySDX = this;
         base.OnEntityActivated(_indexInBlockActivationCommands, _tePos, _entityFocusing);
 
-        return true;
+    
+       return true;
         //// initialize the trader dialog system
         //if (!String.IsNullOrEmpty(this.npcID))
         //{
