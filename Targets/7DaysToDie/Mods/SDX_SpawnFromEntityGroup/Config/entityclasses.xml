@@ -1,27 +1,22 @@
 <configs>
 	<append xpath="/entity_classes">
-
-    <entity_class name="EntityGroupSpawner" extends="invisibleAnimal">
+    <entity_class name="invisibleCowHerdSpawner">
+      <!-- A hack to thin the amount of animals spawned (friendly animals) -->
+      <property name="Mesh" value="Gore/gore_block1_bonesPrefab"/>
+      <property name="ModelType" value="Custom"/>
+      <property name="Prefab" value="Backpack"/>
       <property name="Class" value="EntityAliveEventSpawnerSDX, Mods"/>
-
+      <property name="Parent" value="Animals"/>
+      <property name="TimeStayAfterDeath" value="1"/>
+      <property name="IsEnemyEntity" value="false"/>
+      <property name="LootListOnDeath" value="4"/>
+      <!-- required because of reasons -->
+      <property name="Faction" value="animals"/>
       <property class="SpawnSettings" >
-        <property name="Leader" value="farmanimalCowMale" /> <!-- Entity -->
-        <property name="Followers" value="farmanimalCows" param1="2" />  <!-- Entity Group-->
+        <property name="Leader" value="animalRabbit" /> 
+        <property name="Followers" value="animalDoe,animalStag" />
+        <property name="Followers" value="FriendlyAnimalsDesert" />
       </property>
-
-      <property class="SpawnSettings" >
-        <property name="Leader" value="farmanimalCowMale" />  <!-- Entity -->
-        <property name="Followers" value="farmanimalCowsFemale, farmanimalCowMale, farmanimalCowBaby" /> <!-- Entity list -->
-      </property>
-
-      <property class="SpawnSettings" >
-        <property name="Leader" value="farmanimalCowMale" /> <!-- entity -->
-        <property name="Follower-1" value="farmanimalCowsFemale" param1="2-4" /> <!-- enitty with spawn num range -->
-        <property name="Follower-2" value="farmanimalCowsBaby" param1="1-2" />  <!-- enitty with spawn num range -->
-      </property>
-
-      <property name="EntityGroup" value="farmAnimalsCow"/>
-      <property name="MaxSpawn" value="4" />
     </entity_class>
   </append>
 </configs>

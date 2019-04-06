@@ -97,6 +97,7 @@ public class EntityAliveSDX : EntityNPC
             DisplayLog(" Current Oorder: " + this.Buffs.GetCustomVar("CurrentOrder") + " Checking Order: " + order);
             if (this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
                 return false;
+
             if (this.Buffs.GetCustomVar("CurrentOrder") == (float)Orders.Stay)
             {
      
