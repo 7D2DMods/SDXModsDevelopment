@@ -46,6 +46,11 @@ class EAIApproachAndAttackSDX : EAIApproachAndAttackTarget
             return false;
         }
         EntityAlive attackTarget = this.theEntity.GetAttackTarget();
+
+        if (attackTarget)
+            if (!attackTarget.IsAlive())
+                return false;
+
         if (this.isGoingHome)
         {
             return !attackTarget && this.theEntity.ChaseReturnLocation != Vector3.zero;

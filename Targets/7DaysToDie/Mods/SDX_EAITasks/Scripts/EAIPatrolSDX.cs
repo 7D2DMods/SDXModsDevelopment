@@ -138,9 +138,11 @@ class EAIPatrolSDX : EAIApproachSpot
 
     public void GetNextPosition()
     {
-        if (this.PatrolPointsCounter == this.lstPatrolPoints.Count - 1)
+        if (this.PatrolPointsCounter >= this.lstPatrolPoints.Count - 1)
+        {
+            this.PatrolPointsCounter = this.lstPatrolPoints.Count - 1;
             blReverse = true;
-
+        }
         if (this.PatrolPointsCounter == 0)
             blReverse = false;
 
@@ -150,6 +152,7 @@ class EAIPatrolSDX : EAIApproachSpot
             this.PatrolPointsCounter++;
         //this.PatrolPointsCounter = (this.PatrolPointsCounter + 1) % this.lstPatrolPoints.Count;
 
+        
 
         DisplayLog(" Patrol Points Counter: " + PatrolPointsCounter + " Patrol Points Count: " + this.lstPatrolPoints.Count);
         DisplayLog(" Vector: " + this.lstPatrolPoints[PatrolPointsCounter].ToString());
