@@ -109,7 +109,7 @@ public class EntityAliveSDX : EntityNPC
                 if (this.GuardPosition != Vector3.zero && this.GuardPosition != this.position)
                     this.getMoveHelper().SetMoveTo(this.GuardPosition, false);
 
-                return false;
+                return true;
             }
             if (this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
                 return false;
