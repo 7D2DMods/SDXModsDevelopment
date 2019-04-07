@@ -7,6 +7,8 @@
 			<property name="RootMotion" value="false" />
 			<property name="Mass" value="90"/>
 
+      <property name="NPCID" value="animalFarm"/>
+
       <!-- which containers to look for food in -->
       <property name="FoodBins" value="cntSecureStorageChest,cntStorageChest" />
 
@@ -59,6 +61,7 @@
 			<drop event="Harvest" name="resourceFemur" tag="butcherHarvest" count="3"/>
 			<drop event="Harvest" name="resourceFemur" tag="allToolsHarvest" count="1"/>
 
+      <property name="faction" value="farmCows" />
       <property name="IsMale" value="false"/>
       
       <!-- Hand item allows them to eat and drink from water sources, much like a player -->
@@ -68,18 +71,26 @@
       <property name="TimeStayAfterDeath" value="1" />
 
         <!-- Territorial hangs out around the home block -->
-      <property name="AITask-1" value="Territorial"/>
-      <property name="AITask-2" value="Look"/>
-      <property name="AITask-3" value="WanderSDX, Mods"/>
+
+      <property name="AITask-1" value="Swim"/>
+      <property name="AITask-2" value="RunawayWhenHurt"/>
+      <property name="AITask-3" value="RunawayFromEntity" param1="EntityPlayer"/>
+      <property name="AITask-4" value="RunawayFromEntity" param1="EntityZombie"/>     
+      <property name="AITask-5" value="Territorial"/>
+      <property name="AITask-6" value="WanderSDX, Mods"/>
 
       <!-- This AI task is tied to a cvar, which is being used to record entity ID that we want to follow -->
       <!-- Param1 can be:  cvar, Buff or the current hand item, such as a block or item name -->
       <!--  param1="Mother,Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
-      <property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="Mother,Leader,hayBaleBlock,foodCornOnTheCob"/>
-      <property name="AITask-5" value="MaslowLevel1SDX, Mods"/>
-      <property name="AITask-6" value="SetAsTargetIfHurtSDX, Mods" />
-      <property name="AITask-7" value=""/>
+      <property name="AITask-7" value="ApproachAndFollowTargetSDX, Mods" param1="Mother,Leader,hayBaleBlock,foodCornOnTheCob"/>
+      <property name="AITask-8" value="MaslowLevel1SDX, Mods"/>
+      <property name="AITask-9" value="Look"/>
 
+      <property name="AITask-10" value=""/>
+      <property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods"/>
+      <property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods"/>
+      <property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/>
+      <property name="AITarget-4" value="" />
       <!-- Random name property. If none are listed, it's called Bob -->
       <property name="Names" value="Rose,Dahlia,Flower,Minnie,Daisy,Darla,Margie,Maggie,Esmeralda,Shelly,Meg,Lois,Jasmine,Bella,Candie,Bessie,Emma,Penelope,Bella,Molly,Clarabelle,Henrietta,Nettie,Annabelle,Gertie,Betty Sue, Ella, Anna,Dorothy,Annie,Honebun,Sweetie,LovaBull,Cupcake,Baby,Cookie,Sunny,SunShine,Cocoa,Muffin,Pinky,Blue,Sugar,Booboo,Princess,Big Mac,Madonna,Bertha,Waffles,Moscow,MooMoo,Mud Pie,Shrimp,Cowlick,Ineda Bunn,Waffles,Hamburger,Brown Cow,Humphry,Heifer,Mickey D" />
   
@@ -100,6 +111,7 @@
 			<property name="HomeBlocks" value="cntCowHomeBlock,hayBaleBlock"/>
 		</entity_class>
 
+    <!-- Male version This has an effect through the Buffs.xml to control fertilify -->
     <entity_class name="animalFarmCowMale" extends="animalFarmCow">
       <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
       <property name="IsMale" value="true"/>
@@ -110,6 +122,7 @@
       <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
     </entity_class>
 
+    <!-- Sample Chicken -->
   <entity_class name="animalFarmChickenFemale" extends="animalFarm">
     <property name="Mesh" value="Animals/CHICKEN/chickenPrefab"/>
     <property name="Prefab" value="NPC"/>
@@ -182,6 +195,23 @@
       <property name="resourceFeather" value="5"/>
     </property>
   </entity_class>
+
+
+    <entity_class name="invisibleCowHerdSpawner">
+      <property name="Mesh" value="Gore/gore_block1_bonesPrefab"/>
+      <property name="ModelType" value="Custom"/>
+      <property name="Prefab" value="Backpack"/>
+      <property name="Class" value="EntityAliveEventSpawnerSDX, Mods"/>
+      <property name="Parent" value="Animals"/>
+      <property name="TimeStayAfterDeath" value="1"/>
+      <property name="IsEnemyEntity" value="false"/>
+      <property name="LootListOnDeath" value="4"/>
+      <property name="Faction" value="animals"/>
+      <property class="SpawnSettings" >
+        <property name="Leader" value="animalFarmCowMale" />
+        <property name="Followers" value="animalFarmCow,animalFarmCow,animalFarmCow" />
+      </property>
+    </entity_class>
   </append>
 
 

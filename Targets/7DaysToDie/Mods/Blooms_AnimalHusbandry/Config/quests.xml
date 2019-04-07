@@ -1,5 +1,7 @@
 ﻿<configs>
   <append xpath="/quests">
+
+    <!-- Sample of a quest chain that can be given to a cow to control its pregnancy -->
     <quest id="farmingAnimal_Cow_Pregnancy">
       <property name="name_key" value="farmingAnimal_Cow_Pregnancy" />
       <property name="subtitle_key" value="farmingAnimal_Cow_Pregnancy" />
@@ -37,7 +39,7 @@
 
     </quest>
 
-    <!-- Thi-->
+    <!-- Another example quest line based on certain buffs being available to progress. -->
     <quest id="farmingAnimal_InfectionTurn">
       <property name="name_key" value="farmingAnimal_InfectionTurn" />
       <property name="subtitle_key" value="farmingAnimal_Cow_Pregnancy" />
@@ -68,62 +70,6 @@
 
       <!-- This will spawn in an animlFarmCow entity during Phase 3 -->
       <action type="ReplaceEntitySDX, Mods" id="zombieFarmCow" value="1" phase="4" />
-
-
     </quest>
-
-
-    <quest id="test_NPCSDX">
-      <property name="name_key" value="test quest" />
-      <property name="subtitle_key" value="Test Fetch" />
-      <property name="description_key" value="This is a fetch test quest for dev purposes" />
-      <property name="icon" value="ui_game_symbol_quest" />
-      <property name="repeatable" value="true" />
-      <property name="category_key" value="challenge" />
-      <property name="difficulty" value="medium" />
-      <property name="offer_key" value="Test the fetch objective." />
-      <property name="statement_key" value="Find the test fetch item in the POI." />
-      <property name="response_key" value="Test - Fetch" />
-
-      <property name="completiontype" value="TurnIn" />
-      <property name="completion_key" value="WELL I'LL BE DANGED. YOU REALLY MANAGED TO PULL THROUGH IN A PINCH. I NEVER THOUGHT I'D SEE THIS PISTOL AGAIN. GOOD WORK, SON. HERE'S WHAT I OWE YA." />
-
-      <objective type="GotoPOISDX, Mods" value="500-5000" phase="1">
-        <property name="completion_distance" value="50" />
-        <property name="PrefabName" value="house_construction_01" />
-      </objective>
-
-      <objective type="RallyPoint">
-        <property name="phase" value="2" />
-      </objective>
-      
-      <objective type="FetchFromContainer">
-        <property name="phase" value="3" />
-        <property name="quest_item_ID" value="1" />
-        <property name="item_count" value="1" />
-        <property name="default_container" value="cntFetchQuestSatchel" />
-      </objective>
-
-      <objective type="POIStayWithin">
-        <property name="phase" value="3" />
-        <property name="radius" value="25" />
-      </objective>
-
-      <objective type="ReturnToNPC">
-        <property name="phase" value="4" />
-      </objective>
-
-      <objective type="InteractWithNPC">
-        <property name="phase" value="4" />
-      </objective>
-
-      <reward type="Exp" value="5000" />
-      <reward type="GiveNPCSDX, Mods"  />
-    </quest>
-    <quest_list id="test_SDX">
-      <quest id="test_NPCSDX" />
-    </quest_list>
   </append>
-
-
 </configs>

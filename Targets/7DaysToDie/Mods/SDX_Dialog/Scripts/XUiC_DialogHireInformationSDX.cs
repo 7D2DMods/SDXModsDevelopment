@@ -2,9 +2,11 @@
 {
     public override void OnOpen()
     {
-        if (base.xui.Dialog.otherEntitySDX != null)
+        if (base.xui.Dialog.Respondent != null)
         {
-            EntityAliveSDX myEntity = base.xui.Dialog.otherEntitySDX as EntityAliveSDX;
+            EntityAliveSDX myEntity = base.xui.Dialog.Respondent as EntityAliveSDX;
+            if (myEntity == null)
+                myEntity = base.xui.Dialog.otherEntitySDX as EntityAliveSDX;
             if (myEntity)
             {
                 if (myEntity.isTame(base.xui.playerUI.entityPlayer))

@@ -1,6 +1,7 @@
 ﻿<configs>
   <append xpath="/blocks" >
     <!-- This block will serve as a home location for the farm animals.-->
+    <!-- The Maslow will scan for the home block -->
     <block name="cntCowHomeBlock">
       <property name="Class" value="Loot"/>
       <property name="CreativeMode" value="Player"/>
@@ -23,7 +24,6 @@
 
       <!-- Buff to keep the animals close by. thenumber in the ( ) is the range -->
       <property name="ActiveRadiusEffects" value="buffHomePoint(30)"/>
-
     </block>
 
     <block name="animalPoop">

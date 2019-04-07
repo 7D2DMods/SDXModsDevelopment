@@ -94,3 +94,21 @@ Example Usage:
 	<triggered_effect trigger="onSelfEnteredBiome" action="AddBuff" target="self" buff="bufffnamehere">
 		<requirement name="RequirementOnSpecificBiomeSDX, Mods" biome="desert" />
 	</triggered_effect>
+
+RequirementSameFactionSDX, Mods
+===============================
+
+This class adds a new requirement based on the faction.
+
+Example Usage:
+	 	<requirement name="RequirementSameFactionSDX, Mods" faction="animalsCows" />  <!-- Requirement will only pass if the entity belongs to this faction -->
+
+AddBuffByFactionSDX, Mods
+=========================
+
+This class adds a new trigger event that filters based on faction. This allows us to filter certain AoE from affecting the same faction as we are.
+
+Example Usage:
+
+	<triggered_effect trigger = "onSelfBuffUpdate" action="AddBuffByFactionSDX, Mods" target="selfAOE" range="4" buff="buffAnimalFertility"  /> <!-- Only affects the same faction -->
+    <triggered_effect trigger = "onSelfBuffUpdate" action="AddBuffByFactionSDX, Mods" target="selfAOE" range="4" mustmatch="true" buff="buffAnimalFertility"  /> <!-- Only affects other factions, not its own -->

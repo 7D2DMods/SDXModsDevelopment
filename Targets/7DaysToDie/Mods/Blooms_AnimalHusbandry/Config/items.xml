@@ -1,6 +1,7 @@
 ﻿<configs>
   <append xpath="/items">
 
+    <!-- hand item with the Action1 as  a jar, to deplete the water source -->
     <item name="meleeHandFarmAnimal">
       <property name="Extends" value="meleeHandMaster"/>
       <property name="Tags" value="blunt,melee,light,fists,perkLivingOffTheLandCrops"/>
@@ -30,6 +31,7 @@
       </property>
 
 
+      <!-- Since the food value of the animal may not have a food data (like the hay bale) just make everything the same value to be added. -->
       <effect_group name="Regular stamina change">
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="ModifyCVar" cvar="$foodAmountAdd" operation="add" value="20"/>
         <triggered_effect trigger="onSelfPrimaryActionEnd" action="AddBuff" target="self" buff="buffProcessConsumables"/>
@@ -40,6 +42,7 @@
       </effect_group>
     </item>
 
+    <!-- Template Item to show possible side effects -->
     <item name="drugGrowthHormone">
       <property name="Extends" value="medicalBandage" param1="DescriptionKey"/>
       <property name="Group" value="Science"/>
@@ -80,6 +83,7 @@
 
   </append>
 
+  <!-- Template -->
   <append xpath="/items/item[@name='drinkJarEmpty']">
     <property class="Action0">
       <property name="Class" value="UseOtherSDX, Mods"/> <!-- Class will completely deplete the target cvar -->
