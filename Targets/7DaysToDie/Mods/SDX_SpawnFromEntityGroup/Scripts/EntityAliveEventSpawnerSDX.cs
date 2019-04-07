@@ -16,12 +16,11 @@ class EntityAliveEventSpawnerSDX : EntityAlive
             Debug.Log(this.GetType() + " : " + strMessage);
     }
 
-     public override void Init(int _entityClass)
-        {
+    public override void OnAddedToWorld()
+    {
+   
     
-       base.Init(_entityClass);
 
-            this.entityClass = _entityClass;
     DisplayLog("EntityClass: " + this.entityClass);
 
         EntityClass entityClass = EntityClass.list[this.entityClass];
@@ -36,8 +35,8 @@ class EntityAliveEventSpawnerSDX : EntityAlive
                 {
                     DisplayLog(" Found a Leader");
                     this.strLeaderEntity = dynamicProperties3.Values[keyValuePair.Key];
-                    this.LeaderEntityID = EntityClass.FromString(this.strLeaderEntity);
-                    SpawnEntity(this.LeaderEntityID);
+                    
+                    SpawnEntity(EntityClass.FromString(this.strLeaderEntity), true);
                     continue;
                 }
                 else if ( keyValuePair.Key == "Followers")
@@ -48,7 +47,7 @@ class EntityAliveEventSpawnerSDX : EntityAlive
                     if ( strValue.Contains(","))
                     {
                         foreach( String strEntity in strValue.Split(','))
-                            SpawnEntity(EntityClass.FromString(strEntity));
+                            SpawnEntity(EntityClass.FromString(strEntity), false);
                     }
                     else  //  Spawn from Entity Group
                     {
@@ -93,12 +92,12 @@ class EntityAliveEventSpawnerSDX : EntityAlive
         {
             DisplayLog(" Spawning from : " + strGroup);
             EntityID = EntityGroups.GetRandomFromGroup(strGroup);
-            SpawnEntity(EntityID);
+            SpawnEntity(EntityID, false);
         }
 
     }
 
-    public void SpawnEntity( int EntityID )
+    public void SpawnEntity( int EntityID, bool isLeader )
     {
         // Grab a random position.
         Vector3 transformPos;
@@ -107,15 +106,25 @@ class EntityAliveEventSpawnerSDX : EntityAlive
             DisplayLog(" No position available");
             return;
         }
-        DisplayLog(" Spawn Entity: " + EntityID);
         Entity NewEntity = EntityFactory.CreateEntity(EntityID, transformPos);
         if (NewEntity)
         {
-            NewEntity.SetSpawnerSource(EnumSpawnerSource.StaticSpawner);
+            NewEntity.SetSpawnerSource(EnumSpawnerSource.Dynamic);
             GameManager.Instance.World.SpawnEntityInWorld(NewEntity);
+
+            if (isLeader)
+            {
+                DisplayLog(" Leader Entity ID: " + NewEntity.entityId);
+                this.LeaderEntityID = NewEntity.entityId;
+            }
             // Set the leaderID if its configured.
-            if (LeaderEntityID > 0 && NewEntity is EntityAliveSDX)
+            else if (LeaderEntityID > 0 && NewEntity is EntityAliveSDX)
+            {
+                DisplayLog(" Setting Leader ID to: " + this.LeaderEntityID);
                 (NewEntity as EntityAliveSDX).Buffs.SetCustomVar("Leader", this.LeaderEntityID, true);
+                (NewEntity as EntityAliveSDX).Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
+
+            }
         }
 
     }
