@@ -21,7 +21,7 @@
 			<property name="Weight" value="70"/>
 			<property name="Prefab" value="NPC"/>
 			<property name="IsEnemyEntity" value="false"/> 
-			<property name="HandItem" value="handBaker"/> 
+			<property name="HandItem" value="handChefKnife"/> 
 			<property name="RightHandJointName" value="Muzzle" />
 			<property name="SwimOffset" value="-2"/>
 			<property name="MoveSpeed" value="0.3"/> 
@@ -47,18 +47,17 @@
 			<property name="AIPathCostScale" value=".9, 1"/>
 			<property name="AITask-1" value="BreakBlock"/>
 			<property name="AITask-2" value="Territorial"/>
-			<property name="AITask-3" value="MaslowLevel1SDX, Mods"/> <!-- Param1? -->
-			<property name="AITask-4" value="PatrolSDX, Mods"/> <!-- No params -->
-			<property name="AITask-5" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> <!-- param1 base class? -->
-			<property name="AITask-6" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> <!-- Param1 for what to follow -->
-			<property name="AITask-7" value="ApproachSpot"/>
-			<property name="AITask-8" value="Look"/> 
-			<property name="AITask-9" value="WanderSDX, Mods"/> <!-- No Params  -->
-			<property name="AITask-10" value="" />
+			<property name="AITask-3" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> <!-- param1 base class? -->
+			<property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> <!-- Param1 for what to follow -->
+			<property name="AITask-5" value="PatrolSDX, Mods"/> <!-- No params -->
+			<property name="AITask-6" value="MaslowLevel1SDX, Mods"/> <!-- Param1? -->
+			<property name="AITask-7" value="Look"/> 
+			<property name="AITask-8" value="WanderSDX, Mods"/> <!-- No Params  -->
+			<property name="AITask-9" value="" />
 			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>  <!-- Params not Used?  -->
 			<property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/> <!-- params not used? -->
 			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/> <!-- Param1 used in base class?  -->
-<!--			<property name="AITarget-5" value="LootLocationSDX, Mods" /> -->
+<!--			<property name="AITarget-4" value="LootLocationSDX, Mods" /> -->
 			<property name="AITarget-4" value="" />
  			<property name="SoundHurt" value="Player_Male/player1painlg"/>
 			<property name="SoundHurtSmall" value="Player_Male/player1painsm"/>
@@ -73,7 +72,7 @@
 			<property name="SoundPlayerLandThump" value="PlayerLandThump"/>
 			<property name="TimeStayAfterDeath" value="5"/>
 			<property name="DeadBodyHitPoints" value="1000"/>
-			<property name="JumpMaxDistance" value="2.0"/>
+			<property name="JumpMaxDistance" value="3.0, 4.0"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="800"/>
 				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
@@ -106,7 +105,7 @@
 			<property name="LootDropEntityClass" value="EntityLootContainerNPC"/>	
 			<property name="MapIcon" value="ui_game_symbol_bullet_point"/>
 			<property name="CompassIcon" value="ui_game_symbol_bullet_point"/>
-			<property name="Names" value="Meg,Bill,Mickey D" />		
+			<property name="Names" value="Bob,Mickey D" />		
 			<property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck;buffSanitationStatusCheck" />
 			  <!-- Food items and bins that this entity will eat, if using the right AI Task -->
 			<property name="FoodItems" value="foodCornBread,foodCornOnTheCob"/>
@@ -145,7 +144,7 @@
 			<property name="Weight" value="70"/>
 			<property name="Prefab" value="NPC"/>
 			<property name="IsEnemyEntity" value="false"/> 
-			<property name="HandItem" value="handBaker"/> 
+			<property name="HandItem" value="handChefKnife"/> 
 			<property name="RightHandJointName" value="Muzzle" />
 			<property name="SwimOffset" value="-2"/>
 			<property name="MoveSpeed" value="0.3"/> 
@@ -171,18 +170,18 @@
 			<property name="AIPathCostScale" value=".9, 1"/>
 			<property name="AITask-1" value="BreakBlock"/>
 			<property name="AITask-2" value="Territorial"/>
-			<property name="AITask-3" value="MaslowLevel1SDX, Mods"/> 
-			<property name="AITask-4" value="PatrolSDX, Mods"/> 
-			<property name="AITask-5" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> 
-			<property name="AITask-6" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> 
-			<property name="AITask-7" value="ApproachSpot"/>
+			<property name="AITask-3" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> <!-- param1 base class? -->
+			<property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> <!-- Param1 for what to follow -->
+			<property name="AITask-5" value="ApproachSpot"/>
+			<property name="AITask-6" value="MaslowLevel1SDX, Mods"/> <!-- Param1? -->
+			<property name="AITask-7" value="PatrolSDX, Mods"/> <!-- No params -->
 			<property name="AITask-8" value="Look"/> 
-			<property name="AITask-9" value="WanderSDX, Mods"/> 
+			<property name="AITask-9" value="WanderSDX, Mods"/> <!-- No Params  -->
 			<property name="AITask-10" value="" />
-			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>  
-			<property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/> 
-			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/> 
-<!--			<property name="AITarget-5" value="LootLocationSDX, Mods" /> -->
+			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>  <!-- Params not Used?  -->
+			<property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/> <!-- params not used? -->
+			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/> <!-- Param1 used in base class?  -->
+			<!--			<property name="AITarget-4" value="LootLocationSDX, Mods" /> -->
 			<property name="AITarget-4" value="" />
 			<property name="SoundHurt" value="Player_Female/player2painlg"/>
 			<property name="SoundHurtSmall" value="Player_Female/player2painsm"/>
@@ -197,7 +196,7 @@
 			<property name="SoundPlayerLandThump" value="PlayerLandThump"/>
 			<property name="TimeStayAfterDeath" value="5"/>
 			<property name="DeadBodyHitPoints" value="1000"/>
-			<property name="JumpMaxDistance" value="2.0"/>
+			<property name="JumpMaxDistance" value="3.0, 4.0"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="800"/>
 				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
@@ -230,7 +229,7 @@
 			<property name="LootDropEntityClass" value="EntityLootContainerNPC"/>	
 			<property name="MapIcon" value="ui_game_symbol_bullet_point"/>
 			<property name="CompassIcon" value="ui_game_symbol_bullet_point"/>
-			<property name="Names" value="Meg,Bill,Mickey D" />		
+			<property name="Names" value="Meg,Debbie,Gayle,Ratchet" />		
 			<property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck;buffSanitationStatusCheck" />
 			  <!-- Food items and bins that this entity will eat, if using the right AI Task -->
 			<property name="FoodItems" value="foodCornBread,foodCornOnTheCob"/>
@@ -296,18 +295,18 @@
 			<property name="AIPathCostScale" value=".7, 1"/>
 			<property name="AITask-1" value="BreakBlock"/>
 			<property name="AITask-2" value="Territorial"/>
-			<property name="AITask-3" value="MaslowLevel1SDX, Mods"/> 
-			<property name="AITask-4" value="PatrolSDX, Mods"/> 
-			<property name="AITask-5" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> 
-			<property name="AITask-6" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> 
-			<property name="AITask-7" value="ApproachSpot"/>
+			<property name="AITask-3" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> <!-- param1 base class? -->
+			<property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> <!-- Param1 for what to follow -->
+			<property name="AITask-5" value="ApproachSpot"/>
+			<property name="AITask-6" value="MaslowLevel1SDX, Mods"/> <!-- Param1? -->
+			<property name="AITask-7" value="PatrolSDX, Mods"/> <!-- No params -->
 			<property name="AITask-8" value="Look"/> 
-			<property name="AITask-9" value="WanderSDX, Mods"/> 
+			<property name="AITask-9" value="WanderSDX, Mods"/> <!-- No Params  -->
 			<property name="AITask-10" value="" />
-			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>  
-			<property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/> 
-			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/> 
-<!--			<property name="AITarget-5" value="LootLocationSDX, Mods" /> -->
+			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>  <!-- Params not Used?  -->
+			<property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/> <!-- params not used? -->
+			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/> <!-- Param1 used in base class?  -->
+			<!--			<property name="AITarget-4" value="LootLocationSDX, Mods" /> -->
 			<property name="AITarget-4" value="" />
 			<property name="SoundHurt" value="Player_Male/player1painlg"/>
 			<property name="SoundHurtSmall" value="Player_Male/player1painsm"/>
@@ -322,7 +321,7 @@
 			<property name="SoundPlayerLandThump" value="PlayerLandThump"/>
 			<property name="TimeStayAfterDeath" value="5"/>
 			<property name="DeadBodyHitPoints" value="1000"/>
-			<property name="JumpMaxDistance" value="3.0"/>
+			<property name="JumpMaxDistance" value="3.0, 4.0"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="800"/>
 				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
@@ -354,7 +353,7 @@
 			<property name="LootDropProb" value="1.0"/> 
 			<property name="LootDropEntityClass" value="EntityLootContainerNPC"/>	
 			<property name="MapIcon" value="ui_game_symbol_bullet_point"/>
-			<property name="Names" value="Meg,Bill,Mickey D" />		
+			<property name="Names" value="Franky" />		
 			<property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck;buffSanitationStatusCheck" />
 			  <!-- Food items and bins that this entity will eat, if using the right AI Task -->
 			<property name="FoodItems" value="foodCornBread,foodCornOnTheCob"/>
@@ -393,7 +392,7 @@
 			<property name="Weight" value="70"/>
 			<property name="Prefab" value="NPC"/>
 			<property name="IsEnemyEntity" value="false"/> 
-			<property name="HandItem" value="handHarley"/> 
+			<property name="HandItem" value="handHarleyBat"/> 
 			<property name="RightHandJointName" value="Muzzle" />
 			<property name="SwimOffset" value="-2"/>
 			<property name="MoveSpeed" value="0.25"/> 
@@ -418,18 +417,18 @@
 			<property name="AIPathCostScale" value=".9, 1"/>
 			<property name="AITask-1" value="BreakBlock"/>
 			<property name="AITask-2" value="Territorial"/>
-			<property name="AITask-3" value="MaslowLevel1SDX, Mods"/> 
-			<property name="AITask-4" value="PatrolSDX, Mods"/> 
-			<property name="AITask-5" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> 
-			<property name="AITask-6" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> 
-			<property name="AITask-7" value="ApproachSpot"/>
+			<property name="AITask-3" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> <!-- param1 base class? -->
+			<property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> <!-- Param1 for what to follow -->
+			<property name="AITask-5" value="ApproachSpot"/>
+			<property name="AITask-6" value="MaslowLevel1SDX, Mods"/> <!-- Param1? -->
+			<property name="AITask-7" value="PatrolSDX, Mods"/> <!-- No params -->
 			<property name="AITask-8" value="Look"/> 
-			<property name="AITask-9" value="WanderSDX, Mods"/> 
+			<property name="AITask-9" value="WanderSDX, Mods"/> <!-- No Params  -->
 			<property name="AITask-10" value="" />
-			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>  
-			<property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/> 
-			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/> 
-<!--			<property name="AITarget-5" value="LootLocationSDX, Mods" /> -->
+			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>  <!-- Params not Used?  -->
+			<property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/> <!-- params not used? -->
+			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/> <!-- Param1 used in base class?  -->
+			<!--			<property name="AITarget-4" value="LootLocationSDX, Mods" /> -->
 			<property name="AITarget-4" value="" />
   			<property name="SoundRandomTime" value="60.0"/> 
 			<property name="SoundRandom" value="HarleyRandom"/>
@@ -445,7 +444,7 @@
 			<property name="SoundSleeperBackToSleep" value="sleeperbacktosleep"/>
 			<property name="TimeStayAfterDeath" value="5"/>
 			<property name="DeadBodyHitPoints" value="1000"/>
-			<property name="JumpMaxDistance" value="3.0"/>
+			<property name="JumpMaxDistance" value="3.0, 4.0"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="800"/>
 				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
@@ -477,7 +476,7 @@
 			<property name="LootDropProb" value="1.0"/> 
 			<property name="LootDropEntityClass" value="EntityLootContainerNPC"/>	
 			<property name="MapIcon" value="ui_game_symbol_bullet_point"/>
-			<property name="Names" value="Meg,Bill,Mickey D" />		
+			<property name="Names" value="Harley" />		
 			  <property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck;buffSanitationStatusCheck" />
 			  <!-- Food items and bins that this entity will eat, if using the right AI Task -->
 			<property name="FoodItems" value="foodCornBread,foodCornOnTheCob"/>
@@ -544,18 +543,18 @@
 			<property name="AITask-1" value="BreakBlock"/>
 			<property name="AITask-2" value="Territorial"/>
 			<property name="AITask-3" value="RangedAttackTarget" param1="1,1,4"/> 
-			<property name="AITask-4" value="MaslowLevel1SDX, Mods"/> 
-			<property name="AITask-5" value="PatrolSDX, Mods"/> 
-			<property name="AITask-6" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> 
-			<property name="AITask-7" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> 
-			<property name="AITask-8" value="ApproachSpot"/>
+			<property name="AITask-4" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> 
+			<property name="AITask-5" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> 
+			<property name="AITask-6" value="ApproachSpot"/>
+			<property name="AITask-7" value="MaslowLevel1SDX, Mods"/> 
+			<property name="AITask-8" value="PatrolSDX, Mods"/> 
 			<property name="AITask-9" value="Look"/> 
 			<property name="AITask-10" value="WanderSDX, Mods"/> 
 			<property name="AITask-11" value="" />
 			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>  
 			<property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/> 
 			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/> 
-	<!--			<property name="AITarget-5" value="LootLocationSDX, Mods" /> -->
+			<!--			<property name="AITarget-4" value="LootLocationSDX, Mods" /> -->
 			<property name="AITarget-4" value="" />
 			<property name="SoundHurt" value="Player_Male/player1painlg"/>
 			<property name="SoundHurtSmall" value="Player_Male/player1painsm"/>
@@ -570,7 +569,7 @@
 			<property name="SoundPlayerLandThump" value="PlayerLandThump"/>
 			<property name="TimeStayAfterDeath" value="5"/>
 			<property name="DeadBodyHitPoints" value="1000"/>
-			<property name="JumpMaxDistance" value="3.0"/>
+			<property name="JumpMaxDistance" value="3.0, 4.0"/>
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="800"/>
 				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
@@ -603,7 +602,7 @@
 			<property name="LootDropEntityClass" value="EntityLootContainerNPC"/>	
 			<property name="MapIcon" value="ui_game_symbol_bullet_point"/>
 
-			<property name="Names" value="Meg,Bill,Mickey D" />		
+			<property name="Names" value="Bill,Mickey D" />		
 			<property name="Buffs" value="buffAnimalStatusCheck;buffStatusCheck;buffSanitationStatusCheck" />
 			  <!-- Food items and bins that this entity will eat, if using the right AI Task -->
 			<property name="FoodItems" value="foodCornBread,foodCornOnTheCob"/>
