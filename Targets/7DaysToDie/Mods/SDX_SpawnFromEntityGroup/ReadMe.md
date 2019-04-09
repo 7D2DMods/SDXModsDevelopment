@@ -33,7 +33,7 @@ Example Usage:
     <property name="Faction" value="animals"/>
     <property class="SpawnSettings" >
         <property name="Leader" value="animalBull" /> 
-        <property name="Followers" value="animalCow,animalCow,animalCow,animalCow" />  
+        <property name="Followers" value="animalCow,animalCow,animalCow,animalCow"  />  
     </property>
 </entity_class>
 
@@ -50,25 +50,7 @@ Example Usage:
     <property name="Faction" value="animals"/>
     <property class="SpawnSettings" >
         <property name="Leader" value="animalBull" /> 
-        <property name="Followers" value="farmAnimals" />   <!-- farmAnimals entity group -->
-    </property>
-</entity_class>
-
-
-<entity_class name="invisibleCowHerdSpawner2"> 
-    <property name="Mesh" value="Gore/gore_block1_bonesPrefab"/>
-    <property name="ModelType" value="Custom"/>
-    <property name="Prefab" value="Backpack"/>
-    <property name="Class" value="EntityAliveEventSpawnerSDX, Mods"/>
-    <property name="Parent" value="Animals"/>
-    <property name="TimeStayAfterDeath" value="1"/>
-    <property name="IsEnemyEntity" value="false"/>
-    <property name="LootListOnDeath" value="4"/> 
-    <property name="Faction" value="animals"/>
-    <property class="SpawnSettings" >
-        <property name="Leader" value="animalBull" /> 
-        <property name="Follower-1" value="animalCow"  param1="2" />   <!-- spawn two cows -->
-        <property name="Follower-2" value="animalCow"  param1="3,5" />   <!-- spawn  between 3 and 5 -->
+        <property name="Followers" value="animalCow"  param1="2,4"/>   <!-- entity with a range  -->
     </property>
 </entity_class>
 ~~~~~~~~~~~

@@ -5,11 +5,10 @@ Provides a mecanim animation layer for use for external entities to control thei
 
 A sample entityclass entry called SDXTemplate is provided as an easy way to include the MecanimSDX class. It extends off of the zombieTemplateMale.
 
-
 Example Usage:
 --------------
 
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~{.xml}
  <configs>
     <append xpath="/entity_classes">
       <entity_class name="SDXTemplate" extends="zombieTemplateMale">
@@ -18,4 +17,4 @@ Example Usage:
       </entity_class>
     </append>
 </configs>
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
