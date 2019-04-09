@@ -18,10 +18,7 @@ class EntityAliveEventSpawnerSDX : EntityAlive
 
     public override void OnAddedToWorld()
     {
-   
-    
-
-    DisplayLog("EntityClass: " + this.entityClass);
+        DisplayLog("EntityClass: " + this.entityClass);
 
         EntityClass entityClass = EntityClass.list[this.entityClass];
         if (entityClass.Properties.Classes.ContainsKey("SpawnSettings"))
@@ -35,45 +32,32 @@ class EntityAliveEventSpawnerSDX : EntityAlive
                 {
                     DisplayLog(" Found a Leader");
                     this.strLeaderEntity = dynamicProperties3.Values[keyValuePair.Key];
-                    
+
                     SpawnEntity(EntityClass.FromString(this.strLeaderEntity), true);
                     continue;
                 }
-                else if ( keyValuePair.Key == "Followers")
+
+                if (keyValuePair.Key == "Followers")
                 {
                     DisplayLog("Found Followers");
-                    // if it contains commas, it's individual entities.
-                    String strValue = dynamicProperties3.Values[keyValuePair.Key];
-                    if ( strValue.Contains(","))
-                    {
-                        foreach( String strEntity in strValue.Split(','))
-                            SpawnEntity(EntityClass.FromString(strEntity), false);
-                    }
-                    else  //  Spawn from Entity Group
-                    {
-                        String strCount = "1";
-                        dynamicProperties3.Params1.TryGetValue(keyValuePair.Key, out strCount);
-                        SpawnFromGroup(strValue, int.Parse( strCount));
-                    }
-                }
-                else if ( keyValuePair.Key.StartsWith("Follower-"))
-                {
-                    DisplayLog(" Found A Follower");
-                    String strValue = dynamicProperties3.Values[keyValuePair.Key];
-                    int minCount = 1;
-                    int maxCount = 1;
-                    string strRange = "";
-                    dynamicProperties3.Params1.TryGetValue(keyValuePair.Key, out strRange);
-                    StringParsers.ParseMinMaxCount(strRange, out minCount, out maxCount);
-                    float Count = UnityEngine.Random.Range((float)minCount, (float)maxCount);
-                    
-                    SpawnFromGroup(strValue, int.Parse(Count.ToString() ));
-                }
-                else
-                {
-                    DisplayLog("Found nothing?");
-                }
 
+                    int Range = GetRange(dynamicProperties3, "Followers");
+                    for (int x = 0; x <= Range; x++)
+                    {
+                        // if it contains commas, it's individual entities.
+                        String strValue = dynamicProperties3.Values[keyValuePair.Key];
+                        if (strValue.Contains(","))
+                        {
+                            foreach (String strEntity in strValue.Split(','))
+                                SpawnEntity(EntityClass.FromString(strEntity), false);
+                        }
+                        else  //  Spawn from Entity Group
+                        {
+                            SpawnFromGroup(strValue, 1);
+                        }
+                    }
+                    continue;
+                }
             }
         }
         else
@@ -81,23 +65,49 @@ class EntityAliveEventSpawnerSDX : EntityAlive
             DisplayLog(" No Spawn settings found.");
         }
 
-        this.MarkToUnload();
+        this.SetDead();
     }
 
-    public void SpawnFromGroup( String strGroup, int Count )
+    // This reads the param1, if it exists, to grab a count of how many to spawn in.
+    public int GetRange(DynamicProperties dynamicProperties3,  String strindex )
+    {
+        int minCount = 1;
+        int maxCount = 1;
+        string strRange = "";
+        dynamicProperties3.Params1.TryGetValue(strindex, out strRange);
+
+        // If there's no value, just do a single spawn.
+        if (string.IsNullOrEmpty(strRange))
+            return 1;
+
+        StringParsers.ParseMinMaxCount(strRange, out minCount, out maxCount);
+        float Count = UnityEngine.Random.Range((float)minCount, (float)maxCount);
+        DisplayLog(" Count is: " + Count);
+        return (int)Count; 
+    }
+
+
+    public void SpawnFromGroup(String strGroup, int Count)
     {
         int EntityID = -1;
-
         for (int x = 0; x < this.MaxSpawn; x++)
         {
-            DisplayLog(" Spawning from : " + strGroup);
-            EntityID = EntityGroups.GetRandomFromGroup(strGroup);
-            SpawnEntity(EntityID, false);
+            // Verify that it's an entity group or individual entity.. just in case.
+            if (EntityGroups.list.ContainsKey(strGroup))
+            {
+                DisplayLog(" Spawning from : " + strGroup);
+                EntityID = EntityGroups.GetRandomFromGroup(strGroup);
+                SpawnEntity(EntityID, false);
+            }
+            else
+            {
+                SpawnEntity(EntityClass.FromString(strGroup), false);
+            }
         }
 
     }
 
-    public void SpawnEntity( int EntityID, bool isLeader )
+    public void SpawnEntity(int EntityID, bool isLeader)
     {
         // Grab a random position.
         Vector3 transformPos;
@@ -106,6 +116,8 @@ class EntityAliveEventSpawnerSDX : EntityAlive
             DisplayLog(" No position available");
             return;
         }
+
+        DisplayLog(" EntityID: " + EntityID);
         Entity NewEntity = EntityFactory.CreateEntity(EntityID, transformPos);
         if (NewEntity)
         {

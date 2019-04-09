@@ -196,7 +196,6 @@
     </property>
   </entity_class>
 
-
     <entity_class name="invisibleCowHerdSpawner">
       <property name="Mesh" value="Gore/gore_block1_bonesPrefab"/>
       <property name="ModelType" value="Custom"/>
@@ -212,6 +211,23 @@
         <property name="Followers" value="animalFarmCow,animalFarmCow,animalFarmCow" />
       </property>
     </entity_class>
+
+    <entity_class name="invisibleCowHerdSpawner2">
+      <property name="Mesh" value="Gore/gore_block1_bonesPrefab"/>
+      <property name="ModelType" value="Custom"/>
+      <property name="Prefab" value="Backpack"/>
+      <property name="Class" value="EntityAliveEventSpawnerSDX, Mods"/>
+      <property name="Parent" value="Animals"/>
+      <property name="TimeStayAfterDeath" value="1"/>
+      <property name="IsEnemyEntity" value="false"/>
+      <property name="LootListOnDeath" value="4"/>
+      <property name="Faction" value="animals"/>
+      <property class="SpawnSettings" >
+        <property name="Leader" value="animalFarmCowMale" />
+        <property name="Followers" value="farmAnimalsCow" param1="4,5"/>
+      </property>
+    </entity_class>
+ 
   </append>
 
 

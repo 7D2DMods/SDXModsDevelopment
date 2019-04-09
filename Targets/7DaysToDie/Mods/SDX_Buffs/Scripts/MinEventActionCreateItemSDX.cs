@@ -5,7 +5,7 @@ using UnityEngine;
 
 // <triggered_effect trigger="onSelfBuffRemove" action="CreateItem" item="drinkJarCoffee" count="2"/>
 
-public class MinEventActionCreateItem : MinEventActionBase
+public class MinEventActionCreateItemSDX : MinEventActionBase
 {
     public override void Execute(MinEventParams _params)
     {

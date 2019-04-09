@@ -8,11 +8,9 @@ class EAIApproachAndAttackSDX : EAIApproachAndAttackTarget
     private bool isTargetToEat = false;
     private Vector3 entityTargetPos;
 
-    // Token: 0x04002282 RID: 8834
     private Vector3 entityTargetVel;
     private bool isGoingHome;
 
-    // Token: 0x0400227F RID: 8831
     private float homeTimeout;
     private bool hasHome;
     private bool isEating;
