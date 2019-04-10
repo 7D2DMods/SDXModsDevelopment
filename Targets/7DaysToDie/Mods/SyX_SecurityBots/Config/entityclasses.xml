@@ -1,8 +1,8 @@
 <configs>
 	<append xpath="/entity_classes" >
 		<entity_class name="Sphere_Bots" extends="zombieTemplateMale" >
-      <property name="Class" value="EntityAliveSDX, Mods" />
-      <property name="AvatarController" value="MecanimSDX, Mods" />
+			<property name="Class" value="EntityAliveSDX, Mods" />
+			<property name="AvatarController" value="MecanimSDX, Mods" />
 			<property name="SurfaceCategory" value="metal"/>
 			<property name="RootMotion" value="false" />
 			<property name="HasRagdoll" value="false" />
@@ -15,33 +15,28 @@
 			<property name="SoundHurt" value="DroneRandom" />
 			<property name="SoundSense" value="DroneRandom" /> 
 			<property name="IsEnemyEntity" value="false"/>
-      <property name="LootListAlive" value="62"/>
-      <property name="HandItem" value="handSphereII"/>
-      <property name="EntityType" value="Player"/>
-
-      <property name="NPCID" value="spheretest"/>
-
-      <property name="Faction" value="trader"/>
-      <property name="Tags" value="entity,npc"/>
-      
-      <property name="AITask-1" value="Territorial"/>
-      <property name="AITask-2" value="Look"/>
-
-      <!-- This AI task is tied to a cvar, which is being used to record entity ID that we want to follow -->
-      <!-- Param1 can be:  cvar, Buff or the current hand item, such as a block or item name -->
-      <!--  param1="Mother,Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
-      <property name="AITask-3" value="ApproachAndFollowTargetSDX, Mods" param1="Mother,Leader,hayBaleBlock,foodCornOnTheCob"/>
-      <property name="AITask-4" value="MaslowLevel1SDX, Mods"/>
-      <property name="AITask-5" value="WanderSDX, Mods"/>
-      <property name="AITask-6" value="PatrolSDX, Mods"/>
-      <property name="AITask-7" value="ApproachAndAttackTargetSDX, Mods" param1="" param2="Leader,Mother"/>  <!-- Param2 is incentive NOT to attack this target -->
-      <property name="AITask-8" value="" />
-      <property name="AITarget-1" value="SetAsTargetIfLeaderAttackedSDX, Mods" />
-      <property name="AITarget-2" value="SetAsTargetIfHurtSDX, Mods"/>
-      <property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" />
-      <property name="AITarget-4" value="" />
-      
-      <property name="MaxTurnSpeed" value="280"/>
+			<property name="LootListAlive" value="62"/>
+			<property name="HandItem" value="handSphereII"/>
+			<property name="EntityType" value="Player"/>
+			<property name="NPCID" value="spheretest"/>
+			<property name="Faction" value="trader"/>
+			<property name="Tags" value="entity,npc"/>			  
+			<property name="AITask-1" value="BreakBlock"/>
+			<property name="AITask-2" value="Territorial"/>
+			<property name="AITask-3" value="ApproachAndAttackSDX, Mods" param1="Entity,0" param2=""  /> <!-- param1 base class? -->
+			<property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="Leader,foodCornOnTheCob"/> <!-- Param1 for what to follow -->
+			<property name="AITask-5" value="ApproachSpot"/>
+			<property name="AITask-6" value="MaslowLevel1SDX, Mods"/> <!-- Param1? -->
+			<property name="AITask-7" value="PatrolSDX, Mods"/> <!-- No params -->
+			<property name="AITask-8" value="Look"/> 
+			<property name="AITask-9" value="WanderSDX, Mods"/> <!-- No Params  -->
+			<property name="AITask-10" value="" />
+			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>  <!-- Params not Used?  -->
+			<property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/> <!-- params not used? -->
+			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/> <!-- Param1 used in base class?  -->
+			<!--			<property name="AITarget-4" value="LootLocationSDX, Mods" /> -->
+			<property name="AITarget-4" value="" />	  
+			<property name="MaxTurnSpeed" value="280"/>
 			<property name="MoveSpeed" value="0.25"/>
 			<property name="MoveSpeedAggro" value="1.3, 1.4"/>
 			<property name="MoveSpeedPanic" value="2.0"/>
@@ -52,7 +47,6 @@
 			<drop event="Harvest" name="resourceScrapIron" tag="salvageHarvest" count="9"/>
 			<drop event="Harvest" name="resourceElectricParts" tag="salvageHarvest" count="12"/> 
 			<drop event="Harvest" name="resourceScrapPolymers" tag="salvageHarvest" count="9"/>
-
 			<triggered_effect trigger="onOtherDamagedSelf" action="AddBuff" target="other" buff="buffShocked">
 				<requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="20"/>
 				<requirement name="HoldingItemHasTags" target="other" tags="melee"/>
@@ -61,30 +55,24 @@
 		<entity_class name="SphereI" extends="Sphere_Bots" >
 			<property name="Mesh" value="#@modfolder:Resources/Spheres.unity3d?SphereI_X" />
 			<!-- free model by 3DHaupt -->
-			<property name="AttackAnimations" value="Attack,RunAttack" />
 			<property name="AttackIndexes" value="2" />
 			<property name="RunIndexes" value="2" />
 			<property name="WalkIndexes" value="2" />
 			<property name="TimeStayAfterDeath" value="300"/>
 			<property name="DeadBodyHitPoints" value="1000"/> 
-
 			<drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
 			<drop event="Harvest" name="resourceMechanicalParts" tag="salvageHarvest" count="10"/> 
 			<drop event="Harvest" name="resourceScrapIron" tag="salvageHarvest" count="9"/>
 			<drop event="Harvest" name="resourceElectricParts" tag="salvageHarvest" count="12"/> 
 			<drop event="Harvest" name="resourceScrapPolymers" tag="salvageHarvest" count="9"/>
-
 			<effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
 				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
 				<!-- Zombie HP scale -->
 			</effect_group>
-
-
 		</entity_class> 
 		<entity_class name="SphereII" extends="Sphere_Bots" >
 			<property name="Mesh" value="#@modfolder:Resources/Spheres.unity3d?SphereII_X" />
-			<property name="AttackAnimations" value="Attack,RunAttack" />
 			<property name="AttackIndexes" value="2" />
 			<property name="RunIndexes" value="2" />
 			<property name="WalkIndexes" value="2" />
@@ -100,7 +88,48 @@
 			<drop event="Harvest" name="resourceScrapIron" tag="salvageHarvest" count="9"/>
 			<drop event="Harvest" name="resourceElectricParts" tag="salvageHarvest" count="12"/> 
 			<drop event="Harvest" name="resourceScrapPolymers" tag="salvageHarvest" count="9"/>
-
 		</entity_class> 
+		<entity_class name="Drone" extends="Sphere_Bots" >
+			<property name="Mesh" value="#@modfolder:Resources/Mechs.unity3d?Drone_X" />
+			<!-- free model by 3DHaupt -->
+			<property name="AttackIndexes" value="0" />
+			<property name="RunIndexes" value="0" />
+			<property name="WalkIndexes" value="0" />
+			<property name="TimeStayAfterDeath" value="5"/>
+			<property name="DeadBodyHitPoints" value="1000"/>
+			<property name="JumpMaxDistance" value="3.0, 4.0"/>
+			<drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
+			<drop event="Harvest" name="resourceMechanicalParts" tag="salvageHarvest" count="10"/> 
+			<drop event="Harvest" name="resourceScrapIron" tag="salvageHarvest" count="9"/>
+			<drop event="Harvest" name="resourceElectricParts" tag="salvageHarvest" count="12"/> 
+			<drop event="Harvest" name="resourceScrapPolymers" tag="salvageHarvest" count="9"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<!-- Zombie HP scale -->
+			</effect_group>
+		</entity_class> 
+		<entity_class name="Robot" extends="Sphere_Bots" >
+			<property name="Mesh" value="#@modfolder:Resources/Mechs.unity3d?Robot_X" />
+			<!-- free model by 3DHaupt -->
+			<property name="AttackIndexes" value="2" />
+			<property name="RunIndexes" value="0" />
+			<property name="WalkIndexes" value="0" />
+			<property name="TimeStayAfterDeath" value="5"/>
+			<property name="DeadBodyHitPoints" value="1000"/>
+			<property name="JumpMaxDistance" value="3.0, 4.0"/>
+			<drop event="Harvest" name="terrStone" count="0" tool_category="Disassemble"/>
+			<drop event="Harvest" name="resourceMechanicalParts" tag="salvageHarvest" count="10"/> 
+			<drop event="Harvest" name="resourceScrapIron" tag="salvageHarvest" count="9"/>
+			<drop event="Harvest" name="resourceElectricParts" tag="salvageHarvest" count="12"/> 
+			<drop event="Harvest" name="resourceScrapPolymers" tag="salvageHarvest" count="9"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="1000"/>
+				<passive_effect name="HealthMax" operation="perc_set" value="1"/>
+				<!-- Zombie HP scale -->
+			</effect_group>
+		</entity_class> 		
+		
+		
 	</append>
 </configs>
