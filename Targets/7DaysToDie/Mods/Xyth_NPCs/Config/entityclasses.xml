@@ -516,7 +516,7 @@
 			<property name="Weight" value="70"/>
 			<property name="Prefab" value="NPC"/>
 			<property name="IsEnemyEntity" value="false"/> 
-			<property name="HandItem" value="handTraderRifle"/> 
+			<property name="HandItem" value="handAmmoRifle"/> 
 			<property name="RightHandJointName" value="Muzzle" />
 			<property name="SwimOffset" value="-2"/>
 			<property name="MoveSpeed" value="0.3"/> 
