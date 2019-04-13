@@ -134,7 +134,10 @@ class EntityAliveEventSpawnerSDX : EntityAlive
             {
                 DisplayLog(" Setting Leader ID to: " + this.LeaderEntityID);
                 (NewEntity as EntityAliveSDX).Buffs.SetCustomVar("Leader", this.LeaderEntityID, true);
-                (NewEntity as EntityAliveSDX).Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
+
+                // For animals
+                (NewEntity as EntityAliveSDX).Buffs.SetCustomVar("Herd", this.LeaderEntityID, true);
+                //(NewEntity as EntityAliveSDX).Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Follow, true);
 
             }
         }

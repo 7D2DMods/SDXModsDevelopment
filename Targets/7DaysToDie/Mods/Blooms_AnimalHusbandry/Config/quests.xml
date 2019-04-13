@@ -71,5 +71,6 @@
       <!-- This will spawn in an animlFarmCow entity during Phase 3 -->
       <action type="ReplaceEntitySDX, Mods" id="zombieFarmCow" value="1" phase="4" />
     </quest>
+
   </append>
 </configs>

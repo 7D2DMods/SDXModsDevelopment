@@ -4,14 +4,15 @@ using UnityEngine;
 
 
 // <property name="AITask-2" value="RunAwayFromEntitySDX, Mods" />
-class EAIRunAwayFromEntitySDX : EAIRunAway
+class EAIRunAwayFromEntitySDX :  EAIRunawayWhenHurt
+
 {
     private List<Entity> NearbyEntities = new List<Entity>();
     private List<Entity> NearbyEnemies = new List<Entity>();
     private EntityAlive avoidEntity;
     private int fleeCounter;
     private int fleeDistance = 10;
-
+    float originalView;
     private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
@@ -20,15 +21,24 @@ class EAIRunAwayFromEntitySDX : EAIRunAway
     }
     public override bool CanExecute()
     {
+        float originalView = this.theEntity.GetMaxViewAngle();
         if ( CheckSurroundingEntities())
         {
+            this.theEntity.SetMaxViewAngle(360f);
             base.FindFleeDirection(this.avoidEntity.position, this.fleeDistance);
             return true;
         }
 
+        
+        this.theEntity.SetMaxViewAngle(180f);
         return false;
     }
 
+    public override void Reset()
+    {
+        base.Reset();
+        this.theEntity.SetMaxViewAngle(originalView);
+    }
     public bool CheckFactionForEnemy(EntityAlive Entity)
     {
         FactionManager.Relationship myRelationship = FactionManager.Instance.GetRelationshipTier(this.theEntity, Entity);
@@ -66,6 +76,7 @@ class EAIRunAwayFromEntitySDX : EAIRunAway
             leader = this.theEntity.world.GetEntity(EntityID) as EntityAlive;
 
         }
+        
 
         // Search in the bounds are to try to find the most appealing entity to follow.
         Bounds bb = new Bounds(this.theEntity.position, new Vector3(this.theEntity.GetSeeDistance(), 20f, this.theEntity.GetSeeDistance()));
@@ -82,6 +93,38 @@ class EAIRunAwayFromEntitySDX : EAIRunAway
                 DisplayLog("Nearby Entity: " + x.EntityName);
                 if (CheckFactionForEnemy(x))
                     NearbyEnemies.Add(x);
+            }
+
+            // if one of our faction died, flee from the spot.
+            if (x.factionId == this.theEntity.factionId)
+            {
+                if (x.GetRevengeTarget() != null)
+                {
+                    DisplayLog(" My Faction has a Revenge Target. I am sharing it. ");
+                    this.fleeDistance = 100;
+                    this.theEntity.SetRevengeTarget(x.GetRevengeTarget());
+                    this.avoidEntity = x.GetRevengeTarget(); 
+                    return true;
+                }
+
+                if (x.IsDead())
+                {
+                    DisplayLog(" One of my factions has died. Fleeing, and abandoning the herd");
+                    this.fleeDistance = 100;
+                    if (x.entityThatKilledMe != null)
+                    {
+                        DisplayLog(" I am fleeing: " + x.entityThatKilledMe.EntityName);
+                        this.avoidEntity = x.entityThatKilledMe;
+                    }
+                    else
+                    {
+                        DisplayLog(" I don not know who killed my friend, so i am running from " + x.EntityName);
+                        this.avoidEntity = x;
+                    }
+                    return true;
+                }
+                
+
             }
         }
 

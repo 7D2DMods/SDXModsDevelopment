@@ -61,5 +61,12 @@
       <relationship name="farmSheep" value="hate"/>
       <relationship name="farmGoat" value="hate"/>
     </faction>
+    <faction name="farmPigs">
+      <relationship name="*" value="neutral"/>
+      <relationship name="bandits" value="dislike"/>
+      <relationship name="undead" value="hate"/>
+      <relationship name="farmWolf" value="hate"/>
+      <relationship name="farmBoar" value="hate"/>
+    </faction>
   </append>
 </configs>

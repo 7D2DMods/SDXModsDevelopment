@@ -17,45 +17,40 @@ using System.IO;
 
 class EntityAliveFarmingAnimalSDX : EntityAliveSDX
 {
-    public String strFoodItem;
-    public String strProductItem;
-    public String strHarvestItems;
-
-    /*
-     *  Before BoundaryBox: Center: (0.0, 0.9, 0.0), Extents: (0.3, 0.9, 0.2)
-Box Collider: (0.6, 1.8, 0.4)
- Box Center: (0.0, 0.9, 0.0)
- After BoundaryBox: Center: (0.0, 0.0, 0.0), Extents: (2.5, 1.0, 2.5)
- */
 
     protected override void Awake()
     {
         base.Awake();
 
-        Debug.Log(" Before BoundaryBox: " + this.boundingBox.ToCultureInvariantString());
-        foreach (BoxCollider box in base.gameObject.GetComponentsInChildren<BoxCollider>())
-        {
-            Debug.Log("Box Collider: " + box.size.ToCultureInvariantString());
-            Debug.Log(" Box Center: " + box.center.ToCultureInvariantString());
-        }
+        // So they don't step over each other.
+        this.stepHeight = 0.1f;
+
+    }
+
+    public void ConfigureBounaryBox(Vector3 newSize)
+    {
         BoxCollider component = base.gameObject.GetComponent<BoxCollider>();
         if (component)
         {
+            DisplayLog(" Box Collider: " + component.size.ToCultureInvariantString());
+            DisplayLog(" Current Boundary Box: " + this.boundingBox.ToCultureInvariantString());
             // Re-adjusting the box collider     
-            //component.center = new Vector3(0f, 0.85f, 0f);
-            float x = component.size.x * 6;
-            float z = component.size.z * 6;
-            component.size = new Vector3(x,  component.size.y, z);
+            component.size = newSize;
 
+            this.scaledExtent = new Vector3(component.size.x / 2f * base.transform.localScale.x, component.size.y / 2f * base.transform.localScale.y, component.size.z / 2f * base.transform.localScale.z);
+            Vector3 vector = new Vector3(component.center.x * base.transform.localScale.x, component.center.y * base.transform.localScale.y, component.center.z * base.transform.localScale.z);
+            this.boundingBox = global::BoundsUtils.BoundsForMinMax(-this.scaledExtent.x, -this.scaledExtent.y, -this.scaledExtent.z, this.scaledExtent.x, this.scaledExtent.y, this.scaledExtent.z);
+            this.boundingBox.center = this.boundingBox.center + vector;
+
+            // component.center = new Vector3(newSize.x, newSize.y / 2, newSize.z);
             this.nativeCollider = component;
-            this.scaledExtent = component.size;
-            this.boundingBox = BoundsUtils.BoundsForMinMax(x, component.size.y, z, x, component.size.y, z); 
+            //this.scaledExtent = component.size;
+            //this.boundingBox = BoundsUtils.BoundsForMinMax(newSize.x, newSize.y, newSize.z, newSize.x, newSize.x, newSize.z );
             if (this.isDetailedHeadBodyColliders())
-            {
                 component.enabled = false;
-            }
-            Debug.Log(" After BoundaryBox: " + this.boundingBox.ToCultureInvariantString());
+            DisplayLog(" After BoundaryBox: " + this.boundingBox.ToCultureInvariantString());
         }
+
     }
     public override void CopyPropertiesFromEntityClass()
     {
@@ -63,15 +58,14 @@ Box Collider: (0.6, 1.8, 0.4)
         
         base.CopyPropertiesFromEntityClass();
         EntityClass entityClass = EntityClass.list[this.entityClass];
+     
+        if (entityClass.Properties.Values.ContainsKey("BoundaryBox"))
+        {
+            Vector3 dim = StringParsers.ParseVector3(entityClass.Properties.Values["BoundaryBox"], 0, -1);
+            ConfigureBounaryBox(dim);
+        }
+            InvokeRepeating("CheckAnimalEvent", 1f, 60f);
 
-        if (entityClass.Properties.Values.ContainsKey("FoodItem"))
-            this.strFoodItem = entityClass.Properties.Values["FoodItem"];
-        if (entityClass.Properties.Values.ContainsKey("ProductItem"))
-            this.strProductItem = entityClass.Properties.Values["ProductItem"];
-        if (entityClass.Properties.Values.ContainsKey("HarvestItems"))
-            this.strHarvestItems = entityClass.Properties.Values["HarvestItems"];
-        
-        InvokeRepeating("CheckAnimalEvent", 1f, 60f);
     }
 
     // Cows were being stuck on the fence and trying to attack them. This is, I think, due to the entity move helper which makes
@@ -95,13 +89,26 @@ Box Collider: (0.6, 1.8, 0.4)
     {
         float size = this.Buffs.GetCustomVar("$sizeScale");
         if (size > 0.0f)
+        {
             this.gameObject.transform.localScale = new Vector3(size, size, size);
+            //ConfigureBounaryBox( this.gameObject.transform.localScale);
+        }
     }
 
 
     public override void OnUpdateLive()
     {
         AdjustSizeForStage();
+
+        if (this.Buffs.HasCustomVar("Herd") )
+        {
+            EntityAliveFarmingAnimalSDX temp = this.world.GetEntity((int)this.Buffs.GetCustomVar("Herd")) as EntityAliveFarmingAnimalSDX;
+            if (temp)
+            {
+                this.Buffs.SetCustomVar("CurrentOrder", (float)Orders.None, true);
+             //   this.setHomeArea(temp.GetBlockPosition(), 10);
+            }
+        }
         base.OnUpdateLive();
     }
 
@@ -132,8 +139,7 @@ Box Collider: (0.6, 1.8, 0.4)
         return strOutput;
     }
 
-
-
+   
 
     public override bool CanEntityJump()
     {

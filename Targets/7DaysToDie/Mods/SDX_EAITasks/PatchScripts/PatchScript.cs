@@ -28,7 +28,8 @@ public class EAITaskPatches : IPatcherMod
         // This adds a new Entity Alive SDX reference, that we can use and play around with.
         var myEntity = module.Types.First(d => d.Name == "EntityAlive");
         myEntity.Fields.Add(new FieldDefinition("otherEntitySDX", FieldAttributes.Public, myEntity));
-
+        var field = myEntity.Fields.First(d => d.Name == "entityThatKilledMe");
+        SetFieldToPublic(field);
         var gm = module.Types.First(d => d.Name == "EAIApproachAndAttackTarget");
         var method = gm.Methods.First(d => d.Name == "GetTargetXZDistanceSq");
         SetMethodToPublic(method);
@@ -42,6 +43,8 @@ public class EAITaskPatches : IPatcherMod
         method = gm.Methods.First(d => d.Name == "updatePath");
         SetMethodToPublic(method);
         SetMethodToVirtual(method);
+
+        
         return true;
     }
 
