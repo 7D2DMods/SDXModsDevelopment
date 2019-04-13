@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<ModInfo>
+		<Name value="Ambiance" />
+		<Description value="modlet to add more ambiance to the world" />
+		<Author value="Xyth" />
+		<Version value="1.0" />
+		<Website value="http://sdxmods.com" />
+	</ModInfo>
+</xml>

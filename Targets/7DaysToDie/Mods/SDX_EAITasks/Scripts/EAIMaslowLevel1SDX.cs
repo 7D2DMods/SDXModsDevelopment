@@ -9,6 +9,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     List<String> lstFoodItems = new List<String>();
     List<String> lstFoodBins = new List<String>();
 
+    List<String> lstWaterItems = new List<String>();
     List<String> lstWaterBins = new List<String>();
     List<String> lstHomeBlocks = new List<String>();
 
@@ -62,6 +63,8 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         this.lstFoodBins = ConfigureEntityClass("FoodBins", entityClass);
         this.lstFoodItems = ConfigureEntityClass("FoodItems", entityClass);
         this.lstWaterBins = ConfigureEntityClass("WaterBins", entityClass);
+        this.lstWaterItems = ConfigureEntityClass("WaterItems", entityClass);
+
 
         this.lstHomeBlocks = ConfigureEntityClass("HomeBlocks", entityClass);
         this.lstHungryBuffs = ConfigureEntityClass("HungryBuffs", entityClass);
@@ -308,6 +311,32 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                     this.theEntity.inventory.holdingItem.Actions[1].ExecuteAction(this.theEntity.inventory.holdingItemData.actionData[1], true);
                 }
             }
+            else if (this.lstWaterBins.Contains(checkBlock.Block.GetBlockName()))  // If the water bins are configured, then look inside for something to drink. This is for NPCs, rather than cows.
+            {
+                TileEntityLootContainer tileEntityLootContainer = this.theEntity.world.GetTileEntity(Voxel.voxelRayHitInfo.hit.clrIdx, new Vector3i(seekPos)) as TileEntityLootContainer;
+                if (tileEntityLootContainer == null)
+                    return false; // it's not a loot container.
+
+                // Check if it has any food on it.
+                if (CheckContents(tileEntityLootContainer, this.lstWaterItems, "Water"))
+                {
+                    ItemValue item = GetItemFromContainer(tileEntityLootContainer, this.lstWaterItems, "Water");
+                    if (item != null)
+                    {
+                        // Hold the food item.
+                        this.theEntity.inventory.SetBareHandItem(item);
+
+                        // We want to consume the food, but the consumption of food isn't supported on the non-players, so just fire off the buff 
+                        this.theEntity.FireEvent(MinEventTypes.onSelfPrimaryActionEnd);
+                        this.theEntity.FireEvent(MinEventTypes.onSelfHealedSelf);
+
+                        DisplayLog(" Drinking");
+                        // restore the hand item.
+                        this.theEntity.inventory.SetBareHandItem(ItemClass.GetItem(original.Name, false));
+                    }
+                }
+            }
+
             // see if the block is an entity, rather than a watering hold. 
             float milkLevel = this.GetEntityWater();
             if (milkLevel > 0)
@@ -348,9 +377,9 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                     return false; // it's not a loot container.
 
                 // Check if it has any food on it.
-                if (CheckContents(tileEntityLootContainer, this.lstFoodItems))
+                if (CheckContents(tileEntityLootContainer, this.lstFoodItems, "Food"))
                 {
-                    ItemValue item = GetItemFromContainer(tileEntityLootContainer, lstFoodItems);
+                    ItemValue item = GetItemFromContainer(tileEntityLootContainer, lstFoodItems, "Food");
                     if (item != null)
                     {
                         // Hold the food item.
@@ -427,7 +456,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
 
     // Grab a single item from the storage box, and remmove it.
-    public ItemValue GetItemFromContainer(TileEntityLootContainer tileLootContainer, List<String> lstContents)
+    public ItemValue GetItemFromContainer(TileEntityLootContainer tileLootContainer, List<String> lstContents, String strSearchType )
     {
         if (tileLootContainer.items != null)
         {
@@ -448,17 +477,56 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
                     return array[i].itemValue;
                 }
+
+                // If there's no specific food items specified, then check for all water / food sources that the player can use.
+                if ( lstContents.Count == 0 )
+                {
+                    if (IsConsumable(array[i].itemValue, strSearchType) != null)
+                        return array[i].itemValue;
+                }
             }
         }
         return null;
     }
 
+    // Loops around an item to reach in the triggered effects, to see if it can satisfy food and water requirements.
+    public ItemValue IsConsumable( ItemValue item, String strSearchType )
+    {
+        foreach( var Action in item.ItemClass.Actions)
+        {
+            if (Action is ItemActionEat)
+            {
+                foreach (var EffectGroup in item.ItemClass.Effects.EffectGroups)
+                {
+                    foreach (var TriggeredEffects in EffectGroup.TriggeredEffects)
+                    {
+                        MinEventActionModifyCVar effect = TriggeredEffects as MinEventActionModifyCVar;
+                    
+                        if ( strSearchType == "Food")
+                        {
+                            if ((effect.cvarName == "$foodAmountAdd") || (effect.cvarName == "foodHealthAmount"))
+                                return item;
+                        }
+                        else if (strSearchType == "Water")
+                        {
+                            if ((effect.cvarName == "$waterAmountAdd") || (effect.cvarName == "waterHealthAmount"))
+                                return item;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        return null;
+    }
+
+   
     // This will check if the food item actually exists in the container, before making the trip to it.
-    public bool CheckContents(TileEntityLootContainer tileLootContainer, List<String> lstContents)
+    public bool CheckContents(TileEntityLootContainer tileLootContainer, List<String> lstContents, String strSearchType)
     {
         DisplayLog(" Check Contents of Food bin");
         DisplayLog(" TileEntity: " + tileLootContainer.items.Length);
-        DisplayLog(" Food Items: " + lstContents.Count);
         if (tileLootContainer.items != null && lstContents != null)
         {
             ItemStack[] array = tileLootContainer.items;
@@ -470,6 +538,14 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                 // The animals will only eat the food they like best.
                 if (lstContents.Contains(array[i].itemValue.ItemClass.Name))
                     return true;
+
+                // If there's no items to compare again, such as food items or water items, then do a action check if its food.
+                if ( lstContents.Count == 0 )
+                {
+                    if (IsConsumable(array[i].itemValue, strSearchType) != null )
+                        return true;
+                }
+                
             }
         }
 
@@ -560,7 +636,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
                             if (lstContents.Count > 0)
                             {
-                                if (CheckContents(tileEntity, lstContents))
+                                if (CheckContents(tileEntity, lstContents, "Food"))
                                 {
                                     DisplayLog(" Box has food contents: " + tileEntities.ToString());
                                     localLists.Add(tileEntity.ToWorldPos().ToVector3());

@@ -55,7 +55,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine.AnimationModule">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie_Data\Managed\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>C:\Program Files (x86)\Steam\steamapps\common\7 Days To Die\7DaysToDie_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
@@ -81,18 +81,20 @@
     <Compile Include="Mods\AnimationSDX\PatchScripts\Animations.cs" />
     <Compile Include="Mods\AnimationSDX\Scripts\MecanimSDX.cs" />
     <Compile Include="Mods\AnimationSDX\Scripts\NewMecanimSDX.cs" />
-    <Compile Include="Mods\Blooms_AnimalHusbandry\Scripts\EntityAliveFarmingAnimalSDX.cs" />
     <Compile Include="Mods\EmuNoExceptionHijack\PatchScripts\NoExceptionHijack.cs" />
     <Compile Include="Mods\HalDllUpdates\PatchScripts\PatcherHalDll.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\EntityAnimalHal.cs" />
     <Compile Include="Mods\HalDllUpdates\Scripts\HalHelperEvents.cs" />
+    <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionAddBuffByFactionSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionAnimatorSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionCreateItemSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionModifySkillSDX.cs" />
+    <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionSkillPointSDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\MinEventActionSpawnBabySDX.cs" />
     <Compile Include="Mods\SDX_Buffs\Scripts\RequirementOnSpecificBiomeSDX.cs" />
-    <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryHourSDX.cs" />
-    <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryDaySDX.cs" />
+    <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryXHourSDX.cs" />
+    <Compile Include="Mods\SDX_Buffs\Scripts\RequirementEveryXDaySDX.cs" />
+    <Compile Include="Mods\SDX_Buffs\Scripts\RequirementSameFactionSDX.cs" />
     <Compile Include="Mods\SDX_Dialog\PatchScripts\PatchScript.cs" />
     <Compile Include="Mods\SDX_Dialog\Scripts\DialogActionOpenDialogSDX.cs" />
     <Compile Include="Mods\SDX_Dialog\Scripts\DialogRequirementPatrolSDX.cs" />
@@ -101,11 +103,14 @@
     <Compile Include="Mods\SDX_Dialog\Scripts\XUiC_DialogHireInformationSDX.cs" />
     <Compile Include="Mods\SDX_Dialog\Scripts\XUiC_DialogRespondentNameSDX.cs" />
     <Compile Include="Mods\SDX_Dialog\Scripts\XUiC_HireInformationPopupSDX.cs" />
+    <Compile Include="Mods\SDX_Dialog\Scripts\XUiC_JoinInformationPopupSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\PatchScripts\PatchScript.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndAttackSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIApproachAndFollowTargetSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAILootLocationSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIMaslowLevel1SDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAIPatrolSDX.cs" />
+    <Compile Include="Mods\SDX_EAITasks\Scripts\EAIRunawayFromEntitySDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetAsTargetIfHurtSDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetAsTargetNearestEnemySDX.cs" />
     <Compile Include="Mods\SDX_EAITasks\Scripts\EAISetAsTargetIfLeaderAttackedSDX.cs" />
@@ -121,8 +126,11 @@
     <Compile Include="Mods\SDX_Quests\Scripts\QuestActionGiveBuffSDX.cs" />
     <Compile Include="Mods\SDX_Quests\Scripts\QuestActionReplaceEntitySDX.cs" />
     <Compile Include="Mods\SDX_Quests\Scripts\QuestActionSpawnEntitySDX.cs" />
+    <Compile Include="Mods\SDX_Quests\Scripts\RewardGiveNPCSDX.cs" />
     <Compile Include="Mods\SDX_Quests\Scripts\RewardItemSDX.cs" />
     <Compile Include="Mods\SDX_Quests\Scripts\RewardQuestSDX.cs" />
+    <Compile Include="Mods\SDX_Quests\Scripts\RewardReassignNPCSDX.cs" />
+    <Compile Include="Mods\SDX_SpawnFromEntityGroup\Scripts\EntityAliveEventSpawnerSDX.cs" />
     <Compile Include="Mods\SphereII_ABetterLife\Scripts\BlockMortSpawner.cs" />
     <Compile Include="Mods\SphereII_ABetterLife\Scripts\EntitySwimingSDX.cs" />
     <Compile Include="Mods\SDX_EntityAliveSDX\Scripts\EntityAliveSDX.cs" />
@@ -151,6 +159,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Mods\AnimationSDX\ReadMe.md" />
+    <None Include="Mods\aXUi_Dialog\ReadMe.md" />
     <None Include="Mods\Blooms_AnimalHusbandry\ReadMe.md" />
     <None Include="Mods\Blooms_AnimalHusbandry\Resources\Cows.unity3d" />
     <None Include="Mods\HalDllUpdates\Scripts\BipedAnimations.cs.bak" />
@@ -161,6 +171,7 @@
     <None Include="Mods\SDX_Buffs\README.md" />
     <None Include="Mods\SDX_ItemActions\README.md" />
     <None Include="Mods\SDX_Quests\README.md" />
+    <None Include="Mods\SDX_SpawnFromEntityGroup\ReadMe.md" />
     <None Include="Mods\SphereII_ABetterLife\README.md" />
     <None Include="Mods\SphereII_ABetterLife\Resources\Alcatraz.unity3d" />
     <None Include="Mods\SphereII_ABetterLife\Resources\Barracuda.unity3d" />
@@ -229,43 +240,46 @@
     <Content Include="Mods\AnimationSDX\Config\entityclasses.xml" />
     <Content Include="Mods\AnimationSDX\mod.xml" />
     <Content Include="Mods\AnimationSDX\ModInfo.xml" />
+    <Content Include="Mods\aXUi_Dialog\Config\dialogs.xml" />
+    <Content Include="Mods\aXUi_Dialog\Config\npc.xml" />
+    <Content Include="Mods\aXUi_Dialog\Config\quests.xml" />
+    <Content Include="Mods\aXUi_Dialog\Config\XUi\controls.xml" />
+    <Content Include="Mods\aXUi_Dialog\Config\XUi\styles.xml" />
+    <Content Include="Mods\aXUi_Dialog\Config\XUi\windows.xml" />
+    <Content Include="Mods\aXUi_Dialog\Config\XUi\xui.xml" />
+    <Content Include="Mods\aXUi_Dialog\ItemIcons\smx_bulletpoint_icon.png" />
+    <Content Include="Mods\aXUi_Dialog\mod.xml" />
+    <Content Include="Mods\aXUi_Dialog\ModInfo.xml" />
+    <Content Include="Mods\aXUi_Dialog\Textures\trader\smx_player_bg.png" />
+    <Content Include="Mods\aXUi_Dialog\Textures\trader\smx_trader_bg.png" />
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\blocks.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\buffs.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Mods\Blooms_AnimalHusbandry\Config\dialogs.xml" />
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\entityclasses.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\entitygroups.xml" />
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\items.xml" />
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\Localization.txt" />
+    <Content Include="Mods\Blooms_AnimalHusbandry\Config\npc.xml" />
     <Content Include="Mods\Blooms_AnimalHusbandry\Config\quests.xml" />
-    <Content Include="Mods\Blooms_AnimalHusbandry\Config\vehicles.xml" />
     <Content Include="Mods\Blooms_AnimalHusbandry\mod.xml" />
     <Content Include="Mods\Blooms_AnimalHusbandry\ModInfo.xml" />
     <Content Include="Mods\EmuNoExceptionHijack\mod.xml" />
     <Content Include="Mods\EmuNoExceptionHijack\ModInfo.xml" />
     <Content Include="Mods\HalDllUpdates\mod.xml" />
     <Content Include="Mods\HalDllUpdates\ModInfo.xml" />
-    <Content Include="Mods\SDX_Dialog\Config\dialogs.xml" />
-    <Content Include="Mods\SDX_Dialog\Config\quests.xml" />
-    <Content Include="Mods\SDX_Dialog\Config\XUi\controls.xml" />
-    <Content Include="Mods\SDX_Dialog\Config\XUi\styles.xml" />
-    <Content Include="Mods\SDX_Dialog\Config\XUi\windows.xml" />
-    <Content Include="Mods\SDX_Dialog\Config\XUi\xui.xml" />
     <Content Include="Mods\SDX_Dialog\mod.xml" />
     <Content Include="Mods\SDX_Dialog\ModInfo.xml" />
-    <Content Include="Mods\SDX_Dialog\Textures\trader\smx_bulletpoint_icon.png" />
-    <Content Include="Mods\SDX_Dialog\Textures\trader\smx_player_bg.png" />
-    <Content Include="Mods\SDX_Dialog\Textures\trader\smx_trader_bg.png" />
-    <Content Include="Mods\SDX_EAITasks\Config\buffs.xml" />
     <Content Include="Mods\SDX_EAITasks\mod.xml" />
     <Content Include="Mods\SDX_Buffs\mod.xml" />
-    <Content Include="Mods\SDX_Dialog\Config\npc.xml" />
     <Content Include="Mods\SDX_ItemActions\mod.xml" />
     <Content Include="Mods\SDX_Quests\mod.xml" />
+    <Content Include="Mods\SDX_SpawnFromEntityGroup\mod.xml" />
     <Content Include="Mods\SphereII_ABetterLife\Config - Copy\biomes.xml" />
     <Content Include="Mods\SphereII_ABetterLife\Config - Copy\blocks.xml" />
     <Content Include="Mods\SphereII_ABetterLife\Config - Copy\entityclasses.xml" />
@@ -287,7 +301,6 @@
     <Content Include="Mods\SphereII_ABetterLife\ItemIcons\Raw Fish.png" />
     <Content Include="Mods\SphereII_ABetterLife\mod.xml" />
     <Content Include="Mods\SphereII_ABetterLife\Text\localization.txt" />
-    <Content Include="Mods\SDX_EntityAliveSDX\Config\entityclasses.xml" />
     <Content Include="Mods\SDX_EntityAliveSDX\mod.xml" />
     <Content Include="Mods\SDX_EntityAliveSDX\ModInfo.xml" />
     <Content Include="Mods\SphereII_XPBarRemoval\mod.xml" />

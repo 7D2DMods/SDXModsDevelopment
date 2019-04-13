@@ -111,7 +111,7 @@ class EntityAliveEventSpawnerSDX : EntityAlive
     {
         // Grab a random position.
         Vector3 transformPos;
-        if (!this.world.GetRandomSpawnPositionMinMaxToPosition(this.world.GetPrimaryPlayer().position, 2, 6, 2, true, out transformPos, false))
+        if (!this.world.GetRandomSpawnPositionMinMaxToPosition(this.position, 2, 6, 2, true, out transformPos, false))
         {
             DisplayLog(" No position available");
             return;

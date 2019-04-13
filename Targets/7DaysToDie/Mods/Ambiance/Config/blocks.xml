@@ -1,0 +1,8 @@
+﻿<configs>
+  <append xpath="/blocks/block[./property[@name='Class' and @value='Light']]" >
+   	<property name="ParticleName" value="#@modfolder:Resources/MothParticle.unity3d?p_Moths_X"/>
+	<property name="ParticleOffset" value="0.5,0,0.5"/>
+</append>
+
+</configs>
+

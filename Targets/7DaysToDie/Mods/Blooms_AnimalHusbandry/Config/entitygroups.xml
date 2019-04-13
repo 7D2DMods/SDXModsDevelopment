@@ -6,5 +6,9 @@
       <!--entity name="zombieFarmCow" prob="0.01"/ -->
     </entitygroup>
   </append>
-  
+
+  <append xpath="/entitygroups/entitygroup[@name='AnimalsFarm']">
+    <entity name="animalFarmCow" />
+    <entity name="animalFarmCowMale" prob="0.3"/>
+  </append>
 </configs>

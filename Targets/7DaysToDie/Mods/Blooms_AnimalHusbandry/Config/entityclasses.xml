@@ -22,6 +22,9 @@
       <!-- Sanitation Buff: Aka, make 'em poop part. Add in  buffSanitationStatusCheck in the Buffs entry here to enable. -->
       <property name="SanitationBuffs" value="buffStatusSanitation1,buffStatusSanitation2" />
 
+      <property name="MoveSpeed" value="0.3"/>
+      <property name="MoveSpeedAggro" value="1.4,1.4"/>
+      <property name="MoveSpeedPanic" value="1.4"/>
       
       <effect_group name="Base Effects">
 				<passive_effect name="HealthMax" operation="base_set" value="110"/>
@@ -34,12 +37,6 @@
         <passive_effect name="StaminaLossMaxMult" operation="base_set" value="0.0068"/>
         <passive_effect name="HealthChangeOT" operation="base_set" value="0.017" />
 				<passive_effect name="HealthMaxModifierOT" operation="base_add" value=".00028"/>
-        <passive_effect name="WalkSpeed" operation="base_set" value="1.53"/>
-				<passive_effect name="RunSpeed" operation="base_set" value="1.10"/>
-				<passive_effect name="CrouchSpeed" operation="base_set" value="1.04"/>
-				<passive_effect name="WalkSpeed" operation="base_set" value="1.02" tags="swimming"/>
-				<passive_effect name="RunSpeed" operation="base_set" value="0.85" tags="swimming"/>
-
 				<passive_effect name="Mobility" operation="base_set" value="1"/>
 				<passive_effect name="Mobility" operation="perc_add"  value="-.3" tags="swimming"/>
 				<passive_effect name="JumpStrength" operation="base_set" value="0.16"/>
@@ -73,25 +70,15 @@
         <!-- Territorial hangs out around the home block -->
 
       <property name="AITask-1" value="Swim"/>
-      <property name="AITask-2" value="RunawayWhenHurt"/>
-      <property name="AITask-3" value="RunawayFromEntity" param1="EntityPlayer"/>
-      <property name="AITask-4" value="RunawayFromEntity" param1="EntityZombie"/>     
-      <property name="AITask-5" value="Territorial"/>
-      <property name="AITask-6" value="WanderSDX, Mods"/>
+      <property name="AITask-2" value="Territorial"/>
+      <property name="AITask-3" value="WanderSDX, Mods"/>
+      <property name="AITask-4" value="ApproachAndFollowTargetSDX, Mods" param1="Mother,Leader,hayBaleBlock,foodCornOnTheCob"/>
+      <property name="AITask-5" value="MaslowLevel1SDX, Mods"/>
+      <property name="AITask-6" value="Look"/>
+      <property name="AITask-7" value="" />
+      <property name="AITarget-1" value="RunawayWhenHurt"/>
+      <property name="AITarget-2" value=""/>
 
-      <!-- This AI task is tied to a cvar, which is being used to record entity ID that we want to follow -->
-      <!-- Param1 can be:  cvar, Buff or the current hand item, such as a block or item name -->
-      <!--  param1="Mother,Leader,buffBeastMaster,hayBaleBlock,foodCornOnTheCob" -->
-      <property name="AITask-7" value="ApproachAndFollowTargetSDX, Mods" param1="Mother,Leader,hayBaleBlock,foodCornOnTheCob"/>
-      <property name="AITask-8" value="MaslowLevel1SDX, Mods"/>
-      <property name="AITask-9" value="Look"/>
-
-      <property name="AITask-10" value=""/>
-      <property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods"/>
-      <property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods"/>
-      <property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/>
-      <property name="AITarget-4" value="" />
-      <!-- Random name property. If none are listed, it's called Bob -->
       <property name="Names" value="Rose,Dahlia,Flower,Minnie,Daisy,Darla,Margie,Maggie,Esmeralda,Shelly,Meg,Lois,Jasmine,Bella,Candie,Bessie,Emma,Penelope,Bella,Molly,Clarabelle,Henrietta,Nettie,Annabelle,Gertie,Betty Sue, Ella, Anna,Dorothy,Annie,Honebun,Sweetie,LovaBull,Cupcake,Baby,Cookie,Sunny,SunShine,Cocoa,Muffin,Pinky,Blue,Sugar,Booboo,Princess,Big Mac,Madonna,Bertha,Waffles,Moscow,MooMoo,Mud Pie,Shrimp,Cowlick,Ineda Bunn,Waffles,Hamburger,Brown Cow,Humphry,Heifer,Mickey D" />
   
       <!-- Loot List Alive lets us display the dialog box for the entity commands. Container doesn't matter. -->
@@ -109,11 +96,15 @@
       
       <!-- This is the block it'll call home -->
 			<property name="HomeBlocks" value="cntCowHomeBlock,hayBaleBlock"/>
-		</entity_class>
+
+      <!-- For idles -->
+      <property name="RandomIndexes" value="2" />
+
+    </entity_class>
 
     <!-- Male version This has an effect through the Buffs.xml to control fertilify -->
     <entity_class name="animalFarmCowMale" extends="animalFarmCow">
-      <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_prefab"/>
+      <property name="Mesh" value="#@modfolder:Resources/Cows.unity3d?Cattle_male_prefab"/>
       <property name="IsMale" value="true"/>
       <property name="Names" value="Bully,Duke,Hydro,Homer,Earl,Disel,Horns,Armor,Bob,Sampson,Tank,Kristof,Angus,Midnight,Nitrous,Red Bull,Moogan Freeman,Meatloaf,T-Bone,Mooshu,Leonardo DiCowprio,Cheeseburger,LovaBull,Hugh Heifer,Moossolini,Grassyella,Moo Rock,Rick Raws The Sause Bause,SteakHouse" />
     </entity_class>

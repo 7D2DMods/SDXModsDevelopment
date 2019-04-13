@@ -21,7 +21,42 @@ class EntityAliveFarmingAnimalSDX : EntityAliveSDX
     public String strProductItem;
     public String strHarvestItems;
 
-    
+    /*
+     *  Before BoundaryBox: Center: (0.0, 0.9, 0.0), Extents: (0.3, 0.9, 0.2)
+Box Collider: (0.6, 1.8, 0.4)
+ Box Center: (0.0, 0.9, 0.0)
+ After BoundaryBox: Center: (0.0, 0.0, 0.0), Extents: (2.5, 1.0, 2.5)
+ */
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        Debug.Log(" Before BoundaryBox: " + this.boundingBox.ToCultureInvariantString());
+        foreach (BoxCollider box in base.gameObject.GetComponentsInChildren<BoxCollider>())
+        {
+            Debug.Log("Box Collider: " + box.size.ToCultureInvariantString());
+            Debug.Log(" Box Center: " + box.center.ToCultureInvariantString());
+        }
+        BoxCollider component = base.gameObject.GetComponent<BoxCollider>();
+        if (component)
+        {
+            // Re-adjusting the box collider     
+            //component.center = new Vector3(0f, 0.85f, 0f);
+            float x = component.size.x * 6;
+            float z = component.size.z * 6;
+            component.size = new Vector3(x,  component.size.y, z);
+
+            this.nativeCollider = component;
+            this.scaledExtent = component.size;
+            this.boundingBox = BoundsUtils.BoundsForMinMax(x, component.size.y, z, x, component.size.y, z); 
+            if (this.isDetailedHeadBodyColliders())
+            {
+                component.enabled = false;
+            }
+            Debug.Log(" After BoundaryBox: " + this.boundingBox.ToCultureInvariantString());
+        }
+    }
     public override void CopyPropertiesFromEntityClass()
     {
         this.npcID = "animalFarm";
@@ -35,7 +70,7 @@ class EntityAliveFarmingAnimalSDX : EntityAliveSDX
             this.strProductItem = entityClass.Properties.Values["ProductItem"];
         if (entityClass.Properties.Values.ContainsKey("HarvestItems"))
             this.strHarvestItems = entityClass.Properties.Values["HarvestItems"];
-
+        
         InvokeRepeating("CheckAnimalEvent", 1f, 60f);
     }
 
