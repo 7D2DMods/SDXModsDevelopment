@@ -756,6 +756,7 @@ public class EntityAliveSDX : EntityNPC
 
     public bool IsInParty(int entityID)
     {
+        DisplayLog(" Checking if I am in a Party with: " + entityId);
         // This is the entity that is trying to attack me.
         Entity entityTarget = this.world.GetEntity(entityID);
         if (entityTarget == null)
@@ -768,8 +769,10 @@ public class EntityAliveSDX : EntityNPC
         EntityPlayerLocal localPlayer;
         if (this.Buffs.HasCustomVar("Leader"))
         {
+            DisplayLog(" Checking my Leader");
             // Find out who the leader is.
             int PlayerID = (int)this.Buffs.GetCustomVar("Leader");
+            DisplayLog(" My Leader ID is: " + PlayerID);
             localPlayer = this.world.GetEntity(PlayerID) as EntityPlayerLocal;
             if (localPlayer == null)
             {
@@ -784,6 +787,7 @@ public class EntityAliveSDX : EntityNPC
             return false;
         }
 
+        DisplayLog(" The Target entity is: " + entityTarget.ToString());
         // Let's check if a player is being hurt.
         if (entityTarget is EntityPlayer)
         {
