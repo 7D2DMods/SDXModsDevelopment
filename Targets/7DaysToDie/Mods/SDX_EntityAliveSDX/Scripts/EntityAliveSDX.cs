@@ -39,6 +39,8 @@ public class EntityAliveSDX : EntityNPC
 
     // Default name
     String strMyName = "Bob";
+    String strTitle;
+
     public System.Random random = new System.Random();
 
     private bool blDisplayLog = true;
@@ -156,6 +158,13 @@ public class EntityAliveSDX : EntityNPC
             strMyName = Names[index];
         }
 
+        if (entityClass.Properties.Values.ContainsKey("Titles"))
+        {
+            string text = entityClass.Properties.Values["Titles"];
+            string[] Names = text.Split(',');
+            int index = random.Next(0, Names.Length);
+            strTitle = Names[index];
+        }
         if (entityClass.Properties.Values.ContainsKey("HireCost"))
             HireCost = int.Parse(entityClass.Properties.Values["HireCost"]);
         if (entityClass.Properties.Values.ContainsKey("HireCurrency"))
@@ -166,8 +175,39 @@ public class EntityAliveSDX : EntityNPC
         }
 
 
+        if (entityClass.Properties.Values.ContainsKey("BoundaryBox"))
+        {
+            Vector3 dim = StringParsers.ParseVector3(entityClass.Properties.Values["BoundaryBox"], 0, -1);
+            ConfigureBounaryBox(dim);
+        }
+
     }
 
+    public void ConfigureBounaryBox(Vector3 newSize)
+    {
+        BoxCollider component = base.gameObject.GetComponent<BoxCollider>();
+        if (component)
+        {
+            DisplayLog(" Box Collider: " + component.size.ToCultureInvariantString());
+            DisplayLog(" Current Boundary Box: " + this.boundingBox.ToCultureInvariantString());
+            // Re-adjusting the box collider     
+            component.size = newSize;
+
+            this.scaledExtent = new Vector3(component.size.x / 2f * base.transform.localScale.x, component.size.y / 2f * base.transform.localScale.y, component.size.z / 2f * base.transform.localScale.z);
+            Vector3 vector = new Vector3(component.center.x * base.transform.localScale.x, component.center.y * base.transform.localScale.y, component.center.z * base.transform.localScale.z);
+            this.boundingBox = global::BoundsUtils.BoundsForMinMax(-this.scaledExtent.x, -this.scaledExtent.y, -this.scaledExtent.z, this.scaledExtent.x, this.scaledExtent.y, this.scaledExtent.z);
+            this.boundingBox.center = this.boundingBox.center + vector;
+
+            // component.center = new Vector3(newSize.x, newSize.y / 2, newSize.z);
+            this.nativeCollider = component;
+            //this.scaledExtent = component.size;
+            //this.boundingBox = BoundsUtils.BoundsForMinMax(newSize.x, newSize.y, newSize.z, newSize.x, newSize.x, newSize.z );
+            if (this.isDetailedHeadBodyColliders())
+                component.enabled = false;
+            DisplayLog(" After BoundaryBox: " + this.boundingBox.ToCultureInvariantString());
+        }
+
+    }
     Vector3i lastDoorOpen;
     private float nextCheck = 0;
     public float CheckDelay = 5f;
@@ -441,7 +481,24 @@ public class EntityAliveSDX : EntityNPC
         return false;
     }
 
-
+    public override string EntityName
+    {
+        get
+        {
+            if (strMyName == "Bob")
+                return this.entityName;
+            else
+                return this.strMyName + " the " + base.EntityName;
+        }
+        set
+        {
+            if (!value.Equals(this.entityName))
+            {
+                this.entityName = value;
+                this.bPlayerStatsChanged |= !this.isEntityRemote;
+            }
+        }
+    }
     public override void PostInit()
     {
         base.PostInit();
