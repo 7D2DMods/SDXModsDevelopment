@@ -781,6 +781,12 @@ public class EntityAliveSDX : EntityNPC
                 DisplayLog("IsInParty(): I have a leader, but that leader is not an EntityPlayerLocal");
                 return false;
             }
+
+            if (PlayerID == entityID)
+            {
+                DisplayLog("My leader hurt me. Forgiving.");
+                return true;
+            }
         }
         else
         {
@@ -791,14 +797,17 @@ public class EntityAliveSDX : EntityNPC
 
         DisplayLog(" The Target entity is: " + entityTarget.ToString());
         // Let's check if a player is being hurt.
-        if (entityTarget is EntityPlayer)
+        if (entityTarget is EntityPlayerLocal)
         {
+            DisplayLog(" Target Entity is a Player.");
             if (localPlayer == null)
             {
                 DisplayLog(" Local Player is null.");
             }
+
+
             // If another player, who is part of my leader's party hurts me, ignore it.
-            if (localPlayer.Party.ContainsMember(entityTarget as EntityPlayer))
+            if (localPlayer.Party.ContainsMember(entityTarget as EntityPlayerLocal))
             {
                 DisplayLog("IsInParty():  Enemy that attacked me is a player, but is party of my leader's party. Forgiving friendly fire.");
                 return true;
