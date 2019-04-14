@@ -175,36 +175,62 @@ public class EntityAliveSDX : EntityNPC
         }
 
 
-        if (entityClass.Properties.Values.ContainsKey("BoundaryBox"))
-        {
-            Vector3 dim = StringParsers.ParseVector3(entityClass.Properties.Values["BoundaryBox"], 0, -1);
-            ConfigureBounaryBox(dim);
-        }
 
+        if (entityClass.Properties.Classes.ContainsKey("Boundary"))
+        {
+            DisplayLog(" Found Bandary Settings");
+            String strBoundaryBox ="0,0,0";
+            String strCenter = "0,0,0";
+            DynamicProperties dynamicProperties3 = entityClass.Properties.Classes["Boundary"];
+            foreach (KeyValuePair<string, object> keyValuePair in dynamicProperties3.Values.Dict.Dict)
+            {
+                DisplayLog("Key: " + keyValuePair.Key);
+                if (keyValuePair.Key == "BoundaryBox")
+                {
+                    DisplayLog(" Found a Boundary Box");
+                    strBoundaryBox = dynamicProperties3.Values[keyValuePair.Key];
+                    continue;
+                }
+
+                if (keyValuePair.Key == "Center")
+                {
+                    DisplayLog(" Found a Center");
+                    strCenter = dynamicProperties3.Values[keyValuePair.Key];
+                    continue;
+                }
+            }
+
+            Vector3 Box = StringParsers.ParseVector3(strBoundaryBox, 0, -1);
+            Vector3 Center = StringParsers.ParseVector3(strCenter, 0, -1);
+            ConfigureBounaryBox(Box, Center);
+        }
     }
 
-    public void ConfigureBounaryBox(Vector3 newSize)
+    public void ConfigureBounaryBox(Vector3 newSize, Vector3 center)
     {
         BoxCollider component = base.gameObject.GetComponent<BoxCollider>();
         if (component)
         {
-            DisplayLog(" Box Collider: " + component.size.ToCultureInvariantString());
-            DisplayLog(" Current Boundary Box: " + this.boundingBox.ToCultureInvariantString());
-            // Re-adjusting the box collider     
-            component.size = newSize;
+                DisplayLog(" Box Collider: " + component.size.ToCultureInvariantString());
+                DisplayLog(" Current Boundary Box: " + this.boundingBox.ToCultureInvariantString());
+                // Re-adjusting the box collider     
+                component.size = newSize;
 
-            this.scaledExtent = new Vector3(component.size.x / 2f * base.transform.localScale.x, component.size.y / 2f * base.transform.localScale.y, component.size.z / 2f * base.transform.localScale.z);
-            Vector3 vector = new Vector3(component.center.x * base.transform.localScale.x, component.center.y * base.transform.localScale.y, component.center.z * base.transform.localScale.z);
-            this.boundingBox = global::BoundsUtils.BoundsForMinMax(-this.scaledExtent.x, -this.scaledExtent.y, -this.scaledExtent.z, this.scaledExtent.x, this.scaledExtent.y, this.scaledExtent.z);
-            this.boundingBox.center = this.boundingBox.center + vector;
+                this.scaledExtent = new Vector3(component.size.x / 2f * base.transform.localScale.x, component.size.y / 2f * base.transform.localScale.y, component.size.z / 2f * base.transform.localScale.z);
+                Vector3 vector = new Vector3(component.center.x * base.transform.localScale.x, component.center.y * base.transform.localScale.y, component.center.z * base.transform.localScale.z);
+                this.boundingBox = global::BoundsUtils.BoundsForMinMax(-this.scaledExtent.x, -this.scaledExtent.y, -this.scaledExtent.z, this.scaledExtent.x, this.scaledExtent.y, this.scaledExtent.z);
+                this.boundingBox.center = this.boundingBox.center + vector;
 
-            // component.center = new Vector3(newSize.x, newSize.y / 2, newSize.z);
-            this.nativeCollider = component;
-            //this.scaledExtent = component.size;
-            //this.boundingBox = BoundsUtils.BoundsForMinMax(newSize.x, newSize.y, newSize.z, newSize.x, newSize.x, newSize.z );
-            if (this.isDetailedHeadBodyColliders())
-                component.enabled = false;
-            DisplayLog(" After BoundaryBox: " + this.boundingBox.ToCultureInvariantString());
+                // component.center = new Vector3(newSize.x, newSize.y / 2, newSize.z);
+                this.nativeCollider = component;
+                //this.scaledExtent = component.size;
+                //this.boundingBox = BoundsUtils.BoundsForMinMax(newSize.x, newSize.y, newSize.z, newSize.x, newSize.x, newSize.z );
+                if (this.isDetailedHeadBodyColliders())
+                    component.enabled = false;
+                DisplayLog(" After BoundaryBox: " + this.boundingBox.ToCultureInvariantString());
+
+            if (center != Vector3.zero)
+                this.boundingBox.center = center;
         }
 
     }
