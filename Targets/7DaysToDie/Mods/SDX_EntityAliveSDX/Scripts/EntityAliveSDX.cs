@@ -91,7 +91,7 @@ public class EntityAliveSDX : EntityNPC
 
     public bool CanExecuteTask(Orders order)
     {
-   
+
 
         // If we don't match our current order, don't execute
         if (this.Buffs.HasCustomVar("CurrentOrder"))
@@ -102,7 +102,7 @@ public class EntityAliveSDX : EntityNPC
             if (this.Buffs.GetCustomVar("CurrentOrder") == (float)Orders.Stay)
             {
                 // If we have an attack or revenge target, don't execute task
-                if (this.GetAttackTarget() != null && this.GetAttackTarget().IsAlive() )
+                if (this.GetAttackTarget() != null && this.GetAttackTarget().IsAlive())
                     return false;
 
                 if (this.GetRevengeTarget() != null && this.GetRevengeTarget().IsAlive())
@@ -114,7 +114,7 @@ public class EntityAliveSDX : EntityNPC
                 return true;
             }
 
- 
+
 
         }
 
@@ -179,7 +179,7 @@ public class EntityAliveSDX : EntityNPC
         if (entityClass.Properties.Classes.ContainsKey("Boundary"))
         {
             DisplayLog(" Found Bandary Settings");
-            String strBoundaryBox ="0,0,0";
+            String strBoundaryBox = "0,0,0";
             String strCenter = "0,0,0";
             DynamicProperties dynamicProperties3 = entityClass.Properties.Classes["Boundary"];
             foreach (KeyValuePair<string, object> keyValuePair in dynamicProperties3.Values.Dict.Dict)
@@ -211,26 +211,28 @@ public class EntityAliveSDX : EntityNPC
         BoxCollider component = base.gameObject.GetComponent<BoxCollider>();
         if (component)
         {
-                DisplayLog(" Box Collider: " + component.size.ToCultureInvariantString());
-                DisplayLog(" Current Boundary Box: " + this.boundingBox.ToCultureInvariantString());
-                // Re-adjusting the box collider     
-                component.size = newSize;
+            DisplayLog(" Box Collider: " + component.size.ToCultureInvariantString());
+            DisplayLog(" Current Boundary Box: " + this.boundingBox.ToCultureInvariantString());
+            // Re-adjusting the box collider     
+            component.size = newSize;
 
-                this.scaledExtent = new Vector3(component.size.x / 2f * base.transform.localScale.x, component.size.y / 2f * base.transform.localScale.y, component.size.z / 2f * base.transform.localScale.z);
-                Vector3 vector = new Vector3(component.center.x * base.transform.localScale.x, component.center.y * base.transform.localScale.y, component.center.z * base.transform.localScale.z);
-                this.boundingBox = global::BoundsUtils.BoundsForMinMax(-this.scaledExtent.x, -this.scaledExtent.y, -this.scaledExtent.z, this.scaledExtent.x, this.scaledExtent.y, this.scaledExtent.z);
-                this.boundingBox.center = this.boundingBox.center + vector;
+            this.scaledExtent = new Vector3(component.size.x / 2f * base.transform.localScale.x, component.size.y / 2f * base.transform.localScale.y, component.size.z / 2f * base.transform.localScale.z);
+            Vector3 vector = new Vector3(component.center.x * base.transform.localScale.x, component.center.y * base.transform.localScale.y, component.center.z * base.transform.localScale.z);
+            this.boundingBox = global::BoundsUtils.BoundsForMinMax(-this.scaledExtent.x, -this.scaledExtent.y, -this.scaledExtent.z, this.scaledExtent.x, this.scaledExtent.y, this.scaledExtent.z);
+            this.boundingBox.center = this.boundingBox.center + vector;
 
-                // component.center = new Vector3(newSize.x, newSize.y / 2, newSize.z);
-                this.nativeCollider = component;
-                //this.scaledExtent = component.size;
-                //this.boundingBox = BoundsUtils.BoundsForMinMax(newSize.x, newSize.y, newSize.z, newSize.x, newSize.x, newSize.z );
-                if (this.isDetailedHeadBodyColliders())
-                    component.enabled = false;
-                DisplayLog(" After BoundaryBox: " + this.boundingBox.ToCultureInvariantString());
+            // component.center = new Vector3(newSize.x, newSize.y / 2, newSize.z);
+            this.nativeCollider = component;
+            //this.scaledExtent = component.size;
+            //this.boundingBox = BoundsUtils.BoundsForMinMax(newSize.x, newSize.y, newSize.z, newSize.x, newSize.x, newSize.z );
+            if (this.isDetailedHeadBodyColliders())
+                component.enabled = false;
+
 
             if (center != Vector3.zero)
                 this.boundingBox.center = center;
+
+            DisplayLog(" After BoundaryBox: " + this.boundingBox.ToCultureInvariantString());
         }
 
     }
@@ -371,8 +373,8 @@ public class EntityAliveSDX : EntityNPC
         uiforPlayer.xui.Dialog.otherEntitySDX = this;
         base.OnEntityActivated(_indexInBlockActivationCommands, _tePos, _entityFocusing);
 
-    
-       return true;
+
+        return true;
     }
 
     public virtual bool ExecuteCMD(String strCommand, EntityPlayer player)
@@ -791,6 +793,10 @@ public class EntityAliveSDX : EntityNPC
         // Let's check if a player is being hurt.
         if (entityTarget is EntityPlayer)
         {
+            if (localPlayer == null)
+            {
+                DisplayLog(" Local Player is null.");
+            }
             // If another player, who is part of my leader's party hurts me, ignore it.
             if (localPlayer.Party.ContainsMember(entityTarget as EntityPlayer))
             {
