@@ -13,7 +13,7 @@ class EAIRunAwayFromEntitySDX :  EAIRunawayWhenHurt
     private int fleeCounter;
     private int fleeDistance = 10;
     float originalView;
-    private bool blDisplayLog = false;
+    private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -51,8 +51,9 @@ class EAIRunAwayFromEntitySDX :  EAIRunawayWhenHurt
                 this.fleeDistance = 20;
                 break;
             case FactionManager.Relationship.Neutral:
-                this.fleeDistance = 10;
-                break;
+                //this.fleeDistance = 10;
+                //break;
+                return false;
             case FactionManager.Relationship.Like:
                 return false;
             case FactionManager.Relationship.Love:
