@@ -41,6 +41,21 @@
 				<property name="Buff_chance" value="0.5,0.3,0.3" />
 				<property name="DamageBonus.head" value="5" />
 			</property>
+		</item>	
+		<item name="handMecBee">
+			<property name="Extends" value="meleeHandZombie01"/>
+			<property name="CreativeMode" value="None"/>
+			<property class="Action0">
+				<property name="DamageEntity" value="30"/>
+				<property name="DamageBlock" value="30"/>
+				<property name="Range" value="1.5"/>
+				<property name="Sphere" value="1.0"/>
+				<property name="Sound_start" value="swoosh" />
+				<property name="Buff" value="criticalBlunt,stunned,sprainedLeg" />
+				<property name="Buff_chance" value="0.5,0.3,0.3" />
+				<property name="DamageBonus.head" value="5" />
+			</property>
 		</item>		
+		
 	</append>
 </configs>
