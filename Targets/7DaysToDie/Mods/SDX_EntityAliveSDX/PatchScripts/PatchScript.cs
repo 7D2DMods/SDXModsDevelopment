@@ -45,6 +45,11 @@ public class EntityAliveSDXPatcher : IPatcherMod
         method = gm.Methods.First(d => d.Name == "lootContainerOpened");
         SetMethodToPublic(method);
         SetMethodToVirtual(method);
+
+        gm = module.Types.First(d => d.Name == "EntityMoveHelper");
+        method = gm.Methods.First(d => d.Name == "CheckEntityBlocked");
+        SetMethodToPublic(method);
+        SetMethodToVirtual(method);
         return true;
 
     }

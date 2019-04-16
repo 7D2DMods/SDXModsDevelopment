@@ -13,7 +13,7 @@ class EAIRunAwayFromEntitySDX :  EAIRunawayWhenHurt
     private int fleeCounter;
     private int fleeDistance = 10;
     float originalView;
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)

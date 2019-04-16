@@ -8,5 +8,6 @@
 	<property name="Buff" value="buffShocked"/>
 </append>
 
+  <set xpath="/blocks/block/property[@name='Class' and @value='Light']/@value">LightSDX, Mods</set>
 </configs>
 

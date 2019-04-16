@@ -50,6 +50,16 @@ public class EntityAliveSDX : EntityNPC
             Debug.Log(this.entityName + ": " + strMessage);
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        Debug.Log("Awake()");
+        this.moveHelper = new EntityMoveHelperSDX(this);
+
+
+        Debug.Log(" Move Helper Type: " + this.moveHelper.GetType());
+    }
+
     public virtual bool CheckIncentive(List<String> lstIncentives, EntityAlive entity)
     {
         bool result = false;
