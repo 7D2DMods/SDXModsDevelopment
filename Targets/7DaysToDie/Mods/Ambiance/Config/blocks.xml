@@ -1,7 +1,11 @@
 ﻿<configs>
   <append xpath="/blocks/block[./property[@name='Class' and @value='Light']]" >
-   	<property name="ParticleName" value="#@modfolder:Resources/MothParticle.unity3d?p_Moths_X"/>
-	<property name="ParticleOffset" value="0.5,0,0.5"/>
+   	<property name="ParticleName" value="#@modfolder:Resources/BugParticles.unity3d?p_Moths_X"/>
+<!--	<property name="ParticleName" value="#@modfolder:Resources/BugParticles.unity3d?p_FireFlys_X"/>
+	<property name="ParticleName" value="#@modfolder:Resources/BugParticles.unity3d?p_Flies_X"/> -->
+	<property name="ParticleOffset" value="0,0,0"/>
+<!--	<property name="Buff" value="buffLightAmbiance"/> -->
+	<property name="Buff" value="buffShocked"/>
 </append>
 
 </configs>

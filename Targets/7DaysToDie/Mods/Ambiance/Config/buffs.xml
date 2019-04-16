@@ -4,9 +4,9 @@
 	     <stack_type value="ignore"/>
       <duration value="0"/>
 	  
-	  <effect_group name="Moths" >
+	  <effect_group name="Bugs" >
 	      <requirement name="RandomRoll" seed_type="Random" target="self" min_max="0,100" operation="LTE" value="99"/>
-		   <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" particle="#@modfolder:Resources/MothParticle.unity3d?p_Moths_X" local_offset="0,0.75,0"/>
+		   <triggered_effect trigger="onSelfBuffUpdate" action="AttachParticleEffectToEntity" particle="#@modfolder:Resources/BugParticles.unity3d?p_Moths_X" local_offset="0,0.75,0"/>
 		</effect_group>
     </buff>
 

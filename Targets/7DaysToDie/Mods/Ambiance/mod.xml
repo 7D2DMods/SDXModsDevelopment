@@ -8,7 +8,7 @@
 		<launcher_version>0.7.3</launcher_version>
 	</info>
 	<dependencies>
-		<dependency>Hal's DLL Fixes</dependency>
-		<dependency>AnimationSDX</dependency>
+<!--		<dependency>Hal's DLL Fixes</dependency>
+		<dependency>AnimationSDX</dependency> -->
 	</dependencies>
 </mod>
