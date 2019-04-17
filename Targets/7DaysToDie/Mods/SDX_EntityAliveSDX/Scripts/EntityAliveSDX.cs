@@ -28,7 +28,7 @@ public class EntityAliveSDX : EntityNPC
     int DefaultTraderID = 0;
 
     public Vector3 GuardPosition = Vector3.zero;
-
+    public Vector3 GuardLookPosition = Vector3.zero;
     String strSoundAccept = "";
     String strSoundReject = "";
 
@@ -101,28 +101,31 @@ public class EntityAliveSDX : EntityNPC
 
     public bool CanExecuteTask(Orders order)
     {
-
-
         // If we don't match our current order, don't execute
         if (this.Buffs.HasCustomVar("CurrentOrder"))
         {
             if (this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
                 return false;
 
-            if (this.Buffs.GetCustomVar("CurrentOrder") == (float)Orders.Stay)
-            {
-                // If we have an attack or revenge target, don't execute task
-                if (this.GetAttackTarget() != null && this.GetAttackTarget().IsAlive())
-                    return false;
+            //if (this.Buffs.GetCustomVar("CurrentOrder") == (float)Orders.Stay)
+            //{
+            //    // If we have an attack or revenge target, don't execute task
+            //    if (this.GetAttackTarget() != null && this.GetAttackTarget().IsAlive())
+            //        return false;
 
-                if (this.GetRevengeTarget() != null && this.GetRevengeTarget().IsAlive())
-                    return false;
+            //    if (this.GetRevengeTarget() != null && this.GetRevengeTarget().IsAlive())
+            //        return false;
 
-                if (this.GuardPosition != Vector3.zero && this.GuardPosition != this.position)
-                    this.getMoveHelper().SetMoveTo(this.GuardPosition, false);
+            //    //DisplayLog(" My Current Order is Stay.");
+            //    //DisplayLog(" My Guard position is: " + this.GuardPosition + " My current position is: " + this.position);
+            //    //if (this.GuardPosition != Vector3.zero && this.GuardPosition != this.position)
+            //    //{
+            //    //    DisplayLog(" I amnot in my Guard position. Moving to " + this.GuardPosition);
+            //    //    this.getMoveHelper().SetMoveTo(this.GuardPosition, false);
+            //    //}
 
-                return true;
-            }
+            //    return true;
+            //}
 
 
 
@@ -420,6 +423,7 @@ public class EntityAliveSDX : EntityNPC
                 this.SetLookPosition(player.GetLookVector());
                 this.GuardPosition = this.position;
                 this.getMoveHelper().Stop();
+                this.GuardLookPosition = player.GetLookVector();
                 break;
             case "Wander":
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Wander, true);
@@ -456,6 +460,12 @@ public class EntityAliveSDX : EntityNPC
                 this.Buffs.SetCustomVar("CurrentOrder", (float)EntityAliveSDX.Orders.Loot, true);
                 break;
 
+        }
+
+        if (this.Buffs.HasCustomVar("CurrentOrder"))
+        {
+            this.currentOrder = (Orders)this.Buffs.GetCustomVar("CurrentOrder");
+            DisplayLog(" Setting Current Order: " + this.currentOrder);
         }
         return true;
 
@@ -611,6 +621,7 @@ public class EntityAliveSDX : EntityNPC
         String strGuardPosition = _br.ReadString();
         this.GuardPosition = StringToVector3(strGuardPosition);
         this.factionId = _br.ReadByte();
+        this.GuardLookPosition = StringToVector3(_br.ReadString() );
     }
 
     public Vector3 StringToVector3(string sVector)
@@ -648,6 +659,8 @@ public class EntityAliveSDX : EntityNPC
         _bw.Write(strPatrolCoordinates);
         _bw.Write(this.GuardPosition.ToString());
         _bw.Write(this.factionId);
+        _bw.Write(this.GuardLookPosition.ToString());
+
     }
 
     public void DisplayStats()
@@ -746,11 +759,7 @@ public class EntityAliveSDX : EntityNPC
             }
         }
 
-        if (this.lastDoorOpen != Vector3i.zero)
-            if ((this.position + Vector3.back + Vector3.back) == this.lastDoorOpen.ToVector3())
-            {
-
-            }
+   
         // Check the state to see if the controller IsBusy or not. If it's not, then let it walk.
         bool isBusy = false;
         this.emodel.avatarController.TryGetBool("IsBusy", out isBusy);
@@ -764,6 +773,7 @@ public class EntityAliveSDX : EntityNPC
             base.OnUpdateLive();
         }
 
+        CanExecuteTask(this.currentOrder);
     }
 
     public bool IsInParty(int entityID)
