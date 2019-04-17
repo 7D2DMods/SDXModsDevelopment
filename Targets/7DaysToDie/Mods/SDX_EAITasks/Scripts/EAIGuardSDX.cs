@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamePath;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ class EAIGuardSDX : EAILook
     {
 
     float originalView;
+    private bool hadPath;
+    private int pathRecalculateTicks;
+
     private bool blDisplayLog = true;
     public void DisplayLog(String strMessage)
     {
@@ -25,7 +29,8 @@ class EAIGuardSDX : EAILook
             if (sqrMagnitude > 1f)
             {
                 DisplayLog(" Moving to my guard position ");
-                this.theEntity.moveHelper.SetMoveTo(temp.GuardPosition, false);
+                this.updatePath( temp.GuardPosition);
+               // this.theEntity.moveHelper.SetMoveTo(temp.GuardPosition, false);
                 return true;
             }
         }
@@ -45,6 +50,16 @@ class EAIGuardSDX : EAILook
         this.theEntity.SetMaxViewAngle(this.originalView);
         this.theEntity.RotateTo(this.theEntity.GetLookVector().x, this.theEntity.GetLookVector().y, this.theEntity.GetLookVector().z, 30f, 30f);
 
+    }
+
+    private void updatePath( Vector3 GuardPosition)
+    {
+        if (PathFinderThread.Instance.IsCalculatingPath(this.theEntity.entityId))
+        {
+            return;
+        }
+        this.pathRecalculateTicks = 20 + this.theEntity.GetRandom().Next(20);
+        PathFinderThread.Instance.FindPath(this.theEntity, GuardPosition, this.theEntity.GetMoveSpeedAggro(), true, this);
     }
     public override bool CanExecute()
     {
