@@ -10,7 +10,10 @@ class EAIGuardSDX : EAILook
     private bool hadPath;
     private int pathRecalculateTicks;
 
-    private bool blDisplayLog = true;
+    private bool blDisplayLog = false;
+    private int waitTicks;
+    private int viewTicks;
+
     public void DisplayLog(String strMessage)
     {
         if (blDisplayLog)
@@ -48,10 +51,35 @@ class EAIGuardSDX : EAILook
 
         // Reset the view angle, and rotate it back to the original look vector.
         this.theEntity.SetMaxViewAngle(this.originalView);
-        this.theEntity.RotateTo(this.theEntity.GetLookVector().x, this.theEntity.GetLookVector().y, this.theEntity.GetLookVector().z, 30f, 30f);
+      //  this.theEntity.RotateTo(this.theEntity.GetLookVector().x, this.theEntity.GetLookVector().y, this.theEntity.GetLookVector().z, 30f, 30f);
 
     }
+    public override bool Continue()
+    {
+        if (!FetchOrders())
+            return false;
 
+        if (this.theEntity.bodyDamage.CurrentStun != global::EnumEntityStunType.None)
+        {
+            return false;
+        }
+        this.waitTicks--;
+        if (this.waitTicks <= 0)
+        {
+            return false;
+        }
+        this.viewTicks--;
+        if (this.viewTicks <= 0)
+        {
+            this.viewTicks = 40;
+            Vector3 headPosition = this.theEntity.getHeadPosition();
+            Vector3 vector = this.theEntity.GetForwardVector();
+            vector = Quaternion.Euler(UnityEngine.Random.value * 60f - 30f, UnityEngine.Random.value * 120f - 60f, 0f) * vector;
+            this.theEntity.SetLookPosition(headPosition + vector);
+            return false; // cut it short.
+        }
+        return true;
+    }
     private void updatePath( Vector3 GuardPosition)
     {
         if (PathFinderThread.Instance.IsCalculatingPath(this.theEntity.entityId))
@@ -69,11 +97,6 @@ class EAIGuardSDX : EAILook
         return base.CanExecute();
     }
 
-    public override bool Continue()
-    {
-        if (!FetchOrders())
-            return false;
-        return base.Continue();
-    }
+  
 }
 
