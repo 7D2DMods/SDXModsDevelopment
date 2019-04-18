@@ -32,7 +32,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     // List<Vector3> lstWaterBlocks = new List<Vector3>();
 
     public bool hadPath;
-    private bool blDisplayLog = false;
+    private bool blDisplayLog = true;
     private Vector3 investigatePos;
     private Vector3 seekPos;
     private int pathRecalculateTicks;
@@ -289,6 +289,8 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (!Voxel.voxelRayHitInfo.bHitValid)
             return false; // Missed the target. Overlooking?
 
+        DisplayLog("Before: " + this.theEntity.ToString());
+
         BlockValue checkBlock = theEntity.world.GetBlock(new Vector3i(seekPos.x, seekPos.y, seekPos.z));
 
         // Original hand item.
@@ -414,7 +416,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
             if (item != null)
             {
-                DisplayLog(" enttiy is eating: " + item.ItemClass.GetItemName());
+                DisplayLog(" entity is eating: " + item.ItemClass.GetItemName());
                 // Hold the food item.
                 this.theEntity.inventory.SetBareHandItem(item);
 
@@ -480,7 +482,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             DisplayLog(" No Bed Time buff incentive");
         }
 
-
+        DisplayLog("After: " + this.theEntity.ToString());
         this.theEntity.SetInvestigatePosition(Vector3.zero, 0);
         return false;
     }
@@ -569,7 +571,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             {
                 if (array[i].IsEmpty())
                 {
-                    DisplayLog(" Empty Slot");
+                    //DisplayLog(" Empty Slot");
                     continue;
                 }
                 DisplayLog(" Not Empty: " + array[i].itemValue.ItemClass.Name);
