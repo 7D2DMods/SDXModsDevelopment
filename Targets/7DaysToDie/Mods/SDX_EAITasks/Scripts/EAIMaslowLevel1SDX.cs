@@ -561,7 +561,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     // This will check if the food item actually exists in the container, before making the trip to it.
     public bool CheckContents(TileEntityLootContainer tileLootContainer, List<String> lstContents, String strSearchType)
     {
-        DisplayLog(" Check Contents of Food bin: " + tileLootContainer.ToString() );
+        DisplayLog(" Check Contents of Container: " + tileLootContainer.ToString() );
         DisplayLog(" TileEntity: " + tileLootContainer.items.Length);
         
         if (tileLootContainer.items != null )
@@ -637,6 +637,13 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (!CheckIncentive(this.lstHungryBuffs))
             return false;
 
+        DisplayLog(" Checking for food in inventory:");
+        if (CheckContents(this.theEntity.lootContainer, this.lstFoodItems, "Food"))
+        {
+            DisplayLog(" Found Food in the backpack");
+            this.theEntity.SetInvestigatePosition(this.theEntity.position, 120);
+            return true;
+        }
         DisplayLog(" Checking For Food");
         Vector3 TargetBlock = ScanForTileEntityInList(this.lstFoodBins, this.lstFoodItems);
         if (TargetBlock == Vector3.zero)
@@ -756,6 +763,12 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (GetEntityWater() > 0f)
             return true;
 
+        if (CheckContents(this.theEntity.lootContainer, this.lstWaterItems, "Water"))
+        {
+            DisplayLog(" Found Water in the backpack");
+            this.theEntity.SetInvestigatePosition(this.theEntity.position, 120);
+            return true;
+        }
         Vector3 TargetBlock = ScanForBlockInList(this.lstWaterBins);
         if (TargetBlock == Vector3.zero)
             return false;
