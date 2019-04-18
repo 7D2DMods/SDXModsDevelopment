@@ -520,10 +520,10 @@
 			<property name="RightHandJointName" value="Muzzle" />
 			<property name="SwimOffset" value="-2"/>
 			<property name="MoveSpeed" value="0.3"/> 
-			<property name="MoveSpeedAggro" value=".5,.5"/> 
-			<property name="MoveSpeedPanic" value=".5"/>
+			<property name="MoveSpeedAggro" value="1.0,1.0"/> 
+			<property name="MoveSpeedPanic" value="1.0"/>
 			<property name="PainResistPerHit" value=".70"/>
-			<property name="MaxViewAngle" value="360"/>
+			<property name="MaxViewAngle" value="270"/>
 			<property name="MaxTurnSpeed" value="180"/>
 			<property name="AttackTimeoutDay" value="1.0"/> 
 			<property name="AttackTimeoutNight" value="1.0"/>
@@ -553,7 +553,7 @@
 			<property name="AITask-11" value="" />
 			<property name="AITarget-1" value="SetAsTargetIfHurtSDX, Mods" param1="Entity"/>  
 			<property name="AITarget-2" value="SetAsTargetIfLeaderAttackedSDX, Mods" param1="Entity"/> 
-			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="EntityZombie,80,EntityVulture,80,EntityEnemyAnimal,80,Entity,0"/> 
+			<property name="AITarget-3" value="SetAsTargetNearestEnemySDX, Mods" param1="Entity,80"/> 
 			<!--			<property name="AITarget-4" value="LootLocationSDX, Mods" /> -->
 			<property name="AITarget-4" value="" />
 			<property name="SoundHurt" value="Player_Male/player1painlg"/>
