@@ -327,6 +327,8 @@ public class EntityAliveSDX : EntityNPC
     }
     public override void SetAttackTarget(EntityAlive _attackTarget, int _attackTargetTime)
     {
+
+
         RestoreSpeed();
         base.SetAttackTarget(_attackTarget, _attackTargetTime);
     }
@@ -349,6 +351,9 @@ public class EntityAliveSDX : EntityNPC
             if (OpenDoor())
                 return true;
         }
+
+        if ( this.GetAttackTarget() != null )
+            this.RotateTo( this.GetAttackTarget() , 30f, 30f);
 
         ItemAction itemAction = this.inventory.holdingItem.Actions[0];
         if (itemAction != null)
