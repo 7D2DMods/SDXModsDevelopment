@@ -68,8 +68,8 @@
 				<passive_effect name="DamageFalloffRange" operation="base_set" value="150"/>
 				<passive_effect name="MaxRange" operation="base_set" value="200"/>
 				<passive_effect name="MagazineSize" operation="base_set" value="1"/>
-				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="1"/>
-				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="1"/>
+				<passive_effect name="SpreadDegreesVertical" operation="base_set" value="0"/>
+				<passive_effect name="SpreadDegreesHorizontal" operation="base_set" value="0"/>
 			</effect_group>
 		</item>
 		<item name="ammoProjectileAmmoPlasma">
@@ -84,7 +84,7 @@
 				<property name="Velocity" value="25"/>
 				<property name="FlyTime" value="2"/>
 				<property name="LifeTime" value="4"/>
-				<property name="CollisionRadius" value="1.0"/>
+				<property name="CollisionRadius" value=".25"/>
 				<property name="DamageBonus.earth" value="0"/>	
 			</property>
 			<effect_group name="Base Effects">
