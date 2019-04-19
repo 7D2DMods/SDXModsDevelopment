@@ -132,9 +132,6 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (this.theEntity.IsSleeping)
             return false;
 
-        // if they are already healing for their water or health, don't try to add anymore.
-        if (this.theEntity.Buffs.HasBuff("buffhealwatermax") || this.theEntity.Buffs.HasBuff("buffhealstaminamax"))
-            return false;
 
         if (!CanContinue())
         {
@@ -250,7 +247,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             return false;
 
         // if they are already healing for their water or health, don't try to add anymore.
-        if (this.theEntity.Buffs.HasBuff("buffhealwatermax") || this.theEntity.Buffs.HasBuff("buffhealstaminamax") )
+        if (this.theEntity.Buffs.HasBuff("buffhealwatermax") || this.theEntity.Buffs.HasBuff("buffhealstaminamax"))
             return false;
 
         return true;
@@ -258,6 +255,11 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     public override bool Continue()
     {
 
+        if (!CanContinue())
+        {
+            this.theEntity.SetInvestigatePosition(Vector3.zero, 0);
+            return false;
+        }
         PathNavigate navigator = this.theEntity.navigator;
         PathEntity path = navigator.getPath();
         if (this.hadPath && path == null)
@@ -336,9 +338,9 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                 if (tileEntityLootContainer == null)
                     return false; // it's not a loot container.
 
-                
+
                 // Check if it has any water in it.
-                if (CheckContents(tileEntityLootContainer, this.lstWaterItems, "Water") != null )
+                if (CheckContents(tileEntityLootContainer, this.lstWaterItems, "Water") != null)
                 {
                     DisplayLog(" Found a water item");
                     item = GetItemFromContainer(tileEntityLootContainer, this.lstWaterItems, "Water");
@@ -415,7 +417,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
 
 
                 // Check if it has any food on it.
-                if (CheckContents(tileEntityLootContainer, this.lstFoodItems, "Food") != null )
+                if (CheckContents(tileEntityLootContainer, this.lstFoodItems, "Food") != null)
                 {
                     DisplayLog(" Found Food in food bin.");
                     item = GetItemFromContainer(tileEntityLootContainer, lstFoodItems, "Food");
@@ -426,7 +428,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             else if (CheckContents(this.theEntity.lootContainer, this.lstWaterItems, "Food") != null)
             {
                 DisplayLog(" Found Food in the backpack");
-                item = GetItemFromContainer(this.theEntity.lootContainer, this.lstWaterItems, "Food");
+                item = GetItemFromContainer(this.theEntity.lootContainer, this.lstFoodItems, "Food");
             }
 
             if (item != null)
@@ -508,13 +510,13 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     public ItemValue GetItemFromContainer(TileEntityLootContainer tileLootContainer, List<String> lstContents, String strSearchType)
     {
 
-        ItemValue item= CheckContents(tileLootContainer, lstContents, strSearchType);
-        if ( item != null )
+        ItemValue item = CheckContents(tileLootContainer, lstContents, strSearchType);
+        if (item != null)
         {
             DisplayLog("GetItemFromContainer() Searching for item: " + item.ItemClass.Name);
-        if (tileLootContainer.items != null)
-        {
-            ItemStack[] array = tileLootContainer.items;
+            if (tileLootContainer.items != null)
+            {
+                ItemStack[] array = tileLootContainer.items;
                 for (int i = 0; i < array.Length; i++)
                 {
                     if (array[i].IsEmpty()) // nothing in the slot
@@ -562,11 +564,11 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                     foreach (var TriggeredEffects in EffectGroup.TriggeredEffects)
                     {
                         MinEventActionModifyCVar effect = TriggeredEffects as MinEventActionModifyCVar;
-                        if (effect == null )
+                        if (effect == null)
                             continue;
 
                         DisplayLog(" Checking Effects");
-                        if (strSearchType == "Food" )
+                        if (strSearchType == "Food")
                         {
                             if ((effect.cvarName == "$foodAmountAdd") || (effect.cvarName == "foodHealthAmount"))
                                 return item;
@@ -589,10 +591,10 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
     // This will check if the food item actually exists in the container, before making the trip to it.
     public ItemValue CheckContents(TileEntityLootContainer tileLootContainer, List<String> lstContents, String strSearchType)
     {
-        DisplayLog(" Check Contents of Container: " + tileLootContainer.ToString() );
+        DisplayLog(" Check Contents of Container: " + tileLootContainer.ToString());
         DisplayLog(" TileEntity: " + tileLootContainer.items.Length);
-        
-        if (tileLootContainer.items != null )
+
+        if (tileLootContainer.items != null)
         {
             ItemStack[] array = tileLootContainer.GetItems();
             for (int i = 0; i < array.Length; i++)
@@ -607,7 +609,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                 if (lstContents.Contains(array[i].itemValue.ItemClass.Name))
                 {
                     DisplayLog(" Found food item: " + array[i].itemValue.ItemClass.Name);
-                    return array[i].itemValue; 
+                    return array[i].itemValue;
                 }
 
                 DisplayLog(" Contents Count: " + lstContents.Count);
@@ -616,7 +618,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                 {
                     DisplayLog(" No Filtered list. Checking if its edible.");
                     if (IsConsumable(array[i].itemValue, strSearchType) != null)
-                        return array[i].itemValue; 
+                        return array[i].itemValue;
                 }
 
             }
@@ -710,8 +712,8 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (lstBlocks.Count == 0)
             return Vector3.zero;
 
-        DisplayLog("Scanning For Tile Entities: " + string.Join(", ", lstBlocks.ToArray() ));
-        DisplayLog(" Contents: " + string.Join(", ", lstContents.ToArray() ));
+        DisplayLog("Scanning For Tile Entities: " + string.Join(", ", lstBlocks.ToArray()));
+        DisplayLog(" Contents: " + string.Join(", ", lstContents.ToArray()));
         List<Vector3> localLists = new List<Vector3>();
 
 
@@ -743,7 +745,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
                             if (lstContents.Count > 0)
                             {
                                 DisplayLog(" My Content List is Empty. Searcing for regular food items.");
-                                if (CheckContents(tileEntity, lstContents, "Food") != null )
+                                if (CheckContents(tileEntity, lstContents, "Food") != null)
                                 {
                                     DisplayLog(" Box has food contents: " + tileEntities.ToString());
                                     localLists.Add(tileEntity.ToWorldPos().ToVector3());
@@ -761,7 +763,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
             }
         }
 
-       // DisplayLog(" Local List: " + string.Join(", ", localLists.ToArray()));
+        // DisplayLog(" Local List: " + string.Join(", ", localLists.ToArray()));
 
         // Finds the closet block we matched with.
         Vector3 tMin = new Vector3();
@@ -804,7 +806,7 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         return 0f;
     }
 
-   
+
 
     // Scans for the water block in the area.
     public virtual bool CheckForHomeBlock()
