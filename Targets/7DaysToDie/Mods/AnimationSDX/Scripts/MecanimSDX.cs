@@ -343,6 +343,7 @@ class MecanimSDX : AvatarZombie01Controller
         {
             return;
         }
+        this.bBlockLookPosition = false;
         //if(this.anim.layerCount > 2)
         //{
 
