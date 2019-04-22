@@ -292,17 +292,17 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         DisplayLog("PerformAction() ");
         // Look at the target.
 
-        if (this.investigatePos != Vector3.zero)
-        {
+        //if (this.investigatePos != Vector3.zero)
+        //{
             this.theEntity.SetLookPosition(seekPos);
 
-            Ray lookRay = new Ray(this.theEntity.position, theEntity.GetLookVector());
-            if (!Voxel.Raycast(this.theEntity.world, lookRay, Constants.cDigAndBuildDistance, -538480645, 4095, 0f))
-                return false; // Not seeing the target.
+        //    Ray lookRay = new Ray(this.theEntity.position, theEntity.GetLookVector());
+        //    if (!Voxel.Raycast(this.theEntity.world, lookRay, Constants.cDigAndBuildDistance, -538480645, 4095, 0f))
+        //        return false; // Not seeing the target.
 
-            if (!Voxel.voxelRayHitInfo.bHitValid)
-                return false; // Missed the target. Overlooking?
-        }
+        //    if (!Voxel.voxelRayHitInfo.bHitValid)
+        //        return false; // Missed the target. Overlooking?
+        //}
         DisplayLog("Before: " + this.theEntity.ToString());
 
         BlockValue checkBlock = theEntity.world.GetBlock(new Vector3i(seekPos.x, seekPos.y, seekPos.z));
@@ -671,7 +671,8 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (CheckContents(this.theEntity.lootContainer, this.lstFoodItems, "Food") != null)
         {
             DisplayLog(" Found Food in the backpack");
-            this.theEntity.SetInvestigatePosition(this.theEntity.position, 120);
+            // this.theEntity.SetInvestigatePosition(this.theEntity.position, 120);
+            PerformAction();
             return true;
         }
         DisplayLog(" Checking For Food");
@@ -696,7 +697,8 @@ class EAIMaslowLevel1SDX : EAIApproachSpot
         if (CheckContents(this.theEntity.lootContainer, this.lstWaterItems, "Water") != null)
         {
             DisplayLog(" Found Water in the backpack");
-            this.theEntity.SetInvestigatePosition(this.theEntity.position, 120);
+            //  this.theEntity.SetInvestigatePosition(this.theEntity.position, 120);
+            PerformAction();
             return true;
         }
         Vector3 TargetBlock = ScanForBlockInList(this.lstWaterBins);
