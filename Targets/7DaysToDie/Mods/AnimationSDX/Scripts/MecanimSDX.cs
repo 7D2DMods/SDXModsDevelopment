@@ -7,7 +7,7 @@ using UnityEngine;
 class MecanimSDX : AvatarZombie01Controller
 {
     // If set to true, logging will be very verbose for troubleshooting
-    private readonly bool blDisplayLog = false;
+    private readonly bool blDisplayLog = true;
 
     // interval between changing the indexes in the LateUpdate
     private float nextCheck = 0.0f;
@@ -149,30 +149,24 @@ class MecanimSDX : AvatarZombie01Controller
     public override void SwitchModelAndView(string _modelName, bool _bFPV, bool _bMale)
     {
         Log("Running Switch and Model View");
-        Transform transform = this.modelTransform.Find(_modelName + ((!_bFPV) ? string.Empty : "_FP"));
-        if(transform == null && _bFPV)
-        {
-            transform = this.modelTransform.Find(_modelName);
-        }
-        this.bipedTransform = transform;
-        this.meshTransform = this.bipedTransform.Find("body");
-        this.modelName = _modelName;
-        this.bMale = _bMale;
-        this.bFPV = _bFPV;
+        this.SetBool("IsDead", this.entity.IsDead());
+        this.SetBool("IsAlive", this.entity.IsAlive());
+
+        // dummy assign body parts
         this.assignBodyParts();
-        this.anim = this.bipedTransform.GetComponent<Animator>();
-        if(this.anim != null)
+
+        Log(" Root Motion: " + this.entity.RootMotion);
+        if(this.entity.RootMotion  )
         {
-            this.anim.logWarnings = false;
-        }
-        this.SetBool("IsMale", _bMale);
-        if(this.entity.RootMotion)
-        {
+            Log(" Root Motion is enabled.");
             AvatarRootMotion avatarRootMotion = this.bipedTransform.GetComponent<AvatarRootMotion>();
             if(avatarRootMotion == null)
             {
+                Log(" AvatarRootMotion() not found. Adding one.");
                 avatarRootMotion = this.bipedTransform.gameObject.AddComponent<AvatarRootMotion>();
+
             }
+            Log(" Initializing Root Motion");
             avatarRootMotion.Init(this, this.anim);
         }
         // Check if this entity has a weapon or not
@@ -188,7 +182,6 @@ class MecanimSDX : AvatarZombie01Controller
         }
         this.SetInt("WalkType", this.entity.GetWalkType());
         this.SetBool("IsDead", this.entity.IsDead());
-        this.SetBool("IsFPV", this.bFPV);
         this.SetBool("IsAlive", this.entity.IsAlive());
 
     
@@ -284,7 +277,7 @@ class MecanimSDX : AvatarZombie01Controller
 
             // if the entity is in water, flag it, so we'll do the swiming conditions before the movement.
             this.SetBool("IsInWater", this.entity.IsInWater());
-            Log("Entity is in Water: " + this.entity.IsInWater());
+            //Log("Entity is in Water: " + this.entity.IsInWater());
 
             // This logic handles distributing the attack animations to clients and servers, and keeps them in sync
             this.animSyncWaitTime -= Time.deltaTime;
@@ -294,7 +287,7 @@ class MecanimSDX : AvatarZombie01Controller
 
                 if (this.ChangedAnimationParameters.Count > 0)
                 {
-                    Log("Changed Animation Paramters: " + ChangedAnimationParameters.Count);
+                   Log("Changed Animation Paramters: " + ChangedAnimationParameters.Count);
                     foreach (var each in ChangedAnimationParameters)
                     {
                         Log(each.Value.ToString());
