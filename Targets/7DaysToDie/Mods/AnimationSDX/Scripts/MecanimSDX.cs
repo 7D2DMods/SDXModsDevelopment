@@ -4,7 +4,7 @@ using System.Reflection;
 using SDX.Payload;
 using UnityEngine;
 
-class MecanimSDX : AvatarController
+class MecanimSDX : AvatarZombie01Controller
 {
     // If set to true, logging will be very verbose for troubleshooting
     private readonly bool blDisplayLog = false;
@@ -104,6 +104,9 @@ class MecanimSDX : AvatarController
     protected Transform leftLowerLegGore;
     protected Transform rightLowerLegGore;
     protected Transform rightUpperLegGore;
+    private float currentLookWeight;
+    private float lookWeightTarget;
+    private bool isJumpStarted;
 
     private MecanimSDX()
     {
@@ -253,6 +256,10 @@ class MecanimSDX : AvatarController
             this.idleTime += Time.deltaTime;
             this.SetFloat("RotationPitch", this.entity.rotation.x);
 
+            // if the entity is in water, flag it, so we'll do the swiming conditions before the movement.
+            this.SetBool("IsInWater", this.entity.IsInWater());
+            Log("Entity is in Water: " + this.entity.IsInWater());
+
             // This logic handles distributing the attack animations to clients and servers, and keeps them in sync
             this.animSyncWaitTime -= Time.deltaTime;
             if (this.animSyncWaitTime <= 0f)
@@ -294,18 +301,103 @@ class MecanimSDX : AvatarController
         }
     }
 
+  
     public override bool IsAnimationSpecialAttackPlaying()
     {
         return this.IsAnimationAttackPlaying();
     }
 
-    //protected override void LateUpdate()
-    //{
-    //    if (this.entity == null || this.bipedTransform == null || !this.bipedTransform.gameObject.activeInHierarchy)
-    //        return;
+    protected override void LateUpdate()
+    {
+        if(!this.bipedTransform.gameObject.activeInHierarchy)
+        {
+            return;
+        }
+        if(!this.anim.enabled)
+        {
+            return;
+        }
+        if(this.anim.layerCount > 2)
+        {
 
-    //    base.LateUpdate();
-    //}
+            if(!this.anim.IsInTransition(2) && this.anim.GetInteger("HitBodyPart") != 0 && this.IsAnimationHitRunning())
+            {
+                this.SetInt("HitBodyPart", 0);
+                this.SetBool("isCritical", false);
+                this.bBlockLookPosition = false;
+            }
+        }
+        this.currentLookWeight = Mathf.Lerp(this.currentLookWeight, this.lookWeightTarget, Time.deltaTime);
+        if(this.bBlockLookPosition || !this.isAllowLookPosition())
+        {
+            this.currentLookWeight = 0f;
+        }
+
+        // base Class
+        try
+        {
+            if(this.entity == null || this.bipedTransform == null || !this.bipedTransform.gameObject.activeInHierarchy)
+            {
+                return;
+            }
+            if(this.anim == null || !this.anim.enabled)
+            {
+                return;
+            }
+            this.updateLayerStateInfo();
+            this.updateSpineRotation();
+            if(this.entity.inventory.holdingItem.Actions[0] != null)
+            {
+                this.entity.inventory.holdingItem.Actions[0].UpdateNozzleParticlesPosAndRot(this.entity.inventory.holdingItemData.actionData[0]);
+            }
+            if(this.entity.inventory.holdingItem.Actions[1] != null)
+            {
+                this.entity.inventory.holdingItem.Actions[1].UpdateNozzleParticlesPosAndRot(this.entity.inventory.holdingItemData.actionData[1]);
+            }
+            int fullPathHash = this.currentBaseState.fullPathHash;
+            bool flag = this.anim.IsInTransition(0);
+            if(!flag)
+            {
+                this.isJumpStarted = false;
+                if(fullPathHash == this.jumpState || fullPathHash == this.fpvJumpState)
+                {
+                    this.SetBool("Jump", false);
+                }
+                if(this.deathStates.Contains(fullPathHash))
+                {
+                    this.SetBool("IsDead", false);
+                }
+                if(this.anim.GetBool("Reload") && this.reloadStates.Contains(this.currentWeaponHoldLayer.fullPathHash))
+                {
+                    this.SetBool("Reload", false);
+                }
+            }
+            if(this.anim.GetBool("ItemUse") && --this.itemUseTicks <= 0)
+            {
+                this.SetBool("ItemUse", false);
+            }
+            if(this.isInDeathAnim)
+            {
+                if((this.currentBaseState.tagHash == AvatarController.deathTag || this.deathStates.Contains(fullPathHash)) && this.currentBaseState.normalizedTime >= 1f && !flag)
+                {
+                    this.isInDeathAnim = false;
+                    if(this.entity.HasDeathAnim)
+                    {
+                        this.entity.emodel.DoRagdoll(DamageResponse.New(true), 999999f);
+                    }
+                }
+                if(this.entity.HasDeathAnim && this.entity.RootMotion && this.entity.isCollidedHorizontally)
+                {
+                    this.isInDeathAnim = false;
+                    this.entity.emodel.DoRagdoll(DamageResponse.New(true), 999999f);
+                }
+            }
+        }
+        catch(Exception ex)
+        {
+            Debug.Log(" Exception: " + ex.ToString());
+        }
+    }
     public override void StartAnimationSpecialAttack(bool _b)
     {
         if (_b)
