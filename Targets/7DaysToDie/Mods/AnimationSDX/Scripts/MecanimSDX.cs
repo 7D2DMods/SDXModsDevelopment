@@ -435,18 +435,29 @@ class MecanimSDX : AvatarController
 
     protected void updateLayerStateInfo()
     {
-        this.currentBaseState = this.anim.GetCurrentAnimatorStateInfo(0);
-        this.currentOverrideLayer = this.anim.GetCurrentAnimatorStateInfo(1);
-        this.currentFullBodyOverlayLayer = this.anim.GetCurrentAnimatorStateInfo(2);
-        if(this.anim.layerCount > 3)
+        for (int x = 0; x < this.anim.layerCount; x++)
         {
-            this.currentAdditiveLayer = this.anim.GetCurrentAnimatorStateInfo(3);
+            switch (x)
+            {
+                case 0:
+                    this.currentBaseState = this.anim.GetCurrentAnimatorStateInfo(x);
+                    break;
+                case 1:
+                    this.currentOverrideLayer = this.anim.GetCurrentAnimatorStateInfo(x);
+                    break;
+                case 2:
+                    this.currentFullBodyOverlayLayer = this.anim.GetCurrentAnimatorStateInfo(x);
+                    break;
+                case 3:
+                    this.currentAdditiveLayer = this.anim.GetCurrentAnimatorStateInfo(x);
+                    break;
+            }
         }
     }
 
     private bool isAllowLookPosition()
     {
-        throw new NotImplementedException();
+        return true;
     }
 
     public override void StartAnimationSpecialAttack(bool _b)
