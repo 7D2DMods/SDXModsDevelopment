@@ -4,7 +4,7 @@ using System.Reflection;
 using SDX.Payload;
 using UnityEngine;
 
-class MecanimSDX : AvatarZombie01Controller
+class MecanimSDX : AvatarController
 {
     // If set to true, logging will be very verbose for troubleshooting
     private readonly bool blDisplayLog = true;
@@ -15,6 +15,8 @@ class MecanimSDX : AvatarZombie01Controller
 
     // Animator support method to keep our current state
     protected AnimatorStateInfo currentBaseState;
+    private AnimatorStateInfo currentOverrideLayer;
+    private AnimatorStateInfo currentFullBodyOverlayLayer;
     public float animSyncWaitTime = 0.5f;
 
     // Our transforms for key elements
@@ -104,9 +106,16 @@ class MecanimSDX : AvatarZombie01Controller
     protected Transform leftLowerLegGore;
     protected Transform rightLowerLegGore;
     protected Transform rightUpperLegGore;
+    private bool bBlockLookPosition;
     private float currentLookWeight;
     private float lookWeightTarget;
     private bool isJumpStarted;
+    private AnimatorStateInfo currentAdditiveLayer;
+
+    protected int itemUseTicks;
+    protected HashSet<int> reloadStates = new HashSet<int>();
+    protected HashSet<int> deathStates = new HashSet<int>();
+    protected AnimatorStateInfo currentWeaponHoldLayer;
 
     private MecanimSDX()
     {
@@ -326,7 +335,7 @@ class MecanimSDX : AvatarZombie01Controller
         return this.IsAnimationAttackPlaying();
     }
 
-    protected override void LateUpdate()
+    protected void LateUpdate()
     {
         if(!this.bipedTransform.gameObject.activeInHierarchy)
         {
@@ -418,6 +427,28 @@ class MecanimSDX : AvatarZombie01Controller
             Debug.Log(" Exception: " + ex.ToString());
         }
     }
+
+    private void updateSpineRotation()
+    {
+       
+    }
+
+    protected void updateLayerStateInfo()
+    {
+        this.currentBaseState = this.anim.GetCurrentAnimatorStateInfo(0);
+        this.currentOverrideLayer = this.anim.GetCurrentAnimatorStateInfo(1);
+        this.currentFullBodyOverlayLayer = this.anim.GetCurrentAnimatorStateInfo(2);
+        if(this.anim.layerCount > 3)
+        {
+            this.currentAdditiveLayer = this.anim.GetCurrentAnimatorStateInfo(3);
+        }
+    }
+
+    private bool isAllowLookPosition()
+    {
+        throw new NotImplementedException();
+    }
+
     public override void StartAnimationSpecialAttack(bool _b)
     {
         if (_b)
