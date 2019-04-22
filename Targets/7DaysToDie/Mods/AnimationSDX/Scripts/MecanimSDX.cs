@@ -149,14 +149,34 @@ class MecanimSDX : AvatarZombie01Controller
     public override void SwitchModelAndView(string _modelName, bool _bFPV, bool _bMale)
     {
         Log("Running Switch and Model View");
-        this.SetBool("IsDead", this.entity.IsDead());
-        this.SetBool("IsAlive", this.entity.IsAlive());
-
-        // dummy assign body parts
+        Transform transform = this.modelTransform.Find(_modelName + ((!_bFPV) ? string.Empty : "_FP"));
+        if(transform == null && _bFPV)
+        {
+            transform = this.modelTransform.Find(_modelName);
+        }
+        this.bipedTransform = transform;
+        this.meshTransform = this.bipedTransform.Find("body");
+        this.modelName = _modelName;
+        this.bMale = _bMale;
+        this.bFPV = _bFPV;
         this.assignBodyParts();
-
+        this.anim = this.bipedTransform.GetComponent<Animator>();
+        if(this.anim != null)
+        {
+            this.anim.logWarnings = false;
+        }
+        this.SetBool("IsMale", _bMale);
+        if(this.entity.RootMotion)
+        {
+            AvatarRootMotion avatarRootMotion = this.bipedTransform.GetComponent<AvatarRootMotion>();
+            if(avatarRootMotion == null)
+            {
+                avatarRootMotion = this.bipedTransform.gameObject.AddComponent<AvatarRootMotion>();
+            }
+            avatarRootMotion.Init(this, this.anim);
+        }
         // Check if this entity has a weapon or not
-        if (this.rightHandItemTransform != null)
+        if(this.rightHandItemTransform != null)
         {
             Log("Setting Right hand position");
             this.rightHandItemTransform.parent = this.rightHandItemTransform;
@@ -166,6 +186,12 @@ class MecanimSDX : AvatarZombie01Controller
             this.rightHandItemTransform.localEulerAngles = rotation;
             this.SetInRightHand(this.rightHandItemTransform);
         }
+        this.SetInt("WalkType", this.entity.GetWalkType());
+        this.SetBool("IsDead", this.entity.IsDead());
+        this.SetBool("IsFPV", this.bFPV);
+        this.SetBool("IsAlive", this.entity.IsAlive());
+
+    
     }
 
     public override bool IsAnimationAttackPlaying()
@@ -317,16 +343,16 @@ class MecanimSDX : AvatarZombie01Controller
         {
             return;
         }
-        if(this.anim.layerCount > 2)
-        {
+        //if(this.anim.layerCount > 2)
+        //{
 
-            if(!this.anim.IsInTransition(2) && this.anim.GetInteger("HitBodyPart") != 0 && this.IsAnimationHitRunning())
-            {
-                this.SetInt("HitBodyPart", 0);
-                this.SetBool("isCritical", false);
-                this.bBlockLookPosition = false;
-            }
-        }
+        //    if(!this.anim.IsInTransition(2) && this.anim.GetInteger("HitBodyPart") != 0 && this.IsAnimationHitRunning())
+        //    {
+        //        this.SetInt("HitBodyPart", 0);
+        //        this.SetBool("isCritical", false);
+        //        this.bBlockLookPosition = false;
+        //    }
+        //}
         this.currentLookWeight = Mathf.Lerp(this.currentLookWeight, this.lookWeightTarget, Time.deltaTime);
         if(this.bBlockLookPosition || !this.isAllowLookPosition())
         {
