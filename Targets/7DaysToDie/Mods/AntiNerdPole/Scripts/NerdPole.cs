@@ -11,6 +11,9 @@ public class AntiNerdPoll : SkyManager
             if((entity as EntityPlayerLocal).IsGodMode == true)
                 return false;
 
+            if((entity as EntityPlayerLocal).IsFlyMode == true)
+                return false;
+
             if((entity as EntityPlayerLocal).IsInElevator())
                 return false;
 
