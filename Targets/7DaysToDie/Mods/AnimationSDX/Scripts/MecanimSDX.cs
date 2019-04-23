@@ -586,6 +586,12 @@ class MecanimSDX : AvatarController
 
     public override void StartAnimationHit(EnumBodyPartHit _bodyPart, int _dir, int _hitDamage, bool _criticalHit, int _movementState, float _random)
     {
+        this.SetInt("BodyPartHit", (int)_bodyPart);
+        this.SetInt("HitDirection", _dir);
+        this.SetInt("HitDamage", _hitDamage);
+        this.SetBool("CriticalHit", _criticalHit);
+        this.SetInt("MovementState", _movementState);
+        this.SetInt("Random", Mathf.FloorToInt(_random * 100f));
         this.SetRandomIndex("PainIndex");
         this.SetTrigger("Pain");
     }
