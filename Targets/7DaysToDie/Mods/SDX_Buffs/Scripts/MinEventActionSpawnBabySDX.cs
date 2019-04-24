@@ -20,7 +20,10 @@ public class MinEventActionSpawnBabySDX : MinEventActionRemoveBuff
                 if (!string.IsNullOrEmpty(this.strSpawnGroup))
                     EntityID = EntityGroups.GetRandomFromGroup(this.strSpawnGroup);
 
-                Entity NewEntity = EntityFactory.CreateEntity(EntityID, entity.position, entity.rotation);
+                Vector3 transformPos;
+                entity.world.GetRandomSpawnPositionMinMaxToPosition(entity.position, 2, 6, 2, true, out transformPos, false);
+
+                Entity NewEntity = EntityFactory.CreateEntity(EntityID, transformPos, entity.rotation);
                 if (NewEntity)
                 {
                     NewEntity.SetSpawnerSource(EnumSpawnerSource.StaticSpawner);
