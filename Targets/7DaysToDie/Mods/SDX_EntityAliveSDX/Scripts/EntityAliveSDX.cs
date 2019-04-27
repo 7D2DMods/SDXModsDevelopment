@@ -20,6 +20,8 @@ public class EntityAliveSDX : EntityNPC
 {
     public QuestJournal QuestJournal = new QuestJournal();
     public List<String> lstQuests = new List<String>();
+    List<String> lstHungryBuffs = new List<String>();
+    List<String> lstThirstyBuffs = new List<String>();
 
     public Orders currentOrder = Orders.Wander;
     public List<Vector3> PatrolCoordinates = new List<Vector3>();
@@ -58,6 +60,16 @@ public class EntityAliveSDX : EntityNPC
         Debug.Log(" Move Helper Type: " + this.moveHelper.GetType());
     }
 
+    // Used for maslow
+    public virtual bool CheckIncentive(List<String> Incentives)
+    {
+        foreach (String strIncentive in Incentives)
+        {
+            if (this.Buffs.HasBuff(strIncentive))
+                return true;
+        }
+        return false;
+    }
     public virtual bool CheckIncentive(List<String> lstIncentives, EntityAlive entity)
     {
         bool result = false;
@@ -114,6 +126,9 @@ public class EntityAliveSDX : EntityNPC
             if (this.Buffs.GetCustomVar("CurrentOrder") != (float)order)
                 return false;
         }
+
+        if (CheckIncentive(this.lstThirstyBuffs) || CheckIncentive(this.lstHungryBuffs))
+            return false;
 
         // If we have an attack or revenge target, don't execute task
         if (this.GetAttackTarget() != null && this.GetAttackTarget().IsAlive())
@@ -172,7 +187,8 @@ public class EntityAliveSDX : EntityNPC
                 this.HireCurrency = ItemClass.GetItem("casinoCoin", false);
         }
 
-
+        this.lstHungryBuffs = ConfigureEntityClass("HungryBuffs", entityClass);
+        this.lstThirstyBuffs = ConfigureEntityClass("ThirstyBuffs", entityClass);
 
         if (entityClass.Properties.Classes.ContainsKey("Boundary"))
         {
@@ -204,6 +220,29 @@ public class EntityAliveSDX : EntityNPC
         }
     }
 
+    // helper Method to read the entity class and return a list of values based on the key
+    // Example: <property name="WaterBins" value="water,waterMoving,waterStaticBucket,waterMovingBucket,terrWaterPOI" />
+    public List<String> ConfigureEntityClass(String strKey, EntityClass entityClass)
+    {
+        List<String> TempList = new List<String>();
+        if (entityClass.Properties.Values.ContainsKey(strKey))
+        {
+            string strTemp = entityClass.Properties.Values[strKey].ToString();
+            string[] array = strTemp.Split(new char[]
+            {
+                ','
+            });
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (TempList.Contains(array[i].ToString()))
+                    continue;
+                TempList.Add(array[i].ToString());
+            }
+
+        }
+        return TempList;
+
+    }
     public void ConfigureBounaryBox(Vector3 newSize, Vector3 center)
     {
         BoxCollider component = base.gameObject.GetComponent<BoxCollider>();
